@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import ios_extensions
 
 /// UITableViewController基底クラス
 open class BaseTableViewController: UITableViewController, UIGestureRecognizerDelegate {

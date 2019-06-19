@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import ios_extensions
 
 // TODO: BaseViewControllerとBaseTableViewControllerとかまとめられるんじゃね？
 /// UIViewController基底クラス

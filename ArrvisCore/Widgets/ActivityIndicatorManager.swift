@@ -8,7 +8,6 @@
 
 import UIKit
 import TinyConstraints
-import ios_extensions
 
 /// インディケーター管理
 public struct ActivityIndicatorManager {

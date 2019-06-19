@@ -206,7 +206,7 @@ extension Date {
 }
 
 extension Date.Weekday {
-    
+
     /// 短い日本語文字列に変換
     public func toShortJapaneseString() -> String {
         switch self {

@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import ios_extensions
 
 /// ルートViewController基底クラス
 open class BaseRootViewController: UIViewController {
