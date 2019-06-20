@@ -1,0 +1,15 @@
+#!/bin/sh
+
+cd `dirname $0` && cd ../
+
+git clean -fdx
+
+bundle install --path vendor/bundler
+#carthage bootstrap --platform iOS --no-use-binaries --cache-builds
+
+cache_prefix=`xcrun swift --version | head -1 | sed 's/.*\((.*)\).*/\1/' | tr -d "()" | tr " " "-"`
+rome download --platform iOS --cache-prefix $cache_prefix
+rome list --missing --platform iOS --cache-prefix $cache_prefix | awk '{print $1}' | xargs carthage bootstrap --platform iOS --cache-builds
+rome list --missing --platform iOS --cache-prefix $cache_prefix | awk '{print $1}' | xargs rome upload --platform iOS
+
+fastlane ios get_development_cert
