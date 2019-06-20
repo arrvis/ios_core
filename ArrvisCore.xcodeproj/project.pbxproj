@@ -102,7 +102,6 @@
 		63F130EA22BC0C9B00B84768 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F130E522BC0C9A00B84768 /* RxRelay.framework */; };
 		63F130EB22BC0C9B00B84768 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F130E622BC0C9B00B84768 /* RxCocoa.framework */; };
 		63F130EC22BC0C9B00B84768 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F130E722BC0C9B00B84768 /* RxBlocking.framework */; };
-		63F130ED22BC0C9B00B84768 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F130E822BC0C9B00B84768 /* RxTest.framework */; };
 		63F130EE22BC0C9B00B84768 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F130E922BC0C9B00B84768 /* RxSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -204,7 +203,6 @@
 		63F130E522BC0C9A00B84768 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Lib/RxSwift/RxRelay.framework; sourceTree = "<group>"; };
 		63F130E622BC0C9B00B84768 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Lib/RxSwift/RxCocoa.framework; sourceTree = "<group>"; };
 		63F130E722BC0C9B00B84768 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Lib/RxSwift/RxBlocking.framework; sourceTree = "<group>"; };
-		63F130E822BC0C9B00B84768 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Lib/RxSwift/RxTest.framework; sourceTree = "<group>"; };
 		63F130E922BC0C9B00B84768 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Lib/RxSwift/RxSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,7 +214,6 @@
 				63F130EA22BC0C9B00B84768 /* RxRelay.framework in Frameworks */,
 				63F130EB22BC0C9B00B84768 /* RxCocoa.framework in Frameworks */,
 				63F130EC22BC0C9B00B84768 /* RxBlocking.framework in Frameworks */,
-				63F130ED22BC0C9B00B84768 /* RxTest.framework in Frameworks */,
 				63F130EE22BC0C9B00B84768 /* RxSwift.framework in Frameworks */,
 				63F130BE22BC0AA900B84768 /* AWSKMS.framework in Frameworks */,
 				63F130BF22BC0AA900B84768 /* AWSLambda.framework in Frameworks */,
@@ -492,7 +489,6 @@
 				63F130E622BC0C9B00B84768 /* RxCocoa.framework */,
 				63F130E522BC0C9A00B84768 /* RxRelay.framework */,
 				63F130E922BC0C9B00B84768 /* RxSwift.framework */,
-				63F130E822BC0C9B00B84768 /* RxTest.framework */,
 			);
 			name = RxSwift;
 			sourceTree = "<group>";
