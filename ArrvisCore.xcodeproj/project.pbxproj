@@ -548,6 +548,7 @@
 				6312F7E022B94C2D0050DA57 /* Frameworks */,
 				6312F7E122B94C2D0050DA57 /* Resources */,
 				63F130F022BC179600B84768 /* Run Script - Carthage */,
+				63F1312E22BC1FAD00B84768 /* Run Script - AWS */,
 				6312F7EE22B94C540050DA57 /* Run Script - SwiftLint */,
 			);
 			buildRules = (
@@ -721,6 +722,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "carthage copy-frameworks\n";
+		};
+		63F1312E22BC1FAD00B84768 /* Run Script - AWS */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script - AWS";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework/strip-frameworks.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
