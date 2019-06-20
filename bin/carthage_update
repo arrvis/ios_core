@@ -1,5 +1,7 @@
-cache_prefix=`xcrun swift --version | head -1 | sed 's/.*\((.*)\).*/\1/' | tr -d "()" | tr " " "-"`
+#!/bin/sh
+  
+cd `dirname $0` && cd ../
 
-rome download --platform iOS --cache-prefix $cache_prefix
-rome list --missing --platform iOS --cache-prefix $cache_prefix | awk '{print $1}' | xargs carthage update --platform iOS --cache-builds
-rome list --missing --platform iOS --cache-prefix $cache_prefix | awk '{print $1}' | xargs rome upload --platform iOS
+carthage update --platform iOS --no-build
+git add .
+bin/bootstrap
