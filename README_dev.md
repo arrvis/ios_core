@@ -12,7 +12,9 @@
 ```sh
 brew install swiftlint
 brew install carthge
-carthage bootstrap --platform iOS --no-use-binaries --cache-builds
+brew tap blender/tap https://github.com/blender/homebrew-tap.git
+brew install blender/homebrew-tap/rome
+bin/bootstrap
 ```
 
 ## Lint

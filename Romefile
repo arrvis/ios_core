@@ -1,0 +1,15 @@
+cache:
+  local: ~/Library/Caches/Rome 
+repositoryMap:
+- SQLite.swift:
+  - name: SQLite
+- apollo-ios:
+  - name: Apollo
+  - name: ApolloSQLite
+  - name: ApolloWebSocket
+- RxSwift:
+  - name: RxSwift
+  - name: RxCocoa
+  - name: RxBlocking
+  - name: RxRelay
+  - name: RxTest
