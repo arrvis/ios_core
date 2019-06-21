@@ -4,4 +4,4 @@ cd `dirname $0` && cd ../
 
 carthage update --platform iOS --no-build
 git add .
-bin/bootstrap
+bin/carthage_bootstrap
