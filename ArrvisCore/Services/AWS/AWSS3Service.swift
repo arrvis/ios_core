@@ -31,7 +31,7 @@ public struct S3UploadConfig {
 }
 
 /// S3サービス
-final class AWSS3Service {
+public final class AWSS3Service {
 
     // MARK: - Variables
 
