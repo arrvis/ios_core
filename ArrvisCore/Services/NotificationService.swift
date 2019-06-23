@@ -79,27 +79,31 @@ extension NotificationService {
     /// デバイストークン取得リクエスト
     public static func requestDeviceToken() -> Observable<String> {
         return Observable.create { observer in
-            if deviceToken != nil {
-                observer.onCompleted()
-                return Disposables.create()
-            }
-            deviceTokenObserver = observer
-
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.badge, .sound, .alert]) { (granted, error) in
-                if let error = error {
-                    observer.onError(error)
-                    return
-                }
-                if !granted {
+            fetchGranted().subscribe(onNext: { granted in
+                if deviceToken != nil {
                     observer.onCompleted()
                     return
                 }
-                NSObject.runOnMainThread {
-                    center.delegate = UIApplication.shared.delegate as? UNUserNotificationCenterDelegate
-                    UIApplication.shared.registerForRemoteNotifications()
+                deviceTokenObserver = observer
+
+                let center = UNUserNotificationCenter.current()
+                center.requestAuthorization(options: [.badge, .sound, .alert]) { (granted, error) in
+                    if let error = error {
+                        observer.onError(error)
+                        return
+                    }
+                    if !granted {
+                        observer.onCompleted()
+                        return
+                    }
+                    NSObject.runOnMainThread {
+                        center.delegate = UIApplication.shared.delegate as? UNUserNotificationCenterDelegate
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
                 }
-            }
+            }, onError: { error in
+                observer.onError(error)
+            }).disposed(by: disposeBag)
             return Disposables.create()
         }
     }
