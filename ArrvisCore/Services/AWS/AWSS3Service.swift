@@ -57,7 +57,7 @@ extension AWSS3Service {
                                  _ image: UIImage,
                                  _ keyWithoutExt: String,
                                  _ config: SimplifiedAWSConfig? = nil,
-                                 _ compression: CGFloat = 80) -> (String, Observable<Progress>) {
+                                 _ compression: CGFloat = 100) -> (String, Observable<Progress>) {
         return uploadData(bucket,
                           image.jpegData(compressionQuality: compression)!,
                           "image/jpeg",

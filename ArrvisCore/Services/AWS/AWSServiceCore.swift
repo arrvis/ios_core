@@ -12,6 +12,11 @@ public struct SimplifiedAWSConfig {
     public let identityPoolId: String
     public let region: AWSRegionType
 
+    public init(identityPoolId: String, region: AWSRegionType) {
+        self.identityPoolId = identityPoolId
+        self.region = region
+    }
+
     func toAWSServiceConfiguration() -> AWSServiceConfiguration {
         return AWSServiceConfiguration(
             region: region,
