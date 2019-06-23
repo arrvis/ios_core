@@ -8,24 +8,31 @@
 
 import AWSCore
 
-public typealias AWSConfig = (String, AWSRegionType)
+public struct SimplifiedAWSConfig {
+    public let identityPoolId: String
+    public let region: AWSRegionType
+
+    func toAWSServiceConfiguration() -> AWSServiceConfiguration {
+        return AWSServiceConfiguration(
+            region: region,
+            credentialsProvider: AWSCognitoCredentialsProvider(
+                regionType: region,
+                identityPoolId: identityPoolId
+            )
+        )
+    }
+}
 
 /// AWSServiceコア
 open class AWSServiceCore {
 
     /// 初期化
-    public static func initialize(_ config: AWSConfig) {
+    public static func initialize(_ config: SimplifiedAWSConfig) {
         setDefaultConfig(config)
     }
 
     /// デフォルト設定
-    public static func setDefaultConfig(_ config: AWSConfig) {
-        AWSServiceManager.default()?.defaultServiceConfiguration = AWSServiceConfiguration(
-            region: config.1,
-            credentialsProvider: AWSCognitoCredentialsProvider(
-                regionType: config.1,
-                identityPoolId: config.0
-            )
-        )
+    public static func setDefaultConfig(_ config: SimplifiedAWSConfig) {
+        AWSServiceManager.default()?.defaultServiceConfiguration = config.toAWSServiceConfiguration()
     }
 }

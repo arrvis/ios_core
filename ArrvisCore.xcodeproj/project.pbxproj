@@ -61,6 +61,7 @@
 		6350F60B22BACC2900B3B5FD /* InteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F60422BACC2800B3B5FD /* InteractorInterface.swift */; };
 		6388E2AD22BF428B00A30740 /* AWSS3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2AC22BF428B00A30740 /* AWSS3Service.swift */; };
 		6388E2AF22BF449700A30740 /* AWSServiceCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2AE22BF449700A30740 /* AWSServiceCore.swift */; };
+		6388E2B122BF576200A30740 /* AWSRegionTypeEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2B022BF576200A30740 /* AWSRegionTypeEx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +121,7 @@
 		6350F60422BACC2800B3B5FD /* InteractorInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractorInterface.swift; sourceTree = "<group>"; };
 		6388E2AC22BF428B00A30740 /* AWSS3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSS3Service.swift; sourceTree = "<group>"; };
 		6388E2AE22BF449700A30740 /* AWSServiceCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSServiceCore.swift; sourceTree = "<group>"; };
+		6388E2B022BF576200A30740 /* AWSRegionTypeEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSRegionTypeEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,10 +303,19 @@
 		6388E2AB22BF427E00A30740 /* AWS */ = {
 			isa = PBXGroup;
 			children = (
+				6388E2B222BF576E00A30740 /* Extensions */,
 				6388E2AE22BF449700A30740 /* AWSServiceCore.swift */,
 				6388E2AC22BF428B00A30740 /* AWSS3Service.swift */,
 			);
 			path = AWS;
+			sourceTree = "<group>";
+		};
+		6388E2B222BF576E00A30740 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6388E2B022BF576200A30740 /* AWSRegionTypeEx.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		63F1306C22BBFFF900B84768 /* Services */ = {
@@ -420,6 +431,7 @@
 				6312F81222B94D510050DA57 /* Device.swift in Sources */,
 				6312F81C22B94D510050DA57 /* BaseTableViewController.swift in Sources */,
 				6350F60B22BACC2900B3B5FD /* InteractorInterface.swift in Sources */,
+				6388E2B122BF576200A30740 /* AWSRegionTypeEx.swift in Sources */,
 				6350F5E922BAC8B400B3B5FD /* PHAssetEx.swift in Sources */,
 				6350F5E222BAC8B400B3B5FD /* UIImageEx.swift in Sources */,
 				6350F5F922BACA2000B3B5FD /* BaseTextView.swift in Sources */,

@@ -25,3 +25,5 @@ line_length:
   error: 200
 identifier_name:
   min_length: 1
+cyclomatic_complexity:
+  ignores_case_statements: true
