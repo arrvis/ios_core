@@ -34,6 +34,7 @@ open class AWSServiceCore {
     /// 初期化
     public static func initialize(_ config: SimplifiedAWSConfig) {
         setDefaultConfig(config)
+        AWSS3Service.initialize()
     }
 
     /// デフォルト設定

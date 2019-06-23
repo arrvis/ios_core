@@ -23,8 +23,7 @@ public final class AWSS3Service {
 
     // MARK: - Initialize
 
-    /// 初期化
-    public static func initialize() {
+    static func initialize() {
         // AlamofireImageでS3にある画像にアクセスするのに必要
         Alamofire.DataRequest.addAcceptableImageContentTypes(["binary/octet-stream"])
     }
