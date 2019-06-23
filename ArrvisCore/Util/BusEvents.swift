@@ -6,7 +6,7 @@
 //  Copyright © 2019年 Arrvis Co., Ltd. All rights reserved.
 //
 
-// TODO: こいつRx利用に変えよう
+// TODO: Rx対応
 import Foundation
 import SwiftEventBus
 

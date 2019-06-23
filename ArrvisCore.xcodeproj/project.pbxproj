@@ -59,6 +59,8 @@
 		6350F60922BACC2900B3B5FD /* ErrorHandleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F60222BACC2800B3B5FD /* ErrorHandleable.swift */; };
 		6350F60A22BACC2900B3B5FD /* Progressable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F60322BACC2800B3B5FD /* Progressable.swift */; };
 		6350F60B22BACC2900B3B5FD /* InteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F60422BACC2800B3B5FD /* InteractorInterface.swift */; };
+		6388E2AD22BF428B00A30740 /* AWSS3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2AC22BF428B00A30740 /* AWSS3Service.swift */; };
+		6388E2AF22BF449700A30740 /* AWSServiceCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2AE22BF449700A30740 /* AWSServiceCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +118,8 @@
 		6350F60222BACC2800B3B5FD /* ErrorHandleable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandleable.swift; sourceTree = "<group>"; };
 		6350F60322BACC2800B3B5FD /* Progressable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Progressable.swift; sourceTree = "<group>"; };
 		6350F60422BACC2800B3B5FD /* InteractorInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractorInterface.swift; sourceTree = "<group>"; };
+		6388E2AC22BF428B00A30740 /* AWSS3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSS3Service.swift; sourceTree = "<group>"; };
+		6388E2AE22BF449700A30740 /* AWSServiceCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSServiceCore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,9 +298,19 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		6388E2AB22BF427E00A30740 /* AWS */ = {
+			isa = PBXGroup;
+			children = (
+				6388E2AE22BF449700A30740 /* AWSServiceCore.swift */,
+				6388E2AC22BF428B00A30740 /* AWSS3Service.swift */,
+			);
+			path = AWS;
+			sourceTree = "<group>";
+		};
 		63F1306C22BBFFF900B84768 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				6388E2AB22BF427E00A30740 /* AWS */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -437,6 +451,7 @@
 				6350F5D822BAC8B400B3B5FD /* UIViewEx.swift in Sources */,
 				6350F5DF22BAC8B400B3B5FD /* UILabelEx.swift in Sources */,
 				6312F82422B94D510050DA57 /* BaseRootViewController.swift in Sources */,
+				6388E2AD22BF428B00A30740 /* AWSS3Service.swift in Sources */,
 				6350F60922BACC2900B3B5FD /* ErrorHandleable.swift in Sources */,
 				6350F5D922BAC8B400B3B5FD /* BundleEx.swift in Sources */,
 				6350F5F822BACA2000B3B5FD /* ActivityIndicatorManager.swift in Sources */,
@@ -451,6 +466,7 @@
 				6350F60622BACC2900B3B5FD /* InteractorOutputInterface.swift in Sources */,
 				6350F5DD22BAC8B400B3B5FD /* NSMutableAttributedStringEx.swift in Sources */,
 				6312F81122B94D510050DA57 /* BusEvents.swift in Sources */,
+				6388E2AF22BF449700A30740 /* AWSServiceCore.swift in Sources */,
 				6312F81522B94D510050DA57 /* BackFromNextHandleable.swift in Sources */,
 				6350F60522BACC2800B3B5FD /* PresenterInterface.swift in Sources */,
 			);

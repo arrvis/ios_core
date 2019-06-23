@@ -1,15 +1,57 @@
 cache:
   local: ~/Library/Caches/Rome 
 repositoryMap:
-- SQLite.swift:
-  - name: SQLite
-- apollo-ios:
-  - name: Apollo
-  - name: ApolloSQLite
-  - name: ApolloWebSocket
+# General
 - RxSwift:
   - name: RxSwift
   - name: RxCocoa
   - name: RxBlocking
   - name: RxRelay
   - name: RxTest
+# Graphql
+- apollo-ios:
+  - name: Apollo
+  - name: ApolloSQLite
+  - name: ApolloWebSocket
+- SQLite.swift:
+  - name: SQLite
+# AWS
+- aws-sdk-ios:
+  - name: AWSAPIGateway
+  - name: AWSAuthCore
+  - name: AWSAuthUI
+  - name: AWSAutoScaling
+  - name: AWSCloudWatch
+  - name: AWSCognito
+  - name: AWSCognitoAuth
+  - name: AWSCognitoIdentityProvider
+  - name: AWSCognitoIdentityProviderASF
+  - name: AWSComprehend
+  - name: AWSCore
+  - name: AWSDynamoDB
+  - name: AWSEC2
+  - name: AWSElasticLoadBalancing
+  - name: AWSFacebookSignIn
+  - name: AWSGoogleSignIn
+  - name: AWSIoT
+  - name: AWSKinesis
+  - name: AWSKinesisVideo
+  - name: AWSKinesisVideoArchivedMedia
+  - name: AWSKMS
+  - name: AWSLambda
+  - name: AWSLex
+  - name: AWSLogs
+  - name: AWSMachineLearning
+  - name: AWSMobileAnalytics
+  - name: AWSMobileClient
+  - name: AWSPinpoint
+  - name: AWSPolly
+  - name: AWSRekognition
+  - name: AWSS3
+  - name: AWSSES
+  - name: AWSSimpleDB
+  - name: AWSSNS
+  - name: AWSSQS
+  - name: AWSTranscribe
+  - name: AWSTranslate
+  - name: AWSUserPoolsSignIn

@@ -1,11 +1,19 @@
+# General
 github "ReactiveX/RxSwift" "5.0.1"
 
+# Navigator
 github "cesarferreira/SwiftEventBus" "5.0.0"
 github "hyperoslo/Compass" "6.0.0"
 
+# HTTP
 github "Alamofire/Alamofire" "4.8.2"
 github "Alamofire/AlamofireImage" "3.5.2"
 
+# Graphql
 github "apollographql/apollo-ios" "0.10.1"
 
+# AWS
+github "aws/aws-sdk-ios"
+
+# UI
 github "roberthein/TinyConstraints" "4.0.1"
