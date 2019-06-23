@@ -65,6 +65,8 @@
 		6388E2B522BF64A700A30740 /* EventKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2B422BF64A700A30740 /* EventKitService.swift */; };
 		6388E2B822BF657C00A30740 /* PermissionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2B722BF657C00A30740 /* PermissionError.swift */; };
 		6388E2BA22BF689200A30740 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2B922BF689200A30740 /* NotificationService.swift */; };
+		6388E2BC22C02E1100A30740 /* FacebookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2BB22C02E1100A30740 /* FacebookService.swift */; };
+		6388E2BE22C0305D00A30740 /* GoogleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2BD22C0305D00A30740 /* GoogleService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +130,8 @@
 		6388E2B422BF64A700A30740 /* EventKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitService.swift; sourceTree = "<group>"; };
 		6388E2B722BF657C00A30740 /* PermissionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionError.swift; sourceTree = "<group>"; };
 		6388E2B922BF689200A30740 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		6388E2BB22C02E1100A30740 /* FacebookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookService.swift; sourceTree = "<group>"; };
+		6388E2BD22C0305D00A30740 /* GoogleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +343,8 @@
 				6388E2AB22BF427E00A30740 /* AWS */,
 				6388E2B422BF64A700A30740 /* EventKitService.swift */,
 				6388E2B922BF689200A30740 /* NotificationService.swift */,
+				6388E2BB22C02E1100A30740 /* FacebookService.swift */,
+				6388E2BD22C0305D00A30740 /* GoogleService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -445,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6350F5F722BACA2000B3B5FD /* AutoResizeTextView.swift in Sources */,
+				6388E2BE22C0305D00A30740 /* GoogleService.swift in Sources */,
 				6312F81222B94D510050DA57 /* Device.swift in Sources */,
 				6312F81C22B94D510050DA57 /* BaseTableViewController.swift in Sources */,
 				6350F60B22BACC2900B3B5FD /* InteractorInterface.swift in Sources */,
@@ -501,6 +508,7 @@
 				6388E2AF22BF449700A30740 /* AWSServiceCore.swift in Sources */,
 				6312F81522B94D510050DA57 /* BackFromNextHandleable.swift in Sources */,
 				6350F60522BACC2800B3B5FD /* PresenterInterface.swift in Sources */,
+				6388E2BC22C02E1100A30740 /* FacebookService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

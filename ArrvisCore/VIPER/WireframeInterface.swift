@@ -120,13 +120,13 @@ extension WireframeInterface {
     }
 
     /// OKアラート表示
-    public func showOkAlert(title: String?, message: String?) {
-        showOkAlert(title: title, message: message, onOk: {})
+    public func showOkAlert(title: String?, message: String?, ok: String?) {
+        showOkAlert(title: title, message: message, ok: ok, onOk: {})
     }
 
     /// OKアラート表示
-    public func showOkAlert(title: String?, message: String?, onOk: @escaping () -> Void) {
-        showAlert(title: title, message: message, actions: [ "OK": (.default, { onOk() }) ] )
+    public func showOkAlert(title: String?, message: String?, ok: String?, onOk: @escaping () -> Void) {
+        showAlert(title: title, message: message, actions: [ (ok ?? "OK"): (.default, { onOk() }) ] )
     }
 
     /// 確認アラート表示

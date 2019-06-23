@@ -15,6 +15,15 @@ repositoryMap:
   - name: ApolloWebSocket
 - SQLite.swift:
   - name: SQLite
+# Facebook
+- facebook-sdk-swift:
+  - name: Bolts
+  - name: FacebookCore
+  - name: FacebookLogin
+  - name: FBSDKCoreKit
+  - name: FBSDKShareKit
+  - name: FBSDKLoginKit
+  - name: FBSDKPlacesKit
 # AWS
 - aws-sdk-ios:
   - name: AWSAPIGateway

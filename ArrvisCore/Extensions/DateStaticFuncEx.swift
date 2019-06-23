@@ -87,8 +87,8 @@ extension Date {
     ///   - d1: 日付1
     ///   - d2: 日付2
     /// - Returns: 同じ日かどうか
-    public static func isEqualDay(d1: Date, d2: Date) -> Bool {
-        return defaultCalendar.isDate(d1, inSameDayAs: d2)
+    public static func isEqualDay(_ left: Date, _ right: Date) -> Bool {
+        return defaultCalendar.isDate(left, inSameDayAs: right)
     }
 
     /// 指定された分間隔でroundFloor
