@@ -80,26 +80,15 @@ extension NotificationService {
     public static func requestDeviceToken() -> Observable<String> {
         return Observable.create { observer in
             fetchGranted().subscribe(onNext: { granted in
-                if deviceToken != nil {
+                if !granted {
                     observer.onCompleted()
                     return
                 }
                 deviceTokenObserver = observer
-
-                let center = UNUserNotificationCenter.current()
-                center.requestAuthorization(options: [.badge, .sound, .alert]) { (granted, error) in
-                    if let error = error {
-                        observer.onError(error)
-                        return
-                    }
-                    if !granted {
-                        observer.onCompleted()
-                        return
-                    }
-                    NSObject.runOnMainThread {
-                        center.delegate = UIApplication.shared.delegate as? UNUserNotificationCenterDelegate
-                        UIApplication.shared.registerForRemoteNotifications()
-                    }
+                NSObject.runOnMainThread {
+                    UNUserNotificationCenter.current().delegate
+                        = UIApplication.shared.delegate as? UNUserNotificationCenterDelegate
+                    UIApplication.shared.registerForRemoteNotifications()
                 }
             }, onError: { error in
                 observer.onError(error)
@@ -124,7 +113,7 @@ extension NotificationService {
 extension NotificationService {
 
     /// リモート通知受信
-    static func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any]) {
+    public static func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any]) {
         guard let data = NotificationData.fromUserInfo(userInfo) else {
             return
         }
