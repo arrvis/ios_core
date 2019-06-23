@@ -19,7 +19,11 @@ public protocol BusEvents {
 public enum SystemBusEvents: String, BusEvents {
     case applicationWillEnterForeground
     case applicationDidEnterBackground
+
+    case didReceiveDeviceToken
+    case didErrorReceiveDeviceToken
     case didReceiveRemoteNotification
+
     case currentViewControllerChanged
 
     public var name: String {
