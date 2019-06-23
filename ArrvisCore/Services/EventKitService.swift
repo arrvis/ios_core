@@ -48,11 +48,11 @@ extension EventKitService {
         }
     }
 
-    /// スケジュールフェッチ
-    public static func fetchSchedules(_ rangeYear: Int,
-                                      _ monthRange: Int,
-                                      _ lastSyncTime: Date?) -> Observable<[EKEvent]> {
-        func fetchMonthSchedules(_ month: Date) -> Observable<[EKEvent]> {
+    /// イベントフェッチ
+    public static func fetchEvents(_ rangeYear: Int,
+                                   _ monthRange: Int,
+                                   _ lastSyncTime: Date?) -> Observable<[EKEvent]> {
+        func fetchMonthEvents(_ month: Date) -> Observable<[EKEvent]> {
             return Observable.create({ observer in
                 let predicate = eventStore.predicateForEvents(withStart: month,
                                                               end: month.plusMonth(1),
@@ -75,6 +75,6 @@ extension EventKitService {
                                                  end: Date.now.startOfDay.plusMonth(-monthRange / 2)))
         months.append(contentsOf: Date.getMonths(start: Date.now.startOfDay.plusMonth(monthRange / 2),
                                                  end: Date.now.startOfDay.plusYear(rangeYear)))
-        return Observable.merge(months.map { fetchMonthSchedules($0)})
+        return Observable.merge(months.map { fetchMonthEvents($0)})
     }
 }
