@@ -40,7 +40,7 @@ public final class NotificationService {
     /// DeviceToken
     public static var deviceToken: String?
 
-    private static var deviceTokenObserver: AnyObserver<Void>?
+    private static var deviceTokenObserver: AnyObserver<String>?
 }
 
 // MARK: - Permission
@@ -77,7 +77,7 @@ extension NotificationService {
 extension NotificationService {
 
     /// デバイストークン取得リクエスト
-    public static func requestDeviceToken() -> Observable<Void> {
+    public static func requestDeviceToken() -> Observable<String> {
         return Observable.create { observer in
             if deviceToken != nil {
                 observer.onCompleted()
@@ -107,7 +107,7 @@ extension NotificationService {
     /// デバイストークン取得完了
     public static func didReceiveDeviceToken(_ deviceToken: Data) {
         self.deviceToken = deviceToken.map { String(format: "%.2hhx", $0) }.joined()
-        deviceTokenObserver?.onNext(())
+        deviceTokenObserver?.onNext(self.deviceToken!)
     }
 
     /// デバイストークン取得エラー
