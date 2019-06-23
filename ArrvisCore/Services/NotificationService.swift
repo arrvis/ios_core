@@ -12,8 +12,8 @@ import RxSwift
 import SwiftEventBus
 
 /// 通知データ
-struct NotificationData {
-    let alert: String
+public struct NotificationData {
+    public let alert: String
 
     static func fromUserInfo(_ userInfo: [AnyHashable: Any]) -> NotificationData? {
         guard let aps = userInfo["aps"] as? [String: Any] else {
@@ -37,8 +37,10 @@ public final class NotificationService {
     /// DisposeBag
     public static let disposeBag = DisposeBag()
 
+    /// DeviceToken
+    public static var deviceToken: String?
+
     private static var deviceTokenObserver: AnyObserver<Void>?
-    private static var deviceToken: String?
 }
 
 // MARK: - Permission
