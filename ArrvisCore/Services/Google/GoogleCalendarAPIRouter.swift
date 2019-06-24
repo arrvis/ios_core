@@ -126,6 +126,7 @@ extension Date {
     }
 
     static func fromGoogleApiFormat(_ value: String) -> Date {
-        return Date.fromString(value, format: "yyyy-MM-dd'T'HH:mm:ssZ") ?? Date.fromString(value, format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")!
+        return Date.fromString(value, format: "yyyy-MM-dd'T'HH:mm:ssZ")
+            ?? Date.fromString(value, format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")!
     }
 }

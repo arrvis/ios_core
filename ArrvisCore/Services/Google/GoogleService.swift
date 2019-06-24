@@ -47,7 +47,9 @@ public final class GoogleService {
     // MARK: - Application Delegates
 
     /// application
-    public static func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    public static func application(_ app: UIApplication,
+                                   open url: URL,
+                                   options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         let sourceApp = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String
         let annotation = options[UIApplication.OpenURLOptionsKey.annotation]
         return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApp, annotation: annotation)
@@ -58,7 +60,10 @@ public final class GoogleService {
 extension GoogleService {
 
     /// 初期化
-    public static func initialize(_ clientId: String, _ serverClientId: String?, _ scopes: [Scope], _ delegate: GIDSignInUIDelegate) {
+    public static func initialize(_ clientId: String,
+                                  _ serverClientId: String?,
+                                  _ scopes: [Scope],
+                                  _ delegate: GIDSignInUIDelegate) {
         GIDSignIn.sharedInstance().clientID = clientId
         if let serverClientId = serverClientId {
             GIDSignIn.sharedInstance().serverClientID = serverClientId

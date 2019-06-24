@@ -15,15 +15,21 @@ public final class FacebookService {
 
     // MARK: - Application Delgates
 
-    public static func application(_ application: UIApplication,
-                           didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+    public static func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
-    public static func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    public static func application(_ app: UIApplication,
+                                   open url: URL,
+                                   options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         let sourceApp = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String
         let annotation = options[UIApplication.OpenURLOptionsKey.annotation]
-        return ApplicationDelegate.shared.application(app, open: url, sourceApplication: sourceApp, annotation: annotation)
+        return ApplicationDelegate.shared.application(app,
+                                                      open: url,
+                                                      sourceApplication: sourceApp,
+                                                      annotation: annotation)
     }
 }
 
@@ -32,7 +38,8 @@ extension FacebookService {
     /// ログイン
     public static func login(_ permissions: [String], _ cancel: @escaping () -> Void) -> Observable<AccessToken> {
         return Observable.create({ observer in
-            if let accessToken = AccessToken.current, permissions.first(where: { !accessToken.hasGranted(permission: $0)}) == nil {
+            if let accessToken = AccessToken.current,
+                permissions.first(where: { !accessToken.hasGranted(permission: $0)}) == nil {
                 observer.onNext(accessToken)
             }
             let manager = LoginManager()
