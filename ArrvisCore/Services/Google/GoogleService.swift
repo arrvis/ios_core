@@ -13,6 +13,12 @@ import GoogleSignIn
 /// Google関連サービス
 public final class GoogleService {
 
+    // MARK: - Constants
+
+    public enum Scope: String {
+        case calendar = "https://www.googleapis.com/auth/calendar"
+    }
+
     // MARK: - Variables
 
     /// DisposeBag
@@ -28,13 +34,20 @@ public final class GoogleService {
     }
 
     private static var googleAuthorizeObserver: AnyObserver<GIDGoogleUser>?
-    private static let gidSignInHandler = GIDSignInHandler()
     private static var signInCancel = {}
-    
+
+    private static let gidSignInHandler = GIDSignInHandler()
+    private class GIDSignInHandler: NSObject, GIDSignInDelegate {
+
+        func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+            GoogleService.handleGoogleSignIn(user, error: error)
+        }
+    }
+
     // MARK: - Application Delegates
 
     /// application
-    static func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    public static func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         let sourceApp = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String
         let annotation = options[UIApplication.OpenURLOptionsKey.annotation]
         return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApp, annotation: annotation)
@@ -43,20 +56,22 @@ public final class GoogleService {
 
 // MARK: - General
 extension GoogleService {
-    
+
     /// 初期化
-    public static func initialize(_ delegate: GIDSignInUIDelegate) {
-        GIDSignIn.sharedInstance().clientID = googleClientId
-        GIDSignIn.sharedInstance().serverClientID = googleServerClientId
-        GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/calendar"]
+    public static func initialize(_ clientId: String, _ serverClientId: String?, _ scopes: [Scope], _ delegate: GIDSignInUIDelegate) {
+        GIDSignIn.sharedInstance().clientID = clientId
+        if let serverClientId = serverClientId {
+            GIDSignIn.sharedInstance().serverClientID = serverClientId
+        }
+        GIDSignIn.sharedInstance().scopes = scopes.map { $0.rawValue }
         GIDSignIn.sharedInstance().delegate = gidSignInHandler
         GIDSignIn.sharedInstance().uiDelegate = delegate
     }
 }
 
 // MARK: - Auth
-extension GoogleService: NSObject, GIDSignInDelegate {
-    
+extension GoogleService {
+
     /// Googleにログイン
     public static func login(_ cancel: @escaping () -> Void) -> Observable<GIDGoogleUser> {
         signInCancel = cancel
@@ -87,13 +102,13 @@ extension GoogleService: NSObject, GIDSignInDelegate {
             googleAuthorizeObserver?.onError(error)
             return
         }
-        
+
         googleRefreshToken = user.authentication.refreshToken
         googleAuthorizeObserver?.onNext(user)
     }
 
     /// Googleからログアウト
-    static func logout() {
+    public static func logout() {
         googleRefreshToken = nil
         GIDSignIn.sharedInstance().disconnect()
     }
@@ -101,11 +116,12 @@ extension GoogleService: NSObject, GIDSignInDelegate {
 
 // MARK: - Calendar
 extension GoogleService {
-    
+
     /// スケジュールフェッチ
-    static func fetchEvents(_ rangeYear: Int,
-                            _ monthRange: Int,
-                            _ lastSyncTime: Date?) -> Observable<[GoogleEvent]> {
+    public static func fetchEvents(_ rangeYear: Int,
+                                   _ monthRange: Int,
+                                   _ lastSyncTime: Date?) -> Observable<[GoogleEvent]> {
+        // TODO: SignIn済みか確認
         func fetchEvents(_ month: Date?) -> Observable<[GoogleEvent]> {
             return Observable.create({ observer in
                 var path = "/events?"
@@ -140,12 +156,5 @@ extension GoogleService {
         } else {
             return fetchEvents(nil)
         }
-    }
-}
-
-private class GIDSignInHandler: NSObject, GIDSignInDelegate {
-
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        GoogleService.handleGoogleSignIn(user, error: error)
     }
 }

@@ -17,27 +17,27 @@ public final class FacebookService {
 
     public static func application(_ application: UIApplication,
                            didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
     public static func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         let sourceApp = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String
         let annotation = options[UIApplication.OpenURLOptionsKey.annotation]
-        return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: sourceApp, annotation: annotation)
+        return ApplicationDelegate.shared.application(app, open: url, sourceApplication: sourceApp, annotation: annotation)
     }
 }
 
 extension FacebookService {
 
     /// ログイン
-    public static func login(_ cancel: @escaping () -> Void) -> Observable<FBSDKAccessToken> {
+    public static func login(_ permissions: [String], _ cancel: @escaping () -> Void) -> Observable<AccessToken> {
         return Observable.create({ observer in
-            if let accessToken = FBSDKAccessToken.current(), fbReadPermissions.first(where: { !accessToken.hasGranted($0)}) == nil {
+            if let accessToken = AccessToken.current, permissions.first(where: { !accessToken.hasGranted(permission: $0)}) == nil {
                 observer.onNext(accessToken)
             }
-            let manager = FBSDKLoginManager()
+            let manager = LoginManager()
             manager.loginBehavior = .browser
-            manager.logIn(withReadPermissions: fbReadPermissions, from: nil) { (result, error) in
+            manager.logIn(permissions: permissions, from: nil) { (result, error) in
                 if let error = error {
                     logout()
                     observer.onError(error)
@@ -51,9 +51,13 @@ extension FacebookService {
                 if result.isCancelled {
                     cancel()
                     observer.onCompleted()
-                } else {
-                    observer.onNext(result.token)
                 }
+                guard let token = result.token else {
+                    logout()
+                    observer.onError(SNSError())
+                    return
+                }
+                observer.onNext(token)
             }
             return Disposables.create()
         })
@@ -61,6 +65,6 @@ extension FacebookService {
 
     /// ログアウト
     public static func logout() {
-        FBSDKLoginManager().logOut()
+        LoginManager().logOut()
     }
 }

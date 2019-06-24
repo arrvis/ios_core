@@ -8,15 +8,13 @@ github "hyperoslo/Compass" "6.0.0"
 # HTTP
 github "Alamofire/Alamofire" "4.8.2"
 github "Alamofire/AlamofireImage" "3.5.2"
-
-# Graphql
-github "apollographql/apollo-ios" "0.10.1"
-
-# AWS
-github "aws/aws-sdk-ios" "2.9.9"
-
-# Facebook
-github "facebook/facebook-sdk-swift" "swift-4.1"
+github "ashleymills/Reachability.swift" "v4.3.1"
 
 # UI
 github "roberthein/TinyConstraints" "4.0.1"
+
+# Services
+github "apollographql/apollo-ios" "0.10.1"
+github "aws/aws-sdk-ios" "2.9.9"
+github "facebook/facebook-sdk-swift" "master"
+github "https://github.com/fabio914/GoogleSignIn-iOS" "4.2.0"

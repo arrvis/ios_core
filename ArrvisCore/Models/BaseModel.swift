@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Apollo
 
 // Model Protocol
 public protocol BaseModel: Codable {
@@ -29,5 +30,10 @@ extension BaseModel {
     /// JSONデータから生成
     public static func fromJson(json: Data) -> ModelType {
         return try! JSONDecoder().decode(Self.self, from: json) as! Self.ModelType
+    }
+
+    /// GraphQLSelectionSetから生成
+    static func fromSet(set: GraphQLSelectionSet) -> ModelType {
+        return fromJson(json: set.toJsonString()!)
     }
 }

@@ -67,6 +67,13 @@
 		6388E2BA22BF689200A30740 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2B922BF689200A30740 /* NotificationService.swift */; };
 		6388E2BC22C02E1100A30740 /* FacebookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2BB22C02E1100A30740 /* FacebookService.swift */; };
 		6388E2BE22C0305D00A30740 /* GoogleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2BD22C0305D00A30740 /* GoogleService.swift */; };
+		6388E2C022C055A900A30740 /* BaseGraphQLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2BF22C055A900A30740 /* BaseGraphQLService.swift */; };
+		6388E2D022C0828E00A30740 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6388E2CF22C0828E00A30740 /* GoogleSignIn.bundle */; };
+		6388E2D222C0833F00A30740 /* SNSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2D122C0833F00A30740 /* SNSError.swift */; };
+		6388E2D422C083C300A30740 /* GraphQLServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2D322C083C300A30740 /* GraphQLServiceError.swift */; };
+		6388E2DC22C0872700A30740 /* GoogleCalendarAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2DB22C0872700A30740 /* GoogleCalendarAPIRouter.swift */; };
+		6388E2DE22C08FA900A30740 /* NoConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2DD22C08FA900A30740 /* NoConnectionError.swift */; };
+		638BA0ED22C0900200DE6293 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638BA0EC22C0900200DE6293 /* HTTPError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +139,13 @@
 		6388E2B922BF689200A30740 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		6388E2BB22C02E1100A30740 /* FacebookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookService.swift; sourceTree = "<group>"; };
 		6388E2BD22C0305D00A30740 /* GoogleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleService.swift; sourceTree = "<group>"; };
+		6388E2BF22C055A900A30740 /* BaseGraphQLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGraphQLService.swift; sourceTree = "<group>"; };
+		6388E2CF22C0828E00A30740 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Carthage/Build/iOS/GoogleSignIn.framework/GoogleSignIn.bundle; sourceTree = "<group>"; };
+		6388E2D122C0833F00A30740 /* SNSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSError.swift; sourceTree = "<group>"; };
+		6388E2D322C083C300A30740 /* GraphQLServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLServiceError.swift; sourceTree = "<group>"; };
+		6388E2DB22C0872700A30740 /* GoogleCalendarAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleCalendarAPIRouter.swift; sourceTree = "<group>"; };
+		6388E2DD22C08FA900A30740 /* NoConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoConnectionError.swift; sourceTree = "<group>"; };
+		638BA0EC22C0900200DE6293 /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +246,7 @@
 		6312F82822B94FC40050DA57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6388E2CF22C0828E00A30740 /* GoogleSignIn.bundle */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -332,19 +347,57 @@
 			isa = PBXGroup;
 			children = (
 				6388E2B722BF657C00A30740 /* PermissionError.swift */,
+				6388E2D122C0833F00A30740 /* SNSError.swift */,
+				6388E2DD22C08FA900A30740 /* NoConnectionError.swift */,
+				638BA0EC22C0900200DE6293 /* HTTPError.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		6388E2C122C055CA00A30740 /* GraphQL */ = {
+			isa = PBXGroup;
+			children = (
+				6388E2BF22C055A900A30740 /* BaseGraphQLService.swift */,
+				6388E2D322C083C300A30740 /* GraphQLServiceError.swift */,
+			);
+			path = GraphQL;
+			sourceTree = "<group>";
+		};
+		6388E2C222C055D700A30740 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				6388E2B922BF689200A30740 /* NotificationService.swift */,
+				6388E2B422BF64A700A30740 /* EventKitService.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		6388E2D722C0869600A30740 /* Google */ = {
+			isa = PBXGroup;
+			children = (
+				6388E2BD22C0305D00A30740 /* GoogleService.swift */,
+				6388E2DB22C0872700A30740 /* GoogleCalendarAPIRouter.swift */,
+			);
+			path = Google;
+			sourceTree = "<group>";
+		};
+		6388E2D822C086A000A30740 /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				6388E2BB22C02E1100A30740 /* FacebookService.swift */,
+			);
+			path = Facebook;
 			sourceTree = "<group>";
 		};
 		63F1306C22BBFFF900B84768 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				6388E2B622BF656600A30740 /* Errors */,
+				6388E2C222C055D700A30740 /* General */,
+				6388E2C122C055CA00A30740 /* GraphQL */,
 				6388E2AB22BF427E00A30740 /* AWS */,
-				6388E2B422BF64A700A30740 /* EventKitService.swift */,
-				6388E2B922BF689200A30740 /* NotificationService.swift */,
-				6388E2BB22C02E1100A30740 /* FacebookService.swift */,
-				6388E2BD22C0305D00A30740 /* GoogleService.swift */,
+				6388E2D722C0869600A30740 /* Google */,
+				6388E2D822C086A000A30740 /* Facebook */,
+				6388E2B622BF656600A30740 /* Errors */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -419,6 +472,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6388E2D022C0828E00A30740 /* GoogleSignIn.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,7 +513,9 @@
 				6350F5E922BAC8B400B3B5FD /* PHAssetEx.swift in Sources */,
 				6350F5E222BAC8B400B3B5FD /* UIImageEx.swift in Sources */,
 				6388E2BA22BF689200A30740 /* NotificationService.swift in Sources */,
+				6388E2DE22C08FA900A30740 /* NoConnectionError.swift in Sources */,
 				6350F5F922BACA2000B3B5FD /* BaseTextView.swift in Sources */,
+				6388E2DC22C0872700A30740 /* GoogleCalendarAPIRouter.swift in Sources */,
 				6350F60A22BACC2900B3B5FD /* Progressable.swift in Sources */,
 				6350F60822BACC2900B3B5FD /* WireframeInterface.swift in Sources */,
 				6312F82622B94D510050DA57 /* Screen.swift in Sources */,
@@ -468,6 +524,7 @@
 				6350F5F622BACA2000B3B5FD /* InsetsSettableLabel.swift in Sources */,
 				6350F5D722BAC8B400B3B5FD /* UIBarButtonItemEx.swift in Sources */,
 				6312F81B22B94D510050DA57 /* BaseViewController.swift in Sources */,
+				6388E2C022C055A900A30740 /* BaseGraphQLService.swift in Sources */,
 				6388E2B522BF64A700A30740 /* EventKitService.swift in Sources */,
 				6350F5D322BAC8B400B3B5FD /* UIScrollViewEx.swift in Sources */,
 				6350F5FB22BACA2000B3B5FD /* InputToolBarView.swift in Sources */,
@@ -496,6 +553,7 @@
 				6350F5D522BAC8B400B3B5FD /* Properties.swift in Sources */,
 				6350F5D622BAC8B400B3B5FD /* ArrayEx.swift in Sources */,
 				6312F82522B94D510050DA57 /* SystemScreens.swift in Sources */,
+				6388E2D222C0833F00A30740 /* SNSError.swift in Sources */,
 				6350F5E522BAC8B400B3B5FD /* StringEx.swift in Sources */,
 				6350F5E822BAC8B400B3B5FD /* ApolloEx.swift in Sources */,
 				6350F5E722BAC8B400B3B5FD /* IntEx.swift in Sources */,
@@ -504,10 +562,12 @@
 				6350F60622BACC2900B3B5FD /* InteractorOutputInterface.swift in Sources */,
 				6350F5DD22BAC8B400B3B5FD /* NSMutableAttributedStringEx.swift in Sources */,
 				6388E2B822BF657C00A30740 /* PermissionError.swift in Sources */,
+				638BA0ED22C0900200DE6293 /* HTTPError.swift in Sources */,
 				6312F81122B94D510050DA57 /* BusEvents.swift in Sources */,
 				6388E2AF22BF449700A30740 /* AWSServiceCore.swift in Sources */,
 				6312F81522B94D510050DA57 /* BackFromNextHandleable.swift in Sources */,
 				6350F60522BACC2800B3B5FD /* PresenterInterface.swift in Sources */,
+				6388E2D422C083C300A30740 /* GraphQLServiceError.swift in Sources */,
 				6388E2BC22C02E1100A30740 /* FacebookService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
