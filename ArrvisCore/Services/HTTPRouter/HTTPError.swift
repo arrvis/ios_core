@@ -6,8 +6,6 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
-import Alamofire
-
 /// HTTPエラー
 public class HTTPError: Error {
 

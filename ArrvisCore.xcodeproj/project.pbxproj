@@ -21,6 +21,8 @@
 		6312F82522B94D510050DA57 /* SystemScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6312F80D22B94D510050DA57 /* SystemScreens.swift */; };
 		6312F82622B94D510050DA57 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6312F80E22B94D510050DA57 /* Screen.swift */; };
 		6312F82722B94D510050DA57 /* BaseNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6312F80F22B94D510050DA57 /* BaseNavigator.swift */; };
+		63227E0322C1606200A25560 /* HTTPNoDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63227E0222C1606200A25560 /* HTTPNoDataError.swift */; };
+		63227E0522C1609E00A25560 /* HTTPFailure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63227E0422C1609E00A25560 /* HTTPFailure.swift */; };
 		6350F5D222BAC8B400B3B5FD /* NSObjectEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5BA22BAC8B400B3B5FD /* NSObjectEx.swift */; };
 		6350F5D322BAC8B400B3B5FD /* UIScrollViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5BB22BAC8B400B3B5FD /* UIScrollViewEx.swift */; };
 		6350F5D422BAC8B400B3B5FD /* UIImageViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5BC22BAC8B400B3B5FD /* UIImageViewEx.swift */; };
@@ -94,6 +96,8 @@
 		6312F80D22B94D510050DA57 /* SystemScreens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemScreens.swift; sourceTree = "<group>"; };
 		6312F80E22B94D510050DA57 /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		6312F80F22B94D510050DA57 /* BaseNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigator.swift; sourceTree = "<group>"; };
+		63227E0222C1606200A25560 /* HTTPNoDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPNoDataError.swift; sourceTree = "<group>"; };
+		63227E0422C1609E00A25560 /* HTTPFailure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPFailure.swift; sourceTree = "<group>"; };
 		6350F5BA22BAC8B400B3B5FD /* NSObjectEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObjectEx.swift; sourceTree = "<group>"; };
 		6350F5BB22BAC8B400B3B5FD /* UIScrollViewEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewEx.swift; sourceTree = "<group>"; };
 		6350F5BC22BAC8B400B3B5FD /* UIImageViewEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewEx.swift; sourceTree = "<group>"; };
@@ -257,6 +261,10 @@
 			isa = PBXGroup;
 			children = (
 				638BA11322C0A2A900DE6293 /* BaseHTTPRouter.swift */,
+				6388E2DD22C08FA900A30740 /* NoConnectionError.swift */,
+				638BA0EC22C0900200DE6293 /* HTTPError.swift */,
+				63227E0222C1606200A25560 /* HTTPNoDataError.swift */,
+				63227E0422C1609E00A25560 /* HTTPFailure.swift */,
 			);
 			path = HTTPRouter;
 			sourceTree = "<group>";
@@ -358,8 +366,6 @@
 			children = (
 				6388E2B722BF657C00A30740 /* PermissionError.swift */,
 				6388E2D122C0833F00A30740 /* AuthError.swift */,
-				6388E2DD22C08FA900A30740 /* NoConnectionError.swift */,
-				638BA0EC22C0900200DE6293 /* HTTPError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -517,6 +523,7 @@
 			files = (
 				6350F5F722BACA2000B3B5FD /* AutoResizeTextView.swift in Sources */,
 				6388E2BE22C0305D00A30740 /* GoogleService.swift in Sources */,
+				63227E0322C1606200A25560 /* HTTPNoDataError.swift in Sources */,
 				6312F81222B94D510050DA57 /* Device.swift in Sources */,
 				6312F81C22B94D510050DA57 /* BaseTableViewController.swift in Sources */,
 				6350F60B22BACC2900B3B5FD /* InteractorInterface.swift in Sources */,
@@ -538,6 +545,7 @@
 				6312F81B22B94D510050DA57 /* BaseViewController.swift in Sources */,
 				6388E2C022C055A900A30740 /* BaseGraphQLService.swift in Sources */,
 				6388E2B522BF64A700A30740 /* EventKitService.swift in Sources */,
+				63227E0522C1609E00A25560 /* HTTPFailure.swift in Sources */,
 				6350F5D322BAC8B400B3B5FD /* UIScrollViewEx.swift in Sources */,
 				6350F5FB22BACA2000B3B5FD /* InputToolBarView.swift in Sources */,
 				6350F5E322BAC8B400B3B5FD /* UIResponderEx.swift in Sources */,

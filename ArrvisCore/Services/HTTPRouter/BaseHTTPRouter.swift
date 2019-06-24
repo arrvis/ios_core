@@ -38,16 +38,16 @@ open class BaseHTTPRouter {
 
     /// リクエスト実行
     public func requestCodable<T: Codable>() -> Observable<T> {
-        return requestDatResponse().map { try! JSONDecoder().decode(T.self, from: $0.data!) }
+        return requestData().map { try! JSONDecoder().decode(T.self, from: $0) }
     }
 
     /// リクエスト実行
     public func requestModel<T: BaseModel>() -> Observable<T> {
-        return requestDatResponse().map { T.fromJson(json: $0.data!) as! T }
+        return requestData().map { T.fromJson(json: $0) as! T }
     }
 
     /// リクエスト実行
-    public func requestDatResponse() -> Observable<DataResponse<Data>> {
+    public func requestData() -> Observable<Data> {
         return Observable.create { observer in
             if Reachability()?.connection == .none {
                 observer.onError(NoConnectionError())
@@ -62,7 +62,15 @@ open class BaseHTTPRouter {
                         observer.onError(HTTPError(response.response?.statusCode, error))
                         return
                     }
-                    observer.onNext(response)
+                    guard let data = response.data else {
+                        observer.onError(HTTPNoDataError(response.response?.statusCode))
+                        return
+                    }
+                    response.result.ifFailure {
+                        observer.onError(HTTPFailure(response.response?.statusCode, data))
+                        return
+                    }
+                    observer.onNext(data)
                 })
             return Disposables.create()
         }
