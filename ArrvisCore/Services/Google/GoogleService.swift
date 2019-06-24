@@ -145,10 +145,8 @@ extension GoogleService {
             } else {
                 observable = GoogleCalendarAPIRouter.fetchEvents("primary", token, lastSyncTime, nil, disposeBag)
             }
-            observable.subscribe(onNext: { ret in
-                if !ret.items.isEmpty {
-                observer.onNext(ret.items)
-                }
+            (observable.map { $0.items } as Observable<[GoogleEvent]>).subscribe(onNext: { ret in
+                observer.onNext(ret)
             }, onError: { error in
                 observer.onError(error)
             }).disposed(by: disposeBag)

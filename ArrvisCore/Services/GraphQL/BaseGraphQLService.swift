@@ -32,6 +32,7 @@ extension BaseGraphQLService: GraphqlServiceProtocol {
     }
 }
 
+// TODO: mapでいいか検討
 extension BaseGraphQLService {
 
     /// Perform
