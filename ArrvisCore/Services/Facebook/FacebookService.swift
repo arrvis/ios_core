@@ -52,7 +52,7 @@ extension FacebookService {
                 }
                 guard let result = result else {
                     logout()
-                    observer.onError(SNSError())
+                    observer.onError(AuthError())
                     return
                 }
                 if result.isCancelled {
@@ -61,7 +61,7 @@ extension FacebookService {
                 }
                 guard let token = result.token else {
                     logout()
-                    observer.onError(SNSError())
+                    observer.onError(AuthError())
                     return
                 }
                 observer.onNext(token)

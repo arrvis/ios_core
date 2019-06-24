@@ -7,7 +7,4 @@
 //
 
 /// 電波なしエラー
-public class NoConnectionError: Error {
-
-    public init() {}
-}
+public class NoConnectionError: Error {}

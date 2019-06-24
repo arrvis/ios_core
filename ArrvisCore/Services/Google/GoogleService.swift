@@ -80,7 +80,7 @@ extension GoogleService {
     /// Googleにログイン
     public static func login(_ cancel: @escaping () -> Void) -> Observable<GIDGoogleUser> {
         signInCancel = cancel
-        return Observable.create { observer -> Disposable in
+        return Observable.create { observer in
             googleAuthorizeObserver = observer
             if GIDSignIn.sharedInstance().currentUser == nil {
                 NSObject.runOnMainThread {
@@ -126,40 +126,33 @@ extension GoogleService {
     public static func fetchEvents(_ rangeYear: Int,
                                    _ monthRange: Int,
                                    _ lastSyncTime: Date?) -> Observable<[GoogleEvent]> {
-        // TODO: SignIn済みか確認
-        func fetchEvents(_ month: Date?) -> Observable<[GoogleEvent]> {
-            return Observable.create({ observer in
-                var path = "/events?"
-                if let lastSyncTime = lastSyncTime?.plusMinute(TimeZone.current.secondsFromGMT() / 60) {
-                    path += "updatedMin=\(lastSyncTime.toGoogleApiFormat())"
-                } else if let month = month {
-                    path += "timeMin=\(month.toGoogleApiFormat())&timeMax=\(month.plusMonth(1).toGoogleApiFormat())"
-                }
-                let request: Observable<GoogleEventsResponse> = GoogleCalendarAPIRouter(
-                    path: path,
-                    accessToken: GIDSignIn.sharedInstance().currentUser.authentication.accessToken,
-                    httpMethod: .get).request()
-                request.subscribe(onNext: { ret in
-                    if !ret.items.isEmpty {
-                        observer.onNext(ret.items)
-                    }
-                    observer.onCompleted()
-                }, onError: { error in
-                    observer.onError(error)
-                }).disposed(by: disposeBag)
+        return Observable.create { observer in
+            guard let token = GIDSignIn.sharedInstance()?.currentUser.authentication.accessToken else {
+                observer.onError(AuthError())
                 return Disposables.create()
-            })
-        }
-        if lastSyncTime == nil {
-            var months = Date.getMonths(start: Date.now.startOfDay.plusMonth(-monthRange / 2),
-                                        end: Date.now.startOfDay.plusMonth(monthRange / 2))
-            months.append(contentsOf: Date.getMonths(start: Date.now.startOfDay.plusYear(-rangeYear),
-                                                     end: Date.now.startOfDay.plusMonth(-monthRange / 2)))
-            months.append(contentsOf: Date.getMonths(start: Date.now.startOfDay.plusMonth(monthRange / 2),
-                                                     end: Date.now.startOfDay.plusYear(rangeYear)))
-            return Observable.merge(months.map { fetchEvents($0)})
-        } else {
-            return fetchEvents(nil)
+            }
+            let observable: Observable<GoogleEventsResponse>
+            if lastSyncTime == nil {
+                var months = Date.getMonths(start: Date.now.startOfDay.plusMonth(-monthRange / 2),
+                                            end: Date.now.startOfDay.plusMonth(monthRange / 2))
+                months.append(contentsOf: Date.getMonths(start: Date.now.startOfDay.plusYear(-rangeYear),
+                                                         end: Date.now.startOfDay.plusMonth(-monthRange / 2)))
+                months.append(contentsOf: Date.getMonths(start: Date.now.startOfDay.plusMonth(monthRange / 2),
+                                                         end: Date.now.startOfDay.plusYear(rangeYear)))
+                observable = Observable.merge(months.map {
+                    GoogleCalendarAPIRouter.fetchEvents("primary", token, lastSyncTime, $0, disposeBag)
+                })
+            } else {
+                observable = GoogleCalendarAPIRouter.fetchEvents("primary", token, lastSyncTime, nil, disposeBag)
+            }
+            observable.subscribe(onNext: { ret in
+                if !ret.items.isEmpty {
+                observer.onNext(ret.items)
+                }
+            }, onError: { error in
+                observer.onError(error)
+            }).disposed(by: disposeBag)
+            return Disposables.create()
         }
     }
 }

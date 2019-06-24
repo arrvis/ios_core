@@ -15,19 +15,10 @@ public class HTTPError: Error {
     public let httpStatusCode: HttpStatusCode?
 
     /// エラーソース
-    public let source: Error?
+    public let error: Error
 
-    /// イニシャライザ
-    ///
-    /// - Parameters:
-    ///   - response: レスポンス
-    ///   - source: エラーソース
-    public init(_ response: Alamofire.DataResponse<Data>) {
-        if let httpStatusCode = response.response?.statusCode {
-            self.httpStatusCode = HttpStatusCode(rawValue: httpStatusCode)
-        } else {
-            self.httpStatusCode = nil
-        }
-        self.source = response.error
+    init(_ httpStatusCode: Int?, _ error: Error) {
+        self.httpStatusCode = httpStatusCode == nil ? nil : HttpStatusCode(rawValue: httpStatusCode!)
+        self.error = error
     }
 }

@@ -103,7 +103,7 @@ extension AWSS3Service {
             utility = AWSS3TransferUtility.default()
         }
 
-        return (getUrl(utility.configuration, bucket, key), Observable.create { observer -> Disposable in
+        return (getUrl(utility.configuration, bucket, key), Observable.create { observer in
             // Uploading
             let expression = AWSS3TransferUtilityUploadExpression()
             expression.progressBlock = {(task, progress) in

@@ -38,7 +38,7 @@ extension BaseGraphQLService {
     public func perform<T: GraphQLMutation, R: BaseModel>(
         _ mutation: T,
         _ parse: ((T.Data, (R?, Error?) -> Void) -> Void)? = nil) -> Observable<R> {
-        return Observable.create { [unowned self] observer -> Disposable in
+        return Observable.create { [unowned self] observer in
             self.fetchClient(request: { apolloClient in
                 apolloClient.perform(mutation: mutation) { [unowned self]  result, error in
                     self.handleResponse(mutation, result, error, parse, observer)
@@ -54,7 +54,7 @@ extension BaseGraphQLService {
     public func fetch<T: GraphQLQuery, R: BaseModel>(
         _ query: T,
         _ parse: ((T.Data, (R?, Error?) -> Void) -> Void)? = nil) -> Observable<R> {
-        return Observable.create { [unowned self]  observer -> Disposable in
+        return Observable.create { [unowned self]  observer in
             self.fetchClient(request: { apolloClient in
                 apolloClient.fetch(query: query) { [unowned self]  result, error in
                     self.handleResponse(query, result, error, parse, observer)

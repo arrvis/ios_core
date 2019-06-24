@@ -12,80 +12,46 @@ import RxSwift
 import Reachability
 
 /// GoogleAPIルーター
-class GoogleCalendarAPIRouter {
+class GoogleCalendarAPIRouter: BaseHTTPRouter {
 
-    private let baseUrl = "https://www.googleapis.com/calendar/v3/calendars/primary"
+    private let baseUrl = "https://www.googleapis.com/calendar/v3/calendars"
 
-    private var headers: HTTPHeaders {
-        return [
-            "Authorization": "Bearer \(accessToken)"
-        ]
-    }
-
-    private let path: String
-    private let accessToken: String
-    private let httpMethod: HTTPMethod
-    private let parameters: Codable?
-
-    /// イニシャライザ
-    ///
-    /// - Parameters:
-    ///   - path: パス
-    ///   - accessToken: アクセストークン
-    ///   - httpMethod: HTTPメソッド
-    ///   - parameters: パラメーター
-    init(path: String,
+    init(calendarId: String,
+         path: String,
          accessToken: String,
          httpMethod: HTTPMethod = .get,
          parameters: Codable? = nil) {
-        self.path = path
-        self.accessToken = accessToken
-        self.httpMethod = httpMethod
-        self.parameters = parameters
+        super.init(baseURL: "\(baseUrl)/\(calendarId)",
+                    path: path,
+                    httpMethod: httpMethod,
+                    headers: [
+                        "Authorization": "Bearer \(accessToken)"
+                    ],
+                    parameters: parameters)
     }
 
-    /// リクエスト実行
-    ///
-    /// - Returns: Observable<T>
-    func request<T: Codable>() -> Observable<T> {
-        return Observable.create { (observer: AnyObserver) -> Disposable in
-            if Reachability()?.connection == .none {
-                observer.onError(NoConnectionError())
-                return Disposables.create()
-            }
-            Alamofire.request("\(self.baseUrl)\(self.path)",
-                method: .get,
-                parameters: self.parameters?.dictionary,
-                encoding: JSONEncoding.default,
-                headers: self.headers)
-                .validate()
-                .responseData(completionHandler: { response in
-                    // HTTP系エラー
-                    guard let data = response.data else {
-                        observer.onError(HTTPError(response: response))
-                        return
-                    }
-                    // 成功
-                    response.result.ifSuccess {
-                        do {
-                            let apiResponse = try JSONDecoder().decode(T.self, from: data)
-                            observer.onNext(apiResponse)
-                            observer.onCompleted()
-                        } catch let error {
-                            observer.onError(error)
-                        }
-                    }
-                })
-            return Disposables.create()
+    static func fetchEvents(_ calendarId: String,
+                            _ accessToken: String,
+                            _ lastSyncTime: Date?,
+                            _ month: Date?,
+                            _ disposeBag: DisposeBag) -> Observable<GoogleEventsResponse> {
+        var path = "/events?"
+        if let lastSyncTime = lastSyncTime?.plusMinute(TimeZone.current.secondsFromGMT() / 60) {
+            path += "updatedMin=\(lastSyncTime.toGoogleApiFormat())"
+        } else if let month = month {
+            path += "timeMin=\(month.toGoogleApiFormat())&timeMax=\(month.plusMonth(1).toGoogleApiFormat())"
         }
+        return GoogleCalendarAPIRouter(calendarId: calendarId,
+                                       path: path,
+                                       accessToken: accessToken).request()
     }
 }
 
-public struct GoogleEventsResponse: Codable {
+public struct GoogleEventsResponse: BaseModel {
     public let items: [GoogleEvent]
 }
 
-public struct GoogleEvent: Codable {
+public struct GoogleEvent: BaseModel {
     public let id: String
     public let created: String
     public let updated: String
@@ -102,7 +68,7 @@ public struct GoogleEvent: Codable {
     }
 }
 
-public struct GoogleDatetime: Codable {
+public struct GoogleDatetime: BaseModel {
     public let date: String?
     public let dateTime: String?
 
