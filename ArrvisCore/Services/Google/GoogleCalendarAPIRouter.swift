@@ -34,16 +34,18 @@ class GoogleCalendarAPIRouter: BaseHTTPRouter {
                             _ accessToken: String,
                             _ lastSyncTime: Date?,
                             _ month: Date?,
-                            _ disposeBag: DisposeBag) -> Observable<GoogleEventsResponse> {
+                            _ disposeBag: DisposeBag) -> Observable<[GoogleEvent]> {
         var path = "/events?"
         if let lastSyncTime = lastSyncTime?.plusMinute(TimeZone.current.secondsFromGMT() / 60) {
             path += "updatedMin=\(lastSyncTime.toGoogleApiFormat())"
         } else if let month = month {
             path += "timeMin=\(month.toGoogleApiFormat())&timeMax=\(month.plusMonth(1).toGoogleApiFormat())"
         }
-        return GoogleCalendarAPIRouter(calendarId: calendarId,
-                                       path: path,
-                                       accessToken: accessToken).request()
+        let requst: Observable<GoogleEventsResponse> = GoogleCalendarAPIRouter(
+            calendarId: calendarId,
+            path: path,
+            accessToken: accessToken).request()
+        return requst.map { $0.items }
     }
 }
 

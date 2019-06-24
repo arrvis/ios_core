@@ -131,7 +131,7 @@ extension GoogleService {
                 observer.onError(AuthError())
                 return Disposables.create()
             }
-            let observable: Observable<GoogleEventsResponse>
+            let observable: Observable<[GoogleEvent]>
             if lastSyncTime == nil {
                 var months = Date.getMonths(start: Date.now.startOfDay.plusMonth(-monthRange / 2),
                                             end: Date.now.startOfDay.plusMonth(monthRange / 2))
@@ -145,7 +145,7 @@ extension GoogleService {
             } else {
                 observable = GoogleCalendarAPIRouter.fetchEvents("primary", token, lastSyncTime, nil, disposeBag)
             }
-            (observable.map { $0.items } as Observable<[GoogleEvent]>).subscribe(onNext: { ret in
+            observable.subscribe(onNext: { ret in
                 observer.onNext(ret)
             }, onError: { error in
                 observer.onError(error)
