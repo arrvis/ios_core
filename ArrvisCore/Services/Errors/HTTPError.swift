@@ -22,7 +22,7 @@ public class HTTPError: Error {
     /// - Parameters:
     ///   - response: レスポンス
     ///   - source: エラーソース
-    init(response: Alamofire.DataResponse<Data>) {
+    public init(_ response: Alamofire.DataResponse<Data>) {
         if let httpStatusCode = response.response?.statusCode {
             self.httpStatusCode = HttpStatusCode(rawValue: httpStatusCode)
         } else {
