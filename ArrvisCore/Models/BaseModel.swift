@@ -32,8 +32,16 @@ extension BaseModel {
         return try! JSONDecoder().decode(Self.self, from: json) as! Self.ModelType
     }
 
+    /// JSONデータからデコード可能かどうか
+    public static func canDecodeFromJson(json: Data) -> Bool {
+        if (try? JSONDecoder().decode(Self.self, from: json) as? Self.ModelType) == nil {
+            return false
+        }
+        return true
+    }
+
     /// GraphQLSelectionSetから生成
-    static func fromSet(set: GraphQLSelectionSet) -> ModelType {
+    public static func fromSet(set: GraphQLSelectionSet) -> ModelType {
         return fromJson(json: set.toJsonString()!)
     }
 }
