@@ -14,14 +14,23 @@ open class TouchableButton: UIButton {
 
     // MARK: - Variables
 
+    /// タッチ開始
     public var started: (() -> Void)?
+
+    /// タッチ移動
     public var moved: ((CGFloat, CGFloat) -> Void)?
+
+    /// タッチキャンセル
     public var cancelled: (() -> Void)?
+
+    /// タッチ終了
     public var ended: (() -> Void)?
 
     private var initial: CGPoint?
+}
 
-    // MARK: - Overrides
+// MARK: - Touches
+extension TouchableButton {
 
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)

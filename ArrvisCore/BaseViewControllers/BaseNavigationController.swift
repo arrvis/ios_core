@@ -28,7 +28,7 @@ open class BaseNavigationController: UINavigationController {
         return true
     }
 
-    // NARK: Events
+    // NARK: - Events
 
     /// 初回SubViewsLayout
     open func onDidFirstLayoutSubviews() {}

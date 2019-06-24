@@ -14,13 +14,16 @@ import Reachability
 /// HTTPルーター基底クラス
 open class BaseHTTPRouter {
 
+    // MARK: - Variables
+
     private let baseURL: String
     private let path: String
     private let httpMethod: HTTPMethod
     private let headers: HTTPHeaders?
     private let parameters: Codable?
 
-    /// イニシャライザ
+    // MARK: - Initializer
+
     public init(baseURL: String,
                 path: String,
                 httpMethod: HTTPMethod = .get,

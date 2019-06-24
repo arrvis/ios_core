@@ -8,5 +8,9 @@
 
 /// 次画面から戻ってきたイベントハンドリング可能
 public protocol BackFromNextHandleable {
+
+    /// 次画面から戻ってきた
+    ///
+    /// - Parameter result: result
     func onBackFromNext(_ result: Any?)
 }

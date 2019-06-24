@@ -28,7 +28,6 @@ public enum SystemScreens: String, CaseIterable, Screen {
         }
     }
 
-    /// ViewController
     public func createViewController(_ payload: Any? = nil) -> UIViewController {
         switch self {
         case .imagePicker:

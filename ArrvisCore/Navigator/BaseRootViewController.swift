@@ -13,14 +13,19 @@ import RxCocoa
 /// ルートViewController基底クラス
 open class BaseRootViewController: UIViewController {
 
+    // MARK: - Variables
+
     /// DisposeBag
     public let disposeBag = DisposeBag()
 
-    /// layoutSubViewsが終わったか
-    private(set) var didLayoutSubviews = false
-
     /// カレントのルートViewController
     public var currentRootViewController: UIViewController?
+
+    /// layoutSubViewsが終わったかどうか
+    public private(set) var didLayoutSubviews = false
+
+    /// Navigator
+    public private(set) var navigator: BaseNavigator!
 
     private var currentRootNavigationController: UINavigationController? {
         if let current = currentRootViewController as? UINavigationController {
@@ -32,8 +37,7 @@ open class BaseRootViewController: UIViewController {
         return nil
     }
 
-    /// Navigator
-    public private(set) var navigator: BaseNavigator!
+    // MAR+ - Initializer
 
     public convenience init(navigator: BaseNavigator) {
         self.init(nibName: nil, bundle: nil)
@@ -68,8 +72,18 @@ open class BaseRootViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
 
-    // MARK: - open
+    // MARK: - Life-Cycle
 
+    open override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        didLayoutSubviews = true
+    }
+}
+
+// MARK: - GetViewController
+extension BaseRootViewController {
+
+    /// カレントのViewControllerを取得
     open func currentViewController(from: UIViewController? = nil) -> UIViewController? {
         if let from = from {
             if let presented = from.presentedViewController {
@@ -97,17 +111,6 @@ open class BaseRootViewController: UIViewController {
         }
     }
 
-    // MARK: - Life-Cycle
-
-    open override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        didLayoutSubviews = true
-    }
-}
-
-// MARK: - GetViewController
-extension BaseRootViewController {
-
     private func currentNavigationController(from: UIViewController?) -> UINavigationController? {
         if let from = from {
             if let nav = from as? UINavigationController {
@@ -124,12 +127,12 @@ extension BaseRootViewController {
             return currentNavigationController(from: currentViewController(from: from)!)
         }
     }
-
 }
 
 // MARK: - Navigate
 extension BaseRootViewController {
 
+    /// Replace
     public func replaceChildViewController(_ vc: UIViewController) {
         UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: false, completion: nil)
         func change() {
@@ -149,6 +152,7 @@ extension BaseRootViewController {
         }
     }
 
+    /// Push
     public func pushChildViewController(_ vc: UIViewController, _ fromRoot: Bool, _ animate: Bool) {
         if fromRoot {
             currentRootNavigationController?.pushViewController(vc, animated: animate)
@@ -157,6 +161,7 @@ extension BaseRootViewController {
         }
     }
 
+    /// Pop
     public func popChildViewController(_ result: Any?, _ animate: Bool) {
         currentViewController()?.navigationController?.popViewController(animated: animate)
 
@@ -175,10 +180,12 @@ extension BaseRootViewController {
         }
     }
 
+    /// Present
     public func presentChildViewController(_ vc: UIViewController, _ animate: Bool) {
         currentViewController()?.present(vc, animated: animate)
     }
 
+    /// Dismiss
     public func dismisssChildViewController(_ result: Any?, _ animate: Bool, _ completion: (() -> Void)? = nil) {
         currentViewController()?.dismiss(animated: animate, completion: { [unowned self] in
             if let current = self.currentViewController() {

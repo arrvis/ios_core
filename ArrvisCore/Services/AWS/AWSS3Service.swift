@@ -21,7 +21,7 @@ public final class AWSS3Service {
     /// DisposeBag
     public static let disposeBag = DisposeBag()
 
-    // MARK: - Initialize
+    // MARK: - Initializer
 
     static func initialize() {
         // AlamofireImageでS3にある画像にアクセスするのに必要

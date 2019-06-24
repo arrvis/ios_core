@@ -13,8 +13,10 @@ import SwiftEventBus
 
 /// 通知データ
 public struct NotificationData {
+    // アラート
     public let alert: String
 
+    /// UserInfoから生成
     static func fromUserInfo(_ userInfo: [AnyHashable: Any]) -> NotificationData? {
         guard let aps = userInfo["aps"] as? [String: Any] else {
             return nil

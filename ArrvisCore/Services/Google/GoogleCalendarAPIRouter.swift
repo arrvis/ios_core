@@ -14,7 +14,11 @@ import Reachability
 /// GoogleAPIルーター
 class GoogleCalendarAPIRouter: BaseHTTPRouter {
 
+    // MARK: - Variables
+
     private let baseUrl = "https://www.googleapis.com/calendar/v3/calendars"
+
+    // MARK: - Initializer
 
     init(calendarId: String,
          path: String,
@@ -30,6 +34,8 @@ class GoogleCalendarAPIRouter: BaseHTTPRouter {
                     parameters: parameters)
     }
 
+    // MARK: - Internal
+
     static func fetchEvents(_ calendarId: String,
                             _ accessToken: String,
                             _ lastSyncTime: Date?,
@@ -44,15 +50,16 @@ class GoogleCalendarAPIRouter: BaseHTTPRouter {
         let requst: Observable<GoogleEventsResponse> = GoogleCalendarAPIRouter(
             calendarId: calendarId,
             path: path,
-            accessToken: accessToken).request()
+            accessToken: accessToken).requestModel()
         return requst.map { $0.items }
     }
 }
 
-public struct GoogleEventsResponse: BaseModel {
+struct GoogleEventsResponse: BaseModel {
     public let items: [GoogleEvent]
 }
 
+/// Googleイベント
 public struct GoogleEvent: BaseModel {
     public let id: String
     public let created: String
@@ -70,6 +77,7 @@ public struct GoogleEvent: BaseModel {
     }
 }
 
+/// GoogleDateTime
 public struct GoogleDatetime: BaseModel {
     public let date: String?
     public let dateTime: String?

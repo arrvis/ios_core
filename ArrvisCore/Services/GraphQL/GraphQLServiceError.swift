@@ -8,8 +8,10 @@
 
 import Apollo
 
+/// GraphQLサービス層エラー
 public class GraphQLServiceError: Error {
 
+    /// エラー
     public var errors: [GraphQLError]!
 
     init(errors: [GraphQLError]) {

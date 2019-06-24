@@ -11,12 +11,12 @@ import UIKit
 /// UITabBarController基底クラス
 open class BaseTabBarController: UITabBarController {
 
-    // MARK: Property
+    // MARK: - Variables
 
     /// デフォルトのタブバー高さ
     public lazy var defaultTabBarHeight = { tabBar.frame.height }()
 
-    // NARK: Events
+    // NARK:  - Events
 
     /// 初回SubViewsLayout
     open func onDidFirstLayoutSubviews() {}

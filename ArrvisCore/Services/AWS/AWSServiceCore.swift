@@ -8,14 +8,25 @@
 
 import AWSCore
 
+/// 簡易AWSServiceConfig
 public struct SimplifiedAWSConfig {
+
+    // MARK: - Variables
+
+    /// IdentityPoolId
     public let identityPoolId: String
+
+    // Region
     public let region: AWSRegionType
+
+    // MARK: - Initializer
 
     public init(identityPoolId: String, region: AWSRegionType) {
         self.identityPoolId = identityPoolId
         self.region = region
     }
+
+    // MARK: - Internal
 
     func toAWSServiceConfiguration() -> AWSServiceConfiguration {
         return AWSServiceConfiguration(

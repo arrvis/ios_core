@@ -9,6 +9,11 @@
 import RxSwift
 import Apollo
 
+/// GraphQLServiceプロトコル
+protocol GraphqlServiceProtocol {
+    func fetchClient(request: @escaping (ApolloClient) -> Void, onError: ((Error) -> Void)?, useNonAuth: Bool)
+}
+
 /// GraphQLサービス基底クラス
 open class BaseGraphQLService {
 
@@ -16,11 +21,6 @@ open class BaseGraphQLService {
     let disposeBag = DisposeBag()
 
     private init() {}
-}
-
-/// GraphQLServiceプロトコル
-public protocol GraphqlServiceProtocol {
-    func fetchClient(request: @escaping (ApolloClient) -> Void, onError: ((Error) -> Void)?, useNonAuth: Bool)
 }
 
 // MARK: - GraphqlServiceProtocol
@@ -33,6 +33,7 @@ extension BaseGraphQLService: GraphqlServiceProtocol {
 }
 
 // TODO: mapでいいか検討
+// MARK: - Public
 extension BaseGraphQLService {
 
     /// Perform

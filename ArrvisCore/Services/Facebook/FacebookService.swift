@@ -33,6 +33,7 @@ public final class FacebookService {
     }
 }
 
+// MARK: - Auth
 extension FacebookService {
 
     /// ログイン
