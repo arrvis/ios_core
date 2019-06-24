@@ -38,16 +38,26 @@ open class BaseHTTPRouter {
 
     /// リクエスト実行
     public func requestCodable<T: Codable>() -> Observable<T> {
-        return requestData().map { try! JSONDecoder().decode(T.self, from: $0) }
+        return requestData().map { try! JSONDecoder().decode(T.self, from: $0.0) }
+    }
+
+    /// リクエスト実行
+    public func requestCodableWithResponseHeaders<T: Codable>() -> Observable<(T, [AnyHashable: Any])> {
+        return requestData().map { (try! JSONDecoder().decode(T.self, from: $0.0), $0.1) }
     }
 
     /// リクエスト実行
     public func requestModel<T: BaseModel>() -> Observable<T> {
-        return requestData().map { T.fromJson(json: $0) as! T }
+        return requestData().map { T.fromJson(json: $0.0) as! T }
     }
 
     /// リクエスト実行
-    public func requestData() -> Observable<Data> {
+    public func requestModelWithResponseHeaders<T: BaseModel>() -> Observable<(T, [AnyHashable: Any])> {
+        return requestData().map { (T.fromJson(json: $0.0) as! T, $0.1) }
+    }
+
+    /// リクエスト実行
+    public func requestData() -> Observable<(Data, [AnyHashable: Any])> {
         return Observable.create { observer in
             if Reachability()?.connection == .none {
                 observer.onError(NoConnectionError())
@@ -62,6 +72,10 @@ open class BaseHTTPRouter {
                         observer.onError(HTTPError(response.response?.statusCode, error))
                         return
                     }
+                    guard let res = response.response else {
+                        observer.onError(HTTPNoDataError(response.response?.statusCode))
+                        return
+                    }
                     guard let data = response.data else {
                         observer.onError(HTTPNoDataError(response.response?.statusCode))
                         return
@@ -70,7 +84,7 @@ open class BaseHTTPRouter {
                         observer.onError(HTTPFailure(response.response?.statusCode, data))
                         return
                     }
-                    observer.onNext(data)
+                    observer.onNext((data, res.allHeaderFields))
                 })
             return Disposables.create()
         }
