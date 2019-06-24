@@ -34,22 +34,22 @@ open class BaseHTTPRouter {
     }
 
     /// リクエスト実行
-    public func requestData() -> Observable<Result<Data>> {
-        return request().map { $0.result }
-    }
-
-    /// リクエスト実行
     public func request<T: Codable>() -> Observable<T> {
-        return request().map { try! JSONDecoder().decode(T.self, from: $0.data!) }
+        return requestDatResponse().map { try! JSONDecoder().decode(T.self, from: $0.data!) }
     }
 
     /// リクエスト実行
     public func request<T: BaseModel>() -> Observable<T> {
-        return request().map { T.fromJson(json: $0.data!) as! T }
+        return requestDatResponse().map { T.fromJson(json: $0.data!) as! T }
     }
 
     /// リクエスト実行
-    public func request() -> Observable<DataResponse<Data>> {
+    public func requestResultData() -> Observable<Result<Data>> {
+        return requestDatResponse().map { $0.result }
+    }
+
+    /// リクエスト実行
+    public func requestDatResponse() -> Observable<DataResponse<Data>> {
         return Observable.create { observer in
             if Reachability()?.connection == .none {
                 observer.onError(NoConnectionError())
