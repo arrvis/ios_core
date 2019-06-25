@@ -49,7 +49,6 @@
 		6350F5F422BACA2000B3B5FD /* AutoResizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5EB22BACA2000B3B5FD /* AutoResizeView.swift */; };
 		6350F5F522BACA2000B3B5FD /* TouchableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5EC22BACA2000B3B5FD /* TouchableButton.swift */; };
 		6350F5F622BACA2000B3B5FD /* InsetsSettableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5ED22BACA2000B3B5FD /* InsetsSettableLabel.swift */; };
-		6350F5F722BACA2000B3B5FD /* AutoResizeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5EE22BACA2000B3B5FD /* AutoResizeTextView.swift */; };
 		6350F5F822BACA2000B3B5FD /* ActivityIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5EF22BACA2000B3B5FD /* ActivityIndicatorManager.swift */; };
 		6350F5F922BACA2000B3B5FD /* BaseTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5F122BACA2000B3B5FD /* BaseTextView.swift */; };
 		6350F5FA22BACA2000B3B5FD /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5F222BACA2000B3B5FD /* BaseTextField.swift */; };
@@ -124,7 +123,6 @@
 		6350F5EB22BACA2000B3B5FD /* AutoResizeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoResizeView.swift; sourceTree = "<group>"; };
 		6350F5EC22BACA2000B3B5FD /* TouchableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchableButton.swift; sourceTree = "<group>"; };
 		6350F5ED22BACA2000B3B5FD /* InsetsSettableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetsSettableLabel.swift; sourceTree = "<group>"; };
-		6350F5EE22BACA2000B3B5FD /* AutoResizeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoResizeTextView.swift; sourceTree = "<group>"; };
 		6350F5EF22BACA2000B3B5FD /* ActivityIndicatorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorManager.swift; sourceTree = "<group>"; };
 		6350F5F122BACA2000B3B5FD /* BaseTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextView.swift; sourceTree = "<group>"; };
 		6350F5F222BACA2000B3B5FD /* BaseTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
@@ -302,7 +300,6 @@
 			isa = PBXGroup;
 			children = (
 				6350F5EF22BACA2000B3B5FD /* ActivityIndicatorManager.swift */,
-				6350F5EE22BACA2000B3B5FD /* AutoResizeTextView.swift */,
 				6350F5EB22BACA2000B3B5FD /* AutoResizeView.swift */,
 				6350F5ED22BACA2000B3B5FD /* InsetsSettableLabel.swift */,
 				6350F5EC22BACA2000B3B5FD /* TouchableButton.swift */,
@@ -521,7 +518,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6350F5F722BACA2000B3B5FD /* AutoResizeTextView.swift in Sources */,
 				6388E2BE22C0305D00A30740 /* GoogleService.swift in Sources */,
 				63227E0322C1606200A25560 /* HTTPNoDataError.swift in Sources */,
 				6312F81222B94D510050DA57 /* Device.swift in Sources */,
