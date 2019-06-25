@@ -16,6 +16,11 @@ open class BaseHTTPRouter {
 
     // MARK: - Variables
 
+    /// デバッグが有効か
+    open var debugEnabled: Bool {
+        return false
+    }
+
     private let baseURL: String
     private let path: String
     private let httpMethod: HTTPMethod
@@ -59,15 +64,28 @@ open class BaseHTTPRouter {
     /// リクエスト実行
     public func requestData() -> Observable<(Data, [AnyHashable: Any])> {
         return Observable.create { observer in
+            DispatchQueue.main.async {
+                NetworkUtil.showNetworkActivityIndicator()
+            }
             if Reachability()?.connection == .none {
                 observer.onError(NoConnectionError())
                 return Disposables.create()
             }
-            Alamofire.request("\(self.baseURL)\(self.path)",
-                method: self.httpMethod,
-                parameters: self.parameters?.dictionary,
-                encoding: JSONEncoding.default,
-                headers: self.headers).validate().responseData(completionHandler: { response in
+            let url = "\(self.baseURL)\(self.path)"
+            Alamofire.request(url,
+                              method: self.httpMethod,
+                              parameters: self.parameters?.dictionary,
+                              encoding: JSONEncoding.default,
+                              headers: self.headers)
+                .validate()
+                .responseData(completionHandler: { response in
+                    if self.debugEnabled {
+                        let data = response.data == nil ? "no data" : String(bytes: response.data!, encoding: .utf8)!
+                        print("[\(self.httpMethod.rawValue)] \(url)\n\(data)")
+                    }
+                    DispatchQueue.main.async {
+                        NetworkUtil.hideNetworkActivityIndicator()
+                    }
                     if let error = response.error {
                         observer.onError(HTTPError(response.response?.statusCode, error))
                         return

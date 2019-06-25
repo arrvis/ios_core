@@ -1,18 +1,19 @@
 //
-//  UIResponderEx.swift
+//  NetworkUtil.swift
 //  ArrvisCore
 //
-//  Created by Yutaka Izumaru on 2018/02/05.
-//  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
+//  Created by Yutaka Izumaru on 2019/06/25.
+//  Copyright © 2019 Arrvis Co., Ltd. All rights reserved.
 //
 
 import UIKit
 
 private var networkActivityIndicatorCountKey = 0
 
-extension UIResponder {
+/// ネットワークユーティリティ
+public final class NetworkUtil {
 
-    private var networkActivityIndicatorCount: Int {
+    private static var networkActivityIndicatorCount: Int {
         get {
             return objc_getAssociatedObject(self, &networkActivityIndicatorCountKey) as? Int ?? 0
         }
@@ -23,12 +24,12 @@ extension UIResponder {
     }
 
     /// NetworkActivityIndicator表示
-    public func showNetworkActivityIndicator() {
+    public static func showNetworkActivityIndicator() {
         networkActivityIndicatorCount += 1
     }
 
     /// NewtworkAcitivtyIndicator非表示
-    public func hideNetworkActivityIndicator() {
+    public static func hideNetworkActivityIndicator() {
         if networkActivityIndicatorCount == 0 {
             return
         }
