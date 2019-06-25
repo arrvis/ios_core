@@ -66,14 +66,18 @@ repositoryMap:
   - name: AWSUserPoolsSignIn
 
 - facebook-sdk-swift:
-  - name: Bolts
   - name: FacebookCore
   - name: FacebookLogin
+  - name: FacebookShare
+- facebook-objc-sdk:
+  - name: Bolts
   - name: FBSDKCoreKit
   - name: FBSDKShareKit
   - name: FBSDKLoginKit
   - name: FBSDKPlacesKit
 
+- GoogleSignIn-iOS:
+  - name: GoogleSignIn
 - GoogleAnalytics-Framework:
   - name: GoogleAnalytics
 
