@@ -40,7 +40,9 @@ public final class GoogleService {
     private class GIDSignInHandler: NSObject, GIDSignInDelegate {
 
         func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-            GoogleService.handleGoogleSignIn(user, error: error)
+            NSObject.runAfterDelay(delayMSec: 100) {
+                GoogleService.handleGoogleSignIn(user, error: error)
+            }
         }
     }
 
