@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6302D66B22C1F7F6001F24BE /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6302D66A22C1F7F6001F24BE /* NetworkUtil.swift */; };
+		6302D66D22C232B5001F24BE /* HeightChangeableTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6302D66C22C232B5001F24BE /* HeightChangeableTabBar.swift */; };
 		6312F7E822B94C2D0050DA57 /* ArrvisCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6312F7E622B94C2D0050DA57 /* ArrvisCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6312F81122B94D510050DA57 /* BusEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6312F7F322B94D500050DA57 /* BusEvents.swift */; };
 		6312F81222B94D510050DA57 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6312F7F422B94D500050DA57 /* Device.swift */; };
@@ -41,7 +42,6 @@
 		6350F5E022BAC8B400B3B5FD /* UIViewControllerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5C822BAC8B400B3B5FD /* UIViewControllerEx.swift */; };
 		6350F5E122BAC8B400B3B5FD /* EncodableEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5C922BAC8B400B3B5FD /* EncodableEx.swift */; };
 		6350F5E222BAC8B400B3B5FD /* UIImageEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5CA22BAC8B400B3B5FD /* UIImageEx.swift */; };
-		6350F5E422BAC8B400B3B5FD /* UITabBarEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5CC22BAC8B400B3B5FD /* UITabBarEx.swift */; };
 		6350F5E522BAC8B400B3B5FD /* StringEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5CD22BAC8B400B3B5FD /* StringEx.swift */; };
 		6350F5E722BAC8B400B3B5FD /* IntEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5CF22BAC8B400B3B5FD /* IntEx.swift */; };
 		6350F5E822BAC8B400B3B5FD /* ApolloEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5D022BAC8B400B3B5FD /* ApolloEx.swift */; };
@@ -81,6 +81,7 @@
 
 /* Begin PBXFileReference section */
 		6302D66A22C1F7F6001F24BE /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
+		6302D66C22C232B5001F24BE /* HeightChangeableTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightChangeableTabBar.swift; sourceTree = "<group>"; };
 		6312F7E322B94C2D0050DA57 /* ArrvisCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArrvisCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6312F7E622B94C2D0050DA57 /* ArrvisCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArrvisCore.h; sourceTree = "<group>"; };
 		6312F7E722B94C2D0050DA57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,7 +117,6 @@
 		6350F5C822BAC8B400B3B5FD /* UIViewControllerEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerEx.swift; sourceTree = "<group>"; };
 		6350F5C922BAC8B400B3B5FD /* EncodableEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodableEx.swift; sourceTree = "<group>"; };
 		6350F5CA22BAC8B400B3B5FD /* UIImageEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageEx.swift; sourceTree = "<group>"; };
-		6350F5CC22BAC8B400B3B5FD /* UITabBarEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITabBarEx.swift; sourceTree = "<group>"; };
 		6350F5CD22BAC8B400B3B5FD /* StringEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringEx.swift; sourceTree = "<group>"; };
 		6350F5CF22BAC8B400B3B5FD /* IntEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntEx.swift; sourceTree = "<group>"; };
 		6350F5D022BAC8B400B3B5FD /* ApolloEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApolloEx.swift; sourceTree = "<group>"; };
@@ -291,7 +291,6 @@
 				6350F5BC22BAC8B400B3B5FD /* UIImageViewEx.swift */,
 				6350F5C722BAC8B400B3B5FD /* UILabelEx.swift */,
 				6350F5BB22BAC8B400B3B5FD /* UIScrollViewEx.swift */,
-				6350F5CC22BAC8B400B3B5FD /* UITabBarEx.swift */,
 				6350F5C322BAC8B400B3B5FD /* UITextFieldEx.swift */,
 				6350F5C822BAC8B400B3B5FD /* UIViewControllerEx.swift */,
 				6350F5C022BAC8B400B3B5FD /* UIViewEx.swift */,
@@ -307,6 +306,7 @@
 				6350F5EB22BACA2000B3B5FD /* AutoResizeView.swift */,
 				6350F5ED22BACA2000B3B5FD /* InsetsSettableLabel.swift */,
 				6350F5EC22BACA2000B3B5FD /* TouchableButton.swift */,
+				6302D66C22C232B5001F24BE /* HeightChangeableTabBar.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -551,6 +551,7 @@
 				6350F5F522BACA2000B3B5FD /* TouchableButton.swift in Sources */,
 				6312F81E22B94D510050DA57 /* BaseNavigationController.swift in Sources */,
 				6350F5DC22BAC8B400B3B5FD /* DateStaticFuncEx.swift in Sources */,
+				6302D66D22C232B5001F24BE /* HeightChangeableTabBar.swift in Sources */,
 				6350F5E022BAC8B400B3B5FD /* UIViewControllerEx.swift in Sources */,
 				6350F5D422BAC8B400B3B5FD /* UIImageViewEx.swift in Sources */,
 				6350F5DE22BAC8B400B3B5FD /* UIColorEx.swift in Sources */,
@@ -559,7 +560,6 @@
 				6350F5DA22BAC8B400B3B5FD /* DateEx.swift in Sources */,
 				6350F5F422BACA2000B3B5FD /* AutoResizeView.swift in Sources */,
 				6312F81322B94D510050DA57 /* HttpStatusCode.swift in Sources */,
-				6350F5E422BAC8B400B3B5FD /* UITabBarEx.swift in Sources */,
 				6350F5FA22BACA2000B3B5FD /* BaseTextField.swift in Sources */,
 				6350F5DB22BAC8B400B3B5FD /* UITextFieldEx.swift in Sources */,
 				6350F5D822BAC8B400B3B5FD /* UIViewEx.swift in Sources */,
