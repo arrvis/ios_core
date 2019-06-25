@@ -53,6 +53,9 @@ class GoogleCalendarAPIRouter: BaseHTTPRouter {
             accessToken: accessToken).request()
         return requst.map { $0.items }
     }
+
+    static func fetchCalendarList(_ accessToken: String, _ disposeBag: DisposeBag) {
+    }
 }
 
 struct GoogleEventsResponse: BaseModel {

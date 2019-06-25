@@ -126,7 +126,8 @@ extension GoogleService {
 extension GoogleService {
 
     /// スケジュールフェッチ
-    public static func fetchEvents(_ rangeYear: Int,
+    public static func fetchEvents(_ calendarId: String,
+                                   _ rangeYear: Int,
                                    _ monthRange: Int,
                                    _ lastSyncTime: Date?) -> Observable<[GoogleEvent]> {
         return Observable.create { observer in
@@ -143,10 +144,10 @@ extension GoogleService {
                 months.append(contentsOf: Date.getMonths(start: Date.now.startOfDay.plusMonth(monthRange / 2),
                                                          end: Date.now.startOfDay.plusYear(rangeYear)))
                 observable = Observable.merge(months.map {
-                    GoogleCalendarAPIRouter.fetchEvents("primary", token, lastSyncTime, $0, disposeBag)
+                    GoogleCalendarAPIRouter.fetchEvents(calendarId, token, lastSyncTime, $0, disposeBag)
                 })
             } else {
-                observable = GoogleCalendarAPIRouter.fetchEvents("primary", token, lastSyncTime, nil, disposeBag)
+                observable = GoogleCalendarAPIRouter.fetchEvents(calendarId, token, lastSyncTime, nil, disposeBag)
             }
             observable.subscribe(onNext: { ret in
                 observer.onNext(ret)
