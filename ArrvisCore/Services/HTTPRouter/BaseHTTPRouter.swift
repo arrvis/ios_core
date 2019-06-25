@@ -42,23 +42,13 @@ open class BaseHTTPRouter {
     }
 
     /// リクエスト実行
-    public func requestCodable<T: Codable>() -> Observable<T> {
+    public func request<T: Codable>() -> Observable<T> {
         return requestData().map { try! JSONDecoder().decode(T.self, from: $0.0) }
     }
 
     /// リクエスト実行
-    public func requestCodableWithResponseHeaders<T: Codable>() -> Observable<(T, [AnyHashable: Any])> {
+    public func requestWithResponseHeaders<T: Codable>() -> Observable<(T, [AnyHashable: Any])> {
         return requestData().map { (try! JSONDecoder().decode(T.self, from: $0.0), $0.1) }
-    }
-
-    /// リクエスト実行
-    public func requestModel<T: BaseModel>() -> Observable<T> {
-        return requestData().map { T.fromJson(json: $0.0) as! T }
-    }
-
-    /// リクエスト実行
-    public func requestModelWithResponseHeaders<T: BaseModel>() -> Observable<(T, [AnyHashable: Any])> {
-        return requestData().map { (T.fromJson(json: $0.0) as! T, $0.1) }
     }
 
     /// リクエスト実行
