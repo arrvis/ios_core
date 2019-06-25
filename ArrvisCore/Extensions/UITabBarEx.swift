@@ -24,12 +24,12 @@ extension UITabBar {
 
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         super.sizeThatFits(size)
-        guard let window = UIApplication.shared.keyWindow else {
+        guard UIApplication.shared.keyWindow != nil else {
             return super.sizeThatFits(size)
         }
         var sizeThatFits = super.sizeThatFits(size)
         if let overrideHeight = overrideHeight {
-            sizeThatFits.height = overrideHeight + window.safeAreaInsets.bottom
+            sizeThatFits.height = overrideHeight
         }
         return sizeThatFits
     }
