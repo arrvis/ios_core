@@ -9,12 +9,10 @@
 import UIKit
 
 /// 高さ変更可能なTabBar
-open class HeightChangeableTabbar: UITabBar {
+open class HeightChangeableTabBar: UITabBar {
 
     /// 高さオーバーライド
-    open var overrideHeight: CGFloat? {
-        return 50
-    }
+    open var overrideHeight: CGFloat?
 
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         var size = super.sizeThatFits(size)
