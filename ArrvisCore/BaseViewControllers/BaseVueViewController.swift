@@ -15,35 +15,35 @@ open class BaseVueViewController: BaseViewController {
     // MARK: - Variables
 
     /// MPAのURL
-    var mpaBaseURL: String? {
+    open var mpaBaseURL: String? {
         return nil
     }
 
     /// ViewのURL
-    var viewUrl: URL? {
+    open var viewUrl: URL? {
         return nil
     }
 
     /// Viewからのコールバックマップ [コールバック名: コールバックAction]
-    var viewCallbacks: [String: (Data) -> Void] {
+    open var viewCallbacks: [String: (Data) -> Void] {
         return [String: (Data) -> Void]()
     }
 
     /// WebViewのインセット
-    var webViewInsets: UIEdgeInsets {
+    open var webViewInsets: UIEdgeInsets {
         return .zero
     }
 
     /// WebView
-    var webView: WKWebView?
+    public var webView: WKWebView?
 
     /// WebViewフェードイン時間
-    var webViewFadeInDuration: TimeInterval {
+    open var webViewFadeInDuration: TimeInterval {
         return 0.2
     }
 
     /// WebViewフェードイン遅延時間
-    var webViewFadeInDelayDuration: TimeInterval {
+    open var webViewFadeInDelayDuration: TimeInterval {
         return 0.4
     }
 
@@ -63,7 +63,7 @@ open class BaseVueViewController: BaseViewController {
         }
     }
 
-    func initWebView() {
+    private func initWebView() {
         let userContentController = WKUserContentController()
         viewCallbacks.forEach { callBack in
             userContentController.add(self, name: callBack.key)
@@ -93,7 +93,7 @@ open class BaseVueViewController: BaseViewController {
     // MARK: - public
 
     /// WebViewのInsetsを更新
-    func refreshWebViewInsets() {
+    public func refreshWebViewInsets() {
         webView?.addedConstraints?.deActivate()
         webView?.addedConstraints?.removeAll()
         webView?.edgesToSuperview(insets: webViewInsets)
@@ -132,7 +132,7 @@ extension BaseVueViewController: WKScriptMessageHandler {
 extension BaseVueViewController {
 
     /// Vueメソッド呼び出し
-    func callVueMethod(name: String, _ jsonString: String?, _ completion: @escaping (Any?, Error?) -> Void) {
+    public func callVueMethod(name: String, _ jsonString: String?, _ completion: @escaping (Any?, Error?) -> Void) {
         if let jsonString = jsonString, let data = jsonString.data(using: .utf8)?.base64EncodedString() {
             executeJS("window.vue.\(name)('\(data)')", completion)
         } else {
@@ -141,7 +141,7 @@ extension BaseVueViewController {
     }
 
     /// Vueメソッド呼び出し
-    func callVueMethod<T: BaseModel>(name: String, _ model: T, _ completion: @escaping (Any?, Error?) -> Void) {
+    public func callVueMethod<T: BaseModel>(name: String, _ model: T, _ completion: @escaping (Any?, Error?) -> Void) {
         let param: String
         if let jsonString = model.jsonString {
             let data = jsonString.data(using: .utf8)?.base64EncodedString() ?? ""
@@ -153,7 +153,9 @@ extension BaseVueViewController {
     }
 
     /// Vueメソッド呼び出し
-    func callVueMethod<T: BaseModel>(name: String, _ models: [T], _ completion: @escaping (Any?, Error?) -> Void) {
+    public func callVueMethod<T: BaseModel>(name: String,
+                                            _ models: [T],
+                                            _ completion: @escaping (Any?, Error?) -> Void) {
         let jsonString = "[\(models.compactMap { $0.jsonString}.joined(separator: ","))]"
         let param = "'\(jsonString.data(using: .utf8)?.base64EncodedString() ?? "")'"
         executeJS("window.vue.\(name)(\(param))", completion)
@@ -164,7 +166,7 @@ extension BaseVueViewController {
     /// - Parameters:
     ///   - name: メソッド名
     ///   - completion: 完了アクション
-    func callVueMethod(name: String, _ completion: @escaping (Any?, Error?) -> Void) {
+    public func callVueMethod(name: String, _ completion: @escaping (Any?, Error?) -> Void) {
         executeJS("window.vue.\(name)()", completion)
     }
 
