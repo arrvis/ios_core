@@ -46,26 +46,29 @@ extension FacebookService {
             let manager = LoginManager()
             manager.loginBehavior = .browser
             manager.logIn(permissions: permissions, from: nil) { (result, error) in
-                if let error = error {
-                    logout()
-                    observer.onError(error)
-                    return
+                // https://github.com/facebook/facebook-swift-sdk/issues/201
+                NSObject.runAfterDelay(delayMSec: 500) {
+                    if let error = error {
+                        logout()
+                        observer.onError(error)
+                        return
+                    }
+                    guard let result = result else {
+                        logout()
+                        observer.onError(AuthError())
+                        return
+                    }
+                    if result.isCancelled {
+                        cancel()
+                        observer.onCompleted()
+                    }
+                    guard let token = result.token else {
+                        logout()
+                        observer.onError(AuthError())
+                        return
+                    }
+                    observer.onNext(token)
                 }
-                guard let result = result else {
-                    logout()
-                    observer.onError(AuthError())
-                    return
-                }
-                if result.isCancelled {
-                    cancel()
-                    observer.onCompleted()
-                }
-                guard let token = result.token else {
-                    logout()
-                    observer.onError(AuthError())
-                    return
-                }
-                observer.onNext(token)
             }
             return Disposables.create()
         })
