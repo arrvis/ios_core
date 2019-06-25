@@ -50,7 +50,7 @@ class GoogleCalendarAPIRouter: BaseHTTPRouter {
         let requst: Observable<GoogleEventsResponse> = GoogleCalendarAPIRouter(
             calendarId: calendarId,
             path: path,
-            accessToken: accessToken).requestModel()
+            accessToken: accessToken).request()
         return requst.map { $0.items }
     }
 }
