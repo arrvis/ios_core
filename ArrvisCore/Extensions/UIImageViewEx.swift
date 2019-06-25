@@ -18,13 +18,14 @@ extension UIImageView {
     ///   - color: インディケーター色
     ///   - completion: 完了
     public func loadImageAsyncWithIndicator(urlString: String,
-                                            color: UIColor = .lightGray) {
+                                            color: UIColor = .lightGray,
+                                            filter: ImageFilter? = nil) {
         let indicatorView = UIActivityIndicatorView()
         indicatorView.color = color
         indicatorView.backgroundColor = .clear
         indicatorView.startAnimating()
         _ = addSubviewToCenter(indicatorView)
-        af_setImage(withURL: URL(string: urlString)!) { _ in
+        af_setImage(withURL: URL(string: urlString)!, filter: filter, runImageTransitionIfCached: false) { _ in
             indicatorView.stopAnimating()
             indicatorView.removeFromSuperview()
         }
