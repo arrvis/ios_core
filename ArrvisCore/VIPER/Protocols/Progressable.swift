@@ -9,21 +9,21 @@
 import UIKit
 
 public protocol Progressable {
-    func showLoading(_ parent: UIView)
-    func showLoading(_ parent: UIView, message: String)
+    func showLoading()
+    func showLoading(message: String)
     func hideLoading()
 }
 
 extension Progressable where Self: UIViewController {
 
-    public func showLoading(_ parent: UIView) {
+    public func showLoading() {
         view.endEditing(true)
-        ActivityIndicatorManager.shared.show(parent: parent)
+        ActivityIndicatorManager.shared.show(parent: view.superview!)
     }
 
-    public func showLoading(_ parent: UIView, message: String) {
+    public func showLoading(message: String) {
         view.endEditing(true)
-        ActivityIndicatorManager.shared.show(parent: parent, message: message)
+        ActivityIndicatorManager.shared.show(parent: view.superview!, message: message)
     }
 
     public func hideLoading() {
