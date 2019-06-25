@@ -1,9 +1,15 @@
+# Debug
+github "DaveWoodCom/XCGLogger"
+
 # General
 github "ReactiveX/RxSwift" "5.0.1"
 
 # Navigator
 github "cesarferreira/SwiftEventBus" "5.0.0"
 github "hyperoslo/Compass" "6.0.0"
+
+# Resources
+github "mac-cain13/R.swift.Library" "v4.0.0"
 
 # HTTP
 github "Alamofire/Alamofire" "4.8.2"
@@ -13,8 +19,22 @@ github "ashleymills/Reachability.swift" "v4.3.1"
 # UI
 github "roberthein/TinyConstraints" "4.0.1"
 
-# Services
+# GraphQL
 github "apollographql/apollo-ios" "0.10.1"
+
+# AWS
 github "aws/aws-sdk-ios" "2.9.9"
+
+# Facebook
 github "facebook/facebook-sdk-swift" "master"
+
+# Google
 github "https://github.com/fabio914/GoogleSignIn-iOS" "4.2.0"
+github "akashivskyy/GoogleAnalytics-Framework"
+
+# Firebase
+binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseAnalyticsBinary.json"
+binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseRemoteConfigBinary.json"
+
+# RollBar
+github "rollbar/rollbar-ios"
