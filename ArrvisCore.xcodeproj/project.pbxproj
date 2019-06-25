@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6302D66B22C1F7F6001F24BE /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6302D66A22C1F7F6001F24BE /* NetworkUtil.swift */; };
-		6302D66D22C232B5001F24BE /* UITabBarEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6302D66C22C232B5001F24BE /* UITabBarEx.swift */; };
 		6302D69B22C25D1D001F24BE /* BaseVueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6302D69A22C25D1D001F24BE /* BaseVueViewController.swift */; };
 		6312F7E822B94C2D0050DA57 /* ArrvisCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6312F7E622B94C2D0050DA57 /* ArrvisCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6312F81122B94D510050DA57 /* BusEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6312F7F322B94D500050DA57 /* BusEvents.swift */; };
@@ -81,7 +80,6 @@
 
 /* Begin PBXFileReference section */
 		6302D66A22C1F7F6001F24BE /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
-		6302D66C22C232B5001F24BE /* UITabBarEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarEx.swift; sourceTree = "<group>"; };
 		6302D69A22C25D1D001F24BE /* BaseVueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVueViewController.swift; sourceTree = "<group>"; };
 		6312F7E322B94C2D0050DA57 /* ArrvisCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArrvisCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6312F7E622B94C2D0050DA57 /* ArrvisCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArrvisCore.h; sourceTree = "<group>"; };
@@ -292,7 +290,6 @@
 				6350F5BC22BAC8B400B3B5FD /* UIImageViewEx.swift */,
 				6350F5C722BAC8B400B3B5FD /* UILabelEx.swift */,
 				6350F5BB22BAC8B400B3B5FD /* UIScrollViewEx.swift */,
-				6302D66C22C232B5001F24BE /* UITabBarEx.swift */,
 				6350F5C322BAC8B400B3B5FD /* UITextFieldEx.swift */,
 				6350F5C822BAC8B400B3B5FD /* UIViewControllerEx.swift */,
 				6350F5C022BAC8B400B3B5FD /* UIViewEx.swift */,
@@ -550,7 +547,6 @@
 				6350F5F522BACA2000B3B5FD /* TouchableButton.swift in Sources */,
 				6312F81E22B94D510050DA57 /* BaseNavigationController.swift in Sources */,
 				6350F5DC22BAC8B400B3B5FD /* DateStaticFuncEx.swift in Sources */,
-				6302D66D22C232B5001F24BE /* UITabBarEx.swift in Sources */,
 				6350F5E022BAC8B400B3B5FD /* UIViewControllerEx.swift in Sources */,
 				6350F5D422BAC8B400B3B5FD /* UIImageViewEx.swift in Sources */,
 				6350F5DE22BAC8B400B3B5FD /* UIColorEx.swift in Sources */,
