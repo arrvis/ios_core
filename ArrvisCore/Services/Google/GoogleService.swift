@@ -125,6 +125,22 @@ extension GoogleService {
 // MARK: - Calendar
 extension GoogleService {
 
+    /// カレンダーリストフェッチ
+    public static func fetchCalendarList() -> Observable<[GoogleCalendar]> {
+        return Observable.create { observer in
+            guard let token = GIDSignIn.sharedInstance()?.currentUser.authentication.accessToken else {
+                observer.onError(AuthError())
+                return Disposables.create()
+            }
+            GoogleCalendarAPIRouter.fetchCalendarList(token, disposeBag).subscribe(onNext: { ret in
+                observer.onNext(ret)
+            }, onError: { error in
+                observer.onError(error)
+            }).disposed(by: disposeBag)
+            return Disposables.create()
+        }
+    }
+
     /// スケジュールフェッチ
     public static func fetchEvents(_ calendarId: String,
                                    _ rangeYear: Int,

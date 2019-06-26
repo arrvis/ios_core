@@ -76,6 +76,7 @@
 		638BA0ED22C0900200DE6293 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638BA0EC22C0900200DE6293 /* HTTPError.swift */; };
 		638BA11422C0A2AA00DE6293 /* BaseHTTPRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638BA11322C0A2A900DE6293 /* BaseHTTPRouter.swift */; };
 		63DBAD6522C2A69900A020CD /* UIImageEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DBAD6422C2A69900A020CD /* UIImageEx.swift */; };
+		63DBAD6722C30A7F00A020CD /* EventModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DBAD6622C30A7F00A020CD /* EventModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +151,7 @@
 		638BA0EC22C0900200DE6293 /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 		638BA11322C0A2A900DE6293 /* BaseHTTPRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHTTPRouter.swift; sourceTree = "<group>"; };
 		63DBAD6422C2A69900A020CD /* UIImageEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageEx.swift; sourceTree = "<group>"; };
+		63DBAD6622C30A7F00A020CD /* EventModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -390,6 +392,7 @@
 			children = (
 				6388E2BD22C0305D00A30740 /* GoogleService.swift */,
 				6388E2DB22C0872700A30740 /* GoogleCalendarAPIRouter.swift */,
+				63DBAD6622C30A7F00A020CD /* EventModels.swift */,
 			);
 			path = Google;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				6312F81322B94D510050DA57 /* HttpStatusCode.swift in Sources */,
 				6350F5FA22BACA2000B3B5FD /* BaseTextField.swift in Sources */,
 				6350F5DB22BAC8B400B3B5FD /* UITextFieldEx.swift in Sources */,
+				63DBAD6722C30A7F00A020CD /* EventModels.swift in Sources */,
 				6350F5D822BAC8B400B3B5FD /* UIViewEx.swift in Sources */,
 				6350F5DF22BAC8B400B3B5FD /* UILabelEx.swift in Sources */,
 				6302D66B22C1F7F6001F24BE /* NetworkUtil.swift in Sources */,

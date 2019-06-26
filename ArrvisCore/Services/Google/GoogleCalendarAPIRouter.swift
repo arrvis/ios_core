@@ -16,16 +16,15 @@ class GoogleCalendarAPIRouter: BaseHTTPRouter {
 
     // MARK: - Variables
 
-    private let baseUrl = "https://www.googleapis.com/calendar/v3/calendars"
+    private let baseUrl = "https://www.googleapis.com/calendar/v3"
 
     // MARK: - Initializer
 
-    init(calendarId: String,
-         path: String,
+    init(path: String,
          accessToken: String,
          httpMethod: HTTPMethod = .get,
          parameters: Codable? = nil) {
-        super.init(baseURL: "\(baseUrl)/\(calendarId)",
+        super.init(baseURL: baseUrl,
                     path: path,
                     httpMethod: httpMethod,
                     headers: [
@@ -41,71 +40,30 @@ class GoogleCalendarAPIRouter: BaseHTTPRouter {
                             _ lastSyncTime: Date?,
                             _ month: Date?,
                             _ disposeBag: DisposeBag) -> Observable<[GoogleEvent]> {
-        var path = "/events?"
+        var path = "/calendars/\(calendarId)/events?"
         if let lastSyncTime = lastSyncTime?.plusMinute(TimeZone.current.secondsFromGMT() / 60) {
             path += "updatedMin=\(lastSyncTime.toGoogleApiFormat())"
         } else if let month = month {
             path += "timeMin=\(month.toGoogleApiFormat())&timeMax=\(month.plusMonth(1).toGoogleApiFormat())"
         }
         let requst: Observable<GoogleEventsResponse> = GoogleCalendarAPIRouter(
-            calendarId: calendarId,
             path: path,
             accessToken: accessToken).request()
         return requst.map { $0.items }
     }
 
-    static func fetchCalendarList(_ accessToken: String, _ disposeBag: DisposeBag) {
+    static func fetchCalendarList(_ accessToken: String, _ disposeBag: DisposeBag) -> Observable<[GoogleCalendar]> {
+        let request: Observable<GoogleCalendarList> = GoogleCalendarAPIRouter(
+            path: "/users/me/calendarList",
+            accessToken: accessToken).request()
+        return request.map { $0.items }
     }
 }
 
-struct GoogleEventsResponse: BaseModel {
-    public let items: [GoogleEvent]
+struct GoogleCalendarList: BaseModel {
+    public let items: [GoogleCalendar]
 }
 
-/// Googleイベント
-public struct GoogleEvent: BaseModel {
+public struct GoogleCalendar: BaseModel {
     public let id: String
-    public let created: String
-    public let updated: String
-    public let summary: String
-    public let start: GoogleDatetime
-    public let end: GoogleDatetime
-    public let recurringEventId: String?
-    public let originalStartTime: GoogleDatetime?
-    public let recurrence: [String]?
-    public let sequence: Int
-
-    public var updatedAt: Date {
-        return Date.fromGoogleApiFormat(updated)
-    }
-}
-
-/// GoogleDateTime
-public struct GoogleDatetime: BaseModel {
-    public let date: String?
-    public let dateTime: String?
-
-    public var d: Date {
-        if let date = date {
-            return Date.fromGoogleApiDateFormat(date)
-        } else {
-            return Date.fromGoogleApiFormat(dateTime!)
-        }
-    }
-}
-
-extension Date {
-
-    func toGoogleApiFormat() -> String {
-        return self.toString("yyyy-MM-dd'T'HH:mm:ss'Z'")
-    }
-
-    static func fromGoogleApiDateFormat(_ value: String) -> Date {
-        return Date.fromString(value, format: "yyyy-MM-dd")!
-    }
-
-    static func fromGoogleApiFormat(_ value: String) -> Date {
-        return Date.fromString(value, format: "yyyy-MM-dd'T'HH:mm:ssZ")
-            ?? Date.fromString(value, format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")!
-    }
 }
