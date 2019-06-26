@@ -18,12 +18,24 @@ extension Progressable where Self: UIViewController {
 
     public func showLoading() {
         view.endEditing(true)
-        ActivityIndicatorManager.shared.show(parent: view.superview!)
+        if let superview = view.superview {
+            ActivityIndicatorManager.shared.show(parent: superview)
+        } else {
+            NSObject.runAfterDelay(delayMSec: 100) { [unowned self] in
+                self.showLoading()
+            }
+        }
     }
 
     public func showLoading(message: String) {
         view.endEditing(true)
-        ActivityIndicatorManager.shared.show(parent: view.superview!, message: message)
+        if let superview = view.superview {
+            ActivityIndicatorManager.shared.show(parent: superview, message: message)
+        } else {
+            NSObject.runAfterDelay(delayMSec: 100) { [unowned self] in
+                self.showLoading(message: message)
+            }
+        }
     }
 
     public func hideLoading() {

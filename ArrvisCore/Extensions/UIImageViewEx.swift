@@ -39,6 +39,9 @@ extension UIImageView {
                     progressQueue: progressQueue,
                     imageTransition: imageTransition,
                     runImageTransitionIfCached: runImageTransitionIfCached,
-                    completion: completion)
+                    completion: { response in
+                        indicatorView.removeFromSuperview()
+                        completion?(response)
+        })
     }
 }
