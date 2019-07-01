@@ -22,11 +22,20 @@ open class BaseNavigator: Navigatable {
 
     // MARK: - Variables
 
-    let replace = PublishSubject<UIViewController>()
-    let push = PublishSubject<(vc: UIViewController, fromRoot: Bool, animate: Bool)>()
-    let pop = PublishSubject<(Any?, Bool)>()
-    let present = PublishSubject<(vc: UIViewController, animate: Bool)>()
-    let dismiss = PublishSubject<(Any?, Bool)>()
+    var replace: Observable<UIViewController> { return replaceSubject }
+    private let replaceSubject = PublishSubject<UIViewController>()
+
+    var push: Observable<(vc: UIViewController, fromRoot: Bool, animate: Bool)> { return pushSubject }
+    private let pushSubject = PublishSubject<(vc: UIViewController, fromRoot: Bool, animate: Bool)>()
+
+    var pop: Observable<(Any?, Bool)> { return popSubject }
+    private let popSubject = PublishSubject<(Any?, Bool)>()
+
+    var present: Observable<(vc: UIViewController, animate: Bool)> { return presentSubject }
+    private let presentSubject = PublishSubject<(vc: UIViewController, animate: Bool)>()
+
+    var dismiss: Observable<(Any?, Bool)> { return dismissSubject }
+    private let dismissSubject = PublishSubject<(Any?, Bool)>()
 
     private let disposeBag = DisposeBag()
 
@@ -51,11 +60,11 @@ open class BaseNavigator: Navigatable {
             let vc = screen.createViewController(payload)
             switch screen.transition {
             case .replace:
-                self.replace.onNext(vc)
+                self.replaceSubject.onNext(vc)
             case .push:
-                self.push.onNext((vc: vc, fromRoot: fromRoot, animate: animate))
+                self.pushSubject.onNext((vc: vc, fromRoot: fromRoot, animate: animate))
             case .present:
-                self.present.onNext((vc: vc, animate: animate))
+                self.presentSubject.onNext((vc: vc, animate: animate))
             }
         }
     }
@@ -119,11 +128,11 @@ extension BaseNavigator {
 
     /// 戻る
     public func popScreen(result: Any? = nil, animate: Bool = true) {
-        pop.onNext((result, animate))
+        popSubject.onNext((result, animate))
     }
 
     /// スクリーンを非表示
     public func dismissScreen(result: Any? = nil, animate: Bool = true) {
-        dismiss.onNext((result, animate))
+        dismissSubject.onNext((result, animate))
     }
 }

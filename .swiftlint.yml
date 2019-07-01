@@ -28,3 +28,6 @@ identifier_name:
   min_length: 1
 cyclomatic_complexity:
   ignores_case_statements: true
+large_tuple:
+  warning: 4
+  error: 6
