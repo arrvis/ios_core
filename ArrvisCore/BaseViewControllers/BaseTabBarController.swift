@@ -11,24 +11,13 @@ import UIKit
 /// UITabBarController基底クラス
 open class BaseTabBarController: UITabBarController {
 
-    // MARK: - Variables
+    // MARK: Property
 
-    /// デフォルトのタブバー高さ
-    public lazy var defaultTabBarHeight = { tabBar.frame.height }()
+    lazy var defaultTabBarHeight = { tabBar.frame.height }()
 
-    // NARK:  - Events
-
-    /// 初回SubViewsLayout
-    open func onDidFirstLayoutSubviews() {}
-
-    // MARK: - Life-Cycle
-
-    open override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if didFirstLayoutSubviews {
-            return
-        }
-        didFirstLayoutSubviews = true
-        onDidFirstLayoutSubviews()
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        initializePopGesture()
+        handleDidFirstLayoutSubviews()
     }
 }

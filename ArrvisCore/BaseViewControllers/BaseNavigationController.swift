@@ -27,11 +27,6 @@ open class BaseNavigationController: UINavigationController {
     open var transparentNavigationBar: Bool {
         return true
     }
-
-    // NARK: - Events
-
-    /// 初回SubViewsLayout
-    open func onDidFirstLayoutSubviews() {}
 }
 
 // MARK: - UINavigationControllerDelegate
@@ -54,6 +49,7 @@ extension BaseNavigationController {
             navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationBar.shadowImage = UIImage()
         }
+        handleDidFirstLayoutSubviews()
     }
 
     open override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
@@ -61,14 +57,5 @@ extension BaseNavigationController {
             completion?()
             SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
         }
-    }
-
-    open override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if didFirstLayoutSubviews {
-            return
-        }
-        didFirstLayoutSubviews = true
-        onDidFirstLayoutSubviews()
     }
 }

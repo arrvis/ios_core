@@ -80,29 +80,34 @@ open class BaseVueViewController: BaseViewController {
         webView!.scrollView.bounces = false
         webView!.alpha = 0
     }
+}
 
-    // MARK: - Override methods
-
-    open override func onDidFirstLayoutSubviews() {
-        if let webView = webView {
-            view.addSubviewWithFit(webView, usingSafeArea: true)
-            view.bringSubviewToFront(webView)
-        }
-    }
-
-    // MARK: - public
+// MARK: - Public
+extension BaseVueViewController {
 
     /// WebViewのInsetsを更新
     public func refreshWebViewInsets() {
         webView?.addedConstraints?.deActivate()
         webView?.addedConstraints?.removeAll()
         webView?.edgesToSuperview(insets: webViewInsets)
-    }}
+    }
+}
 
 // MARK: - Events
 extension BaseVueViewController {
 
     open func onWebViewDidLoad() {}
+}
+
+// MARK: - DidFirstLayoutSubviewsHandleable
+extension BaseVueViewController: DidFirstLayoutSubviewsHandleable {
+
+    public func onDidFirstLayoutSubviews() {
+        if let webView = webView {
+            view.addSubviewWithFit(webView, usingSafeArea: true)
+            view.bringSubviewToFront(webView)
+        }
+    }
 }
 
 // MARK: - WKNavigationDelegate

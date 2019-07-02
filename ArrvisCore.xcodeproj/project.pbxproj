@@ -75,6 +75,9 @@
 		6388E2DE22C08FA900A30740 /* NoConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2DD22C08FA900A30740 /* NoConnectionError.swift */; };
 		638BA0ED22C0900200DE6293 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638BA0EC22C0900200DE6293 /* HTTPError.swift */; };
 		638BA11422C0A2AA00DE6293 /* BaseHTTPRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638BA11322C0A2A900DE6293 /* BaseHTTPRouter.swift */; };
+		639D3F0122CAE2AC00450217 /* KeyboardDisplayableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639D3F0022CAE2AC00450217 /* KeyboardDisplayableViewController.swift */; };
+		639D3F0522CAECA400450217 /* BarButtonItemSettableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639D3F0422CAECA400450217 /* BarButtonItemSettableViewController.swift */; };
+		639D3F0922CAF4FB00450217 /* DidFirstLayoutSubviewsHandleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639D3F0822CAF4FB00450217 /* DidFirstLayoutSubviewsHandleable.swift */; };
 		63DBAD6522C2A69900A020CD /* UIImageEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DBAD6422C2A69900A020CD /* UIImageEx.swift */; };
 		63DBAD6722C30A7F00A020CD /* EventModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DBAD6622C30A7F00A020CD /* EventModels.swift */; };
 /* End PBXBuildFile section */
@@ -150,6 +153,9 @@
 		6388E2DD22C08FA900A30740 /* NoConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoConnectionError.swift; sourceTree = "<group>"; };
 		638BA0EC22C0900200DE6293 /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 		638BA11322C0A2A900DE6293 /* BaseHTTPRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHTTPRouter.swift; sourceTree = "<group>"; };
+		639D3F0022CAE2AC00450217 /* KeyboardDisplayableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDisplayableViewController.swift; sourceTree = "<group>"; };
+		639D3F0422CAECA400450217 /* BarButtonItemSettableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonItemSettableViewController.swift; sourceTree = "<group>"; };
+		639D3F0822CAF4FB00450217 /* DidFirstLayoutSubviewsHandleable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidFirstLayoutSubviewsHandleable.swift; sourceTree = "<group>"; };
 		63DBAD6422C2A69900A020CD /* UIImageEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageEx.swift; sourceTree = "<group>"; };
 		63DBAD6622C30A7F00A020CD /* EventModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,7 +193,6 @@
 			children = (
 				6312F80B22B94D510050DA57 /* Navigator */,
 				6312F7FF22B94D510050DA57 /* BaseViewControllers */,
-				6312F7F622B94D500050DA57 /* Protocols */,
 				6312F7FD22B94D500050DA57 /* Models */,
 				6350F5F022BACA2000B3B5FD /* BaseViews */,
 				6350F5EA22BACA2000B3B5FD /* Widgets */,
@@ -212,14 +217,6 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		6312F7F622B94D500050DA57 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				6312F7F822B94D500050DA57 /* BackFromNextHandleable.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		6312F7FD22B94D500050DA57 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +228,7 @@
 		6312F7FF22B94D510050DA57 /* BaseViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				639D3FB122CAFC5900450217 /* Protocols */,
 				6312F80122B94D510050DA57 /* BaseViewController.swift */,
 				6312F80222B94D510050DA57 /* BaseTableViewController.swift */,
 				6312F80022B94D510050DA57 /* BaseTabBarController.swift */,
@@ -405,6 +403,17 @@
 			path = Facebook;
 			sourceTree = "<group>";
 		};
+		639D3FB122CAFC5900450217 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				6312F7F822B94D500050DA57 /* BackFromNextHandleable.swift */,
+				639D3F0422CAECA400450217 /* BarButtonItemSettableViewController.swift */,
+				639D3F0822CAF4FB00450217 /* DidFirstLayoutSubviewsHandleable.swift */,
+				639D3F0022CAE2AC00450217 /* KeyboardDisplayableViewController.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		63F1306C22BBFFF900B84768 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +538,7 @@
 				6388E2B122BF576200A30740 /* AWSRegionTypeEx.swift in Sources */,
 				6350F5E922BAC8B400B3B5FD /* PHAssetEx.swift in Sources */,
 				638BA11422C0A2AA00DE6293 /* BaseHTTPRouter.swift in Sources */,
+				639D3F0122CAE2AC00450217 /* KeyboardDisplayableViewController.swift in Sources */,
 				6388E2BA22BF689200A30740 /* NotificationService.swift in Sources */,
 				6388E2DE22C08FA900A30740 /* NoConnectionError.swift in Sources */,
 				6350F5F922BACA2000B3B5FD /* BaseTextView.swift in Sources */,
@@ -543,6 +553,7 @@
 				6312F81B22B94D510050DA57 /* BaseViewController.swift in Sources */,
 				6388E2C022C055A900A30740 /* BaseGraphQLService.swift in Sources */,
 				6388E2B522BF64A700A30740 /* EventKitService.swift in Sources */,
+				639D3F0522CAECA400450217 /* BarButtonItemSettableViewController.swift in Sources */,
 				63227E0522C1609E00A25560 /* HTTPFailure.swift in Sources */,
 				6350F5D322BAC8B400B3B5FD /* UIScrollViewEx.swift in Sources */,
 				6350F5FB22BACA2000B3B5FD /* InputToolBarView.swift in Sources */,
@@ -575,6 +586,7 @@
 				6388E2D222C0833F00A30740 /* AuthError.swift in Sources */,
 				6350F5E522BAC8B400B3B5FD /* StringEx.swift in Sources */,
 				6350F5E822BAC8B400B3B5FD /* ApolloEx.swift in Sources */,
+				639D3F0922CAF4FB00450217 /* DidFirstLayoutSubviewsHandleable.swift in Sources */,
 				6350F5E722BAC8B400B3B5FD /* IntEx.swift in Sources */,
 				6350F5D222BAC8B400B3B5FD /* NSObjectEx.swift in Sources */,
 				6312F82722B94D510050DA57 /* BaseNavigator.swift in Sources */,

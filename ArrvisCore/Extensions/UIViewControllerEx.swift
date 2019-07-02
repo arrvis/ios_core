@@ -8,12 +8,13 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 private var disposeBagKey = 0
 private var payloadKey = 1
 private var didFirstLayoutSubviewsKey = 2
 
-extension UIViewController {
+extension UIViewController: UIGestureRecognizerDelegate {
 
     /// SafeAreaInsets
     public var safeAreaInsets: UIEdgeInsets? {
@@ -66,6 +67,28 @@ extension UIViewController {
         set {
             objc_setAssociatedObject(self, &disposeBagKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
+    }
+
+    /// PopGesture初期化
+    func initializePopGesture() {
+        rx.methodInvoked(#selector(UIViewController.viewWillAppear(_:))).subscribe(onNext: { [unowned self] _ in
+            self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        }).disposed(by: self)
+        rx.methodInvoked(#selector(UIViewController.viewWillDisappear(_:))).subscribe(onNext: { [unowned self] _ in
+            self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+            self.view.endEditing(true)
+        }).disposed(by: self)
+    }
+
+    /// didFirstLayoutSubviewsハンドル
+    func handleDidFirstLayoutSubviews() {
+        rx.methodInvoked(#selector(UIViewController.viewDidLayoutSubviews)).subscribe(onNext: { [unowned self] _ in
+            if self.didFirstLayoutSubviews {
+                return
+            }
+            self.didFirstLayoutSubviews = true
+            (self as? DidFirstLayoutSubviewsHandleable)?.onDidFirstLayoutSubviews()
+        }).disposed(by: self)
     }
 }
 

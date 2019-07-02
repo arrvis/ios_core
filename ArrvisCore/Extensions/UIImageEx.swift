@@ -7,47 +7,42 @@
 //
 
 import UIKit
+import AlamofireImage
 
 extension UIImage {
 
-    /// サイズに合うようにScale
-    ///
-    /// - Parameter size: サイズ
-    /// - Returns: Scale後Image
-    public func scaleTo(size: CGSize) -> UIImage? {
-        let widthRatio = size.width == 0 ? 1 : size.width / self.size.width
-        let heightRatio = size.height == 0 ? 1 : size.height / self.size.height
-        let scale = (widthRatio < heightRatio) ? widthRatio : heightRatio
-        return scaleTo(scale: scale)
+    private static let imageDownloader = ImageDownloader()
+
+    /// Base64データ文字列
+    public var base64DataString: String? {
+        guard let pngData = pngData() as NSData? else {
+            return nil
+        }
+        return "data:image/png;base64,\(pngData.base64EncodedString(options: []))"
+    }
+
+    /// 画像ロード
+    public static func loadImage(_ urlString: String,
+                                 filter: ImageFilter? = nil,
+                                 completion: @escaping (UIImage?) -> Void) {
+        imageDownloader.download(URLRequest(url: URL(string: urlString)!), filter: filter) { response in
+            completion(response.result.value)
+        }
     }
 
     /// サイズに合うようにScale
-    ///
-    /// - Parameter size: サイズ
-    /// - Returns: Scale後Image
-    public func scaleFillTo(size: CGSize) -> UIImage? {
-        let widthRatio = size.width == 0 ? 1 : size.width / self.size.width
-        let heightRatio = size.height == 0 ? 1 : size.height / self.size.height
-        let scale = (widthRatio < heightRatio) ? heightRatio : widthRatio
-        return scaleTo(scale: scale)
+    public func scaleTo(_ size: CGSize) -> UIImage {
+        return af_imageScaled(to: size)
     }
 
-    private func scaleTo(scale: CGFloat) -> UIImage? {
-        return resize(width: (size.width * scale), height: (size.height * scale))
+    /// サイズに合うようにScale
+    public func scaleFillTo(_ size: CGSize) -> UIImage {
+        return af_imageAspectScaled(toFill: size)
     }
 
-    /// リサイズ aspectRatio無視
-    ///
-    /// - Parameters:
-    ///   - width: 幅
-    ///   - height: 高さ
-    /// - Returns: リサイズ後Image
-    public func resize(width: CGFloat, height: CGFloat) -> UIImage! {
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height), false, 0.0)
-        draw(in: CGRect(x: 0, y: 0, width: width, height: height))
-        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return resizedImage?.withRenderingMode(.automatic)
+    /// サイズに合うようにScale
+    public func scaleFitTo(_ size: CGSize) -> UIImage {
+        return af_imageAspectScaled(toFit: size)
     }
 
     /// 短い方の辺の長さに合わせて aspect ratioを維持してリサイズ
@@ -55,14 +50,19 @@ extension UIImage {
     /// - Parameters:
     ///   - minimumLength: リサイズ後の短い方の辺の長さ
     /// - Returns: リサイズ後Image
-    public func resizeFit(minimumLength: CGFloat) -> UIImage! {
+    public func resizeFit(minimumLength: CGFloat) -> UIImage {
         if self.size.width < self.size.height {
             let resizedHeight = self.size.height * minimumLength / self.size.width
-            return resize(width: minimumLength, height: resizedHeight)
+            return af_imageScaled(to: CGSize(width: minimumLength, height: resizedHeight))
         } else {
             let resizedWidth = self.size.width * minimumLength / self.size.height
-            return resize(width: resizedWidth, height: minimumLength)
+            return af_imageScaled(to: CGSize(width: resizedWidth, height: minimumLength))
         }
+    }
+
+    /// 丸める
+    public func round() -> UIImage {
+        return af_imageRoundedIntoCircle()
     }
 
     /// 切り抜く

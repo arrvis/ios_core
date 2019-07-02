@@ -1,0 +1,80 @@
+//
+//  BarButtonItemSettableViewController.swift
+//  ArrvisCore
+//
+//  Created by Yutaka Izumaru on 2019/07/02.
+//  Copyright © 2019 Arrvis Co., Ltd. All rights reserved.
+//
+
+import UIKit
+
+/// BarButtonItem設定可能ViewController
+public protocol BarButtonItemSettableViewController where Self: UIViewController {
+
+    /// 戻るBarButtonItem
+    var backBarButtonItem: UIBarButtonItem? { get }
+
+    /// 左BarButtonItems
+    var leftBarButtonItems: [UIBarButtonItem]? { get }
+
+    /// 右BarButtonItems
+    var rightBarButtonItems: [UIBarButtonItem]? { get }
+
+    /// 戻るBarButtonItemタップ
+    func didTapBackBarButtonItem()
+
+    /// 左BarButtonItemタップ
+    func didTapLeftBarButtonItem(_ index: Int)
+
+    /// 右BarButtonItemタップ
+    func didTapRightBarButtonItem(_ index: Int)
+}
+
+extension BarButtonItemSettableViewController {
+
+    /// 戻るBarButtonItem
+    var backBarButtonItem: UIBarButtonItem? { return nil }
+
+    /// 左BarButtonItems
+    var leftBarButtonItems: [UIBarButtonItem]? { return nil }
+
+    /// 右BarButtonItems
+    var rightBarButtonItems: [UIBarButtonItem]? { return nil }
+
+    /// 初期化
+    public func initBarButtonItems() {
+        if let backBarButtonItem = backBarButtonItem {
+            navigationItem.backBarButtonItem = backBarButtonItem
+        }
+        navigationItem.backBarButtonItem?.rx.tap.subscribe(onNext: { [unowned self] in
+            self.didTapBackBarButtonItem()
+        }).disposed(by: self)
+
+        if let leftBarButtonItems = leftBarButtonItems {
+            navigationItem.leftBarButtonItems = leftBarButtonItems
+        }
+        navigationItem.leftBarButtonItems?.forEach({ item in
+            item.rx.tap.subscribe(onNext: { [unowned self] in
+                self.didTapLeftBarButtonItem(self.navigationItem.leftBarButtonItems!.firstIndex(of: item)!)
+            }).disposed(by: self)
+        })
+
+        if let rightBarButtonItems = rightBarButtonItems {
+            navigationItem.rightBarButtonItems = rightBarButtonItems
+        }
+        navigationItem.rightBarButtonItems?.forEach({ item in
+            item.rx.tap.subscribe(onNext: { [unowned self] in
+                self.didTapRightBarButtonItem(self.navigationItem.rightBarButtonItems!.firstIndex(of: item)!)
+            }).disposed(by: self)
+        })
+    }
+
+    /// 戻るBarButtonItemタップ
+    func didTapBackBarButtonItem() {}
+
+    /// 左BarButtonItemタップ
+    func didTapLeftBarButtonItem(_ index: Int) {}
+
+    /// 右BarButtonItemタップ
+    func didTapRightBarButtonItem(_ index: Int) {}
+}

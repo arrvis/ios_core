@@ -37,7 +37,7 @@ open class BaseRootViewController: UIViewController {
         return nil
     }
 
-    // MAR+ - Initializer
+    // MARK: - Initializer
 
     public convenience init(navigator: BaseNavigator) {
         self.init(nibName: nil, bundle: nil)
@@ -71,9 +71,10 @@ open class BaseRootViewController: UIViewController {
             self.dismisssChildViewController(result, animate)
         }).disposed(by: disposeBag)
     }
+}
 
-    // MARK: - Life-Cycle
-
+// MARK: - Life-Cycle
+extension BaseRootViewController {
     open override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         didLayoutSubviews = true
