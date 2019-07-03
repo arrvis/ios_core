@@ -10,7 +10,7 @@ import WebKit
 import TinyConstraints
 
 /// Vue用ViewController基底クラス
-open class BaseVueViewController: BaseViewController {
+open class BaseVueViewController: BaseViewController, DidFirstLayoutSubviewsHandleable {
 
     // MARK: - Variables
 
@@ -24,9 +24,9 @@ open class BaseVueViewController: BaseViewController {
         return nil
     }
 
-    /// Pageからのコールバックマップ [コールバック名: コールバックAction]
-    open var pageCallbacks: [String: (Data) -> Void] {
-        return [String: (Data) -> Void]()
+    /// Viewからのコールバックマップ [コールバック名: コールバックAction]
+    open var pageCallbacks: [String: (Data?) -> Void] {
+        return [String: (Data?) -> Void]()
     }
 
     /// WebViewのインセット
@@ -63,7 +63,32 @@ open class BaseVueViewController: BaseViewController {
         }
     }
 
-    private func initWebView() {
+    // MARK: - DidFirstLayoutSubviewsHandleable
+
+    open func onDidFirstLayoutSubviews() {
+        if let webView = webView {
+            view.addSubview(webView)
+            view.bringSubviewToFront(webView)
+            refreshWebViewInsets()
+        }
+    }
+
+    // MARK: - Events
+
+    open func onWebViewDidLoad() {}
+
+    open func onExecuteJSCompleted(_ ret: Any?, file: String = #file, function: String = #function) {}
+
+    open func onReceiveCallback(_ name: String, _ body: Data?) {}
+
+    open func onWebViewError(_ error: Error, function: String = #function) {}
+}
+
+// MARK: - Public
+extension BaseVueViewController {
+
+    /// WebView初期化
+    public func initWebView() {
         let userContentController = WKUserContentController()
         pageCallbacks.forEach { callBack in
             userContentController.add(self, name: callBack.key)
@@ -80,33 +105,12 @@ open class BaseVueViewController: BaseViewController {
         webView!.scrollView.bounces = false
         webView!.alpha = 0
     }
-}
-
-// MARK: - Public
-extension BaseVueViewController {
 
     /// WebViewのInsetsを更新
     public func refreshWebViewInsets() {
         webView?.addedConstraints?.deActivate()
         webView?.addedConstraints?.removeAll()
         webView?.edgesToSuperview(insets: webViewInsets)
-    }
-}
-
-// MARK: - Events
-extension BaseVueViewController {
-
-    open func onWebViewDidLoad() {}
-}
-
-// MARK: - DidFirstLayoutSubviewsHandleable
-extension BaseVueViewController: DidFirstLayoutSubviewsHandleable {
-
-    public func onDidFirstLayoutSubviews() {
-        if let webView = webView {
-            view.addSubviewWithFit(webView, usingSafeArea: true)
-            view.bringSubviewToFront(webView)
-        }
     }
 }
 
@@ -122,6 +126,10 @@ extension BaseVueViewController: WKNavigationDelegate {
             })
         }
     }
+
+    public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        onWebViewError(error)
+    }
 }
 
 // MARK: - WKScriptMessageHandler
@@ -129,7 +137,9 @@ extension BaseVueViewController: WKScriptMessageHandler {
 
     public func userContentController(_ userContentController: WKUserContentController,
                                       didReceive message: WKScriptMessage) {
-        pageCallbacks[message.name]!((message.body as! String).data(using: .utf8)!)
+        let data = (message.body as? String)?.data(using: .utf8)
+        onReceiveCallback(message.name, data)
+        pageCallbacks[message.name]?(data)
     }
 }
 
@@ -137,51 +147,48 @@ extension BaseVueViewController: WKScriptMessageHandler {
 extension BaseVueViewController {
 
     /// Vueメソッド呼び出し
-    public func callVueMethod(name: String, _ jsonString: String?, _ completion: @escaping (Any?, Error?) -> Void) {
-        if let jsonString = jsonString, let data = jsonString.data(using: .utf8)?.base64EncodedString() {
-            executeJS("window.vue.\(name)('\(data)')", completion)
+    public func callVueMethod<T: BaseModel>(_ name: String, _ model: T,
+                                            file: String = #file, function: String = #function) {
+        callVueMethod(name, model.jsonString, file: file, function: function)
+    }
+
+    /// Vueメソッド呼び出し
+    public func callVueMethod<T: BaseModel>(_ name: String, _ models: [T],
+                                            file: String = #file, function: String = #function) {
+        callVueMethod(name,
+                      "[\(models.compactMap { $0.jsonString}.joined(separator: ","))]",
+                      file: file, function: function)
+    }
+
+    /// Vueメソッド呼び出し
+    func callVueMethodWithObject(_ name: String, _ object: Any,
+                                 file: String = #file, function: String = #function) {
+        executeJS("window.vue.\(name)(\(object))", file: file, function: function)
+    }
+
+    /// Vueメソッド呼び出し
+    public func callVueMethod(_ name: String, _ jsonString: String? = nil,
+                              file: String = #file, function: String = #function) {
+        if let data = jsonString?.data(using: .utf8)?.base64EncodedString() {
+            executeJS("window.vue.\(name)('\(data)')", file: file, function: function)
         } else {
-            callVueMethod(name: name, completion)
+            executeJS("window.vue.\(name)()", file: file, function: function)
         }
     }
 
-    /// Vueメソッド呼び出し
-    public func callVueMethod<T: BaseModel>(name: String, _ model: T, _ completion: @escaping (Any?, Error?) -> Void) {
-        let param: String
-        if let jsonString = model.jsonString {
-            let data = jsonString.data(using: .utf8)?.base64EncodedString() ?? ""
-            param = "'\(data)'"
-        } else {
-            param = ""
-        }
-        executeJS("window.vue.\(name)(\(param))", completion)
-    }
-
-    /// Vueメソッド呼び出し
-    public func callVueMethod<T: BaseModel>(name: String,
-                                            _ models: [T],
-                                            _ completion: @escaping (Any?, Error?) -> Void) {
-        let jsonString = "[\(models.compactMap { $0.jsonString}.joined(separator: ","))]"
-        let param = "'\(jsonString.data(using: .utf8)?.base64EncodedString() ?? "")'"
-        executeJS("window.vue.\(name)(\(param))", completion)
-    }
-
-    /// Vueメソッド呼び出し
-    ///
-    /// - Parameters:
-    ///   - name: メソッド名
-    ///   - completion: 完了アクション
-    public func callVueMethod(name: String, _ completion: @escaping (Any?, Error?) -> Void) {
-        executeJS("window.vue.\(name)()", completion)
-    }
-
-    private func executeJS(_ jsString: String, _ completion: @escaping (Any?, Error?) -> Void) {
+    private func executeJS(_ jsString: String, file: String = #file, function: String = #function) {
         if webView?.isLoading == true {
             NSObject.runAfterDelay(delayMSec: 30) { [unowned self] in
-                self.executeJS(jsString, completion)
+                self.executeJS(jsString, file: file, function: function)
             }
             return
         }
-        webView?.evaluateJavaScript(jsString, completionHandler: completion)
+        webView?.evaluateJavaScript(jsString, completionHandler: { [unowned self] (ret, error) in
+            if let error = error {
+                self.onWebViewError(error, function: function)
+            } else {
+                self.onExecuteJSCompleted(ret, file: file, function: function)
+            }
+        })
     }
 }

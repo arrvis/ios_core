@@ -12,7 +12,6 @@ import RxCocoa
 
 private var disposeBagKey = 0
 private var payloadKey = 1
-private var didFirstLayoutSubviewsKey = 2
 
 extension UIViewController: UIGestureRecognizerDelegate {
 
@@ -46,16 +45,6 @@ extension UIViewController: UIGestureRecognizerDelegate {
         }
     }
 
-    /// Subviewの初回layoutが完了したか
-    public var didFirstLayoutSubviews: Bool {
-        get {
-            return objc_getAssociatedObject(self, &didFirstLayoutSubviewsKey) as? Bool ?? false
-        }
-        set {
-            objc_setAssociatedObject(self, &didFirstLayoutSubviewsKey, newValue, .OBJC_ASSOCIATION_RETAIN)
-        }
-    }
-
     fileprivate var disposeBag: DisposeBag {
         get {
             guard let object = objc_getAssociatedObject(self, &disposeBagKey) as? DisposeBag else {
@@ -82,12 +71,10 @@ extension UIViewController: UIGestureRecognizerDelegate {
 
     /// didFirstLayoutSubviewsハンドル
     func handleDidFirstLayoutSubviews() {
-        rx.methodInvoked(#selector(UIViewController.viewDidLayoutSubviews)).subscribe(onNext: { [unowned self] _ in
-            if self.didFirstLayoutSubviews {
-                return
-            }
-            self.didFirstLayoutSubviews = true
-            (self as? DidFirstLayoutSubviewsHandleable)?.onDidFirstLayoutSubviews()
+        rx.methodInvoked(#selector(UIViewController.viewDidLayoutSubviews))
+            .take(1)
+            .subscribe(onNext: { [unowned self] _ in
+                (self as? DidFirstLayoutSubviewsHandleable)?.onDidFirstLayoutSubviews()
         }).disposed(by: self)
     }
 }
