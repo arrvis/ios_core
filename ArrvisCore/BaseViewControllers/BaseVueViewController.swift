@@ -14,18 +14,18 @@ open class BaseVueViewController: BaseViewController {
 
     // MARK: - Variables
 
-    /// MPAのURL
-    open var mpaBaseURL: String? {
+    /// PageのURLBase
+    open var pageHtmlURLPrefix: String? {
         return nil
     }
 
-    /// ViewのURL
-    open var viewUrl: URL? {
+    /// PageのHTML
+    open var pageHtml: URL? {
         return nil
     }
 
-    /// Viewからのコールバックマップ [コールバック名: コールバックAction]
-    open var viewCallbacks: [String: (Data) -> Void] {
+    /// Pageからのコールバックマップ [コールバック名: コールバックAction]
+    open var pageCallbacks: [String: (Data) -> Void] {
         return [String: (Data) -> Void]()
     }
 
@@ -52,20 +52,20 @@ open class BaseVueViewController: BaseViewController {
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        if let viewUrl = viewUrl {
+        if let pageHtml = pageHtml {
             initWebView()
-            if let mpaBaseURL = mpaBaseURL {
-                let url = URL(string: mpaBaseURL + String(viewUrl.absoluteString.split(separator: "/").last!))!
+            if let pageHtmlURLPrefix = pageHtmlURLPrefix {
+                let url = URL(string: pageHtmlURLPrefix + String(pageHtml.absoluteString.split(separator: "/").last!))!
                 webView!.load(URLRequest(url: url))
             } else {
-                webView!.load(URLRequest(url: viewUrl))
+                webView!.load(URLRequest(url: pageHtml))
             }
         }
     }
 
     private func initWebView() {
         let userContentController = WKUserContentController()
-        viewCallbacks.forEach { callBack in
+        pageCallbacks.forEach { callBack in
             userContentController.add(self, name: callBack.key)
         }
         let webViewConfiguration = WKWebViewConfiguration()
@@ -129,7 +129,7 @@ extension BaseVueViewController: WKScriptMessageHandler {
 
     public func userContentController(_ userContentController: WKUserContentController,
                                       didReceive message: WKScriptMessage) {
-        viewCallbacks[message.name]!((message.body as! String).data(using: .utf8)!)
+        pageCallbacks[message.name]!((message.body as! String).data(using: .utf8)!)
     }
 }
 
