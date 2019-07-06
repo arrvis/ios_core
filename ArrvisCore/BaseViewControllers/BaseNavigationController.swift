@@ -25,7 +25,7 @@ open class BaseNavigationController: UINavigationController {
 
     /// 透明なNavigationBarかどうか
     open var transparentNavigationBar: Bool {
-        return true
+        return false
     }
 }
 
