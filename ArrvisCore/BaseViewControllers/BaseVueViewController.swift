@@ -81,7 +81,7 @@ open class BaseVueViewController: BaseViewController, DidFirstLayoutSubviewsHand
 
     open func onReceiveCallback(_ name: String, _ body: Data?) {}
 
-    open func onWebViewError(_ error: Error, function: String = #function) {}
+    open func onWebViewError(_ js: String?, _ error: Error, function: String = #function) {}
 }
 
 // MARK: - Public
@@ -128,7 +128,7 @@ extension BaseVueViewController: WKNavigationDelegate {
     }
 
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        onWebViewError(error)
+        onWebViewError(nil, error)
     }
 }
 
@@ -185,7 +185,7 @@ extension BaseVueViewController {
         }
         webView?.evaluateJavaScript(jsString, completionHandler: { [unowned self] (ret, error) in
             if let error = error {
-                self.onWebViewError(error, function: function)
+                self.onWebViewError(jsString, error, function: function)
             } else {
                 self.onExecuteJSCompleted(jsString, ret, file: file, function: function)
             }
