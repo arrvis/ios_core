@@ -161,8 +161,8 @@ extension BaseVueViewController {
     }
 
     /// Vueメソッド呼び出し
-    func callVueMethodWithObject(_ name: String, _ object: Any,
-                                 file: String = #file, function: String = #function) {
+    public func callVueMethodWithObject(_ name: String, _ object: Any,
+                                        file: String = #file, function: String = #function) {
         executeJS("window.vue.\(name)(\(object))", file: file, function: function)
     }
 
