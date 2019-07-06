@@ -77,7 +77,7 @@ open class BaseVueViewController: BaseViewController, DidFirstLayoutSubviewsHand
 
     open func onWebViewDidLoad() {}
 
-    open func onExecuteJSCompleted(_ ret: Any?, file: String = #file, function: String = #function) {}
+    open func onExecuteJSCompleted(_ js: String, _ ret: Any?, file: String = #file, function: String = #function) {}
 
     open func onReceiveCallback(_ name: String, _ body: Data?) {}
 
@@ -187,7 +187,7 @@ extension BaseVueViewController {
             if let error = error {
                 self.onWebViewError(error, function: function)
             } else {
-                self.onExecuteJSCompleted(ret, file: file, function: function)
+                self.onExecuteJSCompleted(jsString, ret, file: file, function: function)
             }
         })
     }
