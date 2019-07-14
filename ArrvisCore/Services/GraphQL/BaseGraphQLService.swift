@@ -15,16 +15,14 @@ protocol GraphqlServiceProtocol {
 }
 
 /// GraphQLサービス基底クラス
-open class BaseGraphQLService {
+open class BaseGraphQLService: GraphqlServiceProtocol {
 
     /// DisposeBag
     let disposeBag = DisposeBag()
 
     private init() {}
-}
 
-// MARK: - GraphqlServiceProtocol
-extension BaseGraphQLService: GraphqlServiceProtocol {
+    // MARK: - GraphqlServiceProtocol
 
     /// ApolloClientフェッチ
     public func fetchClient(request: @escaping (ApolloClient) -> Void, onError: ((Error) -> Void)?, useNonAuth: Bool) {
