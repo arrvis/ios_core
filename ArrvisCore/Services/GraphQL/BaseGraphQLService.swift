@@ -20,8 +20,6 @@ open class BaseGraphQLService: GraphqlServiceProtocol {
     /// DisposeBag
     let disposeBag = DisposeBag()
 
-    private init() {}
-
     // MARK: - GraphqlServiceProtocol
 
     /// ApolloClientフェッチ
