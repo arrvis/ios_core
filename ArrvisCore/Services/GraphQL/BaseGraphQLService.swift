@@ -65,7 +65,6 @@ extension BaseGraphQLService {
         }
     }
 
-    // TODO: エラーハンドリングだけ用意して、parseはmapでいいか検討。
     private func handleResponse<T: GraphQLOperation, R: BaseModel>(
         _ operation: T,
         _ result: GraphQLResult<T.Data>?,
