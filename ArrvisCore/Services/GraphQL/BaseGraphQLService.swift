@@ -25,7 +25,7 @@ open class BaseGraphQLService: GraphqlServiceProtocol {
     // MARK: - GraphqlServiceProtocol
 
     /// ApolloClientフェッチ
-    public func fetchClient(request: @escaping (ApolloClient) -> Void, onError: ((Error) -> Void)?, useNonAuth: Bool) {
+    open func fetchClient(request: @escaping (ApolloClient) -> Void, onError: ((Error) -> Void)?, useNonAuth: Bool) {
         fatalError("Not implemented.")
     }
 }
