@@ -34,13 +34,11 @@ open class BaseGraphQLService: GraphqlServiceProtocol {
 extension BaseGraphQLService {
 
     /// Perform
-    public func perform<T: GraphQLMutation, R: BaseModel>(
-        _ mutation: T,
-        _ parse: ((T.Data, (R?, Error?) -> Void) -> Void)? = nil) -> Observable<R> {
+    public func perform<T: GraphQLMutation, R: BaseModel>(_ mutation: T) -> Observable<R> {
         return Observable.create { [unowned self] observer in
             self.fetchClient(request: { apolloClient in
                 apolloClient.perform(mutation: mutation) { [unowned self]  result, error in
-                    self.handleResponse(mutation, result, error, parse, observer)
+                    self.handleResponse(mutation, result, error, observer)
                 }
             }, onError: { error in
                 observer.onError(error)
@@ -50,13 +48,11 @@ extension BaseGraphQLService {
     }
 
     /// Fetch
-    public func fetch<T: GraphQLQuery, R: BaseModel>(
-        _ query: T,
-        _ parse: ((T.Data, (R?, Error?) -> Void) -> Void)? = nil) -> Observable<R> {
+    public func fetch<T: GraphQLQuery, R: BaseModel>(_ query: T) -> Observable<R> {
         return Observable.create { [unowned self]  observer in
             self.fetchClient(request: { apolloClient in
                 apolloClient.fetch(query: query) { [unowned self]  result, error in
-                    self.handleResponse(query, result, error, parse, observer)
+                    self.handleResponse(query, result, error, observer)
                 }
             }, onError: { error in
                 observer.onError(error)
@@ -69,28 +65,14 @@ extension BaseGraphQLService {
         _ operation: T,
         _ result: GraphQLResult<T.Data>?,
         _ error: Error?,
-        _ parse: ((T.Data, (R?, Error?) -> Void) -> Void)?,
         _ observer: AnyObserver<R>) {
         if let error = error {
             observer.onError(error)
         } else if let errors = result?.errors {
             observer.onError(GraphQLServiceError(errors: errors))
-        } else if let data = result?.data {
-            if let parse = parse {
-                parse(data) { parsed, error in
-                    if let error = error {
-                        observer.onError(error)
-                    } else if let parsed = parsed {
-                        observer.onNext(parsed)
-                        observer.onCompleted()
-                    } else {
-                        observer.onCompleted()
-                    }
-                }
-            } else {
-                observer.onNext(data as! R)
-                observer.onCompleted()
-            }
+        } else if let resultMap = result?.data?.resultMap {
+            observer.onNext(R.fromObject(object: resultMap.first!.value!) as! R)
+            observer.onCompleted()
         } else {
             observer.onCompleted()
         }
