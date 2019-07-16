@@ -17,23 +17,23 @@ public protocol BaseModel: Codable {
 extension BaseModel {
 
     /// Objectから生成
-    public static func fromObject(object: Any,
+    public static func fromObject(_ object: Any,
                                   options: JSONSerialization.WritingOptions = .prettyPrinted) -> ModelType {
-        return fromJson(json: try! JSONSerialization.data(withJSONObject: object, options: options))
+        return fromJson(try! JSONSerialization.data(withJSONObject: object, options: options))
     }
 
     /// JSON文字列から生成
-    public static func fromJson(json: String) -> ModelType {
-        return fromJson(json: json.data(using: .utf8)!)
+    public static func fromJson(_ json: String) -> ModelType {
+        return fromJson(json.data(using: .utf8)!)
     }
 
     /// JSONデータから生成
-    public static func fromJson(json: Data) -> ModelType {
+    public static func fromJson(_ json: Data) -> ModelType {
         return try! JSONDecoder().decode(Self.self, from: json) as! Self.ModelType
     }
 
     /// JSONデータからデコード可能かどうか
-    public static func canDecodeFromJson(json: Data) -> Bool {
+    public static func canDecodeFromJson(_ json: Data) -> Bool {
         if (try? JSONDecoder().decode(Self.self, from: json) as? Self.ModelType) == nil {
             return false
         }
@@ -41,7 +41,7 @@ extension BaseModel {
     }
 
     /// GraphQLSelectionSetから生成
-    public static func fromSet(set: GraphQLSelectionSet) -> ModelType {
-        return fromJson(json: set.toJsonString()!)
+    public static func fromSet(_ set: GraphQLSelectionSet) -> ModelType {
+        return fromJson(set.toJsonString()!)
     }
 }

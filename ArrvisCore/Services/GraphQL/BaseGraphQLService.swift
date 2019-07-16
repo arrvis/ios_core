@@ -71,7 +71,52 @@ extension BaseGraphQLService {
         } else if let errors = result?.errors {
             observer.onError(GraphQLServiceError(errors: errors))
         } else if let resultMap = result?.data?.resultMap {
-            observer.onNext(R.fromObject(object: resultMap.first!.value!) as! R)
+            observer.onNext(R.fromObject(resultMap.first!.value!) as! R)
+            observer.onCompleted()
+        } else {
+            observer.onCompleted()
+        }
+    }
+
+    /// Perform
+    public func perform<T: GraphQLMutation, R: BaseModel>(_ mutation: T) -> Observable<[R]> {
+        return Observable.create { [unowned self] observer in
+            self.fetchClient(request: { apolloClient in
+                apolloClient.perform(mutation: mutation) { [unowned self]  result, error in
+                    self.handleResponse(mutation, result, error, observer)
+                }
+            }, onError: { error in
+                observer.onError(error)
+            }, useNonAuth: false)
+            return Disposables.create()
+        }
+    }
+
+    /// Fetch
+    public func fetch<T: GraphQLQuery, R: BaseModel>(_ query: T) -> Observable<[R]> {
+        return Observable.create { [unowned self]  observer in
+            self.fetchClient(request: { apolloClient in
+                apolloClient.fetch(query: query) { [unowned self]  result, error in
+                    self.handleResponse(query, result, error, observer)
+                }
+            }, onError: { error in
+                observer.onError(error)
+            }, useNonAuth: false)
+            return Disposables.create()
+        }
+    }
+
+    private func handleResponse<T: GraphQLOperation, R: BaseModel>(
+        _ operation: T,
+        _ result: GraphQLResult<T.Data>?,
+        _ error: Error?,
+        _ observer: AnyObserver<[R]>) {
+        if let error = error {
+            observer.onError(error)
+        } else if let errors = result?.errors {
+            observer.onError(GraphQLServiceError(errors: errors))
+        } else if let resultMap = result?.data?.resultMap {
+            observer.onNext((resultMap.first!.value as! [Any]).map { R.fromObject($0) as! R })
             observer.onCompleted()
         } else {
             observer.onCompleted()
