@@ -13,7 +13,7 @@ import RxCocoa
 private var inputToolBarKey = 0
 
 /// 入力コントロール用ToolBar
-final class InputToolBarView: UIToolbar {
+public final class InputToolBarView: UIToolbar {
 
     // MARK: - Variables
 
