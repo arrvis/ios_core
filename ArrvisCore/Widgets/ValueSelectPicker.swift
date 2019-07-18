@@ -31,7 +31,7 @@ public final class ValueSelectPicker: UIControl {
         return pickerView
     }
 
-    public func show(_ values: [String]) -> Observable<Int> {
+    public func show(_ values: [String]) -> Observable<Int?> {
         pickerView = ValueSelectPickerView(values: values)
         becomeFirstResponder()
         return pickerView.inputChanged
@@ -57,10 +57,10 @@ extension ValueSelectPicker: UIKeyInput {
 
 final class ValueSelectPickerView: UIPickerView {
 
-    public var inputChanged: Observable<Int> {
+    public var inputChanged: Observable<Int?> {
         return inputChangedSubject
     }
-    private let inputChangedSubject = BehaviorSubject(value: 0)
+    private let inputChangedSubject = BehaviorSubject<Int?>(value: nil)
 
     private var values: [String]!
 

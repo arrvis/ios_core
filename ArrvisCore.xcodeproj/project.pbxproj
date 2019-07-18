@@ -81,6 +81,7 @@
 		63DBAD6522C2A69900A020CD /* UIImageEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DBAD6422C2A69900A020CD /* UIImageEx.swift */; };
 		63DBAD6722C30A7F00A020CD /* EventModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DBAD6622C30A7F00A020CD /* EventModels.swift */; };
 		63F7C18922E0DDF40005E185 /* ValueSelectPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F7C18822E0DDF40005E185 /* ValueSelectPicker.swift */; };
+		63F7C18B22E0E1EC0005E185 /* DateSelectPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F7C18A22E0E1EC0005E185 /* DateSelectPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +161,7 @@
 		63DBAD6422C2A69900A020CD /* UIImageEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageEx.swift; sourceTree = "<group>"; };
 		63DBAD6622C30A7F00A020CD /* EventModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModels.swift; sourceTree = "<group>"; };
 		63F7C18822E0DDF40005E185 /* ValueSelectPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueSelectPicker.swift; sourceTree = "<group>"; };
+		63F7C18A22E0E1EC0005E185 /* DateSelectPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +309,7 @@
 				6350F5ED22BACA2000B3B5FD /* InsetsSettableLabel.swift */,
 				6350F5EC22BACA2000B3B5FD /* TouchableButton.swift */,
 				63F7C18822E0DDF40005E185 /* ValueSelectPicker.swift */,
+				63F7C18A22E0E1EC0005E185 /* DateSelectPicker.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				6350F5FA22BACA2000B3B5FD /* BaseTextField.swift in Sources */,
 				6350F5DB22BAC8B400B3B5FD /* UITextFieldEx.swift in Sources */,
 				63DBAD6722C30A7F00A020CD /* EventModels.swift in Sources */,
+				63F7C18B22E0E1EC0005E185 /* DateSelectPicker.swift in Sources */,
 				6350F5D822BAC8B400B3B5FD /* UIViewEx.swift in Sources */,
 				6350F5DF22BAC8B400B3B5FD /* UILabelEx.swift in Sources */,
 				6302D66B22C1F7F6001F24BE /* NetworkUtil.swift in Sources */,
