@@ -32,8 +32,8 @@ public final class ValueSelectPicker: UIControl {
         return pickerView
     }
 
-    public func show(_ values: [String]) -> Observable<Int?> {
-        pickerView = ValueSelectPickerView(values: values)
+    public func show(_ values: [String], _ current: Int? = nil) -> Observable<Int?> {
+        pickerView = ValueSelectPickerView(values: values, current: current)
         becomeFirstResponder()
         return pickerView.inputChanged
     }
@@ -61,7 +61,9 @@ final class ValueSelectPickerView: UIPickerView {
     public var inputChanged: Observable<Int?> {
         return inputChangedSubject
     }
-    private let inputChangedSubject = BehaviorSubject<Int?>(value: nil)
+    private lazy var inputChangedSubject = {
+        return BehaviorSubject<Int?>(value: last)
+    }()
 
     private var values: [String]!
 
@@ -75,9 +77,13 @@ final class ValueSelectPickerView: UIPickerView {
         super.init(coder: aDecoder)
     }
 
-    convenience init(values: [String]) {
+    convenience init(values: [String], current: Int?) {
         self.init(frame: .zero)
         self.values = values
+        self.last = current
+        if let current = current {
+            selectRow(current, inComponent: 0, animated: false)
+        }
         dataSource = self
         delegate = self
     }
