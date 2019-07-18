@@ -148,6 +148,6 @@ extension AWSS3Service {
     private static func getUrl(_ config: AWSServiceConfiguration,
                                _ bucket: String,
                                _ key: String) -> String {
-        return "https://s3-\(config.regionType.stringValue).amazonaws.com/\(bucket)/\(key)"
+        return "https://\(bucket).s3-\(config.regionType.stringValue).amazonaws.com/\(key)"
     }
 }
