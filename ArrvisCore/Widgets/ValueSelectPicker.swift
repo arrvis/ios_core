@@ -82,7 +82,9 @@ final class ValueSelectPickerView: UIPickerView {
         self.values = values
         self.last = current
         if let current = current {
-            selectRow(current, inComponent: 0, animated: false)
+            NSObject.runAfterDelay(delayMSec: 100) {
+                self.selectRow(current, inComponent: 0, animated: false)
+            }
         }
         dataSource = self
         delegate = self
