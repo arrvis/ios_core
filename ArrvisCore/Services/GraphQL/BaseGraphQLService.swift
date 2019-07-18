@@ -30,6 +30,8 @@ open class BaseGraphQLService: GraphqlServiceProtocol {
     }
 }
 
+// TODO: Rのnil対応。
+
 // MARK: - Public
 extension BaseGraphQLService {
 
