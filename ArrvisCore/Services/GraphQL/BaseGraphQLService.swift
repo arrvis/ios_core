@@ -74,6 +74,7 @@ extension BaseGraphQLService {
         _ result: GraphQLResult<T.Data>?,
         _ error: Error?,
         _ observer: AnyObserver<R>) {
+        onResponse(operation, result, error)
         if let error = error {
             observer.onError(error)
         } else if let errors = result?.errors {
