@@ -18,6 +18,7 @@ public final class ValueSelectPicker: UIControl {
     public override var inputAccessoryView: UIView? {
         let toolBar = InputToolBarView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 44))
         toolBar.didTapDone = { [unowned self] in
+            self.pickerView.dismiss()
             self.resignFirstResponder()
         }
         return toolBar
@@ -64,6 +65,8 @@ final class ValueSelectPickerView: UIPickerView {
 
     private var values: [String]!
 
+    private var last: Int?
+
     public override init(frame: CGRect) {
         super.init(frame: .zero)
     }
@@ -77,6 +80,13 @@ final class ValueSelectPickerView: UIPickerView {
         self.values = values
         dataSource = self
         delegate = self
+    }
+
+    func dismiss() {
+        let row = selectedRow(inComponent: 0)
+        if row != last {
+            inputChangedSubject.onNext(row)
+        }
     }
 }
 
@@ -95,6 +105,7 @@ extension ValueSelectPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        last = row
         inputChangedSubject.onNext(row)
     }
 }

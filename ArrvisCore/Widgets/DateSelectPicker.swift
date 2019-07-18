@@ -29,6 +29,8 @@ public final class DateSelectPicker: UIControl {
 
     private var datePicker: UIDatePicker!
 
+    private var last: Date?
+
     public override var inputView: UIView? {
         return datePicker
     }
@@ -47,7 +49,14 @@ public final class DateSelectPicker: UIControl {
     }
 
     @objc private func changed() {
+        last = datePicker.date
         inputChangedSubject.onNext(datePicker.date)
+    }
+
+    func dismiss() {
+        if datePicker.date != last {
+            inputChangedSubject.onNext(datePicker.date)
+        }
     }
 }
 
