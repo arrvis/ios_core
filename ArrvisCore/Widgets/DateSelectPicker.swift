@@ -18,6 +18,7 @@ public final class DateSelectPicker: UIControl {
     public override var inputAccessoryView: UIView? {
         let toolBar = InputToolBarView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 44))
         toolBar.didTapDone = { [unowned self] in
+            self.dismiss()
             self.resignFirstResponder()
         }
         return toolBar
