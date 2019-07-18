@@ -28,6 +28,12 @@ open class BaseGraphQLService: GraphqlServiceProtocol {
     open func fetchClient(request: @escaping (ApolloClient) -> Void, onError: ((Error) -> Void)?, useNonAuth: Bool) {
         fatalError("Not implemented.")
     }
+
+    /// レスポンス受信
+    open func onResponse<T: GraphQLOperation>(
+        _ operation: T,
+        _ result: GraphQLResult<T.Data>?,
+        _ error: Error?) {}
 }
 
 // TODO: Rのnil対応。
@@ -125,9 +131,4 @@ extension BaseGraphQLService {
             observer.onCompleted()
         }
     }
-
-    open func onResponse<T: GraphQLOperation>(
-        _ operation: T,
-        _ result: GraphQLResult<T.Data>?,
-        _ error: Error?) {}
 }
