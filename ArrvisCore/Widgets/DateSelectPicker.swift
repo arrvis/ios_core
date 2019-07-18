@@ -33,7 +33,7 @@ public final class DateSelectPicker: UIControl {
         return datePicker
     }
 
-    public func show(_ min: Date?, _ max: Date?, _ current: Date?) -> Observable<Date?> {
+    public func show(_ min: Date? = nil, _ max: Date? = nil, _ current: Date? = nil) -> Observable<Date?> {
         datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.minimumDate = min
