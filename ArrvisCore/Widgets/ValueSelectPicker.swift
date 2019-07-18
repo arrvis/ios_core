@@ -16,7 +16,7 @@ public final class ValueSelectPicker: UIControl {
     }
 
     public override var inputAccessoryView: UIView? {
-        let toolBar = InputToolBarView(frame: .zero)
+        let toolBar = InputToolBarView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 44))
         toolBar.didTapDone = { [unowned self] in
             self.resignFirstResponder()
         }
