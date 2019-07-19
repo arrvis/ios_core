@@ -26,7 +26,7 @@ public final class DateSelectPicker: UIControl {
 
     private var textStore: String = ""
 
-    private let inputChangedSubject = BehaviorSubject<Date?>(value: nil)
+    private var inputChangedSubject = BehaviorSubject<Date?>(value: nil)
 
     private var datePicker: UIDatePicker!
 
@@ -46,6 +46,8 @@ public final class DateSelectPicker: UIControl {
         }
         datePicker.addTarget(self, action: #selector(changed), for: .valueChanged)
         becomeFirstResponder()
+        inputChangedSubject.dispose()
+        inputChangedSubject = BehaviorSubject<Date?>(value: current)
         return inputChangedSubject
     }
 
