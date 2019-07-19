@@ -80,13 +80,20 @@ extension BaseGraphQLService {
         } else if let errors = result?.errors {
             observer.onError(GraphQLServiceError(errors: errors))
         } else if let resultMap = result?.data?.resultMap {
-            var value: [String: Any?]
             if "\(operation.operationType)" == "query" {
-                value = resultMap.first!.value! as! [String: Any?]
+                let value = resultMap.first!.value! as! [String: Any?]
+                observer.onNext(R.fromObject(value) as! R)
             } else {
-                value = (resultMap.first!.value as! [String: Any?]).first { $0.key != "__typename"}!.value as! [String: Any?]
+                let value = (resultMap.first!.value as! [String: Any?])
+                    .first { $0.key != "__typename"}?
+                    .value as? [String: Any?]
+                if value == nil {
+                    let v = resultMap.first!.value! as! [String: Any?]
+                    observer.onNext(R.fromObject(v) as! R)
+                } else {
+                    observer.onNext(R.fromObject(value!) as! R)
+                }
             }
-            observer.onNext(R.fromObject(value) as! R)
             observer.onCompleted()
         } else {
             observer.onCompleted()
@@ -132,14 +139,18 @@ extension BaseGraphQLService {
         } else if let errors = result?.errors {
             observer.onError(GraphQLServiceError(errors: errors))
         } else if let resultMap = result?.data?.resultMap {
-            var value: [Any]
             if "\(operation.operationType)" == "query" {
-                value = resultMap.first!.value! as! [Any]
+                let value = resultMap.first!.value! as! [Any]
+                observer.onNext(value.map { R.fromObject($0) as! R })
             } else {
-                value = (resultMap.first!.value as! [String: Any?]).first { $0.key != "__typename"}!.value as! [Any]
+                let value = (resultMap.first!.value as! [String: Any?]).first { $0.key != "__typename"}?.value as? [Any]
+                if value == nil {
+                    let v = resultMap.first!.value! as! [Any]
+                    observer.onNext(v.map { R.fromObject($0) as! R })
+                } else {
+                    observer.onNext(value!.map { R.fromObject($0) as! R })
+                }
             }
-            observer.onNext(value.map { R.fromObject($0) as! R })
-            observer.onCompleted()
         } else {
             observer.onCompleted()
         }
