@@ -36,9 +36,9 @@ public final class DateSelectPicker: UIControl {
         return datePicker
     }
 
-    public func show(_ min: Date? = nil, _ max: Date? = nil, _ current: Date? = nil) -> Observable<Date?> {
+    public func show(_ mode: UIDatePicker.Mode, _ min: Date? = nil, _ max: Date? = nil, _ current: Date? = nil) -> Observable<Date?> {
         datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
+        datePicker.datePickerMode = mode
         datePicker.minimumDate = min
         datePicker.maximumDate = max
         if let current = current {
