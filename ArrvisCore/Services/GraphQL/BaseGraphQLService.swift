@@ -80,7 +80,13 @@ extension BaseGraphQLService {
         } else if let errors = result?.errors {
             observer.onError(GraphQLServiceError(errors: errors))
         } else if let resultMap = result?.data?.resultMap {
-            observer.onNext(R.fromObject(resultMap.first!.value!) as! R)
+            var value: [String: Any?]
+            if "\(operation.operationType)" == "query" {
+                value = resultMap.first!.value! as! [String: Any?]
+            } else {
+                value = (resultMap.first!.value as! [String: Any?]).first { $0.key != "__typename"}!.value as! [String: Any?]
+            }
+            observer.onNext(R.fromObject(value) as! R)
             observer.onCompleted()
         } else {
             observer.onCompleted()
@@ -126,7 +132,13 @@ extension BaseGraphQLService {
         } else if let errors = result?.errors {
             observer.onError(GraphQLServiceError(errors: errors))
         } else if let resultMap = result?.data?.resultMap {
-            observer.onNext((resultMap.first!.value as! [Any]).map { R.fromObject($0) as! R })
+            var value: [Any]
+            if "\(operation.operationType)" == "query" {
+                value = resultMap.first!.value! as! [Any]
+            } else {
+                value = (resultMap.first!.value as! [String: Any?]).first { $0.key != "__typename"}!.value as! [Any]
+            }
+            observer.onNext(value.map { R.fromObject($0) as! R })
             observer.onCompleted()
         } else {
             observer.onCompleted()
