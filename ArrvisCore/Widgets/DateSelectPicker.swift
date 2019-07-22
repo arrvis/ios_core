@@ -39,11 +39,13 @@ public final class DateSelectPicker: UIControl {
     public func show(_ mode: UIDatePicker.Mode,
                      _ min: Date? = nil,
                      _ max: Date? = nil,
-                     _ current: Date? = nil) -> Observable<Date?> {
+                     _ current: Date? = nil,
+                     _ locale: Locale? = nil) -> Observable<Date?> {
         datePicker = UIDatePicker()
         datePicker.datePickerMode = mode
         datePicker.minimumDate = min
         datePicker.maximumDate = max
+        datePicker.locale = locale ?? Locale(identifier: "ja")
         if let current = current {
             datePicker.date = current
         }
