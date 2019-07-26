@@ -58,4 +58,141 @@ extension String {
         allowedCharacterSet.insert(charactersIn: "-._~")
         return self.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)!
     }
+
+    /// EXTからMIMETypeに
+    // refs: https://www.lifewire.com/mime-types-by-content-type-3469108
+    public func toMIMETypeFromExt() -> String? {
+        let ext = self.replacingOccurrences(of: ".", with: "").lowercased()
+        if let audio = toAudioMIMEType(ext) {
+            return audio
+        }
+        if let image = toImageMIMEType(ext) {
+            return image
+        }
+        if let video = toVideoMIMEType(ext) {
+            return video
+        }
+        return nil
+    }
+
+    private func toAudioMIMEType(_ ext: String) -> String? {
+        switch ext {
+        case "au":
+            return "audio/basic"
+        case "snd":
+            return "audio/basic"
+        case "mid":
+            return "audio/mid"
+        case "rmi":
+            return "audio/mid"
+        case "mp3":
+            return "audio/mpeg"
+        case "aif":
+            return "audio/x-aiff"
+        case "aifc":
+            return "audio/x-aiff"
+        case "aiff":
+            return "audio/x-aiff"
+        case "m3u":
+            return "audio/x-mpegurl"
+        case "ra":
+            return "audio/x-pn-realaudio"
+        case "ram":
+            return "audio/x-pn-realaudio"
+        case "wav":
+            return "audio/x-wav"
+        default:
+            return nil
+        }
+    }
+
+    private func toImageMIMEType(_ ext: String) -> String? {
+        switch ext {
+        case "bmp":
+            return "image/bmp"
+        case "cod":
+            return "image/cis-cod"
+        case "gif":
+            return "image/gif"
+        case "ief":
+            return "image/ief"
+        case "jpe":
+            return "image/jpeg"
+        case "jpeg":
+            return "image/jpeg"
+        case "jpg":
+            return "image/jpeg"
+        case "jfif":
+            return "image/pipeg"
+        case "svg":
+            return "image/svg+xml"
+        case "tif":
+            return "image/tiff"
+        case "tiff":
+            return "image/tiff"
+        case "ras":
+            return "image/x-cmu-raster"
+        case "cmx":
+            return "image/x-cmx"
+        case "ico":
+            return "image/x-icon"
+        case "pnm":
+            return "image/x-portable-anymap"
+        case "pbm":
+            return "image/x-portable-bitmap"
+        case "pgm":
+            return "image/x-portable-graymap"
+        case "ppm":
+            return "image/x-portable-pixmap"
+        case "rgb":
+            return "image/x-rgb"
+        case "xbm":
+            return "image/x-xbitmap"
+        case "xpm":
+            return "image/x-xpixmap"
+        case "xwd":
+            return "image/x-xwindowdump"
+        default:
+            return nil
+    }
+}
+
+    private func toVideoMIMEType(_ ext: String) -> String? {
+        switch ext {
+        case "mp2":
+            return "video/mpeg"
+        case "mpa":
+            return "video/mpeg"
+        case "mpe":
+            return "video/mpeg"
+        case "mpeg":
+            return "video/mpeg"
+        case "mpg":
+            return "video/mpeg"
+        case "mpv2":
+            return "video/mpeg"
+        case "mp4":
+            return "video/mp4"
+        case "mov":
+            return "video/quicktime"
+        case "qt":
+            return "video/quicktime"
+        case "lsf":
+            return "video/x-la-asf"
+        case "lsx":
+            return "video/x-la-asf"
+        case "asf":
+            return "video/x-ms-asf"
+        case "asr":
+            return "video/x-ms-asf"
+        case "asx":
+            return "video/x-ms-asf"
+        case "avi":
+            return "video/x-msvideo"
+        case "movie":
+            return "video/x-sgi-movie"
+        default:
+            return nil
+        }
+    }
 }

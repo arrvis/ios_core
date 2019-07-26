@@ -6,8 +6,6 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
-// TODO: 全体的にBehaviorRelay使ったり、zip、map使ったり
-
 import Foundation
 import Apollo
 

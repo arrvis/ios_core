@@ -13,6 +13,9 @@ import AWSCore
 import AWSS3
 import Alamofire
 
+public typealias UploadObservable
+    = (progress: Observable<Progress>, upload: Observable<(unsignedURL: String, key: String)>)
+
 /// S3サービス
 public final class AWSS3Service {
 
@@ -45,33 +48,51 @@ extension AWSS3Service {
 
     /// PNGアップロード
     public static func uploadPNG(_ bucket: String,
-                                 _ image: UIImage,
+                                 _ image: UIImage?,
                                  _ keyWithoutExt: String,
-                                 _ config: SimplifiedAWSConfig? = nil) -> (String, Observable<Progress>) {
-        return uploadData(bucket, image.pngData()!, "image/png", "\(keyWithoutExt).jpg", config)
+                                 _ customConfig: SimplifiedAWSConfig? = nil) -> UploadObservable {
+        return uploadData(bucket, image?.pngData(), "image/png", "\(keyWithoutExt).jpg", customConfig)
     }
 
     /// JPEGアップロード
     public static func uploadJPG(_ bucket: String,
-                                 _ image: UIImage,
+                                 _ image: UIImage?,
                                  _ keyWithoutExt: String,
-                                 _ config: SimplifiedAWSConfig? = nil,
-                                 _ compression: CGFloat = 100) -> (String, Observable<Progress>) {
+                                 _ customConfig: SimplifiedAWSConfig? = nil,
+                                 _ compression: CGFloat = 100) -> UploadObservable {
         return uploadData(bucket,
-                          image.jpegData(compressionQuality: compression)!,
+                          image?.jpegData(compressionQuality: compression),
                           "image/jpeg",
                           "\(keyWithoutExt).jpg",
-                          config
+            customConfig
         )
     }
 
-    /// 動画アップロード
-    public static func uploadVideo(_ bucket: String,
-                                   _ fileURL: URL,
-                                   _ outputPath: String,
-                                   _ outputFileName: String?,
-                                   _ config: SimplifiedAWSConfig? = nil) -> (String, Observable<Progress>) {
-        return uploadFile(bucket, fileURL, "video/quicktime", outputPath, outputFileName, config)
+    /// 動画をサムネイル付きでアップロード
+    public static func uploadVideoWithThumbnail(_ bucket: String,
+                                                _ fileURL: URL,
+                                                _ outputPath: String,
+                                                _ outputFileName: String? = nil,
+                                                _ onThumbnailCreated: ((UIImage) -> Void)? = nil,
+                                                _ customConfig: SimplifiedAWSConfig? = nil)
+        -> (thumbnail: UploadObservable, video: UploadObservable) {
+        func generateThumbnail() -> UIImage? {
+            let imageGenerator = AVAssetImageGenerator(asset: AVAsset(url: fileURL))
+            imageGenerator.appliesPreferredTrackTransform = true
+            do {
+                let imageRef
+                    = try imageGenerator.copyCGImage(at: CMTimeMake(value: Int64(0), timescale: 1), actualTime: nil)
+                let image = UIImage(cgImage: imageRef)
+                onThumbnailCreated?(image)
+                return image
+            } catch {
+                return nil
+            }
+        }
+        let fileName = String((outputFileName ?? String(fileURL.path.split(separator: "/").last!))
+            .split(separator: ".").last!)
+        return (uploadJPG(bucket, generateThumbnail(), fileName, customConfig),
+                uploadFile(bucket, fileURL, outputPath, outputFileName, customConfig))
     }
 }
 
@@ -80,48 +101,76 @@ extension AWSS3Service {
 
     /// ファイルアップロード
     public static func uploadFile(_ bucket: String,
-                                  _ fileUrl: URL,
-                                  _ contentType: String,
+                                  _ fileURL: URL,
                                   _ outputPath: String,
                                   _ outputFileName: String? = nil,
-                                  _ config: SimplifiedAWSConfig? = nil) -> (String, Observable<Progress>) {
-        let fileName = outputFileName ?? String(fileUrl.path.split(separator: "/").last!)
-        return uploadData(bucket, try! Data(contentsOf: fileUrl), contentType, "\(outputPath)/\(fileName)", config)
+                                  _ customConfig: SimplifiedAWSConfig? = nil) -> UploadObservable {
+        let fileName: String
+        if let originalFileName = fileURL.path.split(separator: "/").last {
+            fileName = String(originalFileName)
+        } else if let outputFileName = outputFileName {
+            fileName = outputFileName
+        } else {
+            fileName = ""
+        }
+        return uploadImpl(bucket, { try? Data(contentsOf: fileURL) }, { () -> String? in
+            guard let ext = fileName.split(separator: ".").last else {
+                return nil
+            }
+            return String(ext).toMIMETypeFromExt()
+        }, "\(outputPath)/\(fileName)", customConfig)
     }
 
     /// データアップロード
     public static func uploadData(_ bucket: String,
-                                  _ data: Data,
+                                  _ data: Data?,
                                   _ contentType: String,
                                   _ key: String,
-                                  _ config: SimplifiedAWSConfig? = nil) -> (String, Observable<Progress>) {
+                                  _ customConfig: SimplifiedAWSConfig? = nil) -> UploadObservable {
+        return uploadImpl(bucket, { data }, { contentType }, key, customConfig)
+    }
+
+    private static func uploadImpl(_ bucket: String,
+                                   _ requireData: @escaping () -> Data?,
+                                   _ requireContentType: @escaping () -> String?,
+                                   _ key: String,
+                                   _ customConfig: SimplifiedAWSConfig? = nil) -> UploadObservable {
         let utility: AWSS3TransferUtility
-        if let config = config {
-            AWSS3TransferUtility.register(with: config.toAWSServiceConfiguration(), forKey: "Config")
-            utility = AWSS3TransferUtility.s3TransferUtility(forKey: "Config")!
+        let customConfigKey = Date.now.toString("yyyyMMddHHmmss.SSS")
+        if let customConfig = customConfig {
+            AWSS3TransferUtility.register(with: customConfig.toAWSServiceConfiguration(), forKey: customConfigKey)
+            utility = AWSS3TransferUtility.s3TransferUtility(forKey: customConfigKey)!
         } else {
             utility = AWSS3TransferUtility.default()
         }
+        let expression = AWSS3TransferUtilityUploadExpression()
 
-        return (getUrl(utility.configuration, bucket, key), Observable.create { observer in
+        return (Observable.create({ observer in
             // Uploading
-            let expression = AWSS3TransferUtilityUploadExpression()
             expression.progressBlock = {(task, progress) in
                 observer.onNext(progress)
+            }
+            return Disposables.create()
+        }), Observable.create({ observer in
+            guard let data = requireData() else {
+                observer.onError(EmptyDataError())
+                return Disposables.create()
+            }
+            guard let contentType = requireContentType() else {
+                observer.onError(UnknownFileTypeError())
+                return Disposables.create()
             }
 
             // Uploaded
             let completionHandler: AWSS3TransferUtilityUploadCompletionHandlerBlock? = { (task, error) -> Void in
-                if let error = error {
-                    AWSS3TransferUtility.remove(forKey: "Config")
-                    NSObject.runOnMainThread {
+                NSObject.runOnMainThread {
+                    if let error = error {
                         observer.onError(error)
-                    }
-                } else {
-                    AWSS3TransferUtility.remove(forKey: "Config")
-                    NSObject.runAfterDelay(delayMSec: 300, closure: {
+                    } else {
+                        observer.onNext((unsignedURL: getUnsignedUrl(utility.configuration, bucket, key), key: key))
+                        AWSS3TransferUtility.remove(forKey: customConfigKey)
                         observer.onCompleted()
-                    })
+                    }
                 }
             }
 
@@ -134,7 +183,7 @@ extension AWSS3Service {
                                completionHandler: completionHandler)
                 .continueWith(block: { (task) -> Void in
                     if let error = task.error {
-                        AWSS3TransferUtility.remove(forKey: "Config")
+                        AWSS3TransferUtility.remove(forKey: customConfigKey)
                         NSObject.runOnMainThread {
                             observer.onError(error)
                         }
@@ -142,12 +191,18 @@ extension AWSS3Service {
                 }
             )
             return Disposables.create()
-        })
+        }))
     }
 
-    private static func getUrl(_ config: AWSServiceConfiguration,
-                               _ bucket: String,
-                               _ key: String) -> String {
+    private static func getUnsignedUrl(_ config: AWSServiceConfiguration,
+                                       _ bucket: String,
+                                       _ key: String) -> String {
         return "https://\(bucket).s3-\(config.regionType.stringValue).amazonaws.com/\(key)"
     }
+
+    /// データが空エラー
+    public class EmptyDataError: Error {}
+
+    /// ファイル種別が不明エラー
+    public class UnknownFileTypeError: Error {}
 }
