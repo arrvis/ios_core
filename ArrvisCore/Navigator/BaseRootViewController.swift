@@ -184,7 +184,9 @@ extension BaseRootViewController {
     /// Present
     public func presentChildViewController(_ vc: UIViewController, _ animate: Bool) {
         if !(currentViewController() is BaseViewController)
-            && !(currentViewController() is BaseTableViewController) {
+            && !(currentViewController() is BaseTableViewController)
+            && !(currentViewController() is BaseTabBarController)
+            && !(currentViewController() is BaseNavigationController) {
             NSObject.runAfterDelay(delayMSec: 100) { [unowned self] in
                 self.presentChildViewController(vc, animate)
             }
