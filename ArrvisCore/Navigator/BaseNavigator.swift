@@ -50,6 +50,7 @@ open class BaseNavigator: Navigatable {
             var args = location.arguments
             args.removeValue(forKey: "Animate")
             args.removeValue(forKey: "FromRoot")
+            // TODO: payloadってWireFrameにあるべきではないか。
             let payload: Any?
             if location.payload == nil && !args.isEmpty {
                 payload = args

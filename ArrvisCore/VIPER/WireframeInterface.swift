@@ -49,7 +49,7 @@ extension WireframeInterface {
                                       _ camera: String,
                                       _ cancel: String,
                                       _ delegate: CameraRollDelegate) {
-        showImageVideoPickerScreen(title, message, library, camera, cancel, delegate, true)
+        showImageVideoPickerScreen(title, message, library, camera, cancel, delegate, [kUTTypeImage])
     }
 
     /// 動画Picker表示
@@ -59,16 +59,17 @@ extension WireframeInterface {
                                       _ camera: String,
                                       _ cancel: String,
                                       _ delegate: CameraRollDelegate) {
-        showImageVideoPickerScreen(title, message, library, camera, cancel, delegate, false)
+        showImageVideoPickerScreen(title, message, library, camera, cancel, delegate, [kUTTypeVideo])
     }
 
-    private func showImageVideoPickerScreen(_ title: String?,
-                                            _ message: String?,
-                                            _ library: String,
-                                            _ camera: String,
-                                            _ cancel: String,
-                                            _ delegate: CameraRollDelegate,
-                                            _ isImage: Bool) {
+    /// 動画画像Picker表示
+    public func showImageVideoPickerScreen(_ title: String?,
+                                           _ message: String?,
+                                           _ library: String,
+                                           _ camera: String,
+                                           _ cancel: String,
+                                           _ delegate: CameraRollDelegate,
+                                           _ types: [CFString]? = [kUTTypeImage, kUTTypeVideo]) {
         var actions = [
             library: (UIAlertAction.Style.default, {
                 PHPhotoLibrary.requestAuthorization { status in
@@ -79,7 +80,7 @@ extension WireframeInterface {
                                 payload: (
                                     delegate,
                                     UIImagePickerController.SourceType.photoLibrary,
-                                    isImage ? kUTTypeImage : kUTTypeMovie
+                                    types
                                 )
                             )
                         } else {
@@ -97,7 +98,7 @@ extension WireframeInterface {
                         payload: (
                             delegate,
                             UIImagePickerController.SourceType.camera,
-                            isImage ? kUTTypeImage : kUTTypeMovie
+                            types
                         )
                     )
                 } else {

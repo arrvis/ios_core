@@ -32,13 +32,13 @@ public enum SystemScreens: String, CaseIterable, Screen {
     public func createViewController(_ payload: Any? = nil) -> UIViewController {
         switch self {
         case .imagePicker:
-            guard let payload = payload as? (CameraRollDelegate, UIImagePickerController.SourceType, CFString) else {
+            guard let payload = payload as? (CameraRollDelegate, UIImagePickerController.SourceType, [CFString]) else {
                 fatalError()
             }
             let vc = UIImagePickerController()
             vc.delegate = payload.0
             vc.sourceType = payload.1
-            vc.mediaTypes = [payload.2 as String]
+            vc.mediaTypes = payload.2 as [String]
             return vc
         case .alert:
             return createUIAlertController(payload, .alert)
