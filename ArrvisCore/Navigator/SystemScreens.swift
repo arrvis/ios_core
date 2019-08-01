@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import MobileCoreServices
 
 /// システムスクリーン
 public enum SystemScreens: String, CaseIterable, Screen {
@@ -32,7 +33,10 @@ public enum SystemScreens: String, CaseIterable, Screen {
     public func createViewController(_ payload: Any? = nil) -> UIViewController {
         switch self {
         case .imagePicker:
-            guard let payload = payload as? (CameraRollDelegate, UIImagePickerController.SourceType, [CFString]) else {
+            guard let payload = payload as? (
+                UIImagePickerControllerDelegate & UINavigationControllerDelegate,
+                UIImagePickerController.SourceType,
+                [CFString]) else {
                 fatalError()
             }
             let vc = UIImagePickerController()
@@ -131,20 +135,29 @@ public struct ActivityInfo {
     }
 }
 
-/// CameraRollDelegate
-public protocol CameraRollDelegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-    func onFailAccessCamera()
-    func onFailAccessPhotoLibrary()
+/// MediaPickerTypeSelectActionSheet
+public protocol MediaPickerTypeSelectActionSheetHandler {
+    func sheetTitle() -> String?
+    func sheetMessage() -> String?
+    func photoLibraryButtonTitle() -> String
+    func cameraButtonTitle() -> String
+    func cancelButtonTitle() -> String
+    func onCancel()
 }
 
-extension CameraRollDelegate {
+/// CameraRollEventHandler
+public protocol CameraRollEventHandler {
+    func onFailAccessCamera()
+    func onFailAccessPhotoLibrary()
+    func onCanceled()
+    func onImageSelected(_ image: UIImage)
+    func onMediaSelected(_ url: URL)
+}
 
-    func assetFromInfoKey(_ info: [String: Any]) -> PHAsset? {
-        if #available(iOS 11.0, *) {
-            return info[UIImagePickerController.InfoKey.phAsset.rawValue] as? PHAsset
-        } else {
-            guard let url = info[UIImagePickerController.InfoKey.referenceURL.rawValue] as? URL else { return nil }
-            return PHAsset.fetchAssets(withALAssetURLs: [url], options: nil).firstObject
-        }
-    }
+extension CameraRollEventHandler {
+    func onFailAccessCamera() {}
+    func onFailAccessPhotoLibrary() {}
+    func onCanceled() {}
+    func onImageSelected(_ image: UIImage) {}
+    func onMediaSelected(_ url: URL) {}
 }

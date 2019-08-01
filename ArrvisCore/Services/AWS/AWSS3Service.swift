@@ -76,22 +76,25 @@ extension AWSS3Service {
                                                 _ onThumbnailCreated: ((UIImage) -> Void)? = nil,
                                                 _ customConfig: SimplifiedAWSConfig? = nil)
         -> (thumbnail: UploadObservable, video: UploadObservable) {
-        func generateThumbnail() -> UIImage? {
-            let imageGenerator = AVAssetImageGenerator(asset: AVAsset(url: fileURL))
-            imageGenerator.appliesPreferredTrackTransform = true
-            do {
-                let imageRef
-                    = try imageGenerator.copyCGImage(at: CMTimeMake(value: Int64(0), timescale: 1), actualTime: nil)
-                let image = UIImage(cgImage: imageRef)
-                onThumbnailCreated?(image)
-                return image
-            } catch {
-                return nil
+            func generateThumbnail() -> UIImage? {
+                let imageGenerator = AVAssetImageGenerator(asset: AVAsset(url: fileURL))
+                imageGenerator.appliesPreferredTrackTransform = true
+                do {
+                    let imageRef
+                        = try imageGenerator.copyCGImage(at: CMTimeMake(value: Int64(0), timescale: 1), actualTime: nil)
+                    let image = UIImage(cgImage: imageRef)
+                    onThumbnailCreated?(image)
+                    return image
+                } catch {
+                    return nil
+                }
             }
-        }
-        let fileName = String((outputFileName ?? String(fileURL.path.split(separator: "/").last!))
-            .split(separator: ".").last!)
-        return (uploadJPG(bucket, generateThumbnail(), fileName, customConfig),
+            let fileName = String(outputFileName ?? String(fileURL.path.split(separator: "/").last!))
+            return (
+                uploadJPG(bucket,
+                          generateThumbnail(),
+                          "\(outputPath)/\(fileName.split(separator: ".").last!)",
+                          customConfig),
                 uploadFile(bucket, fileURL, outputPath, outputFileName, customConfig))
     }
 }
@@ -143,13 +146,15 @@ extension AWSS3Service {
         } else {
             utility = AWSS3TransferUtility.default()
         }
+        // Uploading
+        var progressObserver: AnyObserver<Progress>?
         let expression = AWSS3TransferUtilityUploadExpression()
+        expression.progressBlock = {(task, progress) in
+            progressObserver?.onNext(progress)
+        }
 
         return (Observable.create({ observer in
-            // Uploading
-            expression.progressBlock = {(task, progress) in
-                observer.onNext(progress)
-            }
+            progressObserver = observer
             return Disposables.create()
         }), Observable.create({ observer in
             guard let data = requireData() else {

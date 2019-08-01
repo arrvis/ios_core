@@ -154,8 +154,8 @@ extension String {
             return "image/x-xwindowdump"
         default:
             return nil
+        }
     }
-}
 
     private func toVideoMIMEType(_ ext: String) -> String? {
         switch ext {

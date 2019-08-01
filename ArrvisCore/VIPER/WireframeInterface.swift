@@ -6,12 +6,7 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
-import UIKit
-import AVFoundation
-import MobileCoreServices
-import Photos
-
-public protocol WireframeInterface: class, ErrorHandleable {
+public protocol WireframeInterface: class, ErrorHandleable, MediaPickerTypeSelectActionSheetHandler {
 
     /// Navigator
     var navigator: BaseNavigator {get}
@@ -23,6 +18,7 @@ public protocol WireframeInterface: class, ErrorHandleable {
     static func generateModule(_ payload: Any?) -> UIViewController
 }
 
+/// General
 extension WireframeInterface {
 
     /// アプリ設定表示
@@ -31,6 +27,10 @@ extension WireframeInterface {
                                   options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
                                   completionHandler: nil)
     }
+}
+
+/// Screen
+extension WireframeInterface {
 
     /// dismiss Screen
     public func dismissScreen(result: Any? = nil) {
@@ -41,73 +41,10 @@ extension WireframeInterface {
     public func popScreen(result: Any? = nil, _ animate: Bool = true) {
         navigator.popScreen(result: result, animate: animate)
     }
+}
 
-    /// 画像Picker表示
-    public func showImagePickerScreen(_ title: String?,
-                                      _ message: String?,
-                                      _ library: String,
-                                      _ camera: String,
-                                      _ cancel: String,
-                                      _ delegate: CameraRollDelegate) {
-        showImageVideoPickerScreen(title, message, library, camera, cancel, delegate, [kUTTypeImage])
-    }
-
-    /// 動画Picker表示
-    public func showVideoPickerScreen(_ title: String?,
-                                      _ message: String?,
-                                      _ library: String,
-                                      _ camera: String,
-                                      _ cancel: String,
-                                      _ delegate: CameraRollDelegate) {
-        showImageVideoPickerScreen(title, message, library, camera, cancel, delegate, [kUTTypeVideo])
-    }
-
-    /// 動画画像Picker表示
-    public func showImageVideoPickerScreen(_ title: String?,
-                                           _ message: String?,
-                                           _ library: String,
-                                           _ camera: String,
-                                           _ cancel: String,
-                                           _ delegate: CameraRollDelegate,
-                                           _ types: [CFString]? = [kUTTypeImage, kUTTypeVideo]) {
-        var actions = [
-            library: (UIAlertAction.Style.default, {
-                PHPhotoLibrary.requestAuthorization { status in
-                    NSObject.runOnMainThread { [unowned self] in
-                        if status == .authorized {
-                            self.navigator.navigate(
-                                screen: SystemScreens.imagePicker,
-                                payload: (
-                                    delegate,
-                                    UIImagePickerController.SourceType.photoLibrary,
-                                    types
-                                )
-                            )
-                        } else {
-                            delegate.onFailAccessPhotoLibrary()
-                        }
-                    }
-                }
-            })
-        ]
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            actions[camera] = (.default, { [unowned self] in
-                if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) == .authorized {
-                    self.navigator.navigate(
-                        screen: SystemScreens.imagePicker,
-                        payload: (
-                            delegate,
-                            UIImagePickerController.SourceType.camera,
-                            types
-                        )
-                    )
-                } else {
-                    delegate.onFailAccessCamera()
-                }
-            })
-        }
-        showActionSheet(title: title, message: message, actions: actions, cancel: cancel, onCancel: nil)
-    }
+/// Activity / Alert / ActionSheet
+extension WireframeInterface {
 
     /// Activity表示
     public func showActivityScreen(_ activityItems: [Any],
