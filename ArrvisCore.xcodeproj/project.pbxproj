@@ -82,6 +82,7 @@
 		63DBAD6722C30A7F00A020CD /* EventModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DBAD6622C30A7F00A020CD /* EventModels.swift */; };
 		63F7C18922E0DDF40005E185 /* ValueSelectPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F7C18822E0DDF40005E185 /* ValueSelectPicker.swift */; };
 		63F7C18B22E0E1EC0005E185 /* DateSelectPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F7C18A22E0E1EC0005E185 /* DateSelectPicker.swift */; };
+		63FEA65C22F37A0300492657 /* WireframeInterfaceImagePickerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEA65B22F37A0300492657 /* WireframeInterfaceImagePickerEx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +163,7 @@
 		63DBAD6622C30A7F00A020CD /* EventModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModels.swift; sourceTree = "<group>"; };
 		63F7C18822E0DDF40005E185 /* ValueSelectPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueSelectPicker.swift; sourceTree = "<group>"; };
 		63F7C18A22E0E1EC0005E185 /* DateSelectPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectPicker.swift; sourceTree = "<group>"; };
+		63FEA65B22F37A0300492657 /* WireframeInterfaceImagePickerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireframeInterfaceImagePickerEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +335,7 @@
 				6350F60422BACC2800B3B5FD /* InteractorInterface.swift */,
 				6350F5FE22BACC2800B3B5FD /* InteractorOutputInterface.swift */,
 				6350F60022BACC2800B3B5FD /* WireframeInterface.swift */,
+				63FEA65B22F37A0300492657 /* WireframeInterfaceImagePickerEx.swift */,
 			);
 			path = VIPER;
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 				6312F81522B94D510050DA57 /* BackFromNextHandleable.swift in Sources */,
 				6302D69B22C25D1D001F24BE /* BaseVueViewController.swift in Sources */,
 				6350F60522BACC2800B3B5FD /* PresenterInterface.swift in Sources */,
+				63FEA65C22F37A0300492657 /* WireframeInterfaceImagePickerEx.swift in Sources */,
 				6388E2D422C083C300A30740 /* GraphQLServiceError.swift in Sources */,
 				6388E2BC22C02E1100A30740 /* FacebookService.swift in Sources */,
 			);
