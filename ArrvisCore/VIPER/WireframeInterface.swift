@@ -27,6 +27,14 @@ extension WireframeInterface {
                                   options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
                                   completionHandler: nil)
     }
+
+    /// URLを開く
+    public func openURL(_ url: String) {
+        guard let url = URL(string: url), !UIApplication.shared.canOpenURL(url) else {
+            return
+        }
+        UIApplication.shared.open(url)
+    }
 }
 
 /// Screen
