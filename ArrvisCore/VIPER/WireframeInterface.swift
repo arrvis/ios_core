@@ -30,7 +30,7 @@ extension WireframeInterface {
 
     /// URLを開く
     public func openURL(_ url: String) {
-        guard let url = URL(string: url), !UIApplication.shared.canOpenURL(url) else {
+        guard let url = URL(string: url), UIApplication.shared.canOpenURL(url) else {
             return
         }
         UIApplication.shared.open(url)
