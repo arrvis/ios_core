@@ -110,7 +110,7 @@ extension BaseVueViewController {
     public func refreshWebViewInsets() {
         webView?.addedConstraints?.deActivate()
         webView?.addedConstraints?.removeAll()
-        webView?.edgesToSuperview(insets: webViewInsets)
+        webView?.addedConstraints = webView?.edgesToSuperview(insets: webViewInsets)
     }
 }
 

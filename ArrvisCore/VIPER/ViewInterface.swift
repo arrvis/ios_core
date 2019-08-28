@@ -6,5 +6,5 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
-public protocol ViewInterface: class, Progressable {
+public protocol ViewInterface: class, LoadingShowable {
 }

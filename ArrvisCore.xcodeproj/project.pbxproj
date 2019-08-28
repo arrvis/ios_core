@@ -57,7 +57,7 @@
 		6350F60722BACC2900B3B5FD /* ViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F5FF22BACC2800B3B5FD /* ViewInterface.swift */; };
 		6350F60822BACC2900B3B5FD /* WireframeInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F60022BACC2800B3B5FD /* WireframeInterface.swift */; };
 		6350F60922BACC2900B3B5FD /* ErrorHandleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F60222BACC2800B3B5FD /* ErrorHandleable.swift */; };
-		6350F60A22BACC2900B3B5FD /* Progressable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F60322BACC2800B3B5FD /* Progressable.swift */; };
+		6350F60A22BACC2900B3B5FD /* LoadingShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F60322BACC2800B3B5FD /* LoadingShowable.swift */; };
 		6350F60B22BACC2900B3B5FD /* InteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6350F60422BACC2800B3B5FD /* InteractorInterface.swift */; };
 		6388E2AD22BF428B00A30740 /* AWSS3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2AC22BF428B00A30740 /* AWSS3Service.swift */; };
 		6388E2AF22BF449700A30740 /* AWSServiceCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388E2AE22BF449700A30740 /* AWSServiceCore.swift */; };
@@ -138,7 +138,7 @@
 		6350F5FF22BACC2800B3B5FD /* ViewInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewInterface.swift; sourceTree = "<group>"; };
 		6350F60022BACC2800B3B5FD /* WireframeInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WireframeInterface.swift; sourceTree = "<group>"; };
 		6350F60222BACC2800B3B5FD /* ErrorHandleable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandleable.swift; sourceTree = "<group>"; };
-		6350F60322BACC2800B3B5FD /* Progressable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Progressable.swift; sourceTree = "<group>"; };
+		6350F60322BACC2800B3B5FD /* LoadingShowable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingShowable.swift; sourceTree = "<group>"; };
 		6350F60422BACC2800B3B5FD /* InteractorInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractorInterface.swift; sourceTree = "<group>"; };
 		6388E2AC22BF428B00A30740 /* AWSS3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSS3Service.swift; sourceTree = "<group>"; };
 		6388E2AE22BF449700A30740 /* AWSServiceCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSServiceCore.swift; sourceTree = "<group>"; };
@@ -344,7 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				6350F60222BACC2800B3B5FD /* ErrorHandleable.swift */,
-				6350F60322BACC2800B3B5FD /* Progressable.swift */,
+				6350F60322BACC2800B3B5FD /* LoadingShowable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -553,7 +553,7 @@
 				6350F5F922BACA2000B3B5FD /* BaseTextView.swift in Sources */,
 				6388E2DC22C0872700A30740 /* GoogleCalendarAPIRouter.swift in Sources */,
 				63F7C18922E0DDF40005E185 /* ValueSelectPicker.swift in Sources */,
-				6350F60A22BACC2900B3B5FD /* Progressable.swift in Sources */,
+				6350F60A22BACC2900B3B5FD /* LoadingShowable.swift in Sources */,
 				6350F60822BACC2900B3B5FD /* WireframeInterface.swift in Sources */,
 				6312F82622B94D510050DA57 /* Screen.swift in Sources */,
 				6312F81922B94D510050DA57 /* BaseModel.swift in Sources */,

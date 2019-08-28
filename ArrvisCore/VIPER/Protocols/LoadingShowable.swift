@@ -8,13 +8,13 @@
 
 import UIKit
 
-public protocol Progressable {
+public protocol LoadingShowable {
     func showLoading()
     func showLoading(message: String)
     func hideLoading()
 }
 
-extension Progressable where Self: UIViewController {
+extension LoadingShowable where Self: UIViewController {
 
     public func showLoading() {
         view.endEditing(true)

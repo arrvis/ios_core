@@ -60,7 +60,7 @@ extension String {
     }
 
     /// EXTからMIMETypeに
-    // refs: https://www.lifewire.com/mime-types-by-content-type-3469108
+    // refs: http://www.iana.org/assignments/media-types/media-types.xhtml
     public func toMIMETypeFromExt() -> String? {
         let ext = self.replacingOccurrences(of: ".", with: "").lowercased()
         if let audio = toAudioMIMEType(ext) {
@@ -71,6 +71,9 @@ extension String {
         }
         if let video = toVideoMIMEType(ext) {
             return video
+        }
+        if let txt = toTxtMIMEType(ext) {
+            return txt
         }
         return nil
     }
@@ -191,6 +194,33 @@ extension String {
             return "video/x-msvideo"
         case "movie":
             return "video/x-sgi-movie"
+        default:
+            return nil
+        }
+    }
+
+    private func toTxtMIMEType(_ ext: String) -> String? {
+        switch ext {
+        case "txt":
+            return "text/plain"
+        case "csv":
+            return "text/csv"
+        case "htm", "html":
+            return "text/html"
+        case "xml":
+            return "text/xml"
+        case "js":
+            return "text/javascript"
+        case "vbs":
+            return "text/vbscript"
+        case "css":
+            return "text/css"
+        case "cgi":
+            return "application/x-httpd-cgi"
+        case "doc":
+            return "application/msword"
+        case "pdf":
+            return "application/pdf"
         default:
             return nil
         }
