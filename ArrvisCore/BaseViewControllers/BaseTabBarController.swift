@@ -9,7 +9,7 @@
 import UIKit
 
 /// UITabBarController基底クラス
-open class BaseTabBarController: UITabBarController {
+open class BaseTabBarController: UITabBarController, BarButtonItemSettableViewController {
 
     // MARK: Property
 

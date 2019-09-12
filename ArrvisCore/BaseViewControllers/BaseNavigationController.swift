@@ -10,7 +10,7 @@ import UIKit
 import SwiftEventBus
 
 /// UINavigationController基底クラス
-open class BaseNavigationController: UINavigationController {
+open class BaseNavigationController: UINavigationController, BarButtonItemSettableViewController {
 
     // MARK: - Variables
 
