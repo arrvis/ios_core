@@ -1,5 +1,5 @@
 //
-//  Progressable.swift
+//  LoadingShowable.swift
 //  ArrvisCore
 //
 //  Created by Yutaka Izumaru on 2018/02/08.

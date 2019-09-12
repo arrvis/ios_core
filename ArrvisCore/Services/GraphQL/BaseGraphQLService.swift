@@ -11,7 +11,7 @@ import Apollo
 
 /// GraphQLServiceプロトコル
 protocol GraphqlServiceProtocol {
-    func fetchClient(request: @escaping (ApolloClient) -> Void, onError: ((Error) -> Void)?, useNonAuth: Bool)
+    func fetchClient(request: @escaping (ApolloClient) -> Void, useNonAuth: Bool)
 }
 
 /// GraphQLサービス基底クラス
@@ -25,7 +25,7 @@ open class BaseGraphQLService: GraphqlServiceProtocol {
     // MARK: - GraphqlServiceProtocol
 
     /// ApolloClientフェッチ
-    open func fetchClient(request: @escaping (ApolloClient) -> Void, onError: ((Error) -> Void)?, useNonAuth: Bool) {
+    open func fetchClient(request: @escaping (ApolloClient) -> Void, useNonAuth: Bool) {
         fatalError("Not implemented.")
     }
 
@@ -48,8 +48,6 @@ extension BaseGraphQLService {
                 apolloClient.perform(mutation: mutation) { [unowned self]  result, error in
                     self.handleResponse(mutation, result, error, observer)
                 }
-            }, onError: { error in
-                observer.onError(error)
             }, useNonAuth: false)
             return Disposables.create()
         }
@@ -62,8 +60,6 @@ extension BaseGraphQLService {
                 apolloClient.fetch(query: query) { [unowned self]  result, error in
                     self.handleResponse(query, result, error, observer)
                 }
-            }, onError: { error in
-                observer.onError(error)
             }, useNonAuth: false)
             return Disposables.create()
         }
@@ -107,8 +103,6 @@ extension BaseGraphQLService {
                 apolloClient.perform(mutation: mutation) { [unowned self]  result, error in
                     self.handleResponse(mutation, result, error, observer)
                 }
-            }, onError: { error in
-                observer.onError(error)
             }, useNonAuth: false)
             return Disposables.create()
         }
@@ -121,8 +115,6 @@ extension BaseGraphQLService {
                 apolloClient.fetch(query: query) { [unowned self]  result, error in
                     self.handleResponse(query, result, error, observer)
                 }
-            }, onError: { error in
-                observer.onError(error)
             }, useNonAuth: false)
             return Disposables.create()
         }
