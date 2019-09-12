@@ -10,3 +10,8 @@
 public protocol DidFirstLayoutSubviewsHandleable {
     func onDidFirstLayoutSubviews()
 }
+
+extension DidFirstLayoutSubviewsHandleable {
+
+    public func onDidFirstLayoutSubviews() {}
+}
