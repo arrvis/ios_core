@@ -11,7 +11,7 @@ public protocol DidFirstLayoutSubviewsHandleable {
     func onDidFirstLayoutSubviews()
 }
 
-extension DidFirstLayoutSubviewsHandleable {
+public extension DidFirstLayoutSubviewsHandleable {
 
-    public func onDidFirstLayoutSubviews() {}
+    func onDidFirstLayoutSubviews() {}
 }

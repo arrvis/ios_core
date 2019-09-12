@@ -30,19 +30,19 @@ public protocol BarButtonItemSettableViewController where Self: UIViewController
     func didTapRightBarButtonItem(_ index: Int)
 }
 
-extension BarButtonItemSettableViewController {
+public extension BarButtonItemSettableViewController {
 
     /// 戻るBarButtonItem
-    public var backBarButtonItem: UIBarButtonItem? { return nil }
+    var backBarButtonItem: UIBarButtonItem? { return nil }
 
     /// 左BarButtonItems
-    public var leftBarButtonItems: [UIBarButtonItem]? { return nil }
+    var leftBarButtonItems: [UIBarButtonItem]? { return nil }
 
     /// 右BarButtonItems
-    public var rightBarButtonItems: [UIBarButtonItem]? { return nil }
+    var rightBarButtonItems: [UIBarButtonItem]? { return nil }
 
     /// 初期化
-    public func initBarButtonItems() {
+    func initBarButtonItems() {
         if let backBarButtonItem = backBarButtonItem {
             navigationItem.backBarButtonItem = backBarButtonItem
         }
@@ -70,11 +70,11 @@ extension BarButtonItemSettableViewController {
     }
 
     /// 戻るBarButtonItemタップ
-    public func didTapBackBarButtonItem() {}
+    func didTapBackBarButtonItem() {}
 
     /// 左BarButtonItemタップ
-    public func didTapLeftBarButtonItem(_ index: Int) {}
+    func didTapLeftBarButtonItem(_ index: Int) {}
 
     /// 右BarButtonItemタップ
-    public func didTapRightBarButtonItem(_ index: Int) {}
+    func didTapRightBarButtonItem(_ index: Int) {}
 }

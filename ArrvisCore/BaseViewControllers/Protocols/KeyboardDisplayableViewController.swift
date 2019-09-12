@@ -26,10 +26,10 @@ public protocol KeyboardDisplayableViewController where Self: UIViewController {
     func onKeyboardWillHide(notification: Notification)
 }
 
-extension KeyboardDisplayableViewController {
+public extension KeyboardDisplayableViewController {
 
     /// キーボード表示状態
-    public var isKeyboardVisible: Bool {
+    var isKeyboardVisible: Bool {
         get {
             return objc_getAssociatedObject(self, &isKeyboardVisibleKey) as? Bool ?? false
         }
@@ -57,12 +57,12 @@ extension KeyboardDisplayableViewController {
     }
 
     /// キーボード表示時にリサイズさせるScrollView
-    public var scrollViewForResizeKeyboard: UIScrollView? {
+    var scrollViewForResizeKeyboard: UIScrollView? {
         return nil
     }
 
     /// キーボード表示イベント
-    public func onKeyboardWillShow(notification: Notification) {
+    func onKeyboardWillShow(notification: Notification) {
         guard let scrollView = scrollViewForResizeKeyboard,
             let originInset = scrollViewForResizeKeyboard?.contentInset,
             let userInfo = notification.userInfo,
@@ -79,7 +79,7 @@ extension KeyboardDisplayableViewController {
     }
 
     /// キーボード非表示イベント
-    public func onKeyboardWillHide(notification: Notification) {
+    func onKeyboardWillHide(notification: Notification) {
         guard let scrollView = scrollViewForResizeKeyboard,
             let originInset = originContentInset else {
                 return
@@ -89,7 +89,7 @@ extension KeyboardDisplayableViewController {
     }
 
     /// Subscribe
-    public func subscribeKeyboardEvents() {
+    func subscribeKeyboardEvents() {
         keyboardSubscribers = [
             NotificationCenter.default.rx
                 .notification(UIResponder.keyboardWillShowNotification)
@@ -117,7 +117,7 @@ extension KeyboardDisplayableViewController {
     }
 
     /// Unsubscribe
-    public func unsubscribeKeyboardEvents() {
+    func unsubscribeKeyboardEvents() {
         keyboardSubscribers?.forEach { sub in sub.dispose() }
     }
 }
