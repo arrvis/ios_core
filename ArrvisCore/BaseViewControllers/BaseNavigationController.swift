@@ -10,7 +10,11 @@ import UIKit
 import SwiftEventBus
 
 /// UINavigationController基底クラス
-open class BaseNavigationController: UINavigationController {
+open class BaseNavigationController: UINavigationController,
+    BackFromNextHandleable,
+    BarButtonItemSettable,
+    DidFirstLayoutSubviewsHandleable,
+    KeyboardDisplayable {
 
     // MARK: - Variables
 

@@ -10,7 +10,7 @@ import WebKit
 import TinyConstraints
 
 /// MPA用ViewController基底クラス
-open class BaseMPAViewController: BaseViewController, DidFirstLayoutSubviewsHandleable {
+open class BaseMPAViewController: BaseViewController {
 
     // MARK: - Variables
 

@@ -14,3 +14,8 @@ public protocol BackFromNextHandleable {
     /// - Parameter result: result
     func onBackFromNext(_ result: Any?)
 }
+
+extension BackFromNextHandleable {
+
+    public func onBackFromNext(_ result: Any?) {}
+}

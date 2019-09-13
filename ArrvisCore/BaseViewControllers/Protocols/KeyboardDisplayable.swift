@@ -1,5 +1,5 @@
 //
-//  KeyboardDisplayableViewController.swift
+//  KeyboardDisplayable.swift
 //  ArrvisCore
 //
 //  Created by Yutaka Izumaru on 2019/07/02.
@@ -14,7 +14,7 @@ private var keyboardSubscribersKey = 1
 private var isKeyboardVisibleKey = 2
 
 /// キーボード表示可能ViewController
-public protocol KeyboardDisplayableViewController where Self: UIViewController {
+public protocol KeyboardDisplayable where Self: UIViewController {
 
     /// キーボード表示時にリサイズさせるScrollView
     var scrollViewForResizeKeyboard: UIScrollView? { get }
@@ -26,7 +26,12 @@ public protocol KeyboardDisplayableViewController where Self: UIViewController {
     func onKeyboardWillHide(notification: Notification)
 }
 
-extension KeyboardDisplayableViewController {
+extension KeyboardDisplayable {
+
+    /// キーボード表示時にリサイズさせるScrollView
+    public var scrollViewForResizeKeyboard: UIScrollView? {
+        return nil
+    }
 
     /// キーボード表示状態
     public var isKeyboardVisible: Bool {
@@ -54,11 +59,6 @@ extension KeyboardDisplayableViewController {
         set {
             objc_setAssociatedObject(self, &keyboardSubscribersKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
-    }
-
-    /// キーボード表示時にリサイズさせるScrollView
-    public var scrollViewForResizeKeyboard: UIScrollView? {
-        return nil
     }
 
     /// キーボード表示イベント

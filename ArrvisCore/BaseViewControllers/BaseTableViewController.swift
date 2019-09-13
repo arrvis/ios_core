@@ -9,7 +9,11 @@
 import UIKit
 
 /// UITableViewController基底クラス
-open class BaseTableViewController: UITableViewController {
+open class BaseTableViewController: UITableViewController,
+    BackFromNextHandleable,
+    BarButtonItemSettable,
+    DidFirstLayoutSubviewsHandleable,
+    KeyboardDisplayable {
 
     open override func viewDidLoad() {
         super.viewDidLoad()

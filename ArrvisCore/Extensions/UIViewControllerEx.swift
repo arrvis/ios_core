@@ -77,19 +77,19 @@ extension UIViewController: UIGestureRecognizerDelegate {
     }
 
     func initializeBarButtonItemsIfNeed() {
-        if let v = self as? BarButtonItemSettableViewController {
+        if let v = self as? BarButtonItemSettable {
             v.initBarButtonItems()
         }
     }
 
     func subscribeKeyboardEventsIfNeed() {
-        if let v = self as? KeyboardDisplayableViewController {
+        if let v = self as? KeyboardDisplayable {
             v.subscribeKeyboardEvents()
         }
     }
 
     func unsubscribeKeyboardEventsIfNeed() {
-        if let v = self as? KeyboardDisplayableViewController {
+        if let v = self as? KeyboardDisplayable {
             v.unsubscribeKeyboardEvents()
         }
     }

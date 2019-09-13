@@ -1,5 +1,5 @@
 //
-//  BarButtonItemSettableViewController.swift
+//  BarButtonItemSettable.swift
 //  ArrvisCore
 //
 //  Created by Yutaka Izumaru on 2019/07/02.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-/// BarButtonItem設定可能ViewController
-public protocol BarButtonItemSettableViewController where Self: UIViewController {
+/// BarButtonItem設定可能
+public protocol BarButtonItemSettable where Self: UIViewController {
 
     /// 戻るBarButtonItem
     var backBarButtonItem: UIBarButtonItem? { get }
@@ -30,7 +30,7 @@ public protocol BarButtonItemSettableViewController where Self: UIViewController
     func didTapRightBarButtonItem(_ index: Int)
 }
 
-extension BarButtonItemSettableViewController {
+extension BarButtonItemSettable {
 
     /// 戻るBarButtonItem
     public var backBarButtonItem: UIBarButtonItem? { return nil }
