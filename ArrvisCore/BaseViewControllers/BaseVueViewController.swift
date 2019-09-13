@@ -10,7 +10,7 @@ import WebKit
 import TinyConstraints
 
 /// Vue用ViewController基底クラス
-open class BaseVueViewController: BaseViewController {
+open class BaseVueViewController: BaseViewController, DidFirstLayoutSubviewsHandleable {
 
     // MARK: - Variables
 

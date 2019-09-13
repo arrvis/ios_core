@@ -9,10 +9,7 @@
 import UIKit
 
 /// UITabBarController基底クラス
-open class BaseTabBarController: UITabBarController,
-BarButtonItemSettableViewController,
-DidFirstLayoutSubviewsHandleable,
-KeyboardDisplayableViewController {
+open class BaseTabBarController: UITabBarController {
 
     // MARK: Property
 

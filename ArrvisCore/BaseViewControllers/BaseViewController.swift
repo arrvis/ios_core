@@ -9,10 +9,7 @@
 import UIKit
 
 /// UIViewController基底クラス
-open class BaseViewController: UIViewController,
-BarButtonItemSettableViewController,
-DidFirstLayoutSubviewsHandleable,
-KeyboardDisplayableViewController {
+open class BaseViewController: UIViewController {
 
     open override func viewDidLoad() {
         super.viewDidLoad()
