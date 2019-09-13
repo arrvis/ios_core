@@ -145,7 +145,7 @@ extension BaseMPAViewController {
                                            _ body: T?,
                                            file: String = #file,
                                            function: String = #function) {
-        executeJS("\(path.joined(separator: "."))(\(body?.jsonString ?? ""))")
+        executeJS("\(path.joined(separator: "."))(\(body?.toJsString() ?? ""))")
     }
 
     /// JS実行

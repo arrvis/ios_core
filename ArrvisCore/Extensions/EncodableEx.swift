@@ -24,7 +24,24 @@ extension Encodable {
     }
 
     /// CSV用
-    public var toCSVJsonString: String? {
+    public var csvJsonString: String? {
         return "\"\(jsonString?.replacingOccurrences(of: "\"", with: "\"\"") ?? "")\""
+    }
+
+    /// JS文字列
+    func toJsString(_ top: Bool = true) -> String? {
+        if let dictionary = dictionary {
+            let str = dictionary.map { k, v in
+                if let v = v as? Encodable {
+                    return v.toJsString() ?? "invalid"
+                } else if v is String {
+                    return "\(k) : \"\(v)\""
+                } else {
+                    return "\(k) : \(v)"
+                }
+                }.joined(separator: ", ")
+            return top ? "{\(str)}" : str
+        }
+        return nil
     }
 }
