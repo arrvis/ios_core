@@ -1,5 +1,5 @@
 //
-//  BaseVueViewController.swift
+//  BaseMPAViewController.swift
 //  ArrvisCore
 //
 //  Created by Yutaka Izumaru on 2018/06/17.
@@ -9,13 +9,13 @@
 import WebKit
 import TinyConstraints
 
-/// Vue用ViewController基底クラス
-open class BaseVueViewController: BaseViewController, DidFirstLayoutSubviewsHandleable {
+/// MPA用ViewController基底クラス
+open class BaseMPAViewController: BaseViewController, DidFirstLayoutSubviewsHandleable {
 
     // MARK: - Variables
 
-    /// PageのURLBase
-    open var pageHtmlURLPrefix: String? {
+    /// PageのURL
+    open var pageUrl: URL? {
         return nil
     }
 
@@ -24,18 +24,10 @@ open class BaseVueViewController: BaseViewController, DidFirstLayoutSubviewsHand
         return nil
     }
 
-    /// Viewからのコールバックマップ [コールバック名: コールバックAction]
-    open var pageCallbacks: [String: (Data?) -> Void] {
-        return [String: (Data?) -> Void]()
-    }
-
     /// WebViewのインセット
     open var webViewInsets: UIEdgeInsets {
         return .zero
     }
-
-    /// WebView
-    public var webView: WKWebView?
 
     /// WebViewフェードイン時間
     open var webViewFadeInDuration: TimeInterval {
@@ -47,19 +39,21 @@ open class BaseVueViewController: BaseViewController, DidFirstLayoutSubviewsHand
         return 0.4
     }
 
+    /// Viewからのコールバックマップ [コールバック名: コールバックAction]
+    open var pageCallbacks: [String: (Data?) -> Void] {
+        return [String: (Data?) -> Void]()
+    }
+
+    /// WebView
+    public var webView: WKWebView?
+
     // MARK: - Initializer
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
-        if let pageHtml = pageHtml {
+        if let pageUrl = pageUrl {
             initWebView()
-            if let pageHtmlURLPrefix = pageHtmlURLPrefix {
-                let url = URL(string: pageHtmlURLPrefix + String(pageHtml.absoluteString.split(separator: "/").last!))!
-                webView!.load(URLRequest(url: url))
-            } else {
-                webView!.load(URLRequest(url: pageHtml))
-            }
+            webView!.load(URLRequest(url: pageUrl))
         }
     }
 
@@ -81,11 +75,11 @@ open class BaseVueViewController: BaseViewController, DidFirstLayoutSubviewsHand
 
     open func onReceiveCallback(_ name: String, _ body: Data?) {}
 
-    open func onWebViewError(_ js: String?, _ error: Error, function: String = #function) {}
+    open func onWebViewError(_ error: Error, file: String = #file, function: String = #function) {}
 }
 
 // MARK: - Public
-extension BaseVueViewController {
+extension BaseMPAViewController {
 
     /// WebView初期化
     public func initWebView() {
@@ -115,7 +109,7 @@ extension BaseVueViewController {
 }
 
 // MARK: - WKNavigationDelegate
-extension BaseVueViewController: WKNavigationDelegate {
+extension BaseMPAViewController: WKNavigationDelegate {
 
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webView.setNeedsLayout()
@@ -128,12 +122,12 @@ extension BaseVueViewController: WKNavigationDelegate {
     }
 
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        onWebViewError(nil, error)
+        onWebViewError(error)
     }
 }
 
 // MARK: - WKScriptMessageHandler
-extension BaseVueViewController: WKScriptMessageHandler {
+extension BaseMPAViewController: WKScriptMessageHandler {
 
     public func userContentController(_ userContentController: WKUserContentController,
                                       didReceive message: WKScriptMessage) {
@@ -143,40 +137,19 @@ extension BaseVueViewController: WKScriptMessageHandler {
     }
 }
 
-// MARK: - Vue methods
-extension BaseVueViewController {
+// MARK: - JS methods
+extension BaseMPAViewController {
 
-    /// Vueメソッド呼び出し
-    public func callVueMethod<T: BaseModel>(_ name: String, _ model: T,
-                                            file: String = #file, function: String = #function) {
-        callVueMethod(name, model.jsonString, file: file, function: function)
+    /// JSメソッド呼び出し
+    public func callJSMethod<T: BaseModel>(_ path: [String],
+                                           _ body: T?,
+                                           file: String = #file,
+                                           function: String = #function) {
+        executeJS("\(path.joined(separator: "."))(\(body?.jsonString ?? ""))")
     }
 
-    /// Vueメソッド呼び出し
-    public func callVueMethod<T: BaseModel>(_ name: String, _ models: [T],
-                                            file: String = #file, function: String = #function) {
-        callVueMethod(name,
-                      "[\(models.compactMap { $0.jsonString}.joined(separator: ","))]",
-                      file: file, function: function)
-    }
-
-    /// Vueメソッド呼び出し
-    public func callVueMethodWithObject(_ name: String, _ object: Any,
-                                        file: String = #file, function: String = #function) {
-        executeJS("window.vue.\(name)(\(object))", file: file, function: function)
-    }
-
-    /// Vueメソッド呼び出し
-    public func callVueMethod(_ name: String, _ jsonString: String? = nil,
-                              file: String = #file, function: String = #function) {
-        if let data = jsonString?.data(using: .utf8)?.base64EncodedString() {
-            executeJS("window.vue.\(name)('\(data)')", file: file, function: function)
-        } else {
-            executeJS("window.vue.\(name)()", file: file, function: function)
-        }
-    }
-
-    private func executeJS(_ jsString: String, file: String = #file, function: String = #function) {
+    /// JS実行
+    public func executeJS(_ jsString: String, file: String = #file, function: String = #function) {
         if webView?.isLoading == true {
             NSObject.runAfterDelay(delayMSec: 30) { [unowned self] in
                 self.executeJS(jsString, file: file, function: function)
@@ -185,7 +158,7 @@ extension BaseVueViewController {
         }
         webView?.evaluateJavaScript(jsString, completionHandler: { [unowned self] (ret, error) in
             if let error = error {
-                self.onWebViewError(jsString, error, function: function)
+                self.onWebViewError(error, file: file, function: function)
             } else {
                 self.onExecuteJSCompleted(jsString, ret, file: file, function: function)
             }
