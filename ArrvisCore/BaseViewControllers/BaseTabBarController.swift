@@ -17,7 +17,18 @@ open class BaseTabBarController: UITabBarController {
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-        initializePopGesture()
         handleDidFirstLayoutSubviews()
+        initializePopGesture()
+        initializeBarButtonItemsIfNeed()
+    }
+
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeKeyboardEventsIfNeed()
+    }
+
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeKeyboardEventsIfNeed()
     }
 }

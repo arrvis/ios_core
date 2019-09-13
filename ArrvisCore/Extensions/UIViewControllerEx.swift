@@ -58,7 +58,14 @@ extension UIViewController: UIGestureRecognizerDelegate {
         }
     }
 
-    /// PopGesture初期化
+    func handleDidFirstLayoutSubviews() {
+        rx.methodInvoked(#selector(UIViewController.viewDidLayoutSubviews))
+            .take(1)
+            .subscribe(onNext: { [unowned self] _ in
+                (self as? DidFirstLayoutSubviewsHandleable)?.onDidFirstLayoutSubviews()
+            }).disposed(by: self)
+    }
+
     func initializePopGesture() {
         rx.methodInvoked(#selector(UIViewController.viewWillAppear(_:))).subscribe(onNext: { [unowned self] _ in
             self.navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -69,13 +76,22 @@ extension UIViewController: UIGestureRecognizerDelegate {
         }).disposed(by: self)
     }
 
-    /// didFirstLayoutSubviewsハンドル
-    func handleDidFirstLayoutSubviews() {
-        rx.methodInvoked(#selector(UIViewController.viewDidLayoutSubviews))
-            .take(1)
-            .subscribe(onNext: { [unowned self] _ in
-                (self as? DidFirstLayoutSubviewsHandleable)?.onDidFirstLayoutSubviews()
-        }).disposed(by: self)
+    func initializeBarButtonItemsIfNeed() {
+        if let v = self as? BarButtonItemSettableViewController {
+            v.initBarButtonItems()
+        }
+    }
+
+    func subscribeKeyboardEventsIfNeed() {
+        if let v = self as? KeyboardDisplayableViewController {
+            v.subscribeKeyboardEvents()
+        }
+    }
+
+    func unsubscribeKeyboardEventsIfNeed() {
+        if let v = self as? KeyboardDisplayableViewController {
+            v.unsubscribeKeyboardEvents()
+        }
     }
 }
 

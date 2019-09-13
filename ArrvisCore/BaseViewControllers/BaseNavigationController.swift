@@ -50,6 +50,7 @@ extension BaseNavigationController {
             navigationBar.shadowImage = UIImage()
         }
         handleDidFirstLayoutSubviews()
+        initializeBarButtonItemsIfNeed()
     }
 
     open override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
