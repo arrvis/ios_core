@@ -44,7 +44,6 @@ extension FacebookService {
                 observer.onNext(accessToken)
             }
             let manager = LoginManager()
-            manager.loginBehavior = .browser
             manager.logIn(permissions: permissions, from: nil) { (result, error) in
                 // https://github.com/facebook/facebook-swift-sdk/issues/201
                 NSObject.runAfterDelay(delayMSec: 500) {
