@@ -141,10 +141,11 @@ extension BaseMPAViewController: WKScriptMessageHandler {
 extension BaseMPAViewController {
 
     /// JSメソッド呼び出し
-    public func callJSMethod<T: BaseModel>(_ path: [String],
-                                           _ body: T?,
-                                           file: String = #file,
-                                           function: String = #function) {
+    public func callJSMethod<T: BaseModel>(
+        _ path: [String],
+        _ body: T?,
+        file: String = #file,
+        function: String = #function) {
         executeJS("\(path.joined(separator: "."))(\(body?.toJsString() ?? ""))")
     }
 
