@@ -29,11 +29,12 @@ extension WireframeInterface {
     }
 
     /// URLを開く
-    public func openURL(_ url: String) {
+    public func openURL(_ url: String) -> Bool {
         guard let url = URL(string: url), UIApplication.shared.canOpenURL(url) else {
-            return
+            return false
         }
         UIApplication.shared.open(url)
+        return true
     }
 }
 
