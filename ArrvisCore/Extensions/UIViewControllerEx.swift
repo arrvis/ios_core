@@ -57,6 +57,9 @@ extension UIViewController: UIGestureRecognizerDelegate {
             objc_setAssociatedObject(self, &disposeBagKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
+}
+
+extension UIViewController {
 
     func handleDidFirstLayoutSubviews() {
         rx.methodInvoked(#selector(UIViewController.viewDidLayoutSubviews))

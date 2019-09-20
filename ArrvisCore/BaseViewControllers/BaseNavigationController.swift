@@ -31,20 +31,8 @@ open class BaseNavigationController: UINavigationController,
     open var transparentNavigationBar: Bool {
         return false
     }
-}
 
-// MARK: - UINavigationControllerDelegate
-extension BaseNavigationController: UINavigationControllerDelegate {
-
-    public func navigationController(_ navigationController: UINavigationController,
-                                     didShow viewController: UIViewController,
-                                     animated: Bool) {
-        SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
-    }
-}
-
-// MARK: - Life-Cycle
-extension BaseNavigationController {
+    // MARK: - Life-Cycle
 
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,5 +50,29 @@ extension BaseNavigationController {
             completion?()
             SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
         }
+    }
+
+    // MARK: - BackFromNextHandleable
+
+    open func onBackFromNext(_ result: Any?) {}
+
+    // MARK: - BarButtonItemSettable
+
+    open func didTapBackBarButtonItem() {}
+    open func didTapLeftBarButtonItem(_ index: Int) {}
+    open func didTapRightBarButtonItem(_ index: Int) {}
+
+    // MARK: - DidFirstLayoutSubviewsHandleable
+
+    open func onDidFirstLayoutSubviews() {}
+}
+
+// MARK: - UINavigationControllerDelegate
+extension BaseNavigationController: UINavigationControllerDelegate {
+
+    public func navigationController(_ navigationController: UINavigationController,
+                                     didShow viewController: UIViewController,
+                                     animated: Bool) {
+        SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
     }
 }

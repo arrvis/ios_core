@@ -41,15 +41,6 @@ extension BarButtonItemSettable {
     /// 右BarButtonItems
     public var rightBarButtonItems: [UIBarButtonItem]? { return nil }
 
-    /// 戻るBarButtonItemタップ
-    public func didTapBackBarButtonItem() {}
-
-    /// 左BarButtonItemタップ
-    public func didTapLeftBarButtonItem(_ index: Int) {}
-
-    /// 右BarButtonItemタップ
-    public func didTapRightBarButtonItem(_ index: Int) {}
-
     /// 初期化
     func initBarButtonItems() {
         if let backBarButtonItem = backBarButtonItem {

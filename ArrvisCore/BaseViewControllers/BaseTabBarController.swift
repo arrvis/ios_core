@@ -19,6 +19,8 @@ open class BaseTabBarController: UITabBarController,
 
     lazy var defaultTabBarHeight = { tabBar.frame.height }()
 
+    // MARK: - Life-Cycle
+
     open override func viewDidLoad() {
         super.viewDidLoad()
         handleDidFirstLayoutSubviews()
@@ -35,4 +37,18 @@ open class BaseTabBarController: UITabBarController,
         super.viewWillDisappear(animated)
         unsubscribeKeyboardEventsIfNeed()
     }
+
+    // MARK: - BackFromNextHandleable
+
+    open func onBackFromNext(_ result: Any?) {}
+
+    // MARK: - BarButtonItemSettable
+
+    open func didTapBackBarButtonItem() {}
+    open func didTapLeftBarButtonItem(_ index: Int) {}
+    open func didTapRightBarButtonItem(_ index: Int) {}
+
+    // MARK: - DidFirstLayoutSubviewsHandleable
+
+    open func onDidFirstLayoutSubviews() {}
 }

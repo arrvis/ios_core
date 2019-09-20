@@ -59,7 +59,7 @@ open class BaseMPAViewController: BaseViewController {
 
     // MARK: - DidFirstLayoutSubviewsHandleable
 
-    open func onDidFirstLayoutSubviews() {
+    open override func onDidFirstLayoutSubviews() {
         if let webView = webView {
             view.addSubview(webView)
             view.bringSubviewToFront(webView)
