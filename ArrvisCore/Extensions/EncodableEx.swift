@@ -29,7 +29,7 @@ extension Encodable {
     }
 
     /// JS文字列
-    func toJsString(_ top: Bool = true) -> String? {
+    func toJsString() -> String? {
         if let dictionary = dictionary {
             let str = dictionary.map { k, v in
                 if let v = v as? Encodable {
@@ -40,7 +40,7 @@ extension Encodable {
                     return "\(k) : \(v)"
                 }
                 }.joined(separator: ", ")
-            return top ? "{\(str)}" : str
+            return "{\(str)}"
         }
         return nil
     }
