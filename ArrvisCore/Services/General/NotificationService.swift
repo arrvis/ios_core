@@ -10,6 +10,7 @@ import Foundation
 import UserNotifications
 import RxSwift
 import SwiftEventBus
+import PushNotifications
 
 /// 通知データ
 public struct NotificationData {
@@ -101,6 +102,7 @@ extension NotificationService {
 
     /// デバイストークン取得完了
     public static func didReceiveDeviceToken(_ deviceToken: Data) {
+        PushNotifications.shared.registerDeviceToken(deviceToken)
         self.deviceToken = deviceToken.map { String(format: "%.2hhx", $0) }.joined()
         deviceTokenObserver?.onNext(self.deviceToken!)
     }
@@ -120,5 +122,17 @@ extension NotificationService {
             return
         }
         SwiftEventBus.post(SystemBusEvents.didReceiveRemoteNotification, sender: data)
+    }
+}
+
+// MARK: - for Pusher Beams
+extension NotificationService {
+
+    /// PusherBeams初期化
+    func initPusherBeams(_ instanceId: String, _ interests: [String]) {
+        let pushNotifications = PushNotifications.shared
+        pushNotifications.start(instanceId: instanceId)
+        pushNotifications.registerForRemoteNotifications()
+        interests.forEach { try! pushNotifications.addDeviceInterest(interest: $0) }
     }
 }
