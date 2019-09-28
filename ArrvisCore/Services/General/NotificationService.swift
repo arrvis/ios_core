@@ -118,6 +118,7 @@ extension NotificationService {
 
     /// リモート通知受信
     public static func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any]) {
+        PushNotifications.shared.handleNotification(userInfo: userInfo)
         guard let data = NotificationData.fromUserInfo(userInfo) else {
             return
         }
