@@ -12,26 +12,6 @@ import RxSwift
 import SwiftEventBus
 import PushNotifications
 
-/// 通知データ
-public struct NotificationData {
-    // アラート
-    public let alert: String
-
-    /// UserInfoから生成
-    static func fromUserInfo(_ userInfo: [AnyHashable: Any]) -> NotificationData? {
-        guard let aps = userInfo["aps"] as? [String: Any] else {
-            return nil
-        }
-        if let available = aps["content-available"] as? Bool, !available {
-            return nil
-        }
-        guard let alert = aps["alert"] as? String else {
-            return nil
-        }
-        return NotificationData(alert: alert)
-    }
-}
-
 /// 通知関連サービス
 public final class NotificationService {
 
@@ -119,10 +99,7 @@ extension NotificationService {
     /// リモート通知受信
     public static func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any]) {
         PushNotifications.shared.handleNotification(userInfo: userInfo)
-        guard let data = NotificationData.fromUserInfo(userInfo) else {
-            return
-        }
-        SwiftEventBus.post(SystemBusEvents.didReceiveRemoteNotification, sender: data)
+        SwiftEventBus.post(SystemBusEvents.didReceiveRemoteNotification, sender: userInfo)
     }
 }
 
