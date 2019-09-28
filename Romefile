@@ -98,3 +98,6 @@ repositoryMap:
 
 - rollbar-ios:
   - name: Rollbar
+
+- push-notifications-swift:
+  - name: PushNotifications
