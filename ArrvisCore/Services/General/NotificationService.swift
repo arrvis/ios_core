@@ -129,7 +129,7 @@ extension NotificationService {
 extension NotificationService {
 
     /// PusherBeams初期化
-    public func initPusherBeams(_ instanceId: String, _ interests: [String]) {
+    public static func initPusherBeams(_ instanceId: String, _ interests: [String]) {
         let pushNotifications = PushNotifications.shared
         pushNotifications.start(instanceId: instanceId)
         pushNotifications.registerForRemoteNotifications()
