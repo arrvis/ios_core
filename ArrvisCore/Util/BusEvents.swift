@@ -23,6 +23,7 @@ public enum SystemBusEvents: String, BusEvents {
     case didReceiveDeviceToken
     case didErrorReceiveDeviceToken
     case didReceiveRemoteNotification
+    case didReceivePusherRemoteNotification
 
     case currentViewControllerChanged
 
