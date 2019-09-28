@@ -147,4 +147,10 @@ extension NotificationService {
         pushNotifications.registerForRemoteNotifications()
         interests.forEach { try! pushNotifications.addDeviceInterest(interest: $0) }
     }
+
+    /// PusherBeams Interestsクリア
+    public static func clearPusherBeamsDeviceInterests() {
+        let pushNotifications = PushNotifications.shared
+        try? pushNotifications.clearDeviceInterests()
+    }
 }
