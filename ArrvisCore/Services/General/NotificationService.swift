@@ -16,30 +16,30 @@ import PushNotifications
 public struct PusherNotificationInfo: BaseModel {
     public let data: PusherNotificationData
     public let aps: APS
+}
 
-    public struct PusherNotificationData: BaseModel {
-        public let pusher: Pusher
+public struct PusherNotificationData: BaseModel {
+    public let pusher: Pusher
+}
+
+public struct Pusher: BaseModel {
+    public let userShouldIgnore: Bool
+    public let publishId: String
+}
+
+public struct APS: BaseModel {
+    public let alert: Alert
+    public let contentAvailable: Int
+
+    enum CodingKeys: String, CodingKey {
+        case alert
+        case contentAvailable = "content-available"
     }
+}
 
-    public struct Pusher: BaseModel {
-        public let userShouldIgnore: Bool
-        public let publishId: String
-    }
-
-    public struct APS: BaseModel {
-        public let alert: Alert
-        public let contentAvailable: Int
-
-        enum CodingKeys: String, CodingKey {
-            case alert
-            case contentAvailable = "content-available"
-        }
-    }
-
-    public struct Alert: BaseModel {
-        public let title: String
-        public let body: String
-    }
+public struct Alert: BaseModel {
+    public let title: String
+    public let body: String
 }
 
 /// 通知関連サービス
