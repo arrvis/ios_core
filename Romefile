@@ -57,6 +57,7 @@ repositoryMap:
   - name: AWSPolly
   - name: AWSRekognition
   - name: AWSS3
+  - name: AWSSageMakerRuntime
   - name: AWSSES
   - name: AWSSimpleDB
   - name: AWSSNS
