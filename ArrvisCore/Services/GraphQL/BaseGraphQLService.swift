@@ -11,6 +11,7 @@ import Apollo
 
 /// GraphQLServiceプロトコル
 protocol GraphqlServiceProtocol {
+    // TODO: こいつ戻り値でApolloClient受け取ればよくない？
     func fetchClient(request: @escaping (ApolloClient) -> Void, useNonAuth: Bool)
 }
 

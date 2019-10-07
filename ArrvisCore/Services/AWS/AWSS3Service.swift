@@ -109,10 +109,10 @@ extension AWSS3Service {
                                   _ outputFileName: String? = nil,
                                   _ customConfig: SimplifiedAWSConfig? = nil) -> UploadObservable {
         let fileName: String
-        if let originalFileName = fileURL.path.split(separator: "/").last {
-            fileName = String(originalFileName)
-        } else if let outputFileName = outputFileName {
+        if let outputFileName = outputFileName {
             fileName = outputFileName
+        } else if let originalFileName = fileURL.path.split(separator: "/").last {
+            fileName = String(originalFileName)
         } else {
             fileName = ""
         }
