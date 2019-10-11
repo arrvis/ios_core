@@ -177,7 +177,7 @@ extension AWSS3Service {
         var progressObserver: AnyObserver<Progress>?
         let expression = AWSS3TransferUtilityUploadExpression()
         uploadOptions.forEach { kv in
-            expression.setValue(kv.value, forKey: kv.key)
+            expression.setValue(kv.value, forRequestHeader: kv.key)
         }
         expression.progressBlock = {(task, progress) in
             progressObserver?.onNext(progress)
