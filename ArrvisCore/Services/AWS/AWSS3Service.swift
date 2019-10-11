@@ -34,12 +34,15 @@ public final class AWSS3Service {
     // MARK: - General
 
     /// handleEventsForBackgroundURLSession
-    public static func application(_ application: UIApplication,
-                                   handleEventsForBackgroundURLSession identifier: String,
-                                   completionHandler: @escaping () -> Void) {
-        AWSS3TransferUtility.interceptApplication(application,
-                                                  handleEventsForBackgroundURLSession: identifier,
-                                                  completionHandler: completionHandler)
+    public static func application(
+        _ application: UIApplication,
+        handleEventsForBackgroundURLSession identifier: String,
+        completionHandler: @escaping () -> Void) {
+        AWSS3TransferUtility.interceptApplication(
+            application,
+            handleEventsForBackgroundURLSession: identifier,
+            completionHandler: completionHandler
+        )
     }
 }
 
@@ -47,34 +50,49 @@ public final class AWSS3Service {
 extension AWSS3Service {
 
     /// PNGアップロード
-    public static func uploadPNG(_ bucket: String,
-                                 _ image: UIImage?,
-                                 _ keyWithoutExt: String,
-                                 _ customConfig: SimplifiedAWSConfig? = nil) -> UploadObservable {
-        return uploadData(bucket, image?.pngData(), "image/png", "\(keyWithoutExt).jpg", customConfig)
+    public static func uploadPNG(
+        _ bucket: String,
+        _ image: UIImage?,
+        _ keyWithoutExt: String,
+        _ uploadOptions: [String: String] = [:],
+        _ customConfig: SimplifiedAWSConfig? = nil) -> UploadObservable {
+        return uploadData(
+            bucket,
+            image?.pngData(),
+            "image/png",
+            "\(keyWithoutExt).jpg",
+            uploadOptions,
+            customConfig
+        )
     }
 
     /// JPEGアップロード
-    public static func uploadJPG(_ bucket: String,
-                                 _ image: UIImage?,
-                                 _ keyWithoutExt: String,
-                                 _ customConfig: SimplifiedAWSConfig? = nil,
-                                 _ compression: CGFloat = 100) -> UploadObservable {
-        return uploadData(bucket,
-                          image?.jpegData(compressionQuality: compression),
-                          "image/jpeg",
-                          "\(keyWithoutExt).jpg",
+    public static func uploadJPG(
+        _ bucket: String,
+        _ image: UIImage?,
+        _ keyWithoutExt: String,
+        _ uploadOptions: [String: String] = [:],
+        _ customConfig: SimplifiedAWSConfig? = nil,
+        _ compression: CGFloat = 100) -> UploadObservable {
+        return uploadData(
+            bucket,
+            image?.jpegData(compressionQuality: compression),
+            "image/jpeg",
+            "\(keyWithoutExt).jpg",
+            uploadOptions,
             customConfig
         )
     }
 
     /// 動画をサムネイル付きでアップロード
-    public static func uploadVideoWithThumbnail(_ bucket: String,
-                                                _ fileURL: URL,
-                                                _ outputPath: String,
-                                                _ outputFileName: String? = nil,
-                                                _ onThumbnailCreated: ((UIImage) -> Void)? = nil,
-                                                _ customConfig: SimplifiedAWSConfig? = nil)
+    public static func uploadVideoWithThumbnail(
+        _ bucket: String,
+        _ fileURL: URL,
+        _ outputPath: String,
+        _ outputFileName: String? = nil,
+        _ onThumbnailCreated: ((UIImage) -> Void)? = nil,
+        _ uploadOptions: [String: String] = [:],
+        _ customConfig: SimplifiedAWSConfig? = nil)
         -> (thumbnail: UploadObservable, video: UploadObservable) {
             func generateThumbnail() -> UIImage? {
                 let imageGenerator = AVAssetImageGenerator(asset: AVAsset(url: fileURL))
@@ -91,11 +109,14 @@ extension AWSS3Service {
             }
             let fileName = String(outputFileName ?? String(fileURL.path.split(separator: "/").last!))
             return (
-                uploadJPG(bucket,
-                          generateThumbnail(),
-                          "\(outputPath)/\(fileName.split(separator: ".").last!)",
-                          customConfig),
-                uploadFile(bucket, fileURL, outputPath, outputFileName, customConfig))
+                uploadJPG(
+                    bucket,
+                    generateThumbnail(),
+                    "\(outputPath)/\(fileName.split(separator: ".").last!)",
+                    uploadOptions,
+                    customConfig
+                ),
+                uploadFile(bucket, fileURL, outputPath, outputFileName, uploadOptions, customConfig))
     }
 }
 
@@ -103,11 +124,13 @@ extension AWSS3Service {
 extension AWSS3Service {
 
     /// ファイルアップロード
-    public static func uploadFile(_ bucket: String,
-                                  _ fileURL: URL,
-                                  _ outputPath: String,
-                                  _ outputFileName: String? = nil,
-                                  _ customConfig: SimplifiedAWSConfig? = nil) -> UploadObservable {
+    public static func uploadFile(
+        _ bucket: String,
+        _ fileURL: URL,
+        _ outputPath: String,
+        _ outputFileName: String? = nil,
+        _ uploadOptions: [String: String] = [:],
+        _ customConfig: SimplifiedAWSConfig? = nil) -> UploadObservable {
         let fileName: String
         if let outputFileName = outputFileName {
             fileName = outputFileName
@@ -121,23 +144,27 @@ extension AWSS3Service {
                 return nil
             }
             return String(ext).toMIMETypeFromExt()
-        }, "\(outputPath)/\(fileName)", customConfig)
+        }, "\(outputPath)/\(fileName)", uploadOptions, customConfig)
     }
 
     /// データアップロード
-    public static func uploadData(_ bucket: String,
-                                  _ data: Data?,
-                                  _ contentType: String,
-                                  _ key: String,
-                                  _ customConfig: SimplifiedAWSConfig? = nil) -> UploadObservable {
-        return uploadImpl(bucket, { data }, { contentType }, key, customConfig)
+    public static func uploadData(
+        _ bucket: String,
+        _ data: Data?,
+        _ contentType: String,
+        _ key: String,
+        _ uploadOptions: [String: String] = [:],
+        _ customConfig: SimplifiedAWSConfig? = nil) -> UploadObservable {
+        return uploadImpl(bucket, { data }, { contentType }, key, uploadOptions, customConfig)
     }
 
-    private static func uploadImpl(_ bucket: String,
-                                   _ requireData: @escaping () -> Data?,
-                                   _ requireContentType: @escaping () -> String?,
-                                   _ key: String,
-                                   _ customConfig: SimplifiedAWSConfig? = nil) -> UploadObservable {
+    private static func uploadImpl(
+        _ bucket: String,
+        _ requireData: @escaping () -> Data?,
+        _ requireContentType: @escaping () -> String?,
+        _ key: String,
+        _ uploadOptions: [String: String] = [:],
+        _ customConfig: SimplifiedAWSConfig? = nil) -> UploadObservable {
         let utility: AWSS3TransferUtility
         let customConfigKey = Date.now.toString("yyyyMMddHHmmss.SSS")
         if let customConfig = customConfig {
@@ -149,6 +176,9 @@ extension AWSS3Service {
         // Uploading
         var progressObserver: AnyObserver<Progress>?
         let expression = AWSS3TransferUtilityUploadExpression()
+        uploadOptions.forEach { kv in
+            expression.setValue(kv.value, forKey: kv.key)
+        }
         expression.progressBlock = {(task, progress) in
             progressObserver?.onNext(progress)
         }
@@ -199,9 +229,10 @@ extension AWSS3Service {
         }))
     }
 
-    private static func getUnsignedUrl(_ config: AWSServiceConfiguration,
-                                       _ bucket: String,
-                                       _ key: String) -> String {
+    private static func getUnsignedUrl(
+        _ config: AWSServiceConfiguration,
+        _ bucket: String,
+        _ key: String) -> String {
         return "https://\(bucket).s3-\(config.regionType.stringValue).amazonaws.com/\(key)"
     }
 
