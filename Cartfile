@@ -26,7 +26,7 @@ github "apollographql/apollo-ios" "0.10.1"
 github "aws/aws-sdk-ios" "2.9.9"
 
 # Facebook
-github "facebook/facebook-sdk-swift" "master"
+github "facebook/facebook-ios-sdk"
 
 # Google
 github "https://github.com/fabio914/GoogleSignIn-iOS" "4.2.0"

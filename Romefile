@@ -66,16 +66,11 @@ repositoryMap:
   - name: AWSTranslate
   - name: AWSUserPoolsSignIn
 
-- facebook-sdk-swift:
-  - name: FacebookCore
-  - name: FacebookLogin
-  - name: FacebookShare
-- facebook-objc-sdk:
-  - name: Bolts
-  - name: FBSDKCoreKit
-  - name: FBSDKShareKit
-  - name: FBSDKLoginKit
-  - name: FBSDKPlacesKit
+- facebook-ios-sdk:
+  - name: FBSDKCoreKit-Dynamic
+  - name: FBSDKShareKit-Dynamic
+  - name: FBSDKLoginKit-Dynamic
+  - name: FBSDKPlacesKit-Dynamic
 
 - GoogleSignIn-iOS:
   - name: GoogleSignIn
