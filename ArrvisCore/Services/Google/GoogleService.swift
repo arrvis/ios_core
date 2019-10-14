@@ -169,6 +169,8 @@ extension GoogleService {
                 observer.onNext(ret)
             }, onError: { error in
                 observer.onError(error)
+            }, onCompleted: {
+                observer.onCompleted()
             }).disposed(by: disposeBag)
             return Disposables.create()
         }
