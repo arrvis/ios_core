@@ -20,10 +20,6 @@ extension LoadingShowable where Self: UIViewController {
         view.endEditing(true)
         if let superview = view.superview {
             ActivityIndicatorManager.shared.show(parent: superview)
-        } else {
-            NSObject.runAfterDelay(delayMSec: 100) { [unowned self] in
-                self.showLoading()
-            }
         }
     }
 
@@ -31,10 +27,6 @@ extension LoadingShowable where Self: UIViewController {
         view.endEditing(true)
         if let superview = view.superview {
             ActivityIndicatorManager.shared.show(parent: superview, message: message)
-        } else {
-            NSObject.runAfterDelay(delayMSec: 100) { [unowned self] in
-                self.showLoading(message: message)
-            }
         }
     }
 
