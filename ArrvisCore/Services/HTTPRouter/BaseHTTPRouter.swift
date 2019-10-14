@@ -93,6 +93,7 @@ open class BaseHTTPRouter {
                         return
                     }
                     observer.onNext((data, res.allHeaderFields))
+                    observer.onCompleted()
                 })
             return Disposables.create()
         }
