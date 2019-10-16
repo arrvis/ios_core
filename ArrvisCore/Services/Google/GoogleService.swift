@@ -118,7 +118,7 @@ extension GoogleService {
     /// Googleからログアウト
     public static func logout() {
         googleRefreshToken = nil
-        GIDSignIn.sharedInstance().disconnect()
+        GIDSignIn.sharedInstance()?.signOut()
     }
 }
 
