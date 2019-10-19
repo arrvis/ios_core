@@ -138,7 +138,7 @@ extension GoogleService {
             }
             GoogleCalendarAPIRouter.fetchCalendarList(token, disposeBag).subscribe(onNext: { ret in
                 if isDebugEnabled {
-                    print("GoogleService.fetchCalendarListResponse: \(ret.toJsString() ?? "empty")")
+                    print("GoogleService.fetchCalendarListResponse: \(ret)")
                 }
                 observer.onNext(ret)
             }, onError: { error in
@@ -182,7 +182,7 @@ extension GoogleService {
             }
             observable.subscribe(onNext: { ret in
                 if isDebugEnabled {
-                    print("GoogleService.fetchEventsResponse: \(ret.toJsString() ?? "empty")")
+                    print("GoogleService.fetchEventsResponse: \(ret)")
                 }
                 observer.onNext(ret)
             }, onError: { error in
