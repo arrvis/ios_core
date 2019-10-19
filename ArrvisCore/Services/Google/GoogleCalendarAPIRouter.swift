@@ -41,7 +41,7 @@ class GoogleCalendarAPIRouter: BaseHTTPRouter {
                             _ month: Date?,
                             _ disposeBag: DisposeBag) -> Observable<[GoogleEvent]> {
         var path = "/calendars/\(calendarId)/events?"
-        if let lastSyncTime = lastSyncTime?.plusMinute(TimeZone.current.secondsFromGMT() / 60) {
+        if let lastSyncTime = lastSyncTime {
             path += "updatedMin=\(lastSyncTime.toGoogleApiFormat())"
         } else if let month = month {
             path += "timeMin=\(month.toGoogleApiFormat())&timeMax=\(month.plusMonth(1).toGoogleApiFormat())"
