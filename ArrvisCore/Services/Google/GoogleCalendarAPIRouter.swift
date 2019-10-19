@@ -35,16 +35,21 @@ class GoogleCalendarAPIRouter: BaseHTTPRouter {
 
     // MARK: - Internal
 
-    static func fetchEvents(_ calendarId: String,
-                            _ accessToken: String,
-                            _ lastSyncTime: Date?,
-                            _ month: Date?,
-                            _ disposeBag: DisposeBag) -> Observable<[GoogleEvent]> {
+    static func fetchEvents(
+        _ calendarId: String,
+        _ accessToken: String,
+        _ lastSyncTime: Date?,
+        _ month: Date?,
+        _ disposeBag: DisposeBag,
+        _ isDebugEnabled: Bool) -> Observable<[GoogleEvent]> {
         var path = "/calendars/\(calendarId)/events?"
         if let lastSyncTime = lastSyncTime {
             path += "updatedMin=\(lastSyncTime.toGoogleApiFormat())"
         } else if let month = month {
             path += "timeMin=\(month.toGoogleApiFormat())&timeMax=\(month.plusMonth(1).toGoogleApiFormat())"
+        }
+        if isDebugEnabled {
+            print("GoogleService.fetchEventsRequest \(path)")
         }
         let requst: Observable<GoogleEventsResponse> = GoogleCalendarAPIRouter(
             path: path,

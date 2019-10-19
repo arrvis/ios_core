@@ -24,6 +24,9 @@ public final class GoogleService {
     /// DisposeBag
     public static let disposeBag = DisposeBag()
 
+    /// デバッグが有効かどうか
+    public static var isDebugEnabled = false
+
     private static var googleRefreshToken: String? {
         get {
             return UserDefaults.standard.string(forKey: "googleRefreshToken")
@@ -63,10 +66,11 @@ public final class GoogleService {
 extension GoogleService {
 
     /// 初期化
-    public static func initialize(_ clientId: String,
-                                  _ serverClientId: String?,
-                                  _ scopes: [Scope],
-                                  _ delegate: GIDSignInUIDelegate) {
+    public static func initialize(
+        _ clientId: String,
+        _ serverClientId: String?,
+        _ scopes: [Scope],
+        _ delegate: GIDSignInUIDelegate) {
         GIDSignIn.sharedInstance().clientID = clientId
         if let serverClientId = serverClientId {
             GIDSignIn.sharedInstance().serverClientID = serverClientId
@@ -133,6 +137,9 @@ extension GoogleService {
                 return Disposables.create()
             }
             GoogleCalendarAPIRouter.fetchCalendarList(token, disposeBag).subscribe(onNext: { ret in
+                if isDebugEnabled {
+                    print("GoogleService.fetchCalendarListResponse: \(ret.toJsString() ?? "empty")")
+                }
                 observer.onNext(ret)
             }, onError: { error in
                 observer.onError(error)
@@ -142,10 +149,11 @@ extension GoogleService {
     }
 
     /// スケジュールフェッチ
-    public static func fetchEvents(_ calendarId: String,
-                                   _ rangeYear: Int,
-                                   _ monthRange: Int,
-                                   _ lastSyncTime: Date?) -> Observable<[GoogleEvent]> {
+    public static func fetchEvents(
+        _ calendarId: String,
+        _ rangeYear: Int,
+        _ monthRange: Int,
+        _ lastSyncTime: Date?) -> Observable<[GoogleEvent]> {
         return Observable.create { observer in
             guard let token = GIDSignIn.sharedInstance()?.currentUser.authentication.accessToken else {
                 observer.onError(AuthError())
@@ -160,12 +168,22 @@ extension GoogleService {
                 months.append(contentsOf: Date.getMonths(start: Date.now.startOfDay.plusMonth(monthRange / 2),
                                                          end: Date.now.startOfDay.plusYear(rangeYear)))
                 observable = Observable.merge(months.map {
-                    GoogleCalendarAPIRouter.fetchEvents(calendarId, token, lastSyncTime, $0, disposeBag)
+                    GoogleCalendarAPIRouter.fetchEvents(calendarId, token, lastSyncTime, $0, disposeBag, isDebugEnabled)
                 })
             } else {
-                observable = GoogleCalendarAPIRouter.fetchEvents(calendarId, token, lastSyncTime, nil, disposeBag)
+                observable = GoogleCalendarAPIRouter.fetchEvents(
+                    calendarId,
+                    token,
+                    lastSyncTime,
+                    nil,
+                    disposeBag,
+                    isDebugEnabled
+                )
             }
             observable.subscribe(onNext: { ret in
+                if isDebugEnabled {
+                    print("GoogleService.fetchEventsResponse: \(ret.toJsString() ?? "empty")")
+                }
                 observer.onNext(ret)
             }, onError: { error in
                 observer.onError(error)
