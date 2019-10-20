@@ -6,45 +6,53 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
-import UIKit
-
 /// UIViewController基底クラス
-open class BaseViewController: UIViewController,
-    BackFromNextHandleable,
-    BarButtonItemSettable,
-    DidFirstLayoutSubviewsHandleable,
-    KeyboardDisplayable {
+open class BaseViewController: UIViewController, ViewControllerProtocols {
 
     // MARK: - Life-Cycle
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-        handleDidFirstLayoutSubviews()
-        initializePopGesture()
-        initializeBarButtonItemsIfNeed()
+        initializeForProtocols()
     }
 
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        subscribeKeyboardEventsIfNeed()
+        viewWillAppearForProtocols()
     }
 
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        unsubscribeKeyboardEventsIfNeed()
+        viewWillDisAppearForProtocols()
     }
 
-    // MARK: - BackFromNextHandleable
+    // MARK: - ExtendsViewControllerEventsHandleable
 
+    /// 初回layoutSubviews
+    open func onDidFirstLayoutSubviews() {}
+
+    /// 次画面から戻ってきた
+    ///
+    /// - Parameter result: result
     open func onBackFromNext(_ result: Any?) {}
 
     // MARK: - BarButtonItemSettable
 
-    open func didTapBackBarButtonItem() {}
-    open func didTapLeftBarButtonItem(_ index: Int) {}
-    open func didTapRightBarButtonItem(_ index: Int) {}
+    /// 戻るBarButtonItem
+    public var backBarButtonItem: UIBarButtonItem? { return nil }
 
-    // MARK: - DidFirstLayoutSubviewsHandleable
+    /// 左BarButtonItems
+    public var leftBarButtonItems: [UIBarButtonItem]? { return nil }
 
-    open func onDidFirstLayoutSubviews() {}
+    /// 右BarButtonItems
+    public var rightBarButtonItems: [UIBarButtonItem]? { return nil }
+
+    /// 戻るBarButtonItemタップ
+    public func didTapBackBarButtonItem() {}
+
+    /// 左BarButtonItemタップ
+    public func didTapLeftBarButtonItem(_ index: Int) {}
+
+    /// 右BarButtonItemタップ
+    public func didTapRightBarButtonItem(_ index: Int) {}
 }

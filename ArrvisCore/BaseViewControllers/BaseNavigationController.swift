@@ -10,11 +10,7 @@ import UIKit
 import SwiftEventBus
 
 /// UINavigationController基底クラス
-open class BaseNavigationController: UINavigationController,
-    BackFromNextHandleable,
-    BarButtonItemSettable,
-    DidFirstLayoutSubviewsHandleable,
-    KeyboardDisplayable {
+open class BaseNavigationController: UINavigationController, ViewControllerProtocols {
 
     // MARK: - Variables
 
@@ -41,8 +37,17 @@ open class BaseNavigationController: UINavigationController,
             navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationBar.shadowImage = UIImage()
         }
-        handleDidFirstLayoutSubviews()
-        initializeBarButtonItemsIfNeed()
+        initializeForProtocols()
+    }
+
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewWillAppearForProtocols()
+    }
+
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewWillDisAppearForProtocols()
     }
 
     open override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
@@ -52,19 +57,35 @@ open class BaseNavigationController: UINavigationController,
         }
     }
 
-    // MARK: - BackFromNextHandleable
+    // MARK: - ExtendsViewControllerEventsHandleable
 
+    /// 初回layoutSubviews
+    open func onDidFirstLayoutSubviews() {}
+
+    /// 次画面から戻ってきた
+    ///
+    /// - Parameter result: result
     open func onBackFromNext(_ result: Any?) {}
 
     // MARK: - BarButtonItemSettable
 
-    open func didTapBackBarButtonItem() {}
-    open func didTapLeftBarButtonItem(_ index: Int) {}
-    open func didTapRightBarButtonItem(_ index: Int) {}
+    /// 戻るBarButtonItem
+    public var backBarButtonItem: UIBarButtonItem? { return nil }
 
-    // MARK: - DidFirstLayoutSubviewsHandleable
+    /// 左BarButtonItems
+    public var leftBarButtonItems: [UIBarButtonItem]? { return nil }
 
-    open func onDidFirstLayoutSubviews() {}
+    /// 右BarButtonItems
+    public var rightBarButtonItems: [UIBarButtonItem]? { return nil }
+
+    /// 戻るBarButtonItemタップ
+    public func didTapBackBarButtonItem() {}
+
+    /// 左BarButtonItemタップ
+    public func didTapLeftBarButtonItem(_ index: Int) {}
+
+    /// 右BarButtonItemタップ
+    public func didTapRightBarButtonItem(_ index: Int) {}
 }
 
 // MARK: - UINavigationControllerDelegate

@@ -88,7 +88,7 @@ extension KeyboardDisplayable {
         scrollView.scrollIndicatorInsets = originInset
     }
 
-    func subscribeKeyboardEvents() {
+    internal func subscribeKeyboardEvents() {
         keyboardSubscribers = [
             NotificationCenter.default.rx
                 .notification(UIResponder.keyboardWillShowNotification)

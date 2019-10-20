@@ -21,21 +21,3 @@ public protocol Navigatable {
     /// - Returns: スクリーン
     func getScreen(path: String) -> Screen
 }
-
-extension Navigatable {
-
-    public var scheme: String {
-        fatalError("Not implemented")
-    }
-
-    public var routes: [String] {
-        fatalError("Not implemented")
-    }
-
-    public func getScreen(path: String) -> Screen {
-        if let screen = SystemScreens(rawValue: path) {
-            return screen
-        }
-        fatalError("Not implemented")
-    }
-}

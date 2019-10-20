@@ -32,16 +32,6 @@ public protocol BarButtonItemSettable where Self: UIViewController {
 
 extension BarButtonItemSettable {
 
-    /// 戻るBarButtonItem
-    public var backBarButtonItem: UIBarButtonItem? { return nil }
-
-    /// 左BarButtonItems
-    public var leftBarButtonItems: [UIBarButtonItem]? { return nil }
-
-    /// 右BarButtonItems
-    public var rightBarButtonItems: [UIBarButtonItem]? { return nil }
-
-    /// 初期化
     func initBarButtonItems() {
         if let backBarButtonItem = backBarButtonItem {
             navigationItem.backBarButtonItem = backBarButtonItem

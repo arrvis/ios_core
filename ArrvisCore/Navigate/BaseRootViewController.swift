@@ -177,9 +177,9 @@ extension BaseRootViewController {
     }
 
     private func setBackResultIfCan(vc: UIViewController, result: Any?) {
-        guard let backFromNextHandleable = vc as? BackFromNextHandleable else {
+        guard let ex = vc as? ExtendsViewControllerEventsHandleable else {
             return
         }
-        backFromNextHandleable.onBackFromNext(result)
+        ex.onBackFromNext(result)
     }
 }
