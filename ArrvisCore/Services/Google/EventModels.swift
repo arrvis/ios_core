@@ -47,7 +47,7 @@ public struct GoogleDatetime: BaseModel {
 extension Date {
 
     func toGoogleApiFormat() -> String {
-        return self.toString("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+        return self.toString("yyyy-MM-dd'T'HH:mm:ss.SSSZ]")
     }
 
     static func fromGoogleApiDateFormat(_ value: String) -> Date {
