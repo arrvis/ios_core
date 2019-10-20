@@ -24,6 +24,7 @@ public struct GoogleEvent: BaseModel {
     public let originalStartTime: GoogleDatetime?
     public let recurrence: [String]?
     public let sequence: Int?
+    public let description: String?
     public let status: String
 
     public var updatedAt: Date? {
