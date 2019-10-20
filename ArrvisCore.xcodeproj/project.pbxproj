@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5ACAB97D235CE9BA00840CC1 /* Navigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACAB97C235CE9BA00840CC1 /* Navigatable.swift */; };
+		5ACAB97F235CEFE800840CC1 /* CameraRollEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACAB97E235CEFE800840CC1 /* CameraRollEventHandler.swift */; };
+		5ACAB981235CF00E00840CC1 /* MediaPickerTypeSelectActionSheetHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACAB980235CF00E00840CC1 /* MediaPickerTypeSelectActionSheetHandler.swift */; };
 		6302D66B22C1F7F6001F24BE /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6302D66A22C1F7F6001F24BE /* NetworkUtil.swift */; };
 		6302D69B22C25D1D001F24BE /* BaseMPAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6302D69A22C25D1D001F24BE /* BaseMPAViewController.swift */; };
 		6312F7E822B94C2D0050DA57 /* ArrvisCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6312F7E622B94C2D0050DA57 /* ArrvisCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -86,6 +89,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5ACAB97C235CE9BA00840CC1 /* Navigatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigatable.swift; sourceTree = "<group>"; };
+		5ACAB97E235CEFE800840CC1 /* CameraRollEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRollEventHandler.swift; sourceTree = "<group>"; };
+		5ACAB980235CF00E00840CC1 /* MediaPickerTypeSelectActionSheetHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPickerTypeSelectActionSheetHandler.swift; sourceTree = "<group>"; };
 		6302D66A22C1F7F6001F24BE /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		6302D69A22C25D1D001F24BE /* BaseMPAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMPAViewController.swift; sourceTree = "<group>"; };
 		6312F7E322B94C2D0050DA57 /* ArrvisCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArrvisCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +183,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5ACAB977235CE38900840CC1 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5ACAB979235CE69700840CC1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5ACAB97C235CE9BA00840CC1 /* Navigatable.swift */,
+				6312F80E22B94D510050DA57 /* Screen.swift */,
+				6312F7F822B94D500050DA57 /* BackFromNextHandleable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		6312F7D922B94C2D0050DA57 = {
 			isa = PBXGroup;
 			children = (
@@ -197,7 +220,8 @@
 		6312F7E522B94C2D0050DA57 /* ArrvisCore */ = {
 			isa = PBXGroup;
 			children = (
-				6312F80B22B94D510050DA57 /* Navigator */,
+				5ACAB977235CE38900840CC1 /* Core */,
+				6312F80B22B94D510050DA57 /* Navigate */,
 				6312F7FF22B94D510050DA57 /* BaseViewControllers */,
 				6312F7FD22B94D500050DA57 /* Models */,
 				6350F5F022BACA2000B3B5FD /* BaseViews */,
@@ -244,15 +268,15 @@
 			path = BaseViewControllers;
 			sourceTree = "<group>";
 		};
-		6312F80B22B94D510050DA57 /* Navigator */ = {
+		6312F80B22B94D510050DA57 /* Navigate */ = {
 			isa = PBXGroup;
 			children = (
+				5ACAB979235CE69700840CC1 /* Protocols */,
 				6312F80C22B94D510050DA57 /* BaseRootViewController.swift */,
 				6312F80F22B94D510050DA57 /* BaseNavigator.swift */,
-				6312F80E22B94D510050DA57 /* Screen.swift */,
 				6312F80D22B94D510050DA57 /* SystemScreens.swift */,
 			);
-			path = Navigator;
+			path = Navigate;
 			sourceTree = "<group>";
 		};
 		6312F82822B94FC40050DA57 /* Frameworks */ = {
@@ -345,6 +369,8 @@
 			children = (
 				6350F60222BACC2800B3B5FD /* ErrorHandleable.swift */,
 				6350F60322BACC2800B3B5FD /* LoadingShowable.swift */,
+				5ACAB97E235CEFE800840CC1 /* CameraRollEventHandler.swift */,
+				5ACAB980235CF00E00840CC1 /* MediaPickerTypeSelectActionSheetHandler.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -415,7 +441,6 @@
 		639D3FB122CAFC5900450217 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				6312F7F822B94D500050DA57 /* BackFromNextHandleable.swift */,
 				639D3F0422CAECA400450217 /* BarButtonItemSettable.swift */,
 				639D3F0822CAF4FB00450217 /* DidFirstLayoutSubviewsHandleable.swift */,
 				639D3F0022CAE2AC00450217 /* KeyboardDisplayable.swift */,
@@ -557,9 +582,11 @@
 				6350F60A22BACC2900B3B5FD /* LoadingShowable.swift in Sources */,
 				6350F60822BACC2900B3B5FD /* WireframeInterface.swift in Sources */,
 				6312F82622B94D510050DA57 /* Screen.swift in Sources */,
+				5ACAB97F235CEFE800840CC1 /* CameraRollEventHandler.swift in Sources */,
 				6312F81922B94D510050DA57 /* BaseModel.swift in Sources */,
 				6350F60722BACC2900B3B5FD /* ViewInterface.swift in Sources */,
 				6350F5F622BACA2000B3B5FD /* InsetsSettableLabel.swift in Sources */,
+				5ACAB97D235CE9BA00840CC1 /* Navigatable.swift in Sources */,
 				6350F5D722BAC8B400B3B5FD /* UIBarButtonItemEx.swift in Sources */,
 				6312F81B22B94D510050DA57 /* BaseViewController.swift in Sources */,
 				6388E2C022C055A900A30740 /* BaseGraphQLService.swift in Sources */,
@@ -581,6 +608,7 @@
 				6312F81322B94D510050DA57 /* HttpStatusCode.swift in Sources */,
 				6350F5FA22BACA2000B3B5FD /* BaseTextField.swift in Sources */,
 				6350F5DB22BAC8B400B3B5FD /* UITextFieldEx.swift in Sources */,
+				5ACAB981235CF00E00840CC1 /* MediaPickerTypeSelectActionSheetHandler.swift in Sources */,
 				63DBAD6722C30A7F00A020CD /* EventModels.swift in Sources */,
 				63F7C18B22E0E1EC0005E185 /* DateSelectPicker.swift in Sources */,
 				6350F5D822BAC8B400B3B5FD /* UIViewEx.swift in Sources */,
