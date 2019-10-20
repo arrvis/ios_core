@@ -6,7 +6,6 @@
 //  Copyright © 2019 Arrvis Co., Ltd. All rights reserved.
 //
 
-import UIKit
 import RxSwift
 
 private var originalContentInsetKey = 0
@@ -28,13 +27,8 @@ public protocol KeyboardDisplayable where Self: UIViewController {
 
 extension KeyboardDisplayable {
 
-    /// キーボード表示時にリサイズさせるScrollView
-    public var scrollViewForResizeKeyboard: UIScrollView? {
-        return nil
-    }
-
     /// キーボード表示状態
-    public var isKeyboardVisible: Bool {
+    public private(set) var isKeyboardVisible: Bool {
         get {
             return objc_getAssociatedObject(self, &isKeyboardVisibleKey) as? Bool ?? false
         }
@@ -115,7 +109,7 @@ extension KeyboardDisplayable {
         keyboardSubscribers?.forEach {$0.disposed(by: self)}
     }
 
-    func unsubscribeKeyboardEvents() {
+    internal func unsubscribeKeyboardEvents() {
         keyboardSubscribers?.forEach { sub in sub.dispose() }
     }
 }

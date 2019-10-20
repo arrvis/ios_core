@@ -6,8 +6,6 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
-import UIKit
-
 /// UITableViewController基底クラス
 open class BaseTableViewController: UITableViewController, ViewControllerProtocols {
 
@@ -57,4 +55,8 @@ open class BaseTableViewController: UITableViewController, ViewControllerProtoco
 
     /// 右BarButtonItemタップ
     public func didTapRightBarButtonItem(_ index: Int) {}
+
+    /// MARK: - KeyboardDisplayable
+
+    public var scrollViewForResizeKeyboard: UIScrollView? { return nil }
 }

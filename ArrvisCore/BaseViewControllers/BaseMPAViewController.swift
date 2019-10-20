@@ -57,7 +57,7 @@ open class BaseMPAViewController: BaseViewController {
         }
     }
 
-    // MARK: - DidFirstLayoutSubviewsHandleable
+    // MARK: - ExtendsViewControllerEventsHandleable
 
     open override func onDidFirstLayoutSubviews() {
         if let webView = webView {
@@ -129,8 +129,9 @@ extension BaseMPAViewController: WKNavigationDelegate {
 // MARK: - WKScriptMessageHandler
 extension BaseMPAViewController: WKScriptMessageHandler {
 
-    public func userContentController(_ userContentController: WKUserContentController,
-                                      didReceive message: WKScriptMessage) {
+    public func userContentController(
+        _ userContentController: WKUserContentController,
+        didReceive message: WKScriptMessage) {
         let data = (message.body as? String)?.data(using: .utf8)
         onReceiveCallback(message.name, data)
         pageCallbacks[message.name]?(data)

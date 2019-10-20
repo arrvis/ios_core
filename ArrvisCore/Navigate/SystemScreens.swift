@@ -6,6 +6,8 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
+import MobileCoreServices
+
 /// システムスクリーン
 public enum SystemScreens: String, CaseIterable, Screen {
     case alert
@@ -47,115 +49,5 @@ public enum SystemScreens: String, CaseIterable, Screen {
             }
             return payload.createImagePickerController()
         }
-    }
-}
-
-/// Alert情報
-public struct AlertInfo {
-
-    /// タイトル
-    public let title: String?
-
-    /// メッセージ
-    public let message: String?
-
-    /// アクション
-    public let actions: [String: (UIAlertAction.Style, () -> Void)]
-
-    /// キャンセルタイトル
-    public let cancel: String?
-
-    /// キャンセルハンドラー
-    public let onCancel: (() -> Void)?
-
-    /// UIAlertController生成
-    ///
-    /// - Parameter preferredStyle: preferredStyle
-    /// - Returns: UIAlertController
-    public func createAlertController(_ preferredStyle: UIAlertController.Style) -> UIAlertController {
-        let vc =  UIAlertController(title: nil, message: nil, preferredStyle: preferredStyle)
-        vc.title = title
-        vc.message = message
-        var actions = self.actions.map { pair -> UIAlertAction in
-            return UIAlertAction(title: pair.key, style: pair.value.0, handler: { _ in
-                pair.value.1()
-            })
-        }
-        if let cancel = cancel {
-            let cancelAction = UIAlertAction(title: cancel, style: .destructive, handler: { _ in
-                self.onCancel?()
-            })
-            if vc.preferredStyle == .alert {
-                actions.insert(cancelAction, at: 0)
-            } else {
-                actions.append(cancelAction)
-            }
-        }
-        vc.popoverPresentationController?.sourceView = vc.view
-        vc.popoverPresentationController?.sourceRect = CGRect(
-            x: vc.view.frame.midX,
-            y: vc.view.frame.midY,
-            width: 0,
-            height: 0
-        )
-        vc.popoverPresentationController?.permittedArrowDirections = []
-        actions.forEach { vc.addAction($0) }
-        return vc
-    }
-}
-
-/// Activity情報
-public struct ActivityInfo {
-
-    /// activityItems
-    public let activityItems: [Any]
-
-    /// applicationActivities
-    public let applicationActivities: [UIActivity]?
-
-    /// excludedActivityTypes
-    public let excludedActivityTypes: [UIActivity.ActivityType]?
-
-    /// UIActivityViewController生成
-    ///
-    /// - Returns: UIActivityViewController
-    public func createActivityViewController() -> UIActivityViewController {
-        let vc = UIActivityViewController(
-            activityItems: activityItems,
-            applicationActivities: applicationActivities)
-        vc.excludedActivityTypes = excludedActivityTypes
-        vc.popoverPresentationController?.sourceView = vc.view
-        vc.popoverPresentationController?.sourceRect = CGRect(
-            x: vc.view.frame.midX,
-            y: vc.view.frame.midY,
-            width: 0,
-            height: 0
-        )
-        vc.popoverPresentationController?.permittedArrowDirections = []
-        return vc
-    }
-}
-
-/// ImagePicker情報
-public struct ImagePickerInfo {
-
-    /// delegate
-    public weak var delegate: (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
-
-    /// sourceType
-    public let sourceType: UIImagePickerController.SourceType
-
-    /// mediaTypes
-    public let mediaTypes: [CFString]
-
-    /// UIImagePickerController生成
-    ///
-    /// - Returns: UIImagePickerController
-    public func createImagePickerController() -> UIImagePickerController {
-        let vc = UIImagePickerController()
-        vc.delegate = delegate
-        vc.sourceType = sourceType
-        vc.mediaTypes = mediaTypes as [String]
-        return vc
     }
 }

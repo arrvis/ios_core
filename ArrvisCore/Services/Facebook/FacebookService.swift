@@ -6,7 +6,6 @@
 //  Copyright © 2019 Arrvis Co., Ltd. All rights reserved.
 //
 
-import Foundation
 import RxSwift
 import FBSDKLoginKit
 

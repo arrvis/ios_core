@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import SwiftEventBus
 
 /// ルートViewController基底クラス
 open class BaseRootViewController: UIViewController {
@@ -116,6 +117,7 @@ extension BaseRootViewController {
     /// Replace
     private func replaceChildViewController(_ vc: UIViewController) {
         UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: false, completion: nil)
+        subscribeEvents(vc)
         func change() {
             addChild(vc)
             view.addSubviewWithFit(vc.view)
@@ -135,6 +137,7 @@ extension BaseRootViewController {
 
     /// Push
     private func pushChildViewController(_ vc: UIViewController, _ fromRoot: Bool, _ animate: Bool) {
+        subscribeEvents(vc)
         if fromRoot {
             currentRootNavigationController?.pushViewController(vc, animated: animate)
         } else {
@@ -163,6 +166,7 @@ extension BaseRootViewController {
 
     /// Present
     private func presentChildViewController(_ vc: UIViewController, _ animate: Bool) {
+        subscribeEvents(vc)
         currentViewController()?.present(vc, animated: animate)
     }
 
@@ -181,5 +185,16 @@ extension BaseRootViewController {
             return
         }
         ex.onBackFromNext(result)
+    }
+
+    private func subscribeEvents(_ vc: UIViewController) {
+        vc.rx.methodInvoked(#selector(UINavigationControllerDelegate.navigationController(_:didShow:animated:)))
+            .subscribe(onNext: { _ in
+                SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
+            }).disposed(by: self)
+        vc.rx.methodInvoked(#selector(UIViewController.dismiss))
+            .subscribe(onNext: { _ in
+                SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
+            }).disposed(by: self)
     }
 }

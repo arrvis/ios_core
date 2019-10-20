@@ -6,8 +6,6 @@
 //  Copyright © 2019 Arrvis Co., Ltd. All rights reserved.
 //
 
-import UIKit
-
 /// BarButtonItem設定可能
 public protocol BarButtonItemSettable where Self: UIViewController {
 

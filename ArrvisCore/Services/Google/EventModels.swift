@@ -6,8 +6,6 @@
 //  Copyright © 2019 Arrvis Co., Ltd. All rights reserved.
 //
 
-import Foundation
-
 struct GoogleEventsResponse: BaseModel {
     public let items: [GoogleEvent]
 }

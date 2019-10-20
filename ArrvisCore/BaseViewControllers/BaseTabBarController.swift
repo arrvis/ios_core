@@ -6,8 +6,6 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
-import UIKit
-
 /// UITabBarController基底クラス
 open class BaseTabBarController: UITabBarController, ViewControllerProtocols {
 
@@ -61,4 +59,8 @@ open class BaseTabBarController: UITabBarController, ViewControllerProtocols {
 
     /// 右BarButtonItemタップ
     public func didTapRightBarButtonItem(_ index: Int) {}
+
+    /// MARK: - KeyboardDisplayable
+
+    public var scrollViewForResizeKeyboard: UIScrollView? { return nil }
 }

@@ -6,7 +6,6 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
-import Foundation
 import Alamofire
 import RxSwift
 import Reachability

@@ -6,11 +6,8 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
-import UIKit
-import SwiftEventBus
-
 /// UINavigationController基底クラス
-open class BaseNavigationController: UINavigationController, ViewControllerProtocols {
+open class BaseNavigationController: UINavigationController, UINavigationControllerDelegate, ViewControllerProtocols {
 
     // MARK: - Variables
 
@@ -50,13 +47,6 @@ open class BaseNavigationController: UINavigationController, ViewControllerProto
         viewWillDisAppearForProtocols()
     }
 
-    open override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        super.dismiss(animated: flag) {
-            completion?()
-            SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
-        }
-    }
-
     // MARK: - ExtendsViewControllerEventsHandleable
 
     /// 初回layoutSubviews
@@ -86,14 +76,8 @@ open class BaseNavigationController: UINavigationController, ViewControllerProto
 
     /// 右BarButtonItemタップ
     public func didTapRightBarButtonItem(_ index: Int) {}
-}
 
-// MARK: - UINavigationControllerDelegate
-extension BaseNavigationController: UINavigationControllerDelegate {
+    /// MARK: - KeyboardDisplayable
 
-    public func navigationController(_ navigationController: UINavigationController,
-                                     didShow viewController: UIViewController,
-                                     animated: Bool) {
-        SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
-    }
+    public var scrollViewForResizeKeyboard: UIScrollView? { return nil }
 }

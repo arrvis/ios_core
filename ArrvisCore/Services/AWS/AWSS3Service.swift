@@ -6,7 +6,6 @@
 //  Copyright © 2019 Arrvis Co., Ltd. All rights reserved.
 //
 
-import UIKit
 import Photos
 import RxSwift
 import AWSCore
