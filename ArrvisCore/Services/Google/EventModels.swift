@@ -15,18 +15,23 @@ struct GoogleEventsResponse: BaseModel {
 /// Googleイベント
 public struct GoogleEvent: BaseModel {
     public let id: String
-    public let created: String
-    public let updated: String
-    public let summary: String
-    public let start: GoogleDatetime
-    public let end: GoogleDatetime
+    public let created: String?
+    public let updated: String?
+    public let summary: String?
+    public let start: GoogleDatetime?
+    public let end: GoogleDatetime?
     public let recurringEventId: String?
     public let originalStartTime: GoogleDatetime?
     public let recurrence: [String]?
-    public let sequence: Int
+    public let sequence: Int?
+    public let status: String
 
-    public var updatedAt: Date {
-        return Date.fromGoogleApiFormat(updated)
+    public var updatedAt: Date? {
+        if let updated = updated {
+            return Date.fromGoogleApiFormat(updated)
+        } else {
+            return nil
+        }
     }
 }
 
