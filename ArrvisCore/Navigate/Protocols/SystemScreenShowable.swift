@@ -18,9 +18,6 @@ public struct AlertInfo {
     /// メッセージ
     public let message: String?
 
-    /// カスタムView
-    public let customView: UIView?
-
     /// アクション
     public let actions: [String: (UIAlertAction.Style, () -> Void)]
 
@@ -38,10 +35,6 @@ public struct AlertInfo {
         let vc =  UIAlertController(title: nil, message: nil, preferredStyle: preferredStyle)
         vc.title = title
         vc.message = message
-        if let customView = customView {
-            vc.view.addSubview(customView)
-            customView.edgesToSuperview()
-        }
         var actions = self.actions.map { pair -> UIAlertAction in
             return UIAlertAction(title: pair.key, style: pair.value.0, handler: { _ in
                 pair.value.1()
@@ -84,7 +77,6 @@ extension AlertShowable {
         let alertInfo = AlertInfo(
             title: title,
             message: message,
-            customView: nil,
             actions: [ ok: (.default, { onOk?() }) ],
             cancel: nil,
             onCancel: nil
@@ -102,7 +94,6 @@ extension AlertShowable {
         let alertInfo = AlertInfo(
             title: title,
             message: message,
-            customView: nil,
             actions: [ ok: (.default, { onOk() }) ],
             cancel: cancel,
             onCancel: onCancel
@@ -126,7 +117,6 @@ extension ActionSheetShowable {
         let alertInfo = AlertInfo(
             title: title,
             message: message,
-            customView: nil,
             actions: actions,
             cancel: cancel,
             onCancel: onCancel
