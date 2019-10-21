@@ -19,7 +19,7 @@ public struct AlertInfo {
     public let message: String?
 
     /// アクション
-    public let actions: [String: (UIAlertAction.Style, () -> Void)]
+    public let actions: [UIAlertAction]
 
     /// キャンセルタイトル
     public let cancel: String?
@@ -35,19 +35,15 @@ public struct AlertInfo {
         let vc =  UIAlertController(title: nil, message: nil, preferredStyle: preferredStyle)
         vc.title = title
         vc.message = message
-        var actions = self.actions.map { pair -> UIAlertAction in
-            return UIAlertAction(title: pair.key, style: pair.value.0, handler: { _ in
-                pair.value.1()
-            })
-        }
+        var mutableActions = actions
         if let cancel = cancel {
             let cancelAction = UIAlertAction(title: cancel, style: .destructive, handler: { _ in
                 self.onCancel?()
             })
             if vc.preferredStyle == .alert {
-                actions.insert(cancelAction, at: 0)
+                mutableActions.insert(cancelAction, at: 0)
             } else {
-                actions.append(cancelAction)
+                mutableActions.append(cancelAction)
             }
         }
         vc.popoverPresentationController?.sourceView = vc.view
@@ -58,7 +54,7 @@ public struct AlertInfo {
             height: 0
         )
         vc.popoverPresentationController?.permittedArrowDirections = []
-        actions.forEach { vc.addAction($0) }
+        mutableActions.forEach { vc.addAction($0) }
         return vc
     }
 }
@@ -77,7 +73,11 @@ extension AlertShowable {
         let alertInfo = AlertInfo(
             title: title,
             message: message,
-            actions: [ ok: (.default, { onOk?() }) ],
+            actions: [
+                UIAlertAction(title: ok, style: .default, handler: { _ in
+                    onOk?()
+                })
+            ],
             cancel: nil,
             onCancel: nil
         )
@@ -94,7 +94,11 @@ extension AlertShowable {
         let alertInfo = AlertInfo(
             title: title,
             message: message,
-            actions: [ ok: (.default, { onOk() }) ],
+            actions: [
+                UIAlertAction(title: ok, style: .default, handler: { _ in
+                    onOk()
+                })
+            ],
             cancel: cancel,
             onCancel: onCancel
         )
@@ -111,7 +115,7 @@ extension ActionSheetShowable {
     public func showActionSheet(
         _ title: String? = nil,
         _ message: String? = nil,
-        _ actions: [String: (UIAlertAction.Style, () -> Void)],
+        _ actions: [UIAlertAction],
         _ cancel: String,
         _ onCancel: (() -> Void)? = nil) {
         let alertInfo = AlertInfo(

@@ -17,14 +17,22 @@ extension ViewInterface {
         _ showable: SystemScreenShowable,
         _ mediaTypes: [CFString] = [kUTTypeImage, kUTTypeMovie]) {
         var actions = [
-            photoLibraryButtonTitle(): (UIAlertAction.Style.default, { [unowned self] in
-                showable.showLibraryScreen(self, mediaTypes)
-            })
+            UIAlertAction(
+                title: photoLibraryButtonTitle(),
+                style: .default,
+                handler: { [unowned self] _ in
+                    showable.showLibraryScreen(self, mediaTypes)
+                }
+            )
         ]
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            actions[cameraButtonTitle()] = (.default, { [unowned self] in
-                showable.showCameraScreen(self, mediaTypes)
-            })
+            actions.append(UIAlertAction(
+                title: cameraButtonTitle(),
+                style: .default,
+                handler: { [unowned self] _ in
+                    showable.showCameraScreen(self, mediaTypes)
+                }
+            ))
         }
         showable.showActionSheet(
             sheetTitle(),
