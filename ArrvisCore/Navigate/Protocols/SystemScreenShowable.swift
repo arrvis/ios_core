@@ -38,6 +38,10 @@ public struct AlertInfo {
         let vc =  UIAlertController(title: nil, message: nil, preferredStyle: preferredStyle)
         vc.title = title
         vc.message = message
+        if let customView = customView {
+            vc.view.addSubview(customView)
+            customView.edgesToSuperview()
+        }
         var actions = self.actions.map { pair -> UIAlertAction in
             return UIAlertAction(title: pair.key, style: pair.value.0, handler: { _ in
                 pair.value.1()
