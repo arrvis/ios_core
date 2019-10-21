@@ -7,7 +7,7 @@
 //
 
 /// SystemScreen表示可能
-public protocol SystemScreenShowable: ActivityShowable, AlertShowable, ActionSheetShowable, ImagePickerShowable {}
+public protocol SystemScreenShowable: AlertShowable, ActionSheetShowable, ActivityShowable, ImagePickerShowable {}
 
 /// Alert情報
 public struct AlertInfo {
@@ -17,6 +17,9 @@ public struct AlertInfo {
 
     /// メッセージ
     public let message: String?
+
+    /// カスタムView
+    public let customView: UIView?
 
     /// アクション
     public let actions: [String: (UIAlertAction.Style, () -> Void)]
@@ -64,74 +67,64 @@ public struct AlertInfo {
 }
 
 public protocol AlertShowable {
-    func showOkAlert(title: String?, message: String?, ok: String?)
-    func showOkAlert(title: String?, message: String?, ok: String?, onOk: @escaping () -> Void)
-    func showConfirmAlert(
-        title: String?,
-        message: String?,
-        ok: String,
-        onOk: @escaping () -> Void,
-        cancel: String)
-    func showConfirmAlert(
-        title: String?,
-        message: String?,
-        ok: String,
-        onOk: @escaping () -> Void,
-        cancel: String,
-        onCancel: (() -> Void)?)
-    func showAlert(
-        title: String?,
-        message: String?,
-        actions: [String: (UIAlertAction.Style, () -> Void)],
-        cancel: String?,
-        onCancel: (() -> Void)?)
+    func showAlert(_ alertInfo: AlertInfo)
 }
 
 extension AlertShowable {
 
-    public func showOkAlert(title: String?, message: String?, ok: String) {
-        showOkAlert(title: title, message: message, ok: ok, onOk: {})
-    }
-
-    public func showOkAlert(title: String?, message: String?, ok: String, onOk: @escaping () -> Void) {
-        showAlert(title: title, message: message, actions: [ ok: (.default, { onOk() }) ], cancel: nil, onCancel: nil)
-    }
-
-    public func showConfirmAlert(
-        title: String?,
-        message: String?,
-        ok: String,
-        onOk: @escaping () -> Void,
-        cancel: String) {
-        showConfirmAlert(title: title, message: message, ok: ok, onOk: onOk, cancel: cancel, onCancel: nil)
+    public func showOkAlert(title: String? = nil, message: String? = nil, ok: String, onOk: (() -> Void)? = nil) {
+        let alertInfo = AlertInfo(
+            title: title,
+            message: message,
+            customView: nil,
+            actions: [ ok: (.default, { onOk?() }) ],
+            cancel: nil,
+            onCancel: nil
+        )
+        showAlert(alertInfo)
     }
 
     public func showConfirmAlert(
-        title: String?,
-        message: String?,
+        title: String? = nil,
+        message: String? = nil,
         ok: String,
         onOk: @escaping () -> Void,
         cancel: String,
-        onCancel: (() -> Void)?) {
-        showAlert(
+        onCancel: (() -> Void)? = nil) {
+        let alertInfo = AlertInfo(
             title: title,
             message: message,
-            actions: [
-                ok: (.default, { onOk() })
-            ],
+            customView: nil,
+            actions: [ ok: (.default, { onOk() }) ],
             cancel: cancel,
             onCancel: onCancel
         )
+        showAlert(alertInfo)
     }
 }
 
 public protocol ActionSheetShowable {
-    func showActionSheet(
-        title: String?,
-        message: String?,
+    func showActionSheet(_ alertInfo: AlertInfo)
+}
+
+extension ActionSheetShowable {
+
+    public func showActionSheet(
+        title: String? = nil,
+        message: String? = nil,
         actions: [String: (UIAlertAction.Style, () -> Void)],
-        cancel: String?,
-        onCancel: (() -> Void)?)
+        cancel: String,
+        onCancel: (() -> Void)? = nil) {
+        let alertInfo = AlertInfo(
+            title: title,
+            message: message,
+            customView: nil,
+            actions: actions,
+            cancel: cancel,
+            onCancel: onCancel
+        )
+        showActionSheet(alertInfo)
+    }
 }
 
 /// Activity情報
@@ -167,27 +160,21 @@ public struct ActivityInfo {
 }
 
 public protocol ActivityShowable {
-    func showActivityScreen(_ activityItems: [Any])
-    func showActivityScreen(_ activityItems: [Any], _ applicationActivities: [UIActivity]?)
-    func showActivityScreen(_ activityItems: [Any], _ excludedActivityTypes: [UIActivity.ActivityType]?)
-    func showActivityScreen(
-        _ activityItems: [Any],
-        _ applicationActivities: [UIActivity]?,
-        _ excludedActivityTypes: [UIActivity.ActivityType]?)
+    func showActivityScreen(_ activityInfo: ActivityInfo)
 }
 
 extension ActivityShowable {
 
-    public func showActivityScreen(_ activityItems: [Any]) {
-        showActivityScreen(activityItems, nil, nil)
-    }
-
-    public func showActivityScreen(_ activityItems: [Any], _ applicationActivities: [UIActivity]?) {
-        showActivityScreen(activityItems, applicationActivities, nil)
-    }
-
-    public func showActivityScreen(_ activityItems: [Any], _ excludedActivityTypes: [UIActivity.ActivityType]?) {
-        showActivityScreen(activityItems, nil, excludedActivityTypes)
+    public func showActivityScreen(
+        _ activityItems: [Any] = [],
+        _ applicationActivities: [UIActivity]? = nil,
+        _ excludedActivityTypes: [UIActivity.ActivityType]? = nil) {
+        let activityInfo = ActivityInfo(
+            activityItems: activityItems,
+            applicationActivities: applicationActivities,
+            excludedActivityTypes: excludedActivityTypes
+        )
+        showActivityScreen(activityInfo)
     }
 }
 

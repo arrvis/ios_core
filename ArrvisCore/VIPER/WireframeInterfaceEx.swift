@@ -59,50 +59,16 @@ extension WireframeInterface {
 // MARK: - SystemScreenShowable
 extension WireframeInterface {
 
-    public func showActivityScreen(
-        _ activityItems: [Any],
-        _ applicationActivities: [UIActivity]?,
-        _ excludedActivityTypes: [UIActivity.ActivityType]?) {
-        navigator.navigate(
-            screen: SystemScreens.activity,
-            payload: ActivityInfo(
-                activityItems: activityItems,
-                applicationActivities: applicationActivities,
-                excludedActivityTypes: excludedActivityTypes
-            )
-        )
-    }
-
-    public func showAlert(
-        title: String?,
-        message: String?,
-        actions: [String: (UIAlertAction.Style, () -> Void)],
-        cancel: String?,
-        onCancel: (() -> Void)?) {
-        let alertInfo = AlertInfo(
-            title: title,
-            message: message,
-            actions: actions,
-            cancel: cancel,
-            onCancel: onCancel
-        )
+    public func showAlert(_ alertInfo: AlertInfo) {
         navigator.navigate(screen: SystemScreens.alert, payload: alertInfo)
     }
 
-    public func showActionSheet(
-        title: String?,
-        message: String?,
-        actions: [String: (UIAlertAction.Style, () -> Void)],
-        cancel: String?,
-        onCancel: (() -> Void)?) {
-        let alertInfo = AlertInfo(
-            title: title,
-            message: message,
-            actions: actions,
-            cancel: cancel,
-            onCancel: onCancel
-        )
+    public func showActionSheet(_ alertInfo: AlertInfo) {
         navigator.navigate(screen: SystemScreens.actionSheet, payload: alertInfo)
+    }
+
+    public func showActivityScreen(_ activityInfo: ActivityInfo) {
+        navigator.navigate(screen: SystemScreens.activity, payload: activityInfo)
     }
 
     private var cameraRollHandler: CameraRollEventHandler? {
