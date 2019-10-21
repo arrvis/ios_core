@@ -72,7 +72,11 @@ public protocol AlertShowable {
 
 extension AlertShowable {
 
-    public func showOkAlert(title: String? = nil, message: String? = nil, ok: String, onOk: (() -> Void)? = nil) {
+    public func showOkAlert(
+        _ title: String? = nil,
+        _ message: String? = nil,
+        _ ok: String,
+        _ onOk: (() -> Void)? = nil) {
         let alertInfo = AlertInfo(
             title: title,
             message: message,
@@ -85,12 +89,12 @@ extension AlertShowable {
     }
 
     public func showConfirmAlert(
-        title: String? = nil,
-        message: String? = nil,
-        ok: String,
-        onOk: @escaping () -> Void,
-        cancel: String,
-        onCancel: (() -> Void)? = nil) {
+        _ title: String? = nil,
+        _ message: String? = nil,
+        _ ok: String,
+        _ onOk: @escaping () -> Void,
+        _ cancel: String,
+        _ onCancel: (() -> Void)? = nil) {
         let alertInfo = AlertInfo(
             title: title,
             message: message,
@@ -110,11 +114,11 @@ public protocol ActionSheetShowable {
 extension ActionSheetShowable {
 
     public func showActionSheet(
-        title: String? = nil,
-        message: String? = nil,
-        actions: [String: (UIAlertAction.Style, () -> Void)],
-        cancel: String,
-        onCancel: (() -> Void)? = nil) {
+        _ title: String? = nil,
+        _ message: String? = nil,
+        _ actions: [String: (UIAlertAction.Style, () -> Void)],
+        _ cancel: String,
+        _ onCancel: (() -> Void)? = nil) {
         let alertInfo = AlertInfo(
             title: title,
             message: message,

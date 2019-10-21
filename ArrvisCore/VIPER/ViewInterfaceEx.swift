@@ -27,10 +27,10 @@ extension ViewInterface {
             })
         }
         showable.showActionSheet(
-            title: sheetTitle(),
-            message: sheetMessage(),
-            actions: actions,
-            cancel: cancelButtonTitle()) { [unowned self] in
+            sheetTitle(),
+            sheetMessage(),
+            actions,
+            cancelButtonTitle()) { [unowned self] in
             self.onCancel()
         }
     }
