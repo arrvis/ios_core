@@ -46,6 +46,7 @@ public struct AlertInfo {
                 mutableActions.append(cancelAction)
             }
         }
+        mutableActions.forEach { vc.addAction($0) }
         vc.popoverPresentationController?.sourceView = vc.view
         vc.popoverPresentationController?.sourceRect = CGRect(
             x: vc.view.frame.midX,
@@ -54,7 +55,6 @@ public struct AlertInfo {
             height: 0
         )
         vc.popoverPresentationController?.permittedArrowDirections = []
-        mutableActions.forEach { vc.addAction($0) }
         return vc
     }
 }
