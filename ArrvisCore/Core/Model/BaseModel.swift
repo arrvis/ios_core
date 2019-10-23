@@ -6,8 +6,6 @@
 //  Copyright © 2019年 Arrvis Co., Ltd. All rights reserved.
 //
 
-import Apollo
-
 // Model Protocol
 public protocol BaseModel: Codable {
     associatedtype ModelType: Codable = Self
@@ -37,10 +35,5 @@ extension BaseModel {
             return false
         }
         return true
-    }
-
-    /// GraphQLSelectionSetから生成
-    public static func fromSet(_ set: GraphQLSelectionSet) -> ModelType {
-        return fromJson(set.toJsonString()!)
     }
 }

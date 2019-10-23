@@ -38,3 +38,11 @@ extension Date {
         return Date.fromString(dateTimeString, format: "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ")!
     }
 }
+
+extension BaseModel {
+
+    /// GraphQLSelectionSetから生成
+    public static func fromSet(_ set: GraphQLSelectionSet) -> ModelType {
+        return fromJson(set.toJsonString()!)
+    }
+}
