@@ -11,7 +11,7 @@ iOSのCoreモジュール
   spec.source       = { :git => "https://github.com/arrvis/ios_core.git", :branch => "develop" }
 
   spec.subspec 'Core' do |subspec|
-    subspec.source_files = 'Root/Core/**/*.{swift}'
-    subspec.resources = 'Root/Core/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.source_files = 'Core/**/*.{swift}'
+    subspec.resources = 'Core/**/*.{storyboard,xib,png,jpeg,jpg}'
   end
 end
