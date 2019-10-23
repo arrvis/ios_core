@@ -1,8 +1,9 @@
 Pod::Spec.new do |spec|
   spec.name         = "ArrvisCore"
-  spec.version      = "2.0.0"
+  spec.version      = "1.0.0"
   spec.summary      = "iOS Core."
   spec.description  = <<-DESC
+iOSのCoreモジュール
                    DESC
   spec.homepage     = "https://github.com/arrvis/ios_core"
   spec.license      = "MIT"
