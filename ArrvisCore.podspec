@@ -24,7 +24,11 @@ iOSのCoreモジュール
   spec.subspec 'Navigate' do |subspec|
     subspec.source_files = 'ArrvisCore/Navigate/**/*.{swift}'
     subspec.resources = 'ArrvisCore/Navigate/**/*.{storyboard,xib,png,jpeg,jpg}'
-    subspec.dependency 'Compass', :git => 'git@github.com:arrvis/Compass.git'
+    subspec.pod_target_xcconfig = {
+      'FRAMEWORK_SEARCH_PATHS' => [
+        'lib'
+      ].join(' ')
+    }
   end
 
   spec.subspec 'BaseViewControllers' do |subspec|
