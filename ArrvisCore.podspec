@@ -20,4 +20,14 @@ iOSのCoreモジュール
     subspec.dependency 'TinyConstraints', '4.0.1'
     subspec.dependency 'SwiftEventBus', '5.0.0'
   end
+
+  spec.subspec 'Navigate' do |subspec|
+    subspec.source_files = 'ArrvisCore/Navigate/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/Navigate/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.dependency 'ArrvisCore/Core'
+    subspec.dependency 'RxSwift', '~> 5'
+    subspec.dependency 'RxCocoa', '~> 5'
+    subspec.dependency 'SwiftEventBus', '5.0.0'
+    subspec.dependency 'Compass', '6.0.0'
+  end
 end
