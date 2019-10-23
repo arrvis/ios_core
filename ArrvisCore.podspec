@@ -28,6 +28,6 @@ iOSのCoreモジュール
     subspec.dependency 'RxSwift', '~> 5'
     subspec.dependency 'RxCocoa', '~> 5'
     subspec.dependency 'SwiftEventBus', '5.0.0'
-    subspec.dependency 'Compass', '6.0.0'
+    subspec.dependency 'Compass'
   end
 end
