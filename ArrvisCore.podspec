@@ -24,10 +24,18 @@ iOSのCoreモジュール
   spec.subspec 'Navigate' do |subspec|
     subspec.source_files = 'ArrvisCore/Navigate/**/*.{swift}'
     subspec.resources = 'ArrvisCore/Navigate/**/*.{storyboard,xib,png,jpeg,jpg}'
-    subspec.dependency 'ArrvisCore/Core'
-    subspec.dependency 'RxSwift', '~> 5'
-    subspec.dependency 'RxCocoa', '~> 5'
-    subspec.dependency 'SwiftEventBus', '5.0.0'
     subspec.dependency 'Compass'
+  end
+
+  spec.subspec 'BaseViewControllers' do |subspec|
+    subspec.source_files = 'ArrvisCore/BaseViewControllers/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/BaseViewControllers/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.dependency 'ArrvisCore/Core'
+  end
+
+  spec.subspec 'VIPER' do |subspec|
+    subspec.source_files = 'ArrvisCore/VIPER/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/VIPER/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.dependency 'ArrvisCore/Core'
   end
 end
