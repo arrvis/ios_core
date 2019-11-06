@@ -48,14 +48,14 @@ public protocol PresenterInterface: class {
         _ title: String?,
         _ message: String?,
         _ actions: [UIAlertAction],
-        _ cancel: String?,
+        _ cancel: String,
         _ onCancel: (() -> Void)?
     )
     func onShowActionSheetRequired(
         _ title: String?,
         _ message: String?,
         _ actions: [UIAlertAction],
-        _ cancel: String?,
+        _ cancel: String,
         _ onCancel: (() -> Void)?
     )
 
