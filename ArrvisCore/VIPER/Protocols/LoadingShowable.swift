@@ -8,13 +8,7 @@
 
 import TinyConstraints
 
-public protocol LoadingShowable {
-    func showLoading()
-    func showLoading(_ needFullScreen: Bool)
-    func showLoading(message: String)
-    func showLoading(message: String, _ needFullScreen: Bool)
-    func hideLoading()
-}
+public protocol LoadingShowable {}
 
 extension LoadingShowable where Self: UIViewController {
 
@@ -31,7 +25,7 @@ extension LoadingShowable where Self: UIViewController {
         }
     }
 
-    func showLoading(message: String) {
+    public func showLoading(message: String) {
         showLoading(message: message, false)
     }
 
@@ -49,7 +43,7 @@ extension LoadingShowable where Self: UIViewController {
     }
 }
 
-struct ActivityIndicatorManager {
+private struct ActivityIndicatorManager {
 
     static let shared: ActivityIndicatorManager = {
         return ActivityIndicatorManager()
