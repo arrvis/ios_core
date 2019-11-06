@@ -30,36 +30,49 @@ public protocol PresenterInterface: class {
         _ excludedActivityTypes: [UIActivity.ActivityType]?
     )
 
-    func onShowOkAlertRequired(title: String?, message: String?, ok: String, onOk: @escaping () -> Void)
+    func onShowOkAlertRequired(
+        _ title: String?,
+        _ message: String?,
+        _ ok: String,
+        _ onOk: @escaping () -> Void
+    )
     func onShowConfirmAlertRequired(
-        title: String?,
-        message: String?,
-        ok: String,
-        onOk: @escaping () -> Void,
-        cancel: String,
-        onCancel: (() -> Void)?
+        _ title: String?,
+        _ message: String?,
+        _ ok: String,
+        _ onOk: @escaping () -> Void,
+        _ cancel: String,
+        _ onCancel: (() -> Void)?
     )
     func onShowAlertRequired(
-        title: String?,
-        message: String?,
-        actions: [UIAlertAction],
-        cancel: String?,
-        onCancel: (() -> Void)?
+        _ title: String?,
+        _ message: String?,
+        _ actions: [UIAlertAction],
+        _ cancel: String?,
+        _ onCancel: (() -> Void)?
     )
     func onShowActionSheetRequired(
-        title: String?,
-        message: String?,
-        actions: [UIAlertAction],
-        cancel: String?,
-        onCancel: (() -> Void)?
+        _ title: String?,
+        _ message: String?,
+        _ actions: [UIAlertAction],
+        _ cancel: String?,
+        _ onCancel: (() -> Void)?
     )
 
     func onShowMediaPickerSelectActionSheetScreenRequired(
-        _ delegate: MediaPickerTypeSelectActionSheetInfoHandler & CameraRollEventHandler,
-        _ mediaTypes: [CFString])
+        _ delegate: MediaPickerTypeSelectActionSheetInfoHandler,
+        _ mediaTypes: [CFString],
+        _ cancel: String
+    )
 
-    func onShowLibraryScreenRequired(_ handler: CameraRollEventHandler, _ mediaTypes: [CFString])
-    func onShowCameraScreenRequired(_ handler: CameraRollEventHandler, _ mediaTypes: [CFString])
+    func onShowLibraryScreenRequired(
+        _ handler: CameraRollEventHandler,
+        _ mediaTypes: [CFString]
+    )
+    func onShowCameraScreenRequired(
+        _ handler: CameraRollEventHandler,
+        _ mediaTypes: [CFString]
+    )
 }
 
 /// Interactor
