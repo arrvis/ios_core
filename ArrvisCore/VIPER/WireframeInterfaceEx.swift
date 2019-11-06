@@ -93,15 +93,15 @@ extension WireframeInterface {
     }
 
     public func showMediaPickerSelectActionSheet(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
-        _ handler: MediaPickerTypeSelectActionSheetInfoHandler & CameraRollEventHandler,
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate & CameraRollEventHandler,
+        _ handler: MediaPickerTypeSelectActionSheetInfoHandler,
         _ mediaTypes: [CFString]) {
         var actions = [
             UIAlertAction(
                 title: handler.photoLibraryButtonTitle(),
                 style: .default,
                 handler: { [unowned self] _ in
-                    self.showLibraryScreen(delegate, handler, mediaTypes)
+                    self.showLibraryScreen(delegate, mediaTypes)
             })
         ]
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -109,7 +109,7 @@ extension WireframeInterface {
                 title: handler.cameraButtonTitle(),
                 style: .default,
                 handler: { [unowned self] _ in
-                    self.showCameraScreen(delegate, handler, mediaTypes)
+                    self.showCameraScreen(delegate, mediaTypes)
                 }
             ))
         }
@@ -123,8 +123,7 @@ extension WireframeInterface {
     }
 
     public func showLibraryScreen(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
-        _ handler: CameraRollEventHandler,
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate & CameraRollEventHandler,
         _ mediaTypes: [CFString]) {
         func requestAccessToPhotoLibrary() -> Observable<PHAuthorizationStatus> {
             return Observable.create({ observer in
@@ -144,15 +143,14 @@ extension WireframeInterface {
                 )
                 self.navigator.navigate(screen: SystemScreens.imagePicker, payload: imagePickerInfo)
             } else {
-                handler.onFailAccessPhotoLibrary()
+                delegate.onFailAccessPhotoLibrary()
             }
         }).disposed(by: disposeBag)
     }
 
     /// カメラスクリーン表示
     public func showCameraScreen(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
-        _ handler: CameraRollEventHandler,
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate & CameraRollEventHandler,
         _ mediaTypes: [CFString]) {
         func requestAccessToTakeMovie() -> Observable<Bool> {
             return Observable.create({ observer in
@@ -168,7 +166,7 @@ extension WireframeInterface {
                 let imagePickerInfo = ImagePickerInfo(delegate: delegate, sourceType: .camera, mediaTypes: mediaTypes)
                 self.navigator.navigate(screen: SystemScreens.imagePicker, payload: imagePickerInfo)
             } else {
-                handler.onFailAccessCamera()
+                delegate.onFailAccessCamera()
             }
         }).disposed(by: disposeBag)
     }
