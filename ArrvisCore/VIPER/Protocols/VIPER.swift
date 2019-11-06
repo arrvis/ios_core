@@ -24,16 +24,12 @@ public protocol PresenterInterface: class {
     func viewDidDisappear(_ animated: Bool)
     func onBackFromNext(_ result: Any?)
 
-    func onShowActivityScreenRequired(_ activityItems: [Any])
-    func onShowActivityScreenRequired(_ activityItems: [Any], _ applicationActivities: [UIActivity]?)
-    func onShowActivityScreenRequired(_ activityItems: [Any], _ excludedActivityTypes: [UIActivity.ActivityType]?)
     func onShowActivityScreenRequired(
         _ activityItems: [Any],
         _ applicationActivities: [UIActivity]?,
         _ excludedActivityTypes: [UIActivity.ActivityType]?
     )
 
-    func onShowOkAlertRequired(title: String?, message: String?, ok: String?)
     func onShowOkAlertRequired(title: String?, message: String?, ok: String?, onOk: @escaping () -> Void)
     func onShowConfirmAlertRequired(
         title: String?,
@@ -58,14 +54,11 @@ public protocol PresenterInterface: class {
         onCancel: (() -> Void)?
     )
 
-    func onShowMediaPickerSelectActionSheetScreenRequired(_ cameraRollEventHandler: CameraRollEventHandler)
     func onShowMediaPickerSelectActionSheetScreenRequired(
         _ cameraRollEventHandler: CameraRollEventHandler,
         _ mediaTypes: [CFString])
 
-    func onShowLibraryScreenRequired(_ handler: CameraRollEventHandler)
     func onShowLibraryScreenRequired(_ handler: CameraRollEventHandler, _ mediaTypes: [CFString])
-    func onShowCameraScreenRequired(_ handler: CameraRollEventHandler)
     func onShowCameraScreenRequired(_ handler: CameraRollEventHandler, _ mediaTypes: [CFString])
 }
 
