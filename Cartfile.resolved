@@ -2,7 +2,6 @@ binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseAnalyticsBinary.j
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseRemoteConfigBinary.json" "6.12.0"
 github "Alamofire/Alamofire" "4.8.2"
 github "Alamofire/AlamofireImage" "3.5.2"
-github "DaveWoodCom/XCGLogger" "7.0.0"
 github "ReactiveX/RxSwift" "5.0.1"
 github "akashivskyy/GoogleAnalytics-Framework" "3.17"
 github "apollographql/apollo-ios" "0.10.1"
