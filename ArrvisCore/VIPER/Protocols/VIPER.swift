@@ -55,7 +55,7 @@ public protocol PresenterInterface: class {
     )
 
     func onShowMediaPickerSelectActionSheetScreenRequired(
-        _ cameraRollEventHandler: CameraRollEventHandler,
+        _ delegate: MediaPickerTypeSelectActionSheetInfoHandler & CameraRollEventHandler,
         _ mediaTypes: [CFString])
 
     func onShowLibraryScreenRequired(_ handler: CameraRollEventHandler, _ mediaTypes: [CFString])
