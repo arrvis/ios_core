@@ -217,9 +217,18 @@ public struct ImagePickerInfo {
 
 public protocol ImagePickerShowable {
     func showMediaPickerSelectActionSheet(
-        _ handler: MediaPickerTypeSelectActionSheetInfoHandler,
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
+        _ handler: MediaPickerTypeSelectActionSheetInfoHandler & CameraRollEventHandler,
         _ mediaTypes: [CFString]
     )
-    func showLibraryScreen(_ handler: CameraRollEventHandler, _ mediaTypes: [CFString])
-    func showCameraScreen(_ handler: CameraRollEventHandler, _ mediaTypes: [CFString])
+    func showLibraryScreen(
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
+        _ handler: CameraRollEventHandler,
+        _ mediaTypes: [CFString]
+    )
+    func showCameraScreen(
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
+        _ handler: CameraRollEventHandler,
+        _ mediaTypes: [CFString]
+    )
 }

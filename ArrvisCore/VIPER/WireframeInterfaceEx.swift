@@ -93,6 +93,7 @@ extension WireframeInterface {
     }
 
     public func showMediaPickerSelectActionSheet(
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
         _ handler: MediaPickerTypeSelectActionSheetInfoHandler & CameraRollEventHandler,
         _ mediaTypes: [CFString]) {
         var actions = [
@@ -100,7 +101,7 @@ extension WireframeInterface {
                 title: handler.photoLibraryButtonTitle(),
                 style: .default,
                 handler: { [unowned self] _ in
-                    self.showLibraryScreen(handler, mediaTypes)
+                    self.showLibraryScreen(delegate, handler, mediaTypes)
             })
         ]
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -108,7 +109,7 @@ extension WireframeInterface {
                 title: handler.cameraButtonTitle(),
                 style: .default,
                 handler: { [unowned self] _ in
-                    self.showCameraScreen(handler, mediaTypes)
+                    self.showCameraScreen(delegate, handler, mediaTypes)
                 }
             ))
         }
