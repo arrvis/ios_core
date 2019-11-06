@@ -109,7 +109,7 @@ extension Date {
     ///   - intervalMinutes: 間隔
     /// - Returns: Date
     public static func roundCeilingInterval(_ from: Date, intervalMinutes: Int) -> Date {
-        var components = defaultCalendar.dateComponents([.year, .month, .day, .hour, .minute],
+        let components = defaultCalendar.dateComponents([.year, .month, .day, .hour, .minute],
                                                         from: from)
         let mod = components.minute! % intervalMinutes
         return mod == 0

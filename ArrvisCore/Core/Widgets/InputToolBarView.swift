@@ -83,7 +83,7 @@ extension UITextInput {
             return inputToolBar?.previousInputResponder
         }
         set {
-            inputToolBar?.previousInputResponder = previousInputResponder
+            inputToolBar?.previousInputResponder = newValue
         }
     }
 
@@ -93,7 +93,7 @@ extension UITextInput {
             return inputToolBar?.nextInputResponder
         }
         set {
-            inputToolBar?.nextInputResponder = nextInputResponder
+            inputToolBar?.nextInputResponder = newValue
         }
     }
 
