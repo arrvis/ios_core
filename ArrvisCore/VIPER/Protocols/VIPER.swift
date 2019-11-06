@@ -41,18 +41,9 @@ public protocol ViewInterface: LoadingShowable,
         _ actions: [UIAlertAction],
         _ cancel: String,
         _ onCancel: (() -> Void)?)
-    func showMediaPickerSelectActionSheetScreen(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
-        _ handler: CameraRollEventHandler & MediaPickerTypeSelectActionSheetInfoHandler,
-        _ mediaTypes: [CFString])
-    func showLibraryScreen(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
-        _ handler: CameraRollEventHandler,
-        _ mediaTypes: [CFString])
-    func showCameraScreen(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
-        _ handler: CameraRollEventHandler,
-        _ mediaTypes: [CFString])
+    func showMediaPickerSelectActionSheetScreen(_ mediaTypes: [CFString])
+    func showLibraryScreen(_ mediaTypes: [CFString])
+    func showCameraScreen(_ mediaTypes: [CFString])
 }
 
 /// Presenter
@@ -101,11 +92,21 @@ public protocol PresenterInterface: class {
     )
 
     func onShowMediaPickerSelectActionSheetScreenRequired(
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
+        _ handler: MediaPickerTypeSelectActionSheetInfoHandler & CameraRollEventHandler,
         _ mediaTypes: [CFString]
     )
 
-    func onShowLibraryScreenRequired(_ mediaTypes: [CFString])
-    func onShowCameraScreenRequired(_ mediaTypes: [CFString])
+    func onShowLibraryScreenRequired(
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
+        _ handler: CameraRollEventHandler,
+        _ mediaTypes: [CFString]
+    )
+    func onShowCameraScreenRequired(
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
+        _ handler: CameraRollEventHandler,
+        _ mediaTypes: [CFString]
+    )
 }
 
 /// Interactor
