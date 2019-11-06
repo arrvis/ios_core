@@ -6,43 +6,7 @@
 //  Copyright © 2019 Arrvis Co., Ltd. All rights reserved.
 //
 
-import MobileCoreServices
 import Photos
-import RxSwift
-
-extension ViewInterface {
-
-    /// メディア選択アクションシート表示
-    public func showMediaPickerSelectActionSheet(
-        _ showable: SystemScreenShowable,
-        _ mediaTypes: [CFString] = [kUTTypeImage, kUTTypeMovie]) {
-        var actions = [
-            UIAlertAction(
-                title: photoLibraryButtonTitle(),
-                style: .default,
-                handler: { [unowned self] _ in
-                    showable.showLibraryScreen(self, mediaTypes)
-                }
-            )
-        ]
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            actions.append(UIAlertAction(
-                title: cameraButtonTitle(),
-                style: .default,
-                handler: { [unowned self] _ in
-                    showable.showCameraScreen(self, mediaTypes)
-                }
-            ))
-        }
-        showable.showActionSheet(
-            sheetTitle(),
-            sheetMessage(),
-            actions,
-            cancelButtonTitle()) { [unowned self] in
-            self.onCancel()
-        }
-    }
-}
 
 extension ViewInterface {
 

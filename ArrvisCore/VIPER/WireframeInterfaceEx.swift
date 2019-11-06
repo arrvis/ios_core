@@ -93,6 +93,35 @@ extension WireframeInterface {
         }
     }
 
+    public func showMediaPickerSelectActionSheet(
+        _ handler: MediaPickerTypeSelectActionSheetInfoHandler & CameraRollEventHandler,
+        _ mediaTypes: [CFString]) {
+        var actions = [
+            UIAlertAction(
+                title: handler.photoLibraryButtonTitle(),
+                style: .default,
+                handler: { [unowned self] _ in
+                    self.showLibraryScreen(handler, mediaTypes)
+            })
+        ]
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            actions.append(UIAlertAction(
+                title: handler.cameraButtonTitle(),
+                style: .default,
+                handler: { [unowned self] _ in
+                    self.showCameraScreen(handler, mediaTypes)
+                }
+            ))
+        }
+        showActionSheet(
+            handler.sheetTitle(),
+            handler.sheetMessage(),
+            actions,
+            handler.cancelButtonTitle()) {
+                handler.onCancel()
+        }
+    }
+
     public func showLibraryScreen(
         _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
         _ handler: CameraRollEventHandler,
