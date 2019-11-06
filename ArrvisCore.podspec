@@ -19,7 +19,6 @@ iOSのCoreモジュール
     subspec.dependency 'AlamofireImage', '3.5.2'
     subspec.dependency 'TinyConstraints', '4.0.1'
     subspec.dependency 'SwiftEventBus', '5.0.0'
-    subspec.dependency 'R.swift', '4.0.0'
   end
 
   spec.subspec 'Navigate' do |subspec|
