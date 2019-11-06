@@ -39,7 +39,7 @@ open class BaseNavigator: Navigatable {
             let screen = self.getScreen(path: location.path)
             let payload: Any?
             if location.payload == nil && !location.arguments.isEmpty {
-                // アプリケーション側では使ってないがプッシュ通知経由で来たらargsが入ってる
+                // TODO: アプリケーション側では使ってないがプッシュ通知経由で来たらargsが入ってる
                 var args = location.arguments
                 args.removeValue(forKey: "Animate")
                 args.removeValue(forKey: "FromRoot")

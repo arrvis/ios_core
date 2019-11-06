@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 
 private var disposeBagKey = 0
-private var payloadKey = 1
 
 extension UIViewController: UIGestureRecognizerDelegate {
 
@@ -23,24 +22,6 @@ extension UIViewController: UIGestureRecognizerDelegate {
             return view.safeAreaInsets
         } else {
             return .zero
-        }
-    }
-
-    /// Payload
-    public var payload: Any? {
-        get {
-            return objc_getAssociatedObject(self, &payloadKey)
-        }
-        set {
-            objc_setAssociatedObject(self, &payloadKey, newValue, .OBJC_ASSOCIATION_RETAIN)
-            if let nav = self as? UINavigationController {
-                nav.viewControllers.first?.payload = newValue
-            }
-            if let tab = self as? UITabBarController {
-                tab.viewControllers?.forEach({ vc in
-                    vc.payload = newValue
-                })
-            }
         }
     }
 

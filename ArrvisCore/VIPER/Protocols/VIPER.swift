@@ -9,9 +9,7 @@
 /// View
 public protocol ViewInterface: LoadingShowable,
     ErrorHandleable,
-    UIImagePickerControllerDelegate & UINavigationControllerDelegate,
-    MediaPickerTypeSelectActionSheetInfoHandler,
-    CameraRollEventHandler
+    MediaPickerTypeSelectActionSheetInfoHandler
     where Self: UIViewController {
     func showActivityScreen(
         _ activityItems: [Any],
@@ -43,11 +41,15 @@ public protocol ViewInterface: LoadingShowable,
         _ onCancel: (() -> Void)?)
     func showMediaPickerSelectActionSheetScreen(_ mediaTypes: [CFString])
     func showLibraryScreen(_ mediaTypes: [CFString])
+    func showFaukAccessPhotoLibraryAlert()
     func showCameraScreen(_ mediaTypes: [CFString])
+    func showFailAccessCameraAlert()
 }
 
 /// Presenter
-public protocol PresenterInterface: class {
+public protocol PresenterInterface: class,
+    CameraRollEventHandler,
+    UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func viewDidLoad()
     func viewWillAppear(_ animated: Bool)
     func viewDidAppear(_ animated: Bool)
