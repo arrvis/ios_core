@@ -36,9 +36,6 @@ public struct AlertInfo {
     }
 
     /// UIAlertController生成
-    ///
-    /// - Parameter preferredStyle: preferredStyle
-    /// - Returns: UIAlertController
     public func createAlertController(_ preferredStyle: UIAlertController.Style) -> UIAlertController {
         let vc =  UIAlertController(title: nil, message: nil, preferredStyle: preferredStyle)
         vc.title = title
@@ -107,6 +104,22 @@ extension AlertShowable {
                     onOk()
                 })
             ],
+            cancel: cancel,
+            onCancel: onCancel
+        )
+        showAlert(alertInfo)
+    }
+
+    public func showAlert(
+        _ title: String? = nil,
+        _ message: String? = nil,
+        _ actions: [UIAlertAction],
+        _ cancel: String,
+        _ onCancel: (() -> Void)? = nil) {
+        let alertInfo = AlertInfo(
+            title: title,
+            message: message,
+            actions: actions,
             cancel: cancel,
             onCancel: onCancel
         )
@@ -219,8 +232,6 @@ public struct ImagePickerInfo {
     }
 
     /// UIImagePickerController生成
-    ///
-    /// - Returns: UIImagePickerController
     public func createImagePickerController() -> UIImagePickerController {
         let vc = UIImagePickerController()
         vc.delegate = delegate
