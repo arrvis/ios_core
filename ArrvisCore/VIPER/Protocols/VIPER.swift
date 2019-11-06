@@ -101,21 +101,11 @@ public protocol PresenterInterface: class {
     )
 
     func onShowMediaPickerSelectActionSheetScreenRequired(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
-        _ handler: MediaPickerTypeSelectActionSheetInfoHandler & CameraRollEventHandler,
         _ mediaTypes: [CFString]
     )
 
-    func onShowLibraryScreenRequired(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
-        _ handler: CameraRollEventHandler,
-        _ mediaTypes: [CFString]
-    )
-    func onShowCameraScreenRequired(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
-        _ handler: CameraRollEventHandler,
-        _ mediaTypes: [CFString]
-    )
+    func onShowLibraryScreenRequired(_ mediaTypes: [CFString])
+    func onShowCameraScreenRequired(_ mediaTypes: [CFString])
 }
 
 /// Interactor
