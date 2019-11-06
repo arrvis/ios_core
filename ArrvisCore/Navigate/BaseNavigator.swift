@@ -9,7 +9,7 @@
 import RxSwift
 
 /// Navigator基底クラス
-open class BaseNavigator {
+open class BaseNavigator: Navigatable {
 
     // MARK: - Variables
 
@@ -58,6 +58,23 @@ open class BaseNavigator {
             }
         }
     }
+
+    // MARK: - Navigatable
+
+    open var scheme: String {
+        fatalError("Not implemented")
+    }
+
+    open var routes: [String] {
+        fatalError("Not implemented")
+    }
+
+    open func getScreen(path: String) -> Screen {
+        if let screen = SystemScreens(rawValue: path) {
+            return screen
+        }
+        fatalError("Not implemented")
+    }
 }
 
 // MARK: - Navigate
@@ -96,24 +113,5 @@ extension BaseNavigator {
     /// スクリーンを非表示
     public func dismissScreen(result: Any? = nil, animate: Bool = true) {
         dismissSubject.onNext((result, animate))
-    }
-}
-
-// MARK: - Navigatable
-extension BaseNavigator: Navigatable {
-
-    open var scheme: String {
-        fatalError("Not implemented")
-    }
-
-    open var routes: [String] {
-        fatalError("Not implemented")
-    }
-
-    open func getScreen(path: String) -> Screen {
-        if let screen = SystemScreens(rawValue: path) {
-            return screen
-        }
-        fatalError("Not implemented")
     }
 }
