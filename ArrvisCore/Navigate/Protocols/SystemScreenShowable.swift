@@ -60,7 +60,7 @@ public struct AlertInfo {
 }
 
 public protocol AlertShowable {
-    public func showAlert(_ alertInfo: AlertInfo)
+    func showAlert(_ alertInfo: AlertInfo)
 }
 
 extension AlertShowable {
