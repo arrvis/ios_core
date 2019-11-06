@@ -32,6 +32,7 @@ public struct AlertInfo {
         self.message = message
         self.actions = actions
         self.cancel = cancel
+        self.onCancel = onCancel
     }
 
     /// UIAlertController生成
