@@ -6,7 +6,6 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
-import MobileCoreServices
 import Photos
 import RxSwift
 
@@ -153,7 +152,7 @@ extension WireframeInterface {
     public func showCameraScreen(
         _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
         _ handler: CameraRollEventHandler,
-        _ mediaTypes: [CFString] = [kUTTypeImage, kUTTypeMovie]) {
+        _ mediaTypes: [CFString]) {
         func requestAccessToTakeMovie() -> Observable<Bool> {
             return Observable.create({ observer in
                 AVCaptureDevice.requestAccess(for: .video) { authorized in
