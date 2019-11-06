@@ -27,6 +27,13 @@ public struct AlertInfo {
     /// キャンセルハンドラー
     public let onCancel: (() -> Void)?
 
+    public init(title: String?, message: String?, actions: [UIAlertAction], cancel: String?, onCancel: (() -> Void)?) {
+        self.title = title
+        self.message = message
+        self.actions = actions
+        self.cancel = cancel
+    }
+
     /// UIAlertController生成
     ///
     /// - Parameter preferredStyle: preferredStyle
@@ -141,6 +148,15 @@ public struct ActivityInfo {
     /// excludedActivityTypes
     public let excludedActivityTypes: [UIActivity.ActivityType]?
 
+    public init(
+        activityItems: [Any],
+        applicationActivities: [UIActivity]?,
+        excludedActivityTypes: [UIActivity.ActivityType]?) {
+        self.activityItems = activityItems
+        self.applicationActivities = applicationActivities
+        self.excludedActivityTypes = excludedActivityTypes
+    }
+
     /// UIActivityViewController生成
     ///
     /// - Returns: UIActivityViewController
@@ -191,6 +207,15 @@ public struct ImagePickerInfo {
 
     /// mediaTypes
     public let mediaTypes: [CFString]
+
+    public init(
+        delegate: (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?,
+        sourceType: UIImagePickerController.SourceType,
+        mediaTypes: [CFString]) {
+        self.delegate = delegate
+        self.sourceType = sourceType
+        self.mediaTypes
+    }
 
     /// UIImagePickerController生成
     ///
