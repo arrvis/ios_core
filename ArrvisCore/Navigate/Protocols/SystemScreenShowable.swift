@@ -214,7 +214,7 @@ public struct ImagePickerInfo {
         mediaTypes: [CFString]) {
         self.delegate = delegate
         self.sourceType = sourceType
-        self.mediaTypes
+        self.mediaTypes = mediaTypes
     }
 
     /// UIImagePickerController生成
