@@ -49,7 +49,7 @@ public protocol PresenterInterface: class {
     func onShowActionSheetRequired(
         title: String?,
         message: String?,
-        actions: [String: (UIAlertAction.Style, () -> Void)],
+        actions: [UIAlertAction],
         cancel: String?,
         onCancel: (() -> Void)?
     )
