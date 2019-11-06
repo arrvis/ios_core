@@ -12,7 +12,48 @@ public protocol ViewInterface: LoadingShowable,
     UIImagePickerControllerDelegate & UINavigationControllerDelegate,
     MediaPickerTypeSelectActionSheetInfoHandler,
     CameraRollEventHandler
-    where Self: UIViewController {}
+    where Self: UIViewController {
+    func showActivityScreen(
+        _ activityItems: [Any],
+        _ applicationActivities: [UIActivity]?,
+        _ excludedActivityTypes: [UIActivity.ActivityType]?)
+    func showOkAlert(
+        _ title: String?,
+        _ message: String?,
+        _ ok: String,
+        _ onOk: @escaping () -> Void)
+    func showConfirmAlert(
+        _ title: String?,
+        _ message: String?,
+        _ ok: String,
+        _ onOk: @escaping () -> Void,
+        _ cancel: String,
+        _ onCancel: (() -> Void)?)
+    func showAlert(
+        _ title: String?,
+        _ message: String?,
+        _ actions: [UIAlertAction],
+        _ cancel: String,
+        _ onCancel: (() -> Void)?)
+    func showActionSheet(
+        _ title: String?,
+        _ message: String?,
+        _ actions: [UIAlertAction],
+        _ cancel: String,
+        _ onCancel: (() -> Void)?)
+    func showMediaPickerSelectActionSheetScreen(
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
+        _ handler: CameraRollEventHandler & MediaPickerTypeSelectActionSheetInfoHandler,
+        _ mediaTypes: [CFString])
+    func showLibraryScreen(
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
+        _ handler: CameraRollEventHandler,
+        _ mediaTypes: [CFString])
+    func showCameraScreen(
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
+        _ handler: CameraRollEventHandler,
+        _ mediaTypes: [CFString])
+}
 
 /// Presenter
 public protocol PresenterInterface: class {
