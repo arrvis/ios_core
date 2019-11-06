@@ -47,7 +47,7 @@ public protocol ViewInterface: LoadingShowable,
 }
 
 /// Presenter
-public protocol PresenterInterface: class,
+public protocol PresenterInterface: NSObject,
     CameraRollEventHandler,
     UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func viewDidLoad()
