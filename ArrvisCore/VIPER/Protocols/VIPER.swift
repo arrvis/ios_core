@@ -97,15 +97,8 @@ public protocol PresenterInterface: class,
         _ handler: MediaPickerTypeSelectActionSheetInfoHandler,
         _ mediaTypes: [CFString]
     )
-
-    func onShowLibraryScreenRequired(
-        _ handler: MediaPickerTypeSelectActionSheetInfoHandler,
-        _ mediaTypes: [CFString]
-    )
-    func onShowCameraScreenRequired(
-        _ handler: MediaPickerTypeSelectActionSheetInfoHandler,
-        _ mediaTypes: [CFString]
-    )
+    func onShowLibraryScreenRequired(_ mediaTypes: [CFString])
+    func onShowCameraScreenRequired(_ mediaTypes: [CFString])
 }
 
 /// Interactor

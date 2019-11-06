@@ -222,13 +222,11 @@ public protocol ImagePickerShowable {
         _ mediaTypes: [CFString]
     )
     func showLibraryScreen(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
-        _ handler: CameraRollEventHandler,
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate & CameraRollEventHandler,
         _ mediaTypes: [CFString]
     )
     func showCameraScreen(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate,
-        _ handler: CameraRollEventHandler,
+        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate & CameraRollEventHandler,
         _ mediaTypes: [CFString]
     )
 }
