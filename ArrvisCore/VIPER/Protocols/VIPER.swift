@@ -30,7 +30,7 @@ public protocol PresenterInterface: class {
         _ excludedActivityTypes: [UIActivity.ActivityType]?
     )
 
-    func onShowOkAlertRequired(title: String?, message: String?, ok: String?, onOk: @escaping () -> Void)
+    func onShowOkAlertRequired(title: String?, message: String?, ok: String, onOk: @escaping () -> Void)
     func onShowConfirmAlertRequired(
         title: String?,
         message: String?,
@@ -42,7 +42,7 @@ public protocol PresenterInterface: class {
     func onShowAlertRequired(
         title: String?,
         message: String?,
-        actions: [String: (UIAlertAction.Style, () -> Void)],
+        actions: [UIAlertAction],
         cancel: String?,
         onCancel: (() -> Void)?
     )
