@@ -60,7 +60,7 @@ open class BaseTabBarController: UITabBarController, ViewControllerProtocols {
     /// 右BarButtonItemタップ
     public func didTapRightBarButtonItem(_ index: Int) {}
 
-    /// MARK: - KeyboardDisplayable
+    // MARK: - KeyboardDisplayable
 
     public var scrollViewForResizeKeyboard: UIScrollView? { return nil }
 }
