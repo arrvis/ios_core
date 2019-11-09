@@ -18,26 +18,26 @@ public protocol ViewInterface: LoadingShowable,
     func showOkAlert(
         _ title: String?,
         _ message: String?,
-        _ ok: String,
+        _ ok: String?,
         _ onOk: @escaping () -> Void)
     func showConfirmAlert(
         _ title: String?,
         _ message: String?,
-        _ ok: String,
+        _ ok: String?,
         _ onOk: @escaping () -> Void,
-        _ cancel: String,
+        _ cancel: String?,
         _ onCancel: (() -> Void)?)
     func showAlert(
         _ title: String?,
         _ message: String?,
         _ actions: [UIAlertAction],
-        _ cancel: String,
+        _ cancel: String?,
         _ onCancel: (() -> Void)?)
     func showActionSheet(
         _ title: String?,
         _ message: String?,
         _ actions: [UIAlertAction],
-        _ cancel: String,
+        _ cancel: String?,
         _ onCancel: (() -> Void)?)
     func showMediaPickerSelectActionSheetScreen(_ mediaTypes: [CFString])
     func showLibraryScreen(_ mediaTypes: [CFString])
