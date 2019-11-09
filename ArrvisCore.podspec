@@ -15,9 +15,9 @@ iOSのCoreモジュール
     subspec.resources = 'ArrvisCore/Core/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'RxSwift', '~> 5'
     subspec.dependency 'RxCocoa', '~> 5'
-    subspec.dependency 'Alamofire', '4.8.2'
-    subspec.dependency 'AlamofireImage', '3.5.2'
-    subspec.dependency 'TinyConstraints', '4.0.1'
+    subspec.dependency 'Alamofire', '~> 5'
+    subspec.dependency 'AlamofireImage', '~> 3.5'
+    subspec.dependency 'TinyConstraints'
     subspec.dependency 'SwiftEventBus', '5.0.0'
   end
 

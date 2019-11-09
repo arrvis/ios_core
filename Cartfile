@@ -1,19 +1,15 @@
-# General
-github "ReactiveX/RxSwift" "5.0.1"
-
-# Navigator
-github "cesarferreira/SwiftEventBus" "5.0.0"
-
-# Resources
-github "mac-cain13/R.swift.Library" "v4.0.0"
-
-# HTTP
+# Core
+github "ReactiveX/RxSwift" ~> 5.0
 github "Alamofire/Alamofire" "4.8.2"
 github "Alamofire/AlamofireImage" "3.5.2"
-github "ashleymills/Reachability.swift" "v4.3.1"
+github "roberthein/TinyConstraints"
+github "cesarferreira/SwiftEventBus" "5.0.0"
 
-# UI
-github "roberthein/TinyConstraints" "4.0.1"
+
+
+# こっから下TODO
+# Http
+github "ashleymills/Reachability.swift" "v4.3.1"
 
 # GraphQL
 github "apollographql/apollo-ios" "0.10.1"
@@ -26,11 +22,6 @@ github "facebook/facebook-ios-sdk"
 
 # Google
 github "https://github.com/fabio914/GoogleSignIn-iOS" "4.2.0"
-github "akashivskyy/GoogleAnalytics-Framework"
-
-# Firebase
-binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseAnalyticsBinary.json"
-binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseRemoteConfigBinary.json"
 
 # Pusher
 github "pusher/push-notifications-swift"

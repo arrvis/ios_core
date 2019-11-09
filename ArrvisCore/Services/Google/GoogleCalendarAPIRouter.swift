@@ -8,7 +8,6 @@
 
 import Alamofire
 import RxSwift
-import Reachability
 
 /// GoogleAPIルーター
 class GoogleCalendarAPIRouter: BaseHTTPRouter {

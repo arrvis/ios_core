@@ -1,19 +1,12 @@
 cache:
   local: ~/Library/Caches/Rome 
 repositoryMap:
-- XCGLogger:
-  - name: XCGLogger
-  - name: ObjcExceptionBridging
-
 - RxSwift:
   - name: RxSwift
   - name: RxCocoa
   - name: RxBlocking
   - name: RxRelay
   - name: RxTest
-
-- R.swift.Library:
-  - name: Rswift
 
 - Reachability.swift:
   - name: Reachability
@@ -74,26 +67,6 @@ repositoryMap:
 
 - GoogleSignIn-iOS:
   - name: GoogleSignIn
-- GoogleAnalytics-Framework:
-  - name: GoogleAnalytics
-
-- FirebaseAnalyticsBinary:
-  - name: FIRAnalyticsConnector
-  - name: Firebase
-  - name: FirebaseAnalytics
-  - name: FirebaseCore
-  - name: FirebaseCoreDiagnostics
-  - name: FirebaseInstanceID
-  - name: GoogleAppMeasurement
-  - name: GoogleUtilities
-  - name: nanopb
-- FirebaseRemoteConfigBinary:
-  - name: FirebaseABTesting
-  - name: FirebaseRemoteConfig
-  - name: Protobuf
-
-- rollbar-ios:
-  - name: Rollbar
 
 - push-notifications-swift:
   - name: PushNotifications
