@@ -75,10 +75,6 @@ open class BaseHTTPRouter {
                     DispatchQueue.main.async {
                         NetworkUtil.hideNetworkActivityIndicator()
                     }
-                    if let error = response.error {
-                        observer.onError(HTTPError(response.response?.statusCode, error))
-                        return
-                    }
                     guard let res = response.response else {
                         observer.onError(HTTPNoDataError(response.response?.statusCode))
                         return
@@ -89,6 +85,10 @@ open class BaseHTTPRouter {
                     }
                     response.result.ifFailure {
                         observer.onError(HTTPFailure(response.response?.statusCode, data))
+                        return
+                    }
+                    if let error = response.error {
+                        observer.onError(HTTPError(response.response?.statusCode, error))
                         return
                     }
                     observer.onNext((data, res.allHeaderFields))
