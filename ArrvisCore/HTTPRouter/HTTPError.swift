@@ -12,11 +12,19 @@ public class HTTPError: Error {
     /// HTTPステータスコード
     public let httpStatusCode: HttpStatusCode?
 
-    /// エラーソース
-    public let error: Error
+    /// レスポンス
+    public let response: HTTPURLResponse?
 
-    init(_ httpStatusCode: Int?, _ error: Error) {
+    /// データ
+    public let data: Data?
+
+    /// エラーソース
+    public let error: Error?
+
+    init(_ httpStatusCode: Int?, _ response: HTTPURLResponse?, _ data: Data?, _ error: Error?) {
         self.httpStatusCode = httpStatusCode == nil ? nil : HttpStatusCode(rawValue: httpStatusCode!)
+        self.response = response
+        self.data = data
         self.error = error
     }
 }
