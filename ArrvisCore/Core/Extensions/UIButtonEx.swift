@@ -9,7 +9,7 @@
 extension UIButton {
 
     /// 背景色設定
-    func setBackgroundColor(_ color: UIColor, _ cornerRadius: CGFloat = 0, for state: UIControl.State) {
+    public func setBackgroundColor(_ color: UIColor, _ cornerRadius: CGFloat = 0, for state: UIControl.State) {
         setBackgroundImage(color.toImage(frame.size, cornerRadius), for: state)
     }
 }

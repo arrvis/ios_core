@@ -9,7 +9,7 @@
 extension UIColor {
 
     /// UIImageに変換
-    func toImage(_ size: CGSize, _ cornerRadius: CGFloat = 0) -> UIImage? {
+    public func toImage(_ size: CGSize, _ cornerRadius: CGFloat = 0) -> UIImage? {
         let rect = CGRect(origin: .zero, size: size)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
         guard let context = UIGraphicsGetCurrentContext() else {
