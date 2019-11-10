@@ -43,6 +43,6 @@ iOSのCoreモジュール
     subspec.resources = 'ArrvisCore/HTTPRouter/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
     subspec.dependency 'RxSwift', '~> 5'
-    subspec.dependency 'Reachability'
+    subspec.dependency 'Reachability', '~> 4'
   end
 end
