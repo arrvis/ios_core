@@ -37,16 +37,6 @@ open class BaseNavigationController: UINavigationController, UINavigationControl
         initializeForProtocols()
     }
 
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewWillAppearForProtocols()
-    }
-
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        viewWillDisAppearForProtocols()
-    }
-
     // MARK: - ExtendsViewControllerEventsHandleable
 
     /// 初回layoutSubviews
