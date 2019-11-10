@@ -39,24 +39,24 @@ open class BaseViewController: UIViewController, ViewControllerProtocols {
     // MARK: - BarButtonItemSettable
 
     /// 戻るBarButtonItem
-    public var backBarButtonItem: UIBarButtonItem? { return nil }
+    open var backBarButtonItem: UIBarButtonItem? { return nil }
 
     /// 左BarButtonItems
-    public var leftBarButtonItems: [UIBarButtonItem]? { return nil }
+    open var leftBarButtonItems: [UIBarButtonItem]? { return nil }
 
     /// 右BarButtonItems
-    public var rightBarButtonItems: [UIBarButtonItem]? { return nil }
+    open var rightBarButtonItems: [UIBarButtonItem]? { return nil }
 
     /// 戻るBarButtonItemタップ
-    public func didTapBackBarButtonItem() {}
+    open func didTapBackBarButtonItem() {}
 
     /// 左BarButtonItemタップ
-    public func didTapLeftBarButtonItem(_ index: Int) {}
+    open func didTapLeftBarButtonItem(_ index: Int) {}
 
     /// 右BarButtonItemタップ
-    public func didTapRightBarButtonItem(_ index: Int) {}
+    open func didTapRightBarButtonItem(_ index: Int) {}
 
     // MARK: - KeyboardDisplayable
 
-    public var scrollViewForResizeKeyboard: UIScrollView? { return nil }
+    open var scrollViewForResizeKeyboard: UIScrollView? { return nil }
 }

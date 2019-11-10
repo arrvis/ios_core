@@ -37,4 +37,12 @@ iOSのCoreモジュール
     subspec.resources = 'ArrvisCore/VIPER/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
   end
+
+  spec.subspec 'HTTPRouter' do |subspec|
+    subspec.source_files = 'ArrvisCore/HTTPRouter/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/HTTPRouter/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.dependency 'ArrvisCore/Core'
+    subspec.dependency 'RxSwift', '~> 5'
+    subspec.dependency 'Reachability', 'v4.3.1'
+  end
 end
