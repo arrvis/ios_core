@@ -8,6 +8,20 @@
 
 extension UIColor {
 
+    /// UIImageに変換
+    func toImage(_ size: CGSize, _ cornerRadius: CGFloat = 0) -> UIImage? {
+        let rect = CGRect(origin: .zero, size: size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        context.setFillColor(self.cgColor)
+        context.fill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()?.af_imageRounded(withCornerRadius: cornerRadius)
+        UIGraphicsEndImageContext()
+        return image
+    }
+
     /// 16進数文字列からUIColor生成
     /// - parameter hex: 16進数文字列
     /// - returns: UIColor
