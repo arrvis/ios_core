@@ -42,7 +42,13 @@ iOSのCoreモジュール
     subspec.source_files = 'ArrvisCore/HTTPRouter/**/*.{swift}'
     subspec.resources = 'ArrvisCore/HTTPRouter/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
-    subspec.dependency 'RxSwift', '~> 5'
     subspec.dependency 'ReachabilitySwift', '~> 4'
+  end
+
+  spec.subspec 'Apollo' do |subspec|
+    subspec.source_files = 'ArrvisCore/Apollo/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/Apollo/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.dependency 'ArrvisCore/Core'
+    subspec.dependency 'Apollo'
   end
 end
