@@ -25,30 +25,59 @@ iOSのCoreモジュール
     subspec.source_files = 'ArrvisCore/Navigate/**/*.{swift}'
     subspec.resources = 'ArrvisCore/Navigate/**/*.{storyboard,xib,png,jpeg,jpg}'
   end
-
   spec.subspec 'BaseViewControllers' do |subspec|
     subspec.source_files = 'ArrvisCore/BaseViewControllers/**/*.{swift}'
     subspec.resources = 'ArrvisCore/BaseViewControllers/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
   end
-
   spec.subspec 'VIPER' do |subspec|
     subspec.source_files = 'ArrvisCore/VIPER/**/*.{swift}'
     subspec.resources = 'ArrvisCore/VIPER/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
   end
 
-  spec.subspec 'HTTPRouter' do |subspec|
-    subspec.source_files = 'ArrvisCore/HTTPRouter/**/*.{swift}'
-    subspec.resources = 'ArrvisCore/HTTPRouter/**/*.{storyboard,xib,png,jpeg,jpg}'
-    subspec.dependency 'ArrvisCore/Core'
-    subspec.dependency 'ReachabilitySwift', '~> 4'
-  end
-
+  # Services
   spec.subspec 'Apollo' do |subspec|
     subspec.source_files = 'ArrvisCore/Apollo/**/*.{swift}'
     subspec.resources = 'ArrvisCore/Apollo/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
     subspec.dependency 'Apollo', '0.10.1'
+  end
+  spec.subspec 'AWS' do |subspec|
+    subspec.source_files = 'ArrvisCore/AWS/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/AWS/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.dependency 'ArrvisCore/Core'
+    subspec.dependency 'AWSS3', '2.9.9'
+  end
+  spec.subspec 'Cocoa' do |subspec|
+    subspec.source_files = 'ArrvisCore/Cocoa/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/Cocoa/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.dependency 'ArrvisCore/Core'
+  end
+  spec.subspec 'Facebook' do |subspec|
+    subspec.source_files = 'ArrvisCore/Facebook/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/Facebook/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.dependency 'ArrvisCore/Core'
+    subspec.dependency 'FBSDKLoginKit', '5.10.0'
+  end
+  spec.subspec 'Google' do |subspec|
+    subspec.source_files = 'ArrvisCore/Google/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/Google/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.dependency 'ArrvisCore/Core'
+    subspec.dependency 'GoogleSignIn', '4.2.0'
+  end
+
+  spec.subspec 'HTTPRouter' do |subspec|
+    subspec.source_files = 'ArrvisCore/Services/HTTPRouter/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/Services/HTTPRouter/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.dependency 'ArrvisCore/Core'
+    subspec.dependency 'ReachabilitySwift', '~> 4'
+  end
+
+  spec.subspec 'PusherBeams' do |subspec|
+    subspec.source_files = 'ArrvisCore/PusherBeams/HTTPRouter/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/Services/PusherBeams/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.dependency 'ArrvisCore/Core'
+    subspec.dependency 'PushNotifications', '~> 2.0.2'
   end
 end
