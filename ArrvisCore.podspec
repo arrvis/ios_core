@@ -49,6 +49,6 @@ iOSのCoreモジュール
     subspec.source_files = 'ArrvisCore/Apollo/**/*.{swift}'
     subspec.resources = 'ArrvisCore/Apollo/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
-    subspec.dependency 'Apollo'
+    subspec.dependency 'Apollo' '0.10.1'
   end
 end
