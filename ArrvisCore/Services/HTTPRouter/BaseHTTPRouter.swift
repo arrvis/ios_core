@@ -57,7 +57,7 @@ open class BaseHTTPRouter {
             DispatchQueue.main.async {
                 NetworkUtil.showNetworkActivityIndicator()
             }
-            if Reachability()?.connection == .none {
+            if Reachability()?.connection == Reachability.Connection.none {
                 observer.onError(NoConnectionError())
                 return Disposables.create()
             }
