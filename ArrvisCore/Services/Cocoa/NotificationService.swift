@@ -25,8 +25,8 @@ open class NotificationService {
 // MARK: - Permission
 extension NotificationService {
 
-    /// 許可されているか取得
-    public static func fetchGranted() -> Observable<UNAuthorizationStatus> {
+    /// 許可ステータス取得
+    public static func fetchAuthorizationStatus() -> Observable<UNAuthorizationStatus> {
         return Observable.create({ observer in
             let center = UNUserNotificationCenter.current()
             center.getNotificationSettings { settings in
