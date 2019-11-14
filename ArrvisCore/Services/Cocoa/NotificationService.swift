@@ -26,7 +26,18 @@ open class NotificationService {
 extension NotificationService {
 
     /// 許可されているか取得
-    public static func fetchGranted() -> Observable<(Bool)> {
+    public static func fetchGranted() -> Observable<Bool> {
+        return Observable.create({ observer in
+            let center = UNUserNotificationCenter.current()
+            center.getNotificationSettings { settings in
+                observer.onNext(settings.authorizationStatus == .authorized)
+            }
+            return Disposables.create()
+        })
+    }
+
+    /// 許可リクエスト
+    public static func requestAuthorization() -> Observable<Bool> {
         return Observable.create({ observer in
             let center = UNUserNotificationCenter.current()
             center.requestAuthorization(options: [.badge, .sound, .alert]) { (granted, error) in
@@ -58,7 +69,7 @@ extension NotificationService {
     /// デバイストークン取得リクエスト
     public static func requestDeviceToken() -> Observable<String> {
         return Observable.create { observer in
-            fetchGranted().subscribe(onNext: { granted in
+            requestAuthorization().subscribe(onNext: { granted in
                 if !granted {
                     observer.onCompleted()
                     return
