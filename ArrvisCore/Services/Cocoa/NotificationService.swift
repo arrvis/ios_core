@@ -26,11 +26,11 @@ open class NotificationService {
 extension NotificationService {
 
     /// 許可されているか取得
-    public static func fetchGranted() -> Observable<Bool> {
+    public static func fetchGranted() -> Observable<UNAuthorizationStatus> {
         return Observable.create({ observer in
             let center = UNUserNotificationCenter.current()
             center.getNotificationSettings { settings in
-                observer.onNext(settings.authorizationStatus == .authorized)
+                observer.onNext(settings.authorizationStatus)
             }
             return Disposables.create()
         })
