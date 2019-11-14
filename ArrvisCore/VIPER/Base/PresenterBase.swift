@@ -17,13 +17,13 @@ open class PresenterBase: NSObject, PresenterInterface {
     public var interactorInterface: InteractorInterface!
     public var wireframeInterface: WireframeInterface!
 
-    public func viewDidLoad() {}
-    public func viewWillAppear(_ animated: Bool) {}
-    public func viewDidAppear(_ animated: Bool) {}
-    public func onDidFirstLayoutSubviews() {}
-    public func viewWillDisappear(_ animated: Bool) {}
-    public func viewDidDisappear(_ animated: Bool) {}
-    public func onBackFromNext(_ result: Any?) {}
+    open func viewDidLoad() {}
+    open func viewWillAppear(_ animated: Bool) {}
+    open func viewDidAppear(_ animated: Bool) {}
+    open func onDidFirstLayoutSubviews() {}
+    open func viewWillDisappear(_ animated: Bool) {}
+    open func viewDidDisappear(_ animated: Bool) {}
+    open func onBackFromNext(_ result: Any?) {}
 
     public func onShowActivityScreenRequired(
         _ activityItems: [Any],
@@ -90,18 +90,18 @@ open class PresenterBase: NSObject, PresenterInterface {
         viewInterface?.showFaukAccessPhotoLibraryAlert()
     }
 
-    public func onImagePickCanceled() {}
+    open func onImagePickCanceled() {}
 
-    public func onImageSelected(_ image: UIImage) {}
+    open func onImageSelected(_ image: UIImage) {}
 
-    public func onMediaSelected(_ url: URL) {}
+    open func onMediaSelected(_ url: URL) {}
 
     public func handleError(_ error: Error, _ completion: (() -> Void)?) {
         viewInterface?.hideLoading()
         viewInterface?.handleError(error, completion)
     }
 
-    public func imagePickerController(
+    open func imagePickerController(
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         // Helper function inserted by Swift 4.2 migrator.
@@ -137,7 +137,7 @@ open class PresenterBase: NSObject, PresenterInterface {
         }
     }
 
-    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    open func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true) { [unowned self] in
             self.onImagePickCanceled()
         }
