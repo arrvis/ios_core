@@ -90,12 +90,7 @@ open class BaseHTTPRouter {
                         return
                     }
                     response.result.ifFailure {
-                        observer.onError(HTTPError(
-                            response.response?.statusCode,
-                            response.response,
-                            response.data,
-                            response.error
-                        ))
+                        observer.onError(httpError)
                         return
                     }
                     observer.onNext((data, res.allHeaderFields))
