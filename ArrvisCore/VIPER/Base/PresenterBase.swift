@@ -13,9 +13,9 @@ open class PresenterBase: NSObject, PresenterInterface {
 
     // MARK: - Variables
 
-    var viewInterface: ViewInterface?
-    var interactorInterface: InteractorInterface!
-    var wireframeInterface: WireframeInterface!
+    public var viewInterface: ViewInterface?
+    public var interactorInterface: InteractorInterface!
+    public var wireframeInterface: WireframeInterface!
 
     public func viewDidLoad() {}
     public func viewWillAppear(_ animated: Bool) {}
