@@ -38,31 +38,31 @@ iOSのCoreモジュール
 
   # Services
   spec.subspec 'Apollo' do |subspec|
-    subspec.source_files = 'ArrvisCore/Apollo/**/*.{swift}'
-    subspec.resources = 'ArrvisCore/Apollo/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.source_files = 'ArrvisCore/Services/Apollo/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/Services/Apollo/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
     subspec.dependency 'Apollo', '0.10.1'
   end
   spec.subspec 'AWS' do |subspec|
-    subspec.source_files = 'ArrvisCore/AWS/**/*.{swift}'
-    subspec.resources = 'ArrvisCore/AWS/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.source_files = 'ArrvisCore/Services/AWS/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/Services/AWS/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
     subspec.dependency 'AWSS3', '2.9.9'
   end
   spec.subspec 'Cocoa' do |subspec|
-    subspec.source_files = 'ArrvisCore/Cocoa/**/*.{swift}'
-    subspec.resources = 'ArrvisCore/Cocoa/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.source_files = 'ArrvisCore/Services/Cocoa/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/Services/Cocoa/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
   end
   spec.subspec 'Facebook' do |subspec|
-    subspec.source_files = 'ArrvisCore/Facebook/**/*.{swift}'
-    subspec.resources = 'ArrvisCore/Facebook/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.source_files = 'ArrvisCore/Services/Facebook/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/Services/Facebook/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
     subspec.dependency 'FBSDKLoginKit', '5.10.0'
   end
   spec.subspec 'Google' do |subspec|
-    subspec.source_files = 'ArrvisCore/Google/**/*.{swift}'
-    subspec.resources = 'ArrvisCore/Google/**/*.{storyboard,xib,png,jpeg,jpg}'
+    subspec.source_files = 'ArrvisCore/Services/Google/**/*.{swift}'
+    subspec.resources = 'ArrvisCore/Services/Google/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
     subspec.dependency 'GoogleSignIn', '4.2.0'
   end
@@ -75,7 +75,7 @@ iOSのCoreモジュール
   end
 
   spec.subspec 'PusherBeams' do |subspec|
-    subspec.source_files = 'ArrvisCore/PusherBeams/HTTPRouter/**/*.{swift}'
+    subspec.source_files = 'ArrvisCore/Services/PusherBeams/HTTPRouter/**/*.{swift}'
     subspec.resources = 'ArrvisCore/Services/PusherBeams/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
     subspec.dependency 'PushNotifications', '~> 2.0.2'
