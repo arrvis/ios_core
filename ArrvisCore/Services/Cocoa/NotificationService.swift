@@ -67,7 +67,7 @@ extension NotificationService {
 extension NotificationService {
 
     /// デバイストークン取得リクエスト
-    public static func requestDeviceToken() -> Observable<String> {
+    public static func requestDeviceToken(_ delegate: UNUserNotificationCenterDelegate? = nil) -> Observable<String> {
         return Observable.create { observer in
             requestAuthorization().subscribe(onNext: { granted in
                 if !granted {
@@ -76,8 +76,9 @@ extension NotificationService {
                 }
                 deviceTokenObserver = observer
                 NSObject.runOnMainThread {
-                    UNUserNotificationCenter.current().delegate
-                        = UIApplication.shared.delegate as? UNUserNotificationCenterDelegate
+                    if let delegate = delegate {
+                        UNUserNotificationCenter.current().delegate = delegate
+                    }
                     UIApplication.shared.registerForRemoteNotifications()
                 }
             }, onError: { error in
