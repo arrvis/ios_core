@@ -16,8 +16,8 @@ extension LoadingShowable where Self: UIViewController {
         view.endEditing(true)
         if needFullScreen {
             ActivityIndicatorManager.shared.show(parent: UIApplication.shared.keyWindow!)
-        } else if let superview = view.superview {
-            ActivityIndicatorManager.shared.show(parent: superview, message: message)
+        } else {
+            ActivityIndicatorManager.shared.show(parent: view, message: message)
         }
     }
 
