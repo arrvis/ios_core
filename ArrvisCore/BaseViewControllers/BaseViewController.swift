@@ -6,6 +6,7 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
+// TODO: BaseViewControllerたちGenericsでどうにかならんかな
 /// UIViewController基底クラス
 open class BaseViewController: UIViewController, ViewControllerProtocols {
 
