@@ -12,18 +12,22 @@ open class InsetsSettableLabel: UILabel {
     // MARK: - Variables
 
     /// テキストのInsets
-    open var textInsets: UIEdgeInsets {
-        return .zero
+    open var textInsets: UIEdgeInsets? {
+        return nil
     }
 
     // MARK: - Overrides
 
     open override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: textInsets))
+        if let textInsets = textInsets {
+            super.drawText(in: rect.inset(by: textInsets))
+        } else {
+            super.drawText(in: rect)
+        }
     }
 
     open override var intrinsicContentSize: CGSize {
-        guard let text = self.text else { return super.intrinsicContentSize }
+        guard let text = self.text, let textInsets = textInsets else { return super.intrinsicContentSize }
         let newSize = text.boundingRect(
             with: CGSize(width: bounds.width,
                          height: CGFloat.greatestFiniteMagnitude),
