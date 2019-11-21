@@ -28,14 +28,16 @@ open class InsetsSettableLabel: UILabel {
 
     open override var intrinsicContentSize: CGSize {
         guard let text = self.text, let textInsets = textInsets else { return super.intrinsicContentSize }
-        let newSize = text.boundingRect(
-            with: CGSize(width: bounds.width,
-                         height: CGFloat.greatestFiniteMagnitude),
-            options: .usesFontLeading,
+         let newSize = text.boundingRect(
+            with: CGSize(
+                width: bounds.width,
+                height: CGFloat.greatestFiniteMagnitude
+            ),
+            options: .usesLineFragmentOrigin,
             attributes: [NSAttributedString.Key.font: font as Any], context: nil)
-        return CGSize(
+         return CGSize(
             width: ceil(newSize.size.width) + textInsets.left + textInsets.right,
             height: ceil(newSize.size.height) + textInsets.top + textInsets.bottom
-        )
+         )
     }
 }
