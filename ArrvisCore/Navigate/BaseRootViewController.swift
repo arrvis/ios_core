@@ -13,7 +13,21 @@ import SwiftEventBus
 /// ルートViewController基底クラス
 open class BaseRootViewController: UIViewController {
 
+    // MARK: - Const
+
+    /// Present時の閉じるボタンタイプ
+    public enum PresentCloseButtonType {
+        case none
+        case left
+        case right
+    }
+
     // MARK: - Variables
+
+    /// Present時の閉じるボタンタイプ
+    open var presentCloseButtonType: PresentCloseButtonType {
+        return .left
+    }
 
     private let disposeBag = DisposeBag()
     private var navigator: BaseNavigator!
@@ -94,28 +108,16 @@ open class BaseRootViewController: UIViewController {
 
         navigator.present.subscribe(onNext: { [unowned self] vc, animate in
             self.presentChildViewController(vc, animate)
-            // 左上に閉じるボタンを追加
-            let buttonDismiss = UIBarButtonItem(barButtonSystemItem: .stop)
-            buttonDismiss.rx.tap.subscribe(onNext: { [weak self] in
-                self?.dismisssChildViewController(nil, true)
-            }).disposed(by: self.disposeBag)
-            if let top = (vc as? UINavigationController)?.topViewController {
-                top.navigationItem.leftBarButtonItem = buttonDismiss
-            } else {
-                vc.navigationItem.leftBarButtonItem = buttonDismiss
-            }
         }).disposed(by: disposeBag)
         navigator.dismiss.subscribe(onNext: { [unowned self] result, animate in
             self.dismisssChildViewController(result, animate)
         }).disposed(by: disposeBag)
     }
-}
 
-// MARK: - Navigate
-extension BaseRootViewController {
+    // MARK: - Navigate
 
     /// Replace
-    private func replaceChildViewController(_ vc: UIViewController) {
+    open func replaceChildViewController(_ vc: UIViewController) {
         UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: false, completion: nil)
         subscribeEvents(vc)
         func change() {
@@ -136,7 +138,7 @@ extension BaseRootViewController {
     }
 
     /// Push
-    private func pushChildViewController(_ vc: UIViewController, _ fromRoot: Bool, _ animate: Bool) {
+    open func pushChildViewController(_ vc: UIViewController, _ fromRoot: Bool, _ animate: Bool) {
         subscribeEvents(vc)
         if fromRoot {
             currentRootNavigationController?.pushViewController(vc, animated: animate)
@@ -146,7 +148,7 @@ extension BaseRootViewController {
     }
 
     /// Pop
-    private func popChildViewController(_ result: Any?, _ animate: Bool) {
+    open func popChildViewController(_ result: Any?, _ animate: Bool) {
         currentViewController()?.navigationController?.popViewController(animated: animate)
 
         func completed() {
@@ -165,13 +167,13 @@ extension BaseRootViewController {
     }
 
     /// Present
-    private func presentChildViewController(_ vc: UIViewController, _ animate: Bool) {
+    open func presentChildViewController(_ vc: UIViewController, _ animate: Bool) {
         subscribeEvents(vc)
         currentViewController()?.present(vc, animated: animate)
     }
 
     /// Dismiss
-    private func dismisssChildViewController(_ result: Any?, _ animate: Bool, _ completion: (() -> Void)? = nil) {
+    open func dismisssChildViewController(_ result: Any?, _ animate: Bool, _ completion: (() -> Void)? = nil) {
         currentViewController()?.dismiss(animated: animate, completion: { [unowned self] in
             if let current = self.currentViewController() {
                 self.setBackResultIfCan(vc: current, result: result)
