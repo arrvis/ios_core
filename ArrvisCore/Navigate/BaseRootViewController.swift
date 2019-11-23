@@ -29,11 +29,6 @@ open class BaseRootViewController: UIViewController {
         return .left
     }
 
-    private let disposeBag = DisposeBag()
-    private var navigator: BaseNavigator!
-
-    // MARK: - Child ViewControllers
-
     private var currentRootViewController: UIViewController?
     private var currentRootNavigationController: UINavigationController? {
         if let current = currentRootViewController as? UINavigationController {
@@ -45,49 +40,7 @@ open class BaseRootViewController: UIViewController {
         return nil
     }
 
-    private func currentViewController(from: UIViewController? = nil) -> UIViewController? {
-        if let from = from {
-            if let presented = from.presentedViewController {
-                return currentViewController(from: presented)
-            }
-            if let nav = from as? UINavigationController {
-                if let last = nav.children.last {
-                    return currentViewController(from: last)
-                }
-                return nav
-            }
-            if let tab = from as? UITabBarController {
-                if let selected = tab.selectedViewController {
-                    return currentViewController(from: selected)
-                }
-                return tab
-            }
-            return from
-        } else if let presented = presentedViewController {
-            return currentViewController(from: presented)
-        } else if let currentRootViewController = currentRootViewController {
-            return currentViewController(from: currentRootViewController)
-        } else {
-            return nil
-        }
-    }
-
-    private func currentNavigationController(from: UIViewController?) -> UINavigationController? {
-        if let from = from {
-            if let nav = from as? UINavigationController {
-                return nav
-            }
-            if let navigationController = from.navigationController {
-                return navigationController
-            }
-            if let parent = from.parent {
-                return currentNavigationController(from: parent)
-            }
-            return nil
-        } else {
-            return currentNavigationController(from: currentViewController(from: from)!)
-        }
-    }
+    private var navigator: BaseNavigator!
 
     // MARK: - Initializer
 
@@ -97,21 +50,21 @@ open class BaseRootViewController: UIViewController {
 
         navigator.replace.subscribe(onNext: { [unowned self] vc in
             self.replaceChildViewController(vc)
-        }).disposed(by: disposeBag)
+        }).disposed(by: self)
 
         navigator.push.subscribe(onNext: { [unowned self] vc, fromRoot, animate in
             self.pushChildViewController(vc, fromRoot, animate)
-        }).disposed(by: disposeBag)
+        }).disposed(by: self)
         navigator.pop.subscribe(onNext: { [unowned self] result, animate in
             self.popChildViewController(result, animate)
-        }).disposed(by: disposeBag)
+        }).disposed(by: self)
 
         navigator.present.subscribe(onNext: { [unowned self] vc, animate in
             self.presentChildViewController(vc, animate)
-        }).disposed(by: disposeBag)
+        }).disposed(by: self)
         navigator.dismiss.subscribe(onNext: { [unowned self] result, animate in
             self.dismisssChildViewController(result, animate)
-        }).disposed(by: disposeBag)
+        }).disposed(by: self)
     }
 
     // MARK: - Navigate
@@ -168,6 +121,26 @@ open class BaseRootViewController: UIViewController {
 
     /// Present
     open func presentChildViewController(_ vc: UIViewController, _ animate: Bool) {
+        let buttonDismiss = UIBarButtonItem(barButtonSystemItem: .stop)
+        buttonDismiss.rx.tap.subscribe(onNext: { [weak self] in
+            self?.dismisssChildViewController(nil, true)
+        }).disposed(by: self.self)
+        switch presentCloseButtonType {
+        case .left:
+            if let top = (vc as? UINavigationController)?.topViewController {
+                top.navigationItem.leftBarButtonItem = buttonDismiss
+            } else {
+                vc.navigationItem.leftBarButtonItem = buttonDismiss
+            }
+        case .right:
+            if let top = (vc as? UINavigationController)?.topViewController {
+                top.navigationItem.rightBarButtonItem = buttonDismiss
+            } else {
+                vc.navigationItem.rightBarButtonItem = buttonDismiss
+            }
+        default:
+            break
+        }
         subscribeEvents(vc)
         currentViewController()?.present(vc, animated: animate)
     }
@@ -198,5 +171,53 @@ open class BaseRootViewController: UIViewController {
             .subscribe(onNext: { _ in
                 SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
             }).disposed(by: self)
+    }
+}
+
+// MARK: - Private
+extension BaseRootViewController {
+
+    private func currentViewController(from: UIViewController? = nil) -> UIViewController? {
+        if let from = from {
+            if let presented = from.presentedViewController {
+                return currentViewController(from: presented)
+            }
+            if let nav = from as? UINavigationController {
+                if let last = nav.children.last {
+                    return currentViewController(from: last)
+                }
+                return nav
+            }
+            if let tab = from as? UITabBarController {
+                if let selected = tab.selectedViewController {
+                    return currentViewController(from: selected)
+                }
+                return tab
+            }
+            return from
+        } else if let presented = presentedViewController {
+            return currentViewController(from: presented)
+        } else if let currentRootViewController = currentRootViewController {
+            return currentViewController(from: currentRootViewController)
+        } else {
+            return nil
+        }
+    }
+
+    private func currentNavigationController(from: UIViewController?) -> UINavigationController? {
+        if let from = from {
+            if let nav = from as? UINavigationController {
+                return nav
+            }
+            if let navigationController = from.navigationController {
+                return navigationController
+            }
+            if let parent = from.parent {
+                return currentNavigationController(from: parent)
+            }
+            return nil
+        } else {
+            return currentNavigationController(from: currentViewController(from: from)!)
+        }
     }
 }

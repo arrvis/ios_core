@@ -13,7 +13,7 @@ file_length:
   warning: 250
   error: 300
 type_body_length:
-  warning: 100
+  warning: 150
   error: 200
 function_body_length:
   warning: 100
