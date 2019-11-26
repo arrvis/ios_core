@@ -70,7 +70,8 @@ open class BaseHTTPRouter {
                 .responseData(completionHandler: { response in
                     if self.debugEnabled {
                         let data = response.data == nil ? "no data" : String(bytes: response.data!, encoding: .utf8)!
-                        print("[\(self.httpMethod.rawValue)] \(url)\n\(self.parameters?.jsonString ?? "no param")\n\(data)")
+                        let urlInfo = "[\(self.httpMethod.rawValue)] \(url)"
+                        print("\(urlInfo)\n\(self.parameters?.jsonString ?? "no param")\n\(data)")
                     }
                     DispatchQueue.main.async {
                         NetworkUtil.hideNetworkActivityIndicator()
