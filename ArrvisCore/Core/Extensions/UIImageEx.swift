@@ -20,10 +20,16 @@ extension UIImage {
         return "data:image/png;base64,\(pngData.base64EncodedString(options: []))"
     }
 
+    /// Base64データ文字列から復元
+    public static func devodeFromBase64DataString(_ string: String) -> UIImage? {
+        return UIImage(data: Data(base64Encoded: string)!)
+    }
+
     /// 画像ロード
-    public static func loadImage(_ urlString: String,
-                                 filter: ImageFilter? = nil,
-                                 completion: @escaping (UIImage?) -> Void) {
+    public static func loadImage(
+        _ urlString: String,
+        filter: ImageFilter? = nil,
+        completion: @escaping (UIImage?) -> Void) {
         imageDownloader.download(URLRequest(url: URL(string: urlString)!), filter: filter) { response in
             completion(response.result.value)
         }
