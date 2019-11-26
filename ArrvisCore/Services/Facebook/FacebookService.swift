@@ -21,15 +21,11 @@ public final class FacebookService {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
-    public static func application(_ app: UIApplication,
-                                   open url: URL,
-                                   options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        let sourceApp = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String
-        let annotation = options[UIApplication.OpenURLOptionsKey.annotation]
-        return ApplicationDelegate.shared.application(app,
-                                                      open: url,
-                                                      sourceApplication: sourceApp,
-                                                      annotation: annotation)
+    public static func application(
+        _ app: UIApplication,
+        open url: URL,
+        options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        return ApplicationDelegate.shared.application(app, open: url, options: options)
     }
 }
 
