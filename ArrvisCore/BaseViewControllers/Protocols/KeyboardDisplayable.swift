@@ -37,7 +37,7 @@ extension KeyboardDisplayable {
         }
     }
 
-    private var originContentInset: UIEdgeInsets? {
+    var originContentInset: UIEdgeInsets? {
         get {
             return objc_getAssociatedObject(self, &originalContentInsetKey) as? UIEdgeInsets ?? nil
         }
@@ -53,33 +53,6 @@ extension KeyboardDisplayable {
         set {
             objc_setAssociatedObject(self, &keyboardSubscribersKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
-    }
-
-    /// キーボード表示イベント
-    public func onKeyboardWillShow(notification: Notification) {
-        guard let scrollView = scrollViewForResizeKeyboard,
-            let originInset = scrollViewForResizeKeyboard?.contentInset,
-            let userInfo = notification.userInfo,
-            let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-                return
-        }
-        originContentInset = originContentInset ?? originInset
-        let insets = UIEdgeInsets(top: originInset.top,
-                                  left: originInset.left,
-                                  bottom: keyboardFrame.height,
-                                  right: originInset.right)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-
-    /// キーボード非表示イベント
-    public func onKeyboardWillHide(notification: Notification) {
-        guard let scrollView = scrollViewForResizeKeyboard,
-            let originInset = originContentInset else {
-                return
-        }
-        scrollView.contentInset = originInset
-        scrollView.scrollIndicatorInsets = originInset
     }
 
     internal func subscribeKeyboardEvents() {
