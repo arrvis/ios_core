@@ -27,7 +27,9 @@ open class InsetsSettableLabel: UILabel {
     }
 
     open override var intrinsicContentSize: CGSize {
-        guard let text = self.text, let textInsets = textInsets else { return super.intrinsicContentSize }
+        guard let text = self.text, let textInsets = textInsets else {
+            return super.intrinsicContentSize
+        }
         let singleLineSize = text.boundingRect(
             with: CGSize(
                 width: bounds.width - (textInsets.left + textInsets.right),
@@ -47,7 +49,7 @@ open class InsetsSettableLabel: UILabel {
             height = min(singleLineSize.height * CGFloat(numberOfLines), actualSize.height)
         }
         return CGSize(
-            width: ceil(actualSize.width) + textInsets.left + textInsets.right,
+            width: ceil(bounds.width) + textInsets.left + textInsets.right,
             height: ceil(height) + textInsets.top + textInsets.bottom
         )
     }
