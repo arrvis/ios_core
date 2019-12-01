@@ -30,13 +30,13 @@ open class InsetsSettableLabel: UILabel {
         guard let text = self.text, let textInsets = textInsets else { return super.intrinsicContentSize }
         let singleLineSize = text.boundingRect(
             with: CGSize(
-                width: bounds.width,
+                width: bounds.width - (textInsets.left + textInsets.right),
                 height: CGFloat.greatestFiniteMagnitude),
             options: .usesFontLeading,
             attributes: [NSAttributedString.Key.font: font as Any], context: nil)
         let actualSize = text.boundingRect(
             with: CGSize(
-                width: bounds.width,
+                width: bounds.width - (textInsets.left + textInsets.right),
                 height: CGFloat.greatestFiniteMagnitude),
             options: .usesLineFragmentOrigin,
             attributes: [NSAttributedString.Key.font: font as Any], context: nil)
