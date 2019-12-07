@@ -19,6 +19,11 @@ open class BaseTextField: UITextField {
         return nil
     }
 
+    /// Responderが存在しない場合にボタンを非表示
+    open var hideBtnIfNotExists: Bool {
+        return false
+    }
+
     /// Action可能かどうか
     public var canAction = true
 
@@ -37,7 +42,7 @@ open class BaseTextField: UITextField {
     }
 
     private func initImpl() {
-        inputAccessoryView = configureInputToolBar(bounds.width, barTintColor) { [unowned self] in
+        inputAccessoryView = configureInputToolBar(bounds.width, barTintColor, hideBtnIfNotExists) { [unowned self] in
             self.resignFirstResponder()
         }
         rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { [unowned self] _ in

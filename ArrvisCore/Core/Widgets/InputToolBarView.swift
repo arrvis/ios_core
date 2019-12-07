@@ -19,13 +19,56 @@ public final class InputToolBarView: UIToolbar {
     /// 前のResponder
     var previousInputResponder: UIResponder? {
         didSet {
-            btnPrev.isEnabled = previousInputResponder != nil
+            refreshItems()
         }
     }
 
     /// 次のResponder
     var nextInputResponder: UIResponder? {
         didSet {
+            refreshItems()
+        }
+    }
+
+    /// Responderが存在しない場合にボタンを非表示
+    var hideBtnIfNotExists: Bool = false {
+        didSet {
+            refreshItems()
+        }
+    }
+
+    private func refreshItems() {
+        if hideBtnIfNotExists {
+            let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace)
+            spacer.width = 10
+            if previousInputResponder == nil && nextInputResponder == nil {
+                items = [
+                    UIBarButtonItem(barButtonSystemItem: .flexibleSpace),
+                    btnDone
+                ]
+            } else if previousInputResponder == nil {
+                items = [
+                    btnNext,
+                    UIBarButtonItem(barButtonSystemItem: .flexibleSpace),
+                    btnDone
+                ]
+            } else if nextInputResponder == nil {
+                items = [
+                    btnPrev,
+                    UIBarButtonItem(barButtonSystemItem: .flexibleSpace),
+                    btnDone
+                ]
+            } else {
+                items = [
+                    btnPrev,
+                    spacer,
+                    btnNext,
+                    UIBarButtonItem(barButtonSystemItem: .flexibleSpace),
+                    btnDone
+                ]
+            }
+        } else {
+            btnPrev.isEnabled = previousInputResponder != nil
             btnNext.isEnabled = nextInputResponder != nil
         }
     }
@@ -51,18 +94,6 @@ public final class InputToolBarView: UIToolbar {
     }
 
     private func initImpl() {
-        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace)
-        spacer.width = 10
-        items = [
-            btnPrev,
-            spacer,
-            btnNext,
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace),
-            btnDone
-        ]
-        btnPrev.isEnabled = false
-        btnNext.isEnabled = false
-
         btnPrev.rx.tap.subscribe(onNext: { [unowned self] in
             self.previousInputResponder?.becomeFirstResponder()
         }).disposed(by: disposeBag)
@@ -72,6 +103,7 @@ public final class InputToolBarView: UIToolbar {
         btnDone.rx.tap.subscribe(onNext: { [unowned self] in
             self.didTapDone?()
         }).disposed(by: disposeBag)
+        refreshItems()
     }
 }
 
@@ -106,9 +138,11 @@ extension UITextInput {
         }
     }
 
-    func configureInputToolBar(_ width: CGFloat,
-                               _ barTintColor: UIColor?,
-                               _ doneAction: @escaping () -> Void) -> InputToolBarView {
+    func configureInputToolBar(
+        _ width: CGFloat,
+        _ barTintColor: UIColor?,
+        _ hideActions: Bool = false,
+        _ doneAction: @escaping () -> Void) -> InputToolBarView {
         inputToolBar = InputToolBarView(frame: CGRect(x: 0, y: 0, width: width, height: 44))
         if let color = barTintColor {
             inputToolBar?.tintColor = color

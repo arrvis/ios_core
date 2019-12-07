@@ -16,6 +16,11 @@ open class BaseTextView: UITextView {
         return nil
     }
 
+    /// Responderが存在しない場合にボタンを非表示
+    open var hideBtnIfNotExists: Bool {
+        return false
+    }
+
     open override var canBecomeFirstResponder: Bool {
         return isEditable || isSelectable
     }
@@ -36,7 +41,7 @@ open class BaseTextView: UITextView {
         if !isEditable {
             return
         }
-        inputAccessoryView = configureInputToolBar(bounds.width, barTintColor) { [unowned self] in
+        inputAccessoryView = configureInputToolBar(bounds.width, barTintColor, hideBtnIfNotExists) { [unowned self] in
             self.resignFirstResponder()
         }
     }
