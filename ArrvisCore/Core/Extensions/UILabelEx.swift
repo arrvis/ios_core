@@ -8,6 +8,24 @@
 
 extension UILabel {
 
+    /// 実際の行数
+    public var actualNumberOfLines: Int {
+        guard let text = text else {
+            return 0
+        }
+        let oneLineRect = "a".boundingRect(
+            with: bounds.size,
+            options: .usesLineFragmentOrigin,
+            attributes: [NSAttributedString.Key.font: font as Any],
+            context: nil)
+        let boundingRect = text.boundingRect(
+            with: bounds.size,
+            options: .usesLineFragmentOrigin,
+            attributes: [NSAttributedString.Key.font: font as Any],
+            context: nil)
+        return Int(boundingRect.height / oneLineRect.height)
+    }
+
     /// リンクを追加
     ///
     /// - Parameters:
