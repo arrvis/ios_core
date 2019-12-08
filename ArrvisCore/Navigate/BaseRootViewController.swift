@@ -58,6 +58,9 @@ open class BaseRootViewController: UIViewController {
         navigator.pop.subscribe(onNext: { [unowned self] result, animate in
             self.popChildViewController(result, animate)
         }).disposed(by: self)
+        navigator.pop.subscribe(onNext: { [unowned self] result, animate in
+            self.popToRoot(result, animate)
+        }).disposed(by: self)
 
         navigator.present.subscribe(onNext: { [unowned self] vc, animate in
             self.presentChildViewController(vc, animate)
@@ -106,6 +109,29 @@ open class BaseRootViewController: UIViewController {
 
         func completed() {
             if let current = currentViewController() {
+                setBackResultIfCan(vc: current, result: result)
+            }
+        }
+
+        if let coordinator = currentViewController()?.navigationController?.transitionCoordinator, animate {
+            coordinator.animate(alongsideTransition: nil) { _ in
+                completed()
+            }
+        } else {
+            completed()
+        }
+    }
+
+    /// PopToRoot
+    open func popToRoot(_ result: Any?, _ animate: Bool) {
+        currentViewController()?.navigationController?.popViewController(animated: animate)
+
+        func completed() {
+            if let current = currentViewController() {
+                if current != currentRootViewController {
+                    popToRoot(result, animate)
+                    return
+                }
                 setBackResultIfCan(vc: current, result: result)
             }
         }

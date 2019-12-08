@@ -22,6 +22,9 @@ open class BaseNavigator: Navigatable {
     var pop: Observable<(Any?, Bool)> { return popSubject }
     private let popSubject = PublishSubject<(Any?, Bool)>()
 
+    var popToRoot: Observable<(Any?, Bool)> { return popToRootSubject }
+    private let popToRootSubject = PublishSubject<(Any?, Bool)>()
+
     var present: Observable<(vc: UIViewController, animate: Bool)> { return presentSubject }
     private let presentSubject = PublishSubject<(vc: UIViewController, animate: Bool)>()
 
@@ -108,6 +111,11 @@ extension BaseNavigator {
     /// 戻る
     public func popScreen(result: Any? = nil, animate: Bool = true) {
         popSubject.onNext((result, animate))
+    }
+
+    /// 戻る
+    public func popToRootScreen(result: Any? = nil, animate: Bool = true) {
+        popToRootSubject.onNext((result, animate))
     }
 
     /// スクリーンを非表示
