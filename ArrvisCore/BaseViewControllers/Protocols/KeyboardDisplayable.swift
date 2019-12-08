@@ -18,9 +18,6 @@ public protocol KeyboardDisplayable where Self: UIViewController {
     /// キーボード表示時にリサイズさせるScrollView
     var scrollViewForResizeKeyboard: UIScrollView? { get }
 
-    /// リサイズ時にSafeAreaを使う
-    var useSafeAreaOnResizeKeyboard: Bool { get }
-
     /// キーボード表示イベント
     func onKeyboardWillShow(notification: Notification)
 
