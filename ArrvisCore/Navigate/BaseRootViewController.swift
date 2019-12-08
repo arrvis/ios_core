@@ -124,7 +124,9 @@ open class BaseRootViewController: UIViewController {
 
     /// PopToRoot
     open func popToRoot(_ result: Any?, _ animate: Bool) {
-        while currentViewController()?.navigationController?.popViewController(animated: animate) != nil {
+        var remain = currentViewController()?.navigationController?.children.count ?? 0
+        while currentViewController()?.navigationController?.popViewController(animated: remain <= 1 && animate) != nil {
+            remain -= 1
         }
 
         func completed() {
