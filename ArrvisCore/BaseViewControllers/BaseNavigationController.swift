@@ -72,6 +72,9 @@ open class BaseNavigationController: UINavigationController, UINavigationControl
     /// キーボード表示時にリサイズさせるScrollView
     open var scrollViewForResizeKeyboard: UIScrollView? { return nil }
 
+    /// リサイズ時にSafeAreaを使う
+    open var useSafeAreaOnResizeKeyboard: Bool { return true }
+
     /// キーボード表示イベント
     open func onKeyboardWillShow(notification: Notification) {
         guard let scrollView = scrollViewForResizeKeyboard,
@@ -81,10 +84,11 @@ open class BaseNavigationController: UINavigationController, UINavigationControl
                 return
         }
         originContentInset = originContentInset ?? originInset
-        let insets = UIEdgeInsets(top: originInset.top,
-                                  left: originInset.left,
-                                  bottom: keyboardFrame.height,
-                                  right: originInset.right)
+        let insets = UIEdgeInsets(
+            top: originInset.top,
+            left: originInset.left,
+            bottom: keyboardFrame.height - (useSafeAreaOnResizeKeyboard ? 0 : (safeAreaInsets?.bottom ?? 0)),
+            right: originInset.right)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
