@@ -124,14 +124,11 @@ open class BaseRootViewController: UIViewController {
 
     /// PopToRoot
     open func popToRoot(_ result: Any?, _ animate: Bool) {
-        currentViewController()?.navigationController?.popViewController(animated: animate)
+        while currentViewController()?.navigationController?.popViewController(animated: animate) != nil {
+        }
 
         func completed() {
             if let current = currentViewController() {
-                if current != currentRootViewController {
-                    popToRoot(result, animate)
-                    return
-                }
                 setBackResultIfCan(vc: current, result: result)
             }
         }
