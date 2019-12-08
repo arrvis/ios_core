@@ -157,6 +157,7 @@ extension UITextInput {
         inputToolBar!.didTapDone = {
             doneAction()
         }
+        inputToolBar!.hideBtnIfNotExists = hideActions
         return inputToolBar!
     }
 }
