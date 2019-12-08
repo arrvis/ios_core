@@ -58,7 +58,7 @@ open class BaseRootViewController: UIViewController {
         navigator.pop.subscribe(onNext: { [unowned self] result, animate in
             self.popChildViewController(result, animate)
         }).disposed(by: self)
-        navigator.pop.subscribe(onNext: { [unowned self] result, animate in
+        navigator.popToRoot.subscribe(onNext: { [unowned self] result, animate in
             self.popToRoot(result, animate)
         }).disposed(by: self)
 
