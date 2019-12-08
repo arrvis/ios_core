@@ -53,6 +53,11 @@ extension WireframeInterface {
     public func popScreen(result: Any? = nil, _ animate: Bool = true) {
         navigator.popScreen(result: result, animate: animate)
     }
+
+    /// pop to root
+    public func popToRootScreen(result: Any? = nil, _ animate: Bool = true) {
+        navigator.popToRootScreen(result: result, animate: animate)
+    }
 }
 
 // MARK: - SystemScreenShowable
