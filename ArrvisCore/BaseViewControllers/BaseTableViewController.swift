@@ -60,10 +60,11 @@ open class BaseTableViewController: UITableViewController, ViewControllerProtoco
                 return
         }
         originContentInset = originContentInset ?? originInset
-        let insets = UIEdgeInsets(top: originInset.top,
-                                  left: originInset.left,
-                                  bottom: keyboardFrame.height,
-                                  right: originInset.right)
+        let insets = UIEdgeInsets(
+            top: originInset.top,
+            left: originInset.left,
+            bottom: keyboardFrame.height,
+            right: originInset.right)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
