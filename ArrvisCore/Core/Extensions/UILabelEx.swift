@@ -14,12 +14,12 @@ extension UILabel {
             return 0
         }
         let oneLineRect = "a".boundingRect(
-            with: bounds.size,
+            with: CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude),
             options: .usesLineFragmentOrigin,
             attributes: [NSAttributedString.Key.font: font as Any],
             context: nil)
         let boundingRect = text.boundingRect(
-            with: bounds.size,
+            with: CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude),
             options: .usesLineFragmentOrigin,
             attributes: [NSAttributedString.Key.font: font as Any],
             context: nil)
