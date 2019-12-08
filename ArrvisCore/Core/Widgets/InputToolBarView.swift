@@ -38,9 +38,9 @@ public final class InputToolBarView: UIToolbar {
     }
 
     private func refreshItems() {
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace)
+        spacer.width = 10
         if hideBtnIfNotExists {
-            let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace)
-            spacer.width = 10
             if previousInputResponder == nil && nextInputResponder == nil {
                 items = [
                     UIBarButtonItem(barButtonSystemItem: .flexibleSpace),
@@ -70,6 +70,13 @@ public final class InputToolBarView: UIToolbar {
         } else {
             btnPrev.isEnabled = previousInputResponder != nil
             btnNext.isEnabled = nextInputResponder != nil
+            items = [
+                btnPrev,
+                spacer,
+                btnNext,
+                UIBarButtonItem(barButtonSystemItem: .flexibleSpace),
+                btnDone
+            ]
         }
     }
 
