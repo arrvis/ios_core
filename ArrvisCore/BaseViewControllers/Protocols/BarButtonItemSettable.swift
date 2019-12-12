@@ -35,6 +35,7 @@ extension BarButtonItemSettable {
             navigationItem.backBarButtonItem = backBarButtonItem
         }
         navigationItem.backBarButtonItem?.rx.tap.subscribe(onNext: { [unowned self] in
+            // TODO: こいつ呼ばれないぞ
             self.didTapBackBarButtonItem()
         }).disposed(by: self)
 
