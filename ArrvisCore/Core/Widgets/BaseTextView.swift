@@ -25,6 +25,9 @@ open class BaseTextView: UITextView {
         return isEditable || isSelectable
     }
 
+    /// Action可能かどうか
+    public var canAction = true
+
     // MARK: - Initializer
 
     public override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -44,5 +47,27 @@ open class BaseTextView: UITextView {
         inputAccessoryView = configureInputToolBar(bounds.width, barTintColor, hideBtnIfNotExists) { [unowned self] in
             self.resignFirstResponder()
         }
+    }
+}
+
+// MARK: - Overrides
+extension BaseTextView {
+
+    open override func caretRect(for position: UITextPosition) -> CGRect {
+        if canAction {
+            return super.caretRect(for: position)
+        }
+        return CGRect.zero
+    }
+
+    open override func selectionRects(for range: UITextRange) -> [UITextSelectionRect] {
+        if canAction {
+            return super.selectionRects(for: range)
+        }
+        return []
+    }
+
+    open override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        return canAction
     }
 }
