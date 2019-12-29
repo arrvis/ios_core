@@ -9,8 +9,8 @@
 import UIKit
 
 public protocol LoadingShowable {
-    func showLoading(_ needFullScreen: Bool)
-    func showLoading(message: String, _ needFullScreen: Bool)
+    func showLoading(_ needFullScreen: Bool, _ usingSafeArea: Bool)
+    func showLoading(message: String, _ needFullScreen: Bool, _ usingSafeArea: Bool)
     func hideLoading()
 }
 
