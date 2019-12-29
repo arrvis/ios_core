@@ -12,12 +12,18 @@ public protocol LoadingShowable {}
 
 extension LoadingShowable where Self: UIViewController {
 
-    public func showLoading(message: String? = nil, _ needFullScreen: Bool = false) {
+    public func showLoading(
+        message: String? = nil,
+        _ needFullScreen: Bool = false,
+        _ usingSafeArea: Bool = false) {
         view.endEditing(true)
         if needFullScreen {
-            ActivityIndicatorManager.shared.show(parent: UIApplication.shared.keyWindow!)
+            ActivityIndicatorManager.shared.show(
+                parent: UIApplication.shared.keyWindow!,
+                message: message,
+                usingSafeArea: usingSafeArea)
         } else {
-            ActivityIndicatorManager.shared.show(parent: view, message: message)
+            ActivityIndicatorManager.shared.show(parent: view, message: message, usingSafeArea: usingSafeArea)
         }
     }
 
@@ -65,10 +71,10 @@ private struct ActivityIndicatorManager {
 
 extension ActivityIndicatorManager {
 
-    func show(parent: UIView, message: String? = nil) {
+    func show(parent: UIView, message: String? = nil, usingSafeArea: Bool = false) {
         label.text = message
         indicator.startAnimating()
-        parent.addSubviewWithFit(container)
+        parent.addSubviewWithFit(container, usingSafeArea: usingSafeArea)
     }
 
     func hide() {
