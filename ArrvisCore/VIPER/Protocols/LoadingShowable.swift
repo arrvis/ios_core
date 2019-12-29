@@ -16,21 +16,24 @@ public protocol LoadingShowable {
 
 extension LoadingShowable where Self: UIViewController {
 
-    public func showLoading(_ needFullScreen: Bool = false) {
+    public func showLoading(_ needFullScreen: Bool = false, _ usingSafeArea: Bool = false) {
         view.endEditing(true)
         if needFullScreen {
-            ActivityIndicatorManager.shared.show(parent: UIApplication.shared.keyWindow!)
+            ActivityIndicatorManager.shared.show(parent: UIApplication.shared.keyWindow!, usingSafeArea: usingSafeArea)
         } else if let superview = view.superview {
-            ActivityIndicatorManager.shared.show(parent: superview)
+            ActivityIndicatorManager.shared.show(parent: superview, usingSafeArea: usingSafeArea)
         }
     }
 
-    public func showLoading(message: String, _ needFullScreen: Bool = false) {
+    public func showLoading(message: String, _ needFullScreen: Bool = false, _ usingSafeArea: Bool = false) {
         view.endEditing(true)
         if needFullScreen {
-            ActivityIndicatorManager.shared.show(parent: UIApplication.shared.keyWindow!)
+            ActivityIndicatorManager.shared.show(
+                parent: UIApplication.shared.keyWindow!,
+                message: message,
+                usingSafeArea: usingSafeArea)
         } else if let superview = view.superview {
-            ActivityIndicatorManager.shared.show(parent: superview, message: message)
+            ActivityIndicatorManager.shared.show(parent: superview, message: message, usingSafeArea: usingSafeArea)
         }
     }
 

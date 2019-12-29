@@ -60,10 +60,10 @@ extension ActivityIndicatorManager {
     /// - Parameters:
     ///   - parent: 親
     ///   - message: メッセージ
-    public func show(parent: UIView, message: String? = nil) {
+    public func show(parent: UIView, message: String? = nil, usingSafeArea: Bool = false) {
         label.text = message
         indicator.startAnimating()
-        parent.addSubviewWithFit(container)
+        parent.addSubviewWithFit(container, usingSafeArea: usingSafeArea)
     }
 
     /// 非表示
