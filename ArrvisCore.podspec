@@ -58,7 +58,7 @@ iOSのCoreモジュール
     subspec.source_files = 'ArrvisCore/Services/Facebook/**/*.{swift}'
     subspec.resources = 'ArrvisCore/Services/Facebook/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
-    subspec.dependency 'FBSDKLoginKit', '5.10.0'
+    subspec.dependency 'FBSDKLoginKit', '5.13.1'
   end
   spec.subspec 'Google' do |subspec|
     subspec.source_files = 'ArrvisCore/Services/Google/**/*.{swift}'
@@ -78,6 +78,6 @@ iOSのCoreモジュール
     subspec.source_files = 'ArrvisCore/Services/PusherBeams/HTTPRouter/**/*.{swift}'
     subspec.resources = 'ArrvisCore/Services/PusherBeams/**/*.{storyboard,xib,png,jpeg,jpg}'
     subspec.dependency 'ArrvisCore/Core'
-    subspec.dependency 'PushNotifications', '~> 2.0.2'
+    subspec.dependency 'PushNotifications', '~> 3.0.1'
   end
 end
