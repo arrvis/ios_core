@@ -19,45 +19,50 @@ repositoryMap:
   - name: SQLite
 
 - aws-sdk-ios:
-  - name: AWSAPIGateway
-  - name: AWSAuthCore
-  - name: AWSAuthUI
   - name: AWSAutoScaling
+  - name: AWSAPIGateway
   - name: AWSCloudWatch
   - name: AWSCognito
   - name: AWSCognitoAuth
   - name: AWSCognitoIdentityProvider
-  - name: AWSCognitoIdentityProviderASF
   - name: AWSComprehend
-  - name: AWSCore
-  - name: AWSDynamoDB
-  - name: AWSEC2
+  - name: AWSCognitoIdentityProviderASF
+  - name: AWSConnectParticipant
+  - name: AWSConnect
   - name: AWSElasticLoadBalancing
-  - name: AWSFacebookSignIn
-  - name: AWSGoogleSignIn
-  - name: AWSIoT
+  - name: AWSDynamoDB
+  - name: AWSCore
+  - name: AWSEC2
   - name: AWSKinesis
-  - name: AWSKinesisVideo
   - name: AWSKinesisVideoArchivedMedia
-  - name: AWSKMS
+  - name: AWSIoT
+  - name: AWSKinesisVideo
+  - name: AWSKinesisVideoSignaling
   - name: AWSLambda
+  - name: AWSKMS
   - name: AWSLex
   - name: AWSLogs
   - name: AWSMachineLearning
   - name: AWSMobileAnalytics
-  - name: AWSMobileClient
   - name: AWSPinpoint
   - name: AWSPolly
   - name: AWSRekognition
   - name: AWSS3
   - name: AWSSageMakerRuntime
-  - name: AWSSES
   - name: AWSSimpleDB
+  - name: AWSSES
   - name: AWSSNS
   - name: AWSSQS
+  - name: AWSTextract
   - name: AWSTranscribe
+  - name: AWSTranscribeStreaming
   - name: AWSTranslate
+  - name: AWSAuthCore
+  - name: AWSAuthUI
+  - name: AWSFacebookSignIn
+  - name: AWSGoogleSignIn
   - name: AWSUserPoolsSignIn
+  - name: AWSMobileClient
 
 - facebook-ios-sdk:
   - name: FBSDKCoreKit-Dynamic
