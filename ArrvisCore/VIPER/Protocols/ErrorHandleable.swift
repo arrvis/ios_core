@@ -8,5 +8,5 @@
 
 /// エラーハンドリング可能
 public protocol ErrorHandleable {
-    func handleError(_ error: Error, _ onRetry: (() -> Void)?, _ completion: (() -> Void)?)
+    func handleError(_ error: Error, _ completion: (() -> Void)?)
 }

@@ -96,9 +96,9 @@ open class PresenterBase: NSObject, PresenterInterface {
 
     open func onMediaSelected(_ url: URL) {}
 
-    open func handleError(_ error: Error, _ onRetry: (() -> Void)?, _ completion: (() -> Void)?) {
+    open func handleError(_ error: Error, _ completion: (() -> Void)?) {
         viewInterface?.hideLoading()
-        viewInterface?.handleError(error, onRetry, completion)
+        viewInterface?.handleError(error, completion)
     }
 
     open func imagePickerController(
