@@ -6,6 +6,7 @@
 //  Copyright © 2019 Arrvis Co., Ltd. All rights reserved.
 //
 
+// TODO: 後で読む https://qiita.com/shiz/items/992e15815b9a092110b6
 /// View
 public protocol ViewInterface: LoadingShowable,
     ErrorHandleable,

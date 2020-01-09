@@ -6,7 +6,6 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
-// TODO: BaseViewControllerたちGenericsでどうにかならんかな
 /// UIViewController基底クラス
 open class BaseViewController: UIViewController, ViewControllerProtocols {
 
@@ -52,7 +51,6 @@ open class BaseViewController: UIViewController, ViewControllerProtocols {
     /// キーボード表示時にリサイズさせるScrollView
     open var scrollViewForResizeKeyboard: UIScrollView? { return nil }
 
-    // TODO: あとでまとめる
     /// キーボード表示イベント
     open func onKeyboardWillShow(notification: Notification) {
         guard let scrollView = scrollViewForResizeKeyboard,
