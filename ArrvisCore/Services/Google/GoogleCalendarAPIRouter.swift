@@ -14,7 +14,15 @@ class GoogleCalendarAPIRouter: BaseHTTPRouter {
 
     // MARK: - Variables
 
+    override var headers: HTTPHeaders? {
+        return [
+            "Authorization": "Bearer \(accessToken)"
+        ]
+    }
+
     private let baseUrl = "https://www.googleapis.com/calendar/v3"
+
+    private var accessToken: String
 
     // MARK: - Initializer
 
@@ -22,12 +30,10 @@ class GoogleCalendarAPIRouter: BaseHTTPRouter {
          accessToken: String,
          httpMethod: HTTPMethod = .get,
          parameters: Codable? = nil) {
+        self.accessToken = accessToken
         super.init(baseURL: baseUrl,
                     path: path,
                     httpMethod: httpMethod,
-                    headers: [
-                        "Authorization": "Bearer \(accessToken)"
-                    ],
                     parameters: parameters)
     }
 

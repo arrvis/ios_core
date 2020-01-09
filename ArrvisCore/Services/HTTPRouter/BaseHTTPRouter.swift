@@ -20,10 +20,14 @@ open class BaseHTTPRouter {
         return false
     }
 
+    /// ヘッダー
+    open var headers: HTTPHeaders? {
+        return nil
+    }
+
     private let baseURL: String
     private let path: String
     private let httpMethod: HTTPMethod
-    private let headers: HTTPHeaders?
     private let parameters: Codable?
 
     // MARK: - Initializer
@@ -31,12 +35,10 @@ open class BaseHTTPRouter {
     public init(baseURL: String,
                 path: String,
                 httpMethod: HTTPMethod = .get,
-                headers: HTTPHeaders? = nil,
                 parameters: Codable? = nil) {
         self.baseURL = baseURL
         self.path = path
         self.httpMethod = httpMethod
-        self.headers = headers
         self.parameters = parameters
     }
 
