@@ -37,7 +37,7 @@ public final class InputToolBarView: UIToolbar {
         }
     }
 
-    private func refreshItems() {
+    internal func refreshItems() {
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace)
         spacer.width = 10
         if hideBtnIfNotExists {
@@ -123,6 +123,7 @@ extension UITextInput {
         }
         set {
             inputToolBar?.previousInputResponder = newValue
+            inputToolBar?.refreshItems()
         }
     }
 
@@ -133,6 +134,7 @@ extension UITextInput {
         }
         set {
             inputToolBar?.nextInputResponder = newValue
+            inputToolBar?.refreshItems()
         }
     }
 
