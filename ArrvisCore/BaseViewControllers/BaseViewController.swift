@@ -29,13 +29,13 @@ open class BaseViewController: UIViewController, ViewControllerProtocols {
     // MARK: - BarButtonItemSettable
 
     /// 戻るBarButtonItem
-    open var backBarButtonItem: UIBarButtonItem? { return nil }
+    open var backBarButtonItem: UIBarButtonItem? { return navigationItem.backBarButtonItem }
 
     /// 左BarButtonItems
-    open var leftBarButtonItems: [UIBarButtonItem]? { return nil }
+    open var leftBarButtonItems: [UIBarButtonItem]? { return navigationItem.leftBarButtonItems }
 
     /// 右BarButtonItems
-    open var rightBarButtonItems: [UIBarButtonItem]? { return nil }
+    open var rightBarButtonItems: [UIBarButtonItem]? { return navigationItem.rightBarButtonItems }
 
     /// 戻るBarButtonItemタップ
     open func didTapBackBarButtonItem() {}
