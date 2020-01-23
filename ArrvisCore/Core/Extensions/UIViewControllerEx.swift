@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import RxCocoa
 
 private var disposeBagKey = 0
 
