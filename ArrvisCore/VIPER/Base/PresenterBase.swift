@@ -96,6 +96,8 @@ open class PresenterBase: NSObject, PresenterInterface {
 
     open func onMediaSelected(_ url: URL, _ info: [UIImagePickerController.InfoKey: Any]) {}
 
+    open func onUnknownItemSelected(_ info: [UIImagePickerController.InfoKey: Any]) {}
+
     open func handleError(_ error: Error, _ completion: (() -> Void)?) {
         viewInterface?.hideLoading()
         viewInterface?.handleError(error, completion)
@@ -109,6 +111,8 @@ open class PresenterBase: NSObject, PresenterInterface {
                 self.onImageSelected(image, info)
             } else if let url = info[.mediaURL] as? URL {
                 self.onMediaSelected(url, info)
+            } else {
+                self.onUnknownItemSelected(info)
             }
         }
     }

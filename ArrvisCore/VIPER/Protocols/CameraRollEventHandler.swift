@@ -13,4 +13,5 @@ public protocol CameraRollEventHandler {
     func onImagePickCanceled()
     func onImageSelected(_ image: UIImage, _ info: [UIImagePickerController.InfoKey: Any])
     func onMediaSelected(_ url: URL, _ info: [UIImagePickerController.InfoKey: Any])
+    func onUnknownItemSelected(_ info: [UIImagePickerController.InfoKey: Any])
 }
