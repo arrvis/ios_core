@@ -10,7 +10,8 @@ import Photos
 
 extension URL {
 
-    func generateThumbnail() -> UIImage? {
+    /// Thumbnail生成
+    public func generateThumbnail() -> UIImage? {
         let imageGenerator = AVAssetImageGenerator(asset: AVAsset(url: self))
         imageGenerator.appliesPreferredTrackTransform = true
         do {
