@@ -178,4 +178,8 @@ extension WireframeInterface {
     public func showDocumentBrowser(_ documentBrowserInfo: DocumentBrowserInfo) {
         navigator.navigate(screen: SystemScreens.documentBrowser, payload: documentBrowserInfo)
     }
+
+    public func showDocumentPicker(_ documentPickerInfo: DocumentPickerInfo) {
+        navigator.navigate(screen: SystemScreens.documentPicker, payload: documentPickerInfo)
+    }
 }
