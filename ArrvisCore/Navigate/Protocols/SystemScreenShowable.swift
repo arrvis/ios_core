@@ -261,3 +261,19 @@ public struct DocumentBrowserInfo {
 public protocol DocumentBrowserShowable {
     func showDocumentBrowser(_ documentBrowserInfo: DocumentBrowserInfo)
 }
+
+extension DocumentBrowserShowable {
+    public func showDocumentBrowser(
+        _ forOpeningFilesWithContentTypes: [String]?,
+        _ allowsDocumentCreation: Bool,
+        _ allowsPickingMultipleItems: Bool,
+        _ delegate: UIDocumentBrowserViewControllerDelegate?) {
+        let documentBrowserInfo = DocumentBrowserInfo(
+            forOpeningFilesWithContentTypes: forOpeningFilesWithContentTypes,
+            allowsDocumentCreation: allowsDocumentCreation,
+            allowsPickingMultipleItems: allowsPickingMultipleItems,
+            delegate: delegate
+        )
+        showDocumentBrowser(documentBrowserInfo)
+    }
+}
