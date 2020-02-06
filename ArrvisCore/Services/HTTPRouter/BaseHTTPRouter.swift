@@ -54,7 +54,7 @@ open class BaseHTTPRouter {
 
     /// リクエスト実行
     public func requestData() -> Observable<(Data, [AnyHashable: Any])> {
-        return Observable.create { observer in
+        return Observable.create { [unowned self] observer in
             DispatchQueue.main.async {
                 NetworkUtil.showNetworkActivityIndicator()
             }
@@ -69,11 +69,20 @@ open class BaseHTTPRouter {
                               encoding: JSONEncoding.default,
                               headers: self.headers)
                 .validate()
-                .responseData(completionHandler: { response in
+                .responseData(completionHandler: { [unowned self] response in
                     if self.debugEnabled {
-                        let data = response.data == nil ? "no data" : String(bytes: response.data!, encoding: .utf8)!
+                        var params = self.parameters?.jsonString ?? "no param"
+                        if params.count > 1024 {
+                            let paramsCount = max(params.count / 2, 1024 / 2)
+                            params = params.prefix(paramsCount) + "..." + params.suffix(paramsCount)
+                        }
+                        var data = response.data == nil ? "no data" : String(bytes: response.data!, encoding: .utf8)!
+                        if data.count > 1024 {
+                            let dataCount = max(data.count / 2, 1024 / 2)
+                            data = data.prefix(dataCount) + "..." + data.suffix(dataCount)
+                        }
                         let urlInfo = "[\(self.httpMethod.rawValue)] \(url)"
-                        print("\(urlInfo)\n\(self.parameters?.jsonString ?? "no param")\n\(data)")
+                        print("\(urlInfo)\n\(params)\n\(data)")
                     }
                     DispatchQueue.main.async {
                         NetworkUtil.hideNetworkActivityIndicator()
