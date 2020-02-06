@@ -153,7 +153,6 @@ extension WireframeInterface {
         }).disposed(by: disposeBag)
     }
 
-    /// カメラスクリーン表示
     public func showCameraScreen(
         _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate & CameraRollEventHandler,
         _ mediaTypes: [CFString]) {
@@ -174,5 +173,9 @@ extension WireframeInterface {
                 delegate.onFailAccessCamera()
             }
         }).disposed(by: disposeBag)
+    }
+
+    public func showDocumentBrowser(_ documentBrowserInfo: DocumentBrowserInfo) {
+        navigator.navigate(screen: SystemScreens.documentBrowser, payload: documentBrowserInfo)
     }
 }

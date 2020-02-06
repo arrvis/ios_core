@@ -14,6 +14,7 @@ public enum SystemScreens: String, CaseIterable, Screen {
     case actionSheet
     case activity
     case imagePicker
+    case documentBrowser
 
     public var path: String {
         return rawValue
@@ -21,7 +22,7 @@ public enum SystemScreens: String, CaseIterable, Screen {
 
     public var transition: NavigateTransions {
         switch self {
-        case .imagePicker, .alert, .actionSheet, .activity:
+        case .alert, .actionSheet, .activity, .imagePicker, .documentBrowser:
             return .present
         }
     }
@@ -48,6 +49,11 @@ public enum SystemScreens: String, CaseIterable, Screen {
                 fatalError("required payload type ImagePickerInfo")
             }
             return payload.createImagePickerController()
+        case .documentBrowser:
+            guard let payload = payload as? DocumentBrowserInfo else {
+                fatalError("required payload type DocumentBrowserInfo")
+            }
+            return payload.createDocumentBrowserViewController()
         }
     }
 }

@@ -7,7 +7,7 @@
 //
 
 /// SystemScreen表示可能
-public protocol SystemScreenShowable: AlertShowable, ActionSheetShowable, ActivityShowable, ImagePickerShowable {}
+public protocol SystemScreenShowable: AlertShowable, ActionSheetShowable, ActivityShowable, ImagePickerShowable, DocumentBrowserShowable {}
 
 /// Alert情報
 public struct AlertInfo {
@@ -229,4 +229,35 @@ public protocol ImagePickerShowable {
         _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate & CameraRollEventHandler,
         _ mediaTypes: [CFString]
     )
+}
+
+/// DocumentBrowser情報
+public struct DocumentBrowserInfo {
+
+    /// forOpeningFilesWithContentTypes
+    public let forOpeningFilesWithContentTypes: [String]?
+
+    /// allowsDocumentCreation
+    public let allowsDocumentCreation: Bool
+
+    /// allowsPickingMultipleItems
+    public let allowsPickingMultipleItems: Bool
+
+    /// delegate
+    public weak var delegate: UIDocumentBrowserViewControllerDelegate?
+
+    /// UIActivityViewController生成
+    ///
+    /// - Returns: UIActivityViewController
+    public func createDocumentBrowserViewController() -> UIDocumentBrowserViewController {
+        let vc = UIDocumentBrowserViewController(forOpeningFilesWithContentTypes: forOpeningFilesWithContentTypes)
+        vc.allowsDocumentCreation = allowsDocumentCreation
+        vc.allowsPickingMultipleItems = allowsPickingMultipleItems
+        vc.delegate = delegate
+        return vc
+    }
+}
+
+public protocol DocumentBrowserShowable {
+    func showDocumentBrowser(_ documentBrowserInfo: DocumentBrowserInfo)
 }
