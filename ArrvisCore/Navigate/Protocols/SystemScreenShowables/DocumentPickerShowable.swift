@@ -8,8 +8,8 @@
 
 public struct DocumentPickerInfo {
 
-    /// documentTypes
-    public let documentTypes: [String]
+    /// avaiableExtensions
+    public let avaiableExtensions: [String]
 
     /// mode
     public let mode: UIDocumentPickerMode
@@ -21,7 +21,9 @@ public struct DocumentPickerInfo {
     public weak var delegate: UIDocumentPickerDelegate?
 
     public func createDocumentPickerViewController() -> UIDocumentPickerViewController {
-        let vc = UIDocumentPickerViewController(documentTypes: documentTypes, in: mode)
+        let vc = UIDocumentPickerViewController(
+            documentTypes: avaiableExtensions.compactMap { DocumentUtil.documentType(fromExt: $0) },
+            in: mode)
         vc.allowsMultipleSelection = allowsMultipleSelection
         vc.delegate = delegate
         return vc
@@ -34,12 +36,12 @@ public protocol DocumentPickerShowable {
 
 extension DocumentPickerShowable {
     public func showDocumentPicker(
-        _ documentTypes: [String],
+        _ avaiableExtensions: [String],
         _ mode: UIDocumentPickerMode,
         _ allowsMultipleSelection: Bool,
         _ delegate: UIDocumentPickerDelegate?) {
         let documentPickerInfo = DocumentPickerInfo(
-            documentTypes: documentTypes,
+            avaiableExtensions: avaiableExtensions,
             mode: mode,
             allowsMultipleSelection: allowsMultipleSelection,
             delegate: delegate

@@ -8,8 +8,8 @@
 
 public struct DocumentBrowserInfo {
 
-    /// forOpeningFilesWithContentTypes
-    public let forOpeningFilesWithContentTypes: [String]?
+    /// avaiableExtensions
+    public let avaiableExtensions: [String]?
 
     /// allowsDocumentCreation
     public let allowsDocumentCreation: Bool
@@ -24,7 +24,9 @@ public struct DocumentBrowserInfo {
     ///
     /// - Returns: UIDocumentBrowserViewController
     public func createDocumentBrowserViewController() -> UIDocumentBrowserViewController {
-        let vc = UIDocumentBrowserViewController(forOpeningFilesWithContentTypes: forOpeningFilesWithContentTypes)
+        let vc = UIDocumentBrowserViewController(
+            forOpeningFilesWithContentTypes: avaiableExtensions?.compactMap { DocumentUtil.documentType(fromExt: $0) }
+        )
         vc.allowsDocumentCreation = allowsDocumentCreation
         vc.allowsPickingMultipleItems = allowsPickingMultipleItems
         vc.delegate = delegate
@@ -38,12 +40,12 @@ public protocol DocumentBrowserShowable {
 
 extension DocumentBrowserShowable {
     public func showDocumentBrowser(
-        _ forOpeningFilesWithContentTypes: [String]?,
+        _ avaiableExtensions: [String]?,
         _ allowsDocumentCreation: Bool,
         _ allowsPickingMultipleItems: Bool,
         _ delegate: UIDocumentBrowserViewControllerDelegate?) {
         let documentBrowserInfo = DocumentBrowserInfo(
-            forOpeningFilesWithContentTypes: forOpeningFilesWithContentTypes,
+            avaiableExtensions: avaiableExtensions,
             allowsDocumentCreation: allowsDocumentCreation,
             allowsPickingMultipleItems: allowsPickingMultipleItems,
             delegate: delegate

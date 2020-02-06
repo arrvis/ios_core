@@ -14,6 +14,7 @@
 		5A70EA7723ECC712008EE99E /* ImagePickerShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70EA7623ECC712008EE99E /* ImagePickerShowable.swift */; };
 		5A70EA7923ECC72D008EE99E /* DocumentBrowserShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70EA7823ECC72D008EE99E /* DocumentBrowserShowable.swift */; };
 		5A70EA7B23ECC742008EE99E /* DocumentPickerShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70EA7A23ECC742008EE99E /* DocumentPickerShowable.swift */; };
+		5A70EA7D23ECCD28008EE99E /* DocumentUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70EA7C23ECCD28008EE99E /* DocumentUtil.swift */; };
 		5A844939237355A5002BC697 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A844933237355A4002BC697 /* Location.swift */; };
 		5A84493A237355A5002BC697 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A844934237355A4002BC697 /* String+Extensions.swift */; };
 		5A84493B237355A5002BC697 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A844935237355A4002BC697 /* Navigator.swift */; };
@@ -107,6 +108,7 @@
 		5A70EA7623ECC712008EE99E /* ImagePickerShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerShowable.swift; sourceTree = "<group>"; };
 		5A70EA7823ECC72D008EE99E /* DocumentBrowserShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserShowable.swift; sourceTree = "<group>"; };
 		5A70EA7A23ECC742008EE99E /* DocumentPickerShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerShowable.swift; sourceTree = "<group>"; };
+		5A70EA7C23ECCD28008EE99E /* DocumentUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentUtil.swift; sourceTree = "<group>"; };
 		5A844933237355A4002BC697 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		5A844934237355A4002BC697 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		5A844935237355A4002BC697 /* Navigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				6312F7F422B94D500050DA57 /* Device.swift */,
 				6312F7F522B94D500050DA57 /* HttpStatusCode.swift */,
 				6302D66A22C1F7F6001F24BE /* NetworkUtil.swift */,
+				5A70EA7C23ECCD28008EE99E /* DocumentUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -713,6 +716,7 @@
 				5A84493D237355A5002BC697 /* Router.swift in Sources */,
 				6312F81122B94D510050DA57 /* BusEvents.swift in Sources */,
 				6388E2AF22BF449700A30740 /* AWSServiceCore.swift in Sources */,
+				5A70EA7D23ECCD28008EE99E /* DocumentUtil.swift in Sources */,
 				6312F81522B94D510050DA57 /* ExtendsViewControllerEventsHandleable.swift in Sources */,
 				6302D69B22C25D1D001F24BE /* BaseMPAViewController.swift in Sources */,
 				6388E2D422C083C300A30740 /* GraphQLServiceError.swift in Sources */,
