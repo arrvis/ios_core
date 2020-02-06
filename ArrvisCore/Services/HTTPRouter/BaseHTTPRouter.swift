@@ -54,7 +54,7 @@ open class BaseHTTPRouter {
 
     /// リクエスト実行
     public func requestData() -> Observable<(Data, [AnyHashable: Any])> {
-        return Observable.create { [unowned self] observer in
+        return Observable.create { observer in
             DispatchQueue.main.async {
                 NetworkUtil.showNetworkActivityIndicator()
             }
