@@ -69,7 +69,7 @@ open class BaseHTTPRouter {
                               encoding: JSONEncoding.default,
                               headers: self.headers)
                 .validate()
-                .responseData(completionHandler: { [unowned self] response in
+                .responseData(completionHandler: { response in
                     if self.debugEnabled {
                         var params = self.parameters?.jsonString ?? "no param"
                         if params.count > 1024 {
