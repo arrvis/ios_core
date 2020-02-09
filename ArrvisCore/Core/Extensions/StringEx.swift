@@ -219,6 +219,18 @@ extension String {
             return "application/msword"
         case "pdf":
             return "application/pdf"
+        case "xls":
+            return "application/vnd.ms-excel"
+        case ".xlsx":
+            return "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        case ".ppt":
+            return "application/vnd.ms-powerpoint"
+        case ".pptx":
+            return "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+        case ".doc":
+            return "application/msword"
+        case ".docx":
+            return "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         default:
             return nil
         }
