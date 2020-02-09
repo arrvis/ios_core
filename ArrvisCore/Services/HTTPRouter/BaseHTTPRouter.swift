@@ -72,13 +72,13 @@ open class BaseHTTPRouter {
                 .responseData(completionHandler: { response in
                     if self.debugEnabled {
                         var params = self.parameters?.jsonString ?? "no param"
-                        if params.count > 1024 {
-                            let paramsCount = max(params.count / 2, 1024 / 2)
+                        if params.count > 400 {
+                            let paramsCount = min(params.count / 2, 400 / 2)
                             params = params.prefix(paramsCount) + "..." + params.suffix(paramsCount)
                         }
                         var data = response.data == nil ? "no data" : String(bytes: response.data!, encoding: .utf8)!
-                        if data.count > 1024 {
-                            let dataCount = max(data.count / 2, 1024 / 2)
+                        if data.count > 400 {
+                            let dataCount = min(data.count / 2, 1024 / 2)
                             data = data.prefix(dataCount) + "..." + data.suffix(dataCount)
                         }
                         let urlInfo = "[\(self.httpMethod.rawValue)] \(url)"
