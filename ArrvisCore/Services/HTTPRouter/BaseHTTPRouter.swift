@@ -20,6 +20,11 @@ open class BaseHTTPRouter {
         return false
     }
 
+    /// ログ文字列最大長
+    open var maxLogStringLength: Int {
+        return 2000
+    }
+
     /// ヘッダー
     open var headers: HTTPHeaders? {
         return nil
@@ -72,13 +77,13 @@ open class BaseHTTPRouter {
                 .responseData(completionHandler: { response in
                     if self.debugEnabled {
                         var params = self.parameters?.jsonString ?? "no param"
-                        if params.count > 400 {
-                            let paramsCount = min(params.count / 2, 400 / 2)
+                        if params.count > self.maxLogStringLength {
+                            let paramsCount = min(params.count / 2, self.maxLogStringLength / 2)
                             params = params.prefix(paramsCount) + "..." + params.suffix(paramsCount)
                         }
                         var data = response.data == nil ? "no data" : String(bytes: response.data!, encoding: .utf8)!
-                        if data.count > 400 {
-                            let dataCount = min(data.count / 2, 1024 / 2)
+                        if data.count > 2000 {
+                            let dataCount = min(data.count / 2, self.maxLogStringLength / 2)
                             data = data.prefix(dataCount) + "..." + data.suffix(dataCount)
                         }
                         let urlInfo = "[\(self.httpMethod.rawValue)] \(url)"
