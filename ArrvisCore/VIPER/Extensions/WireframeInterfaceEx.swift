@@ -6,12 +6,6 @@
 //  Copyright © 2018年 Arrvis Co., Ltd. All rights reserved.
 //
 
-import Photos
-import RxSwift
-
-private var cameraRollHandlerKey = 0
-private var disposeBagKey = 1
-
 // MARK: - General
 extension WireframeInterface {
 
@@ -60,126 +54,50 @@ extension WireframeInterface {
     }
 }
 
-// MARK: - SystemScreenShowable
+// MARK: - AlertShowable
 extension WireframeInterface {
 
     public func showAlert(_ alertInfo: AlertInfo) {
         navigator.navigate(screen: SystemScreens.alert, payload: alertInfo)
     }
+}
+
+// MARK: - ActionSheetShowable
+extension WireframeInterface {
 
     public func showActionSheet(_ alertInfo: AlertInfo) {
         navigator.navigate(screen: SystemScreens.actionSheet, payload: alertInfo)
     }
+}
+
+// MARK: - ActivityShowable
+extension WireframeInterface {
 
     public func showActivityScreen(_ activityInfo: ActivityInfo) {
         navigator.navigate(screen: SystemScreens.activity, payload: activityInfo)
     }
+}
 
-    private var cameraRollHandler: CameraRollEventHandler? {
-        get {
-            return objc_getAssociatedObject(self, &cameraRollHandlerKey) as? CameraRollEventHandler ?? nil
-        }
-        set {
-            objc_setAssociatedObject(self, &cameraRollHandlerKey, newValue, .OBJC_ASSOCIATION_RETAIN)
-        }
+// MARK: - ImagePickerShowable
+extension WireframeInterface {
+
+    public func showImagePickerScreen(_ imagePickerInfo: ImagePickerInfo) {
+        navigator.navigate(screen: SystemScreens.imagePicker, payload: imagePickerInfo)
     }
+}
 
-    fileprivate var disposeBag: DisposeBag {
-        get {
-            guard let object = objc_getAssociatedObject(self, &disposeBagKey) as? DisposeBag else {
-                self.disposeBag = DisposeBag()
-                return self.disposeBag
-            }
-            return object
-        }
-        set {
-            objc_setAssociatedObject(self, &disposeBagKey, newValue, .OBJC_ASSOCIATION_RETAIN)
-        }
-    }
+// MARK: - DocumentBrowserShowable
+extension WireframeInterface {
 
-    public func showMediaPickerSelectActionSheet(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate & CameraRollEventHandler,
-        _ handler: MediaPickerTypeSelectActionSheetInfoHandler,
-        _ mediaTypes: [CFString]) {
-        var actions = [
-            UIAlertAction(
-                title: handler.photoLibraryButtonTitle(),
-                style: .default,
-                handler: { [unowned self] _ in
-                    self.showLibraryScreen(delegate, mediaTypes)
-            })
-        ]
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            actions.append(UIAlertAction(
-                title: handler.cameraButtonTitle(),
-                style: .default,
-                handler: { [unowned self] _ in
-                    self.showCameraScreen(delegate, mediaTypes)
-                }
-            ))
-        }
-        showActionSheet(
-            handler.sheetTitle(),
-            handler.sheetMessage(),
-            actions,
-            handler.cancelButtonTitle()) {
-                handler.onCancel()
-        }
-    }
-
-    public func showLibraryScreen(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate & CameraRollEventHandler,
-        _ mediaTypes: [CFString]) {
-        func requestAccessToPhotoLibrary() -> Observable<PHAuthorizationStatus> {
-            return Observable.create({ observer in
-                PHPhotoLibrary.requestAuthorization { status in
-                    observer.onNext(status)
-                    observer.onCompleted()
-                }
-                return Disposables.create()
-            })
-        }
-        requestAccessToPhotoLibrary().observeOn(MainScheduler.instance).subscribe(onNext: { [unowned self] status in
-            if status == .authorized {
-                let imagePickerInfo = ImagePickerInfo(
-                    delegate: delegate,
-                    sourceType: .photoLibrary,
-                    mediaTypes: mediaTypes
-                )
-                self.navigator.navigate(screen: SystemScreens.imagePicker, payload: imagePickerInfo)
-            } else {
-                delegate.onFailAccessPhotoLibrary()
-            }
-        }).disposed(by: disposeBag)
-    }
-
-    public func showCameraScreen(
-        _ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate & CameraRollEventHandler,
-        _ mediaTypes: [CFString]) {
-        func requestAccessToTakeMovie() -> Observable<Bool> {
-            return Observable.create({ observer in
-                AVCaptureDevice.requestAccess(for: .video) { authorized in
-                    observer.onNext(authorized)
-                    observer.onCompleted()
-                }
-                return Disposables.create()
-            })
-        }
-        requestAccessToTakeMovie().observeOn(MainScheduler.instance).subscribe(onNext: { [unowned self] ret in
-            if ret {
-                let imagePickerInfo = ImagePickerInfo(delegate: delegate, sourceType: .camera, mediaTypes: mediaTypes)
-                self.navigator.navigate(screen: SystemScreens.imagePicker, payload: imagePickerInfo)
-            } else {
-                delegate.onFailAccessCamera()
-            }
-        }).disposed(by: disposeBag)
-    }
-
-    public func showDocumentBrowser(_ documentBrowserInfo: DocumentBrowserInfo) {
+    public func showDocumentBrowserScreen(_ documentBrowserInfo: DocumentBrowserInfo) {
         navigator.navigate(screen: SystemScreens.documentBrowser, payload: documentBrowserInfo)
     }
+}
 
-    public func showDocumentPicker(_ documentPickerInfo: DocumentPickerInfo) {
+// MARK: - DocumentPickerShowable
+extension WireframeInterface {
+
+    public func showDocumentPickerScreen(_ documentPickerInfo: DocumentPickerInfo) {
         navigator.navigate(screen: SystemScreens.documentPicker, payload: documentPickerInfo)
     }
 }

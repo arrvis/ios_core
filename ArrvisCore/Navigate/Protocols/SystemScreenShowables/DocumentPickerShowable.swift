@@ -31,11 +31,11 @@ public struct DocumentPickerInfo {
 }
 
 public protocol DocumentPickerShowable {
-    func showDocumentPicker(_ documentPickerInfo: DocumentPickerInfo)
+    func showDocumentPickerScreen(_ documentPickerInfo: DocumentPickerInfo)
 }
 
 extension DocumentPickerShowable {
-    public func showDocumentPicker(
+    public func showDocumentPickerScreen(
         _ avaiableExtensions: [String],
         _ mode: UIDocumentPickerMode,
         _ allowsMultipleSelection: Bool,
@@ -46,6 +46,6 @@ extension DocumentPickerShowable {
             allowsMultipleSelection: allowsMultipleSelection,
             delegate: delegate
         )
-        showDocumentPicker(documentPickerInfo)
+        showDocumentPickerScreen(documentPickerInfo)
     }
 }

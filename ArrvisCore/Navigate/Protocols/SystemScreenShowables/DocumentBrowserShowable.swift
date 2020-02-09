@@ -35,11 +35,12 @@ public struct DocumentBrowserInfo {
 }
 
 public protocol DocumentBrowserShowable {
-    func showDocumentBrowser(_ documentBrowserInfo: DocumentBrowserInfo)
+    func showDocumentBrowserScreen(_ documentBrowserInfo: DocumentBrowserInfo)
 }
 
 extension DocumentBrowserShowable {
-    public func showDocumentBrowser(
+
+    public func showDocumentBrowserScreen(
         _ avaiableExtensions: [String]?,
         _ allowsDocumentCreation: Bool,
         _ allowsPickingMultipleItems: Bool,
@@ -50,6 +51,6 @@ extension DocumentBrowserShowable {
             allowsPickingMultipleItems: allowsPickingMultipleItems,
             delegate: delegate
         )
-        showDocumentBrowser(documentBrowserInfo)
+        showDocumentBrowserScreen(documentBrowserInfo)
     }
 }

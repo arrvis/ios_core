@@ -7,50 +7,22 @@
 //
 
 // TODO: 後で読む https://qiita.com/shiz/items/992e15815b9a092110b6
+
 /// View
 public protocol ViewInterface: LoadingShowable,
     ErrorHandleable,
     MediaPickerTypeSelectActionSheetInfoHandler
     where Self: UIViewController {
-    func showActivityScreen(
-        _ activityItems: [Any],
-        _ applicationActivities: [UIActivity]?,
-        _ excludedActivityTypes: [UIActivity.ActivityType]?)
-    func showOkAlert(
-        _ title: String?,
-        _ message: String?,
-        _ ok: String?,
-        _ onOk: @escaping () -> Void)
-    func showConfirmAlert(
-        _ title: String?,
-        _ message: String?,
-        _ ok: String?,
-        _ onOk: @escaping () -> Void,
-        _ cancel: String?,
-        _ onCancel: (() -> Void)?)
-    func showAlert(
-        _ title: String?,
-        _ message: String?,
-        _ actions: [UIAlertAction],
-        _ cancel: String?,
-        _ onCancel: (() -> Void)?)
-    func showActionSheet(
-        _ title: String?,
-        _ message: String?,
-        _ actions: [UIAlertAction],
-        _ cancel: String?,
-        _ onCancel: (() -> Void)?)
-    func showMediaPickerSelectActionSheetScreen(_ mediaTypes: [CFString])
-    func showLibraryScreen(_ mediaTypes: [CFString])
-    func showFaukAccessPhotoLibraryAlert()
-    func showCameraScreen(_ mediaTypes: [CFString])
+    func showFailAccessPhotoLibraryAlert()
     func showFailAccessCameraAlert()
 }
 
 /// Presenter
 public protocol PresenterInterface: NSObject,
     CameraRollEventHandler,
-    UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    UIImagePickerControllerDelegate & UINavigationControllerDelegate,
+    UIDocumentBrowserViewControllerDelegate,
+    UIDocumentPickerDelegate {
     func viewDidLoad()
     func viewWillAppear(_ animated: Bool)
     func viewDidAppear(_ animated: Bool)
@@ -99,7 +71,18 @@ public protocol PresenterInterface: NSObject,
         _ mediaTypes: [CFString]
     )
     func onShowLibraryScreenRequired(_ mediaTypes: [CFString])
+    func onShowLibraryScreenRequired(_ availableExtensions: [String])
     func onShowCameraScreenRequired(_ mediaTypes: [CFString])
+    func onShowCameraScreenRequired(_ availableExtensions: [String])
+
+    func onShowDocumentBrowserScreenRequired(
+        _ avaiableExtensions: [String]?,
+        _ allowsDocumentCreation: Bool,
+        _ allowsPickingMultipleItems: Bool)
+    func onShowDocumentPickerScreenRequired(
+       _ avaiableExtensions: [String],
+       _ mode: UIDocumentPickerMode,
+       _ allowsMultipleSelection: Bool)
 }
 
 /// Interactor
@@ -111,7 +94,7 @@ public protocol InteractorOutputInterface: class, ErrorHandleable {
 }
 
 /// Wireframe
-public protocol WireframeInterface: class, SystemScreenShowable {
+public protocol WireframeInterface: SystemScreenShowable {
 
     /// Navigator
     var navigator: BaseNavigator {get}

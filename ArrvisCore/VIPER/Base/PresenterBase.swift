@@ -78,8 +78,16 @@ open class PresenterBase: NSObject, PresenterInterface {
         wireframeInterface.showLibraryScreen(self, mediaTypes)
     }
 
+    public func onShowLibraryScreenRequired(_ availableExtensions: [String]) {
+        wireframeInterface.showLibraryScreen(self, availableExtensions)
+    }
+
     public func onShowCameraScreenRequired(_ mediaTypes: [CFString]) {
         wireframeInterface.showCameraScreen(self, mediaTypes)
+    }
+
+    public func onShowCameraScreenRequired(_ availableExtensions: [String]) {
+        wireframeInterface.showCameraScreen(self, availableExtensions)
     }
 
     public func onFailAccessCamera() {
@@ -87,7 +95,7 @@ open class PresenterBase: NSObject, PresenterInterface {
     }
 
     public func onFailAccessPhotoLibrary() {
-        viewInterface?.showFaukAccessPhotoLibraryAlert()
+        viewInterface?.showFailAccessPhotoLibraryAlert()
     }
 
     open func onImagePickCanceled() {}
@@ -121,5 +129,27 @@ open class PresenterBase: NSObject, PresenterInterface {
         picker.dismiss(animated: true) { [unowned self] in
             self.onImagePickCanceled()
         }
+    }
+
+    public func onShowDocumentBrowserScreenRequired(
+        _ avaiableExtensions: [String]?,
+        _ allowsDocumentCreation: Bool,
+        _ allowsPickingMultipleItems: Bool) {
+        wireframeInterface.showDocumentBrowserScreen(
+            avaiableExtensions,
+            allowsDocumentCreation,
+            allowsPickingMultipleItems,
+            self)
+    }
+
+    public func onShowDocumentPickerScreenRequired(
+       _ avaiableExtensions: [String],
+       _ mode: UIDocumentPickerMode,
+       _ allowsMultipleSelection: Bool) {
+        wireframeInterface.showDocumentPickerScreen(
+            avaiableExtensions,
+            mode,
+            allowsMultipleSelection,
+            self)
     }
 }
