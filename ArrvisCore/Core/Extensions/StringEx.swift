@@ -215,21 +215,19 @@ extension String {
             return "text/css"
         case "cgi":
             return "application/x-httpd-cgi"
-        case "doc":
-            return "application/msword"
         case "pdf":
             return "application/pdf"
         case "xls":
             return "application/vnd.ms-excel"
-        case ".xlsx":
+        case "xlsx":
             return "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        case ".ppt":
+        case "ppt":
             return "application/vnd.ms-powerpoint"
-        case ".pptx":
+        case "pptx":
             return "application/vnd.openxmlformats-officedocument.presentationml.presentation"
-        case ".doc":
+        case "doc":
             return "application/msword"
-        case ".docx":
+        case "docx":
             return "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         default:
             return nil
