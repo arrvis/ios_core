@@ -82,7 +82,7 @@ open class BaseHTTPRouter {
                             params = params.prefix(paramsCount) + "..." + params.suffix(paramsCount)
                         }
                         var data = response.data == nil ? "no data" : String(bytes: response.data!, encoding: .utf8)!
-                        if data.count > 2000 {
+                        if data.count > self.maxLogStringLength {
                             let dataCount = min(data.count / 2, self.maxLogStringLength / 2)
                             data = data.prefix(dataCount) + "..." + data.suffix(dataCount)
                         }
