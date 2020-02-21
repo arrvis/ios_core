@@ -137,6 +137,8 @@ extension String {
             return "image/x-cmx"
         case "ico":
             return "image/x-icon"
+        case "png":
+            return "image/png"
         case "pnm":
             return "image/x-portable-anymap"
         case "pbm":
