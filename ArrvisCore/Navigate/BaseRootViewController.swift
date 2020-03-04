@@ -189,24 +189,29 @@ open class BaseRootViewController: UIViewController {
     }
 
     private func subscribeEvents(_ vc: UIViewController) {
-        vc.rx.methodInvoked(#selector(UINavigationControllerDelegate.navigationController(_:didShow:animated:)))
-            .subscribe(onNext: { _ in
-                SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
-            }).disposed(by: self)
-        vc.rx.methodInvoked(#selector(UIViewController.dismiss))
-            .subscribe(onNext: { _ in
-                SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
-            }).disposed(by: self)
-        if let vc = vc as? UITabBarController {
-            vc.rx.selectedIndex
-                .subscribe(onNext: { _ in
-                    SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
-                }).disposed(by: self)
-        }
-        if let vc = vc as? UINavigationController, let top = vc.topViewController {
-            subscribeEvents(top)
-        }
-    }
+          if let vc = vc as? UINavigationController {
+              vc.rx.topViewController
+                  .subscribe(onNext: { [weak self] _ in
+                      if let top = vc.topViewController {
+                          self?.subscribeEvents(top)
+                      }
+                  }).disposed(by: vc)
+          } else if let vc = vc as? UITabBarController {
+              vc.rx.methodInvoked(#selector(UITabBarController.addChild(_:)))
+                  .subscribe(onNext: { [weak self] ret in
+                      ret.forEach { vc in
+                          if let vc = vc as? UIViewController {
+                              self?.subscribeEvents(vc)
+                          }
+                      }
+                  }).disposed(by: vc)
+          } else {
+              vc.rx.methodInvoked(#selector(UIViewController.viewWillAppear(_:)))
+                  .subscribe(onNext: { _ in
+                      SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
+                  }).disposed(by: vc)
+          }
+      }
 }
 
 // MARK: - Private

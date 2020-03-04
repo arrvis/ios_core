@@ -9,11 +9,20 @@
 import RxSwift
 
 extension Reactive where Base: UITabBarController {
+
     public var selectedIndex: Observable<Int> {
         return self.observeWeakly(UIViewController.self, "selectedViewController")
             .flatMap { $0.map { Observable.just($0) } ?? Observable.empty()  }
             .flatMap { [weak base] in
                 return base?.viewControllers?.firstIndex(of: $0).map { Observable.just($0) } ?? Observable.empty()
         }
+    }
+}
+
+extension Reactive where Base: UINavigationController {
+
+    public var topViewController: Observable<UIViewController> {
+        return self.observeWeakly(UIViewController.self, "topViewController")
+            .flatMap { $0.map { Observable.just($0) } ?? Observable.empty()  }
     }
 }
