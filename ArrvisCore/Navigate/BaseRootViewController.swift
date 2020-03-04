@@ -208,7 +208,7 @@ open class BaseRootViewController: UIViewController {
           } else {
               vc.rx.methodInvoked(#selector(UIViewController.viewWillAppear(_:)))
                   .subscribe(onNext: { _ in
-                      SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
+                    SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged, userInfo: ["vc": vc])
                   }).disposed(by: vc)
           }
       }
