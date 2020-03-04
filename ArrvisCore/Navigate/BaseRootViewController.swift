@@ -203,6 +203,12 @@ open class BaseRootViewController: UIViewController {
                     SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
                 }).disposed(by: self)
         }
+        if let vc = vc as? UITabBarController {
+            vc.rx.methodInvoked(#selector(UITabBarController.tabBar(_:didSelect:)))
+                .subscribe(onNext: { _ in
+                    SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
+                }).disposed(by: self)
+        }
     }
 }
 
