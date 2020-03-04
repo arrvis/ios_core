@@ -197,6 +197,12 @@ open class BaseRootViewController: UIViewController {
             .subscribe(onNext: { _ in
                 SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
             }).disposed(by: self)
+        if let vc = vc as? UINavigationController {
+            vc.topViewController?.rx.methodInvoked(#selector(UIViewController.dismiss))
+                .subscribe(onNext: { _ in
+                    SwiftEventBus.post(SystemBusEvents.currentViewControllerChanged)
+                }).disposed(by: self)
+        }
     }
 }
 
