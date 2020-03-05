@@ -12,7 +12,7 @@ private var presenterInterfaceKey = 0
 
 extension ViewInterface {
 
-    public weak var presenterInterface: PresenterInterface! {
+    public var presenterInterface: PresenterInterface! {
         get {
             return objc_getAssociatedObject(self, &presenterInterfaceKey) as? PresenterInterface
         }
