@@ -48,25 +48,25 @@ open class BaseRootViewController: UIViewController {
         self.init(nibName: nil, bundle: nil)
         self.navigator = navigator
 
-        navigator.replace.subscribe(onNext: { [unowned self] vc in
-            self.replaceChildViewController(vc)
+        navigator.replace.subscribe(onNext: { [weak self] vc in
+            self?.replaceChildViewController(vc)
         }).disposed(by: self)
 
-        navigator.push.subscribe(onNext: { [unowned self] vc, fromRoot, animate in
-            self.pushChildViewController(vc, fromRoot, animate)
+        navigator.push.subscribe(onNext: { [weak self] vc, fromRoot, animate in
+            self?.pushChildViewController(vc, fromRoot, animate)
         }).disposed(by: self)
-        navigator.pop.subscribe(onNext: { [unowned self] result, animate in
-            self.popChildViewController(result, animate)
+        navigator.pop.subscribe(onNext: { [weak self] result, animate in
+            self?.popChildViewController(result, animate)
         }).disposed(by: self)
-        navigator.popToRoot.subscribe(onNext: { [unowned self] result, animate in
-            self.popToRoot(result, animate)
+        navigator.popToRoot.subscribe(onNext: { [weak self] result, animate in
+            self?.popToRoot(result, animate)
         }).disposed(by: self)
 
-        navigator.present.subscribe(onNext: { [unowned self] vc, animate in
-            self.presentChildViewController(vc, animate)
+        navigator.present.subscribe(onNext: { [weak self] vc, animate in
+            self?.presentChildViewController(vc, animate)
         }).disposed(by: self)
-        navigator.dismiss.subscribe(onNext: { [unowned self] result, animate in
-            self.dismisssChildViewController(result, animate)
+        navigator.dismiss.subscribe(onNext: { [weak self] result, animate in
+            self?.dismisssChildViewController(result, animate)
         }).disposed(by: self)
     }
 

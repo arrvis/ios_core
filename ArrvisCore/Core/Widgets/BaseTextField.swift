@@ -45,11 +45,11 @@ open class BaseTextField: UITextField {
         inputAccessoryView = configureInputToolBar(bounds.width, barTintColor, hideBtnIfNotExists) { [unowned self] in
             self.resignFirstResponder()
         }
-        rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { [unowned self] _ in
-            if let n = self.nextInputResponder {
+        rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { [weak self] _ in
+            if let n = self?.nextInputResponder {
                 n.becomeFirstResponder()
             } else {
-                self.resignFirstResponder()
+                self?.resignFirstResponder()
             }
         }).disposed(by: disposeBag)
     }

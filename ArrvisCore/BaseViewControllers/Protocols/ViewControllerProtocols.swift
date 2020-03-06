@@ -12,14 +12,14 @@ protocol ViewControllerProtocols: ExtendsViewControllerEventsHandleable, BarButt
 extension ViewControllerProtocols {
 
     internal func initializeForProtocols() {
-        rx.methodInvoked(#selector(UIViewController.viewWillAppear(_:))).subscribe(onNext: { [unowned self] _ in
-            self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-            self.subscribeKeyboardEvents()
+        rx.methodInvoked(#selector(UIViewController.viewWillAppear(_:))).subscribe(onNext: { [weak self] _ in
+            self?.navigationController?.interactivePopGestureRecognizer?.delegate = self
+            self?.subscribeKeyboardEvents()
         }).disposed(by: self)
-        rx.methodInvoked(#selector(UIViewController.viewWillDisappear(_:))).subscribe(onNext: { [unowned self] _ in
-            self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
-            self.view.endEditing(true)
-            self.unsubscribeKeyboardEvents()
+        rx.methodInvoked(#selector(UIViewController.viewWillDisappear(_:))).subscribe(onNext: { [weak self] _ in
+            self?.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+            self?.view.endEditing(true)
+            self?.unsubscribeKeyboardEvents()
         }).disposed(by: self)
 
         initViewControllerEventsHandler()

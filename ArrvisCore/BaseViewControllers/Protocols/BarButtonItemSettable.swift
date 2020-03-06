@@ -34,17 +34,20 @@ extension BarButtonItemSettable {
         if let backBarButtonItem = backBarButtonItem {
             navigationItem.backBarButtonItem = backBarButtonItem
         }
-        navigationItem.backBarButtonItem?.rx.tap.subscribe(onNext: { [unowned self] in
+        navigationItem.backBarButtonItem?.rx.tap.subscribe(onNext: { [weak self] in
             // TODO: こいつ呼ばれないぞ
-            self.didTapBackBarButtonItem()
+            self?.didTapBackBarButtonItem()
         }).disposed(by: self)
 
         if let leftBarButtonItems = leftBarButtonItems {
             navigationItem.leftBarButtonItems = leftBarButtonItems
         }
         navigationItem.leftBarButtonItems?.forEach({ item in
-            item.rx.tap.subscribe(onNext: { [unowned self] in
-                self.didTapLeftBarButtonItem(self.navigationItem.leftBarButtonItems!.firstIndex(of: item)!)
+            item.rx.tap.subscribe(onNext: { [weak self] in
+                if self == nil {
+                    return
+                }
+                self!.didTapLeftBarButtonItem(self!.navigationItem.leftBarButtonItems!.firstIndex(of: item)!)
             }).disposed(by: self)
         })
 
@@ -52,8 +55,11 @@ extension BarButtonItemSettable {
             navigationItem.rightBarButtonItems = rightBarButtonItems
         }
         navigationItem.rightBarButtonItems?.forEach({ item in
-            item.rx.tap.subscribe(onNext: { [unowned self] in
-                self.didTapRightBarButtonItem(self.navigationItem.rightBarButtonItems!.firstIndex(of: item)!)
+            item.rx.tap.subscribe(onNext: { [weak self] in
+                if self == nil {
+                    return
+                }
+                self!.didTapRightBarButtonItem(self!.navigationItem.rightBarButtonItems!.firstIndex(of: item)!)
             }).disposed(by: self)
         })
     }

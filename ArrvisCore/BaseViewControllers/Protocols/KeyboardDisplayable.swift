@@ -59,23 +59,23 @@ extension KeyboardDisplayable {
         keyboardSubscribers = [
             NotificationCenter.default.rx
                 .notification(UIResponder.keyboardWillShowNotification)
-                .subscribe(onNext: { [unowned self] notification in
-                    self.isKeyboardVisible = true
-                    self.onKeyboardWillShow(notification: notification)
+                .subscribe(onNext: { [weak self] notification in
+                    self?.isKeyboardVisible = true
+                    self?.onKeyboardWillShow(notification: notification)
                 }
             ),
             NotificationCenter.default.rx
                 .notification(UITextInputMode.currentInputModeDidChangeNotification)
-                .subscribe(onNext: { [unowned self] notification in
-                    self.isKeyboardVisible = true
-                    self.onKeyboardWillShow(notification: notification)
+                .subscribe(onNext: { [weak self] notification in
+                    self?.isKeyboardVisible = true
+                    self?.onKeyboardWillShow(notification: notification)
                 }
             ),
             NotificationCenter.default.rx
                 .notification(UIResponder.keyboardWillHideNotification)
-                .subscribe(onNext: { [unowned self] notification in
-                    self.isKeyboardVisible = false
-                    self.onKeyboardWillHide(notification: notification)
+                .subscribe(onNext: { [weak self] notification in
+                    self?.isKeyboardVisible = false
+                    self?.onKeyboardWillHide(notification: notification)
                 }
             )
         ]

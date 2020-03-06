@@ -101,14 +101,14 @@ public final class InputToolBarView: UIToolbar {
     }
 
     private func initImpl() {
-        btnPrev.rx.tap.subscribe(onNext: { [unowned self] in
-            self.previousInputResponder?.becomeFirstResponder()
+        btnPrev.rx.tap.subscribe(onNext: { [weak self] in
+            self?.previousInputResponder?.becomeFirstResponder()
         }).disposed(by: disposeBag)
-        btnNext.rx.tap.subscribe(onNext: { [unowned self] in
-            self.nextInputResponder?.becomeFirstResponder()
+        btnNext.rx.tap.subscribe(onNext: { [weak self] in
+            self?.nextInputResponder?.becomeFirstResponder()
         }).disposed(by: disposeBag)
-        btnDone.rx.tap.subscribe(onNext: { [unowned self] in
-            self.didTapDone?()
+        btnDone.rx.tap.subscribe(onNext: { [weak self] in
+            self?.didTapDone?()
         }).disposed(by: disposeBag)
         refreshItems()
     }
