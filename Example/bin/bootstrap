@@ -1,8 +1,0 @@
-#!/bin/sh
-
-cd `dirname $0` && cd ../
-ROOT=`pwd`
-
-git clean -fdx
-cd $ROOT && cd ./Generamba && bundle install --path vendor/bundler
-cd $ROOT && bundle install --path vendor/bundler && bundle exec pod install
