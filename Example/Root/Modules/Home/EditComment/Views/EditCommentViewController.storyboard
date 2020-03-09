@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="G7l-gC-QHR">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Edit Comment View Controller-->
+        <scene sceneID="9kx-Y6-89Z">
+            <objects>
+                <viewController id="ab2-EX-tH2" customClass="EditCommentViewController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yMH-WK-99E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cy4-Xh-D1n">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8BI-Va-3YY">
+                                        <rect key="frame" x="0.0" y="24" width="375" height="73"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="皆さんへのひとことを入力してみましょう" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W2M-6A-G8h" customClass="AppTextField" customModule="COVAN" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="0.0" width="343" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="cbc-0c-tgj"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="normal"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="872-QD-Bn5">
+                                                <rect key="frame" x="16" y="56" width="343" height="17"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="14" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLW-58-L1B" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="319" height="17"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="blue"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Fk-vW-8gM" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                        <rect key="frame" x="319" y="0.0" width="24" height="17"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="primary"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="W2M-6A-G8h" secondAttribute="trailing" constant="16" id="GKW-MS-2ry"/>
+                                            <constraint firstItem="872-QD-Bn5" firstAttribute="leading" secondItem="8BI-Va-3YY" secondAttribute="leading" constant="16" id="Gdu-Sh-jyy"/>
+                                            <constraint firstAttribute="trailing" secondItem="872-QD-Bn5" secondAttribute="trailing" constant="16" id="XXk-bK-qtu"/>
+                                            <constraint firstItem="W2M-6A-G8h" firstAttribute="leading" secondItem="8BI-Va-3YY" secondAttribute="leading" constant="16" id="XcQ-3C-Dq9"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B6G-fu-huY" customClass="AppButton" customModule="COVAN" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="117" width="343" height="52"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="0rD-vH-1ul"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <state key="normal" title="変更して保存">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="primary"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapSave:" destination="ab2-EX-tH2" eventType="touchUpInside" id="xlP-hW-GJw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8BI-Va-3YY" secondAttribute="width" id="6gy-Cj-ILR"/>
+                                    <constraint firstItem="8BI-Va-3YY" firstAttribute="top" secondItem="cy4-Xh-D1n" secondAttribute="top" constant="24" id="UVu-f5-TmV"/>
+                                    <constraint firstItem="8BI-Va-3YY" firstAttribute="leading" secondItem="cy4-Xh-D1n" secondAttribute="leading" id="Vaw-4t-2FD"/>
+                                    <constraint firstAttribute="trailing" secondItem="8BI-Va-3YY" secondAttribute="trailing" id="XZC-OG-1Ga"/>
+                                    <constraint firstItem="B6G-fu-huY" firstAttribute="top" secondItem="8BI-Va-3YY" secondAttribute="bottom" constant="20" id="iuk-be-nu8"/>
+                                    <constraint firstAttribute="bottom" secondItem="8BI-Va-3YY" secondAttribute="bottom" id="qGi-pc-3zd"/>
+                                    <constraint firstItem="hg3-rx-Xto" firstAttribute="trailing" secondItem="B6G-fu-huY" secondAttribute="trailing" constant="16" id="zWh-ID-Rkn"/>
+                                    <constraint firstItem="B6G-fu-huY" firstAttribute="leading" secondItem="hg3-rx-Xto" secondAttribute="leading" constant="16" id="zkS-FL-KgD"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="AuM-WT-OgJ"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="hg3-rx-Xto"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cy4-Xh-D1n" firstAttribute="top" secondItem="miT-am-cok" secondAttribute="top" id="Hnk-Zi-g3a"/>
+                            <constraint firstItem="cy4-Xh-D1n" firstAttribute="width" secondItem="yMH-WK-99E" secondAttribute="width" id="dbg-jA-rZI"/>
+                            <constraint firstItem="cy4-Xh-D1n" firstAttribute="trailing" secondItem="miT-am-cok" secondAttribute="trailing" id="oxZ-Cd-7V6"/>
+                            <constraint firstItem="cy4-Xh-D1n" firstAttribute="bottom" secondItem="miT-am-cok" secondAttribute="bottom" id="xh3-K8-Pi3"/>
+                            <constraint firstItem="cy4-Xh-D1n" firstAttribute="leading" secondItem="miT-am-cok" secondAttribute="leading" id="zjx-Oq-dmE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="miT-am-cok"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lOU-cx-jnj"/>
+                    <connections>
+                        <outlet property="btnSave" destination="B6G-fu-huY" id="Tya-W9-NJH"/>
+                        <outlet property="labelCommentLength" destination="KLW-58-L1B" id="1dh-1A-c6r"/>
+                        <outlet property="textFieldComment" destination="W2M-6A-G8h" id="AUY-4z-PWY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZ1-oP-p5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1132" y="142.57871064467767"/>
+        </scene>
+        <!--App Navigation Controller-->
+        <scene sceneID="YtM-8t-xv2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G7l-gC-QHR" customClass="AppNavigationController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Lex-Jg-ZNU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ab2-EX-tH2" kind="relationship" relationship="rootViewController" id="tbK-hM-ro5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7E7-af-551" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192.80000000000001" y="142.57871064467767"/>
+        </scene>
+    </scenes>
+</document>

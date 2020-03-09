@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd `dirname $0` && cd ../
+BUNDLE_GEMFILE=./Generamba/Gemfile bundle exec generamba gen $1 module

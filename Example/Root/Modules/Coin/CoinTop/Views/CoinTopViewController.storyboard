@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gbD-Mq-P8N">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Coin Top View Controller-->
+        <scene sceneID="9kx-Y6-89Z">
+            <objects>
+                <viewController id="ab2-EX-tH2" customClass="CoinTopViewController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yMH-WK-99E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWu-5N-tsm">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <connections>
+                                    <segue destination="1eA-3z-eXU" kind="embed" id="TVA-S5-15e"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="sWu-5N-tsm" firstAttribute="bottom" secondItem="miT-am-cok" secondAttribute="bottom" id="8BZ-FW-OHn"/>
+                            <constraint firstItem="sWu-5N-tsm" firstAttribute="leading" secondItem="miT-am-cok" secondAttribute="leading" id="WCD-H0-saD"/>
+                            <constraint firstItem="sWu-5N-tsm" firstAttribute="top" secondItem="miT-am-cok" secondAttribute="top" id="jyt-ce-dWm"/>
+                            <constraint firstItem="sWu-5N-tsm" firstAttribute="trailing" secondItem="miT-am-cok" secondAttribute="trailing" id="kd1-Dl-X6a"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="miT-am-cok"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4qh-G0-NNk">
+                        <barButtonItem key="rightBarButtonItem" title="贈る" id="kwo-VM-f2z"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZ1-oP-p5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1132" y="142.57871064467767"/>
+        </scene>
+        <!--App Navigation Controller-->
+        <scene sceneID="RdF-vi-fVd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gbD-Mq-P8N" customClass="AppNavigationController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0KT-6B-YJ7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ab2-EX-tH2" kind="relationship" relationship="rootViewController" id="8Ol-RY-BjP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hXB-yq-rIt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192.80000000000001" y="142.57871064467767"/>
+        </scene>
+        <!--Coin Tab View Controller-->
+        <scene sceneID="Pkh-HV-zyg">
+            <objects>
+                <viewController id="1eA-3z-eXU" customClass="CoinTabViewController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O1N-9C-koN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="8Ja-tr-PA6"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BP6-8g-eIP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1872" y="142"/>
+        </scene>
+    </scenes>
+</document>

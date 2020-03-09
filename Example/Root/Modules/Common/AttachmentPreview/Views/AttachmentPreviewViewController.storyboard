@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qp3-J8-mIb">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Attachment Preview View Controller-->
+        <scene sceneID="9kx-Y6-89Z">
+            <objects>
+                <viewController id="ab2-EX-tH2" customClass="AttachmentPreviewViewController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yMH-WK-99E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rxj-IX-0gZ">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="プレビュー表示できないファイルです" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPG-Z2-HJa" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                <rect key="frame" x="40" y="323" width="295" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="primary"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gPG-Z2-HJa" firstAttribute="centerY" secondItem="yMH-WK-99E" secondAttribute="centerY" id="JJz-aM-1ua"/>
+                            <constraint firstItem="Rxj-IX-0gZ" firstAttribute="leading" secondItem="miT-am-cok" secondAttribute="leading" id="TaN-xP-4Oz"/>
+                            <constraint firstItem="Rxj-IX-0gZ" firstAttribute="top" secondItem="miT-am-cok" secondAttribute="top" id="o4G-G9-dMF"/>
+                            <constraint firstItem="Rxj-IX-0gZ" firstAttribute="bottom" secondItem="miT-am-cok" secondAttribute="bottom" id="qGz-gL-vA2"/>
+                            <constraint firstItem="gPG-Z2-HJa" firstAttribute="centerX" secondItem="yMH-WK-99E" secondAttribute="centerX" id="rzq-dK-7jB"/>
+                            <constraint firstItem="Rxj-IX-0gZ" firstAttribute="trailing" secondItem="miT-am-cok" secondAttribute="trailing" id="xlT-2A-znJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="miT-am-cok"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UPH-c0-2KQ">
+                        <barButtonItem key="rightBarButtonItem" title="ダウンロード" id="rS3-1k-29m"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="labelUnpreviewable" destination="gPG-Z2-HJa" id="n6T-Ap-Srt"/>
+                        <outlet property="wkWebView" destination="Rxj-IX-0gZ" id="chJ-b4-kjC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZ1-oP-p5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1132" y="142.57871064467767"/>
+        </scene>
+        <!--App Navigation Controller-->
+        <scene sceneID="EXf-Oa-kgf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qp3-J8-mIb" customClass="AppNavigationController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bTn-ap-Xgv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ab2-EX-tH2" kind="relationship" relationship="rootViewController" id="gc6-Lx-vI9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fpC-Is-EM1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192.80000000000001" y="142.57871064467767"/>
+        </scene>
+    </scenes>
+</document>

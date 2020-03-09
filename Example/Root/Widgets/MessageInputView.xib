@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageInputView" customModule="COVAN" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonAction" destination="QDG-NW-AwW" id="P86-sn-WQF"/>
+                <outlet property="buttonFile" destination="i7J-SZ-Jvf" id="1Jq-eQ-7oE"/>
+                <outlet property="buttonImage" destination="MJx-VL-c6e" id="6F0-Y0-NUZ"/>
+                <outlet property="flowLayout" destination="OYq-za-qZP" id="CCu-XG-kED"/>
+                <outlet property="heightOfStampCollectionView" destination="FgI-Eg-sT8" id="w4N-4X-Kwl"/>
+                <outlet property="labelPlaceHolder" destination="9KF-48-NFP" id="OsX-bn-KfN"/>
+                <outlet property="stampCollectionView" destination="zGR-pC-91K" id="oqw-HX-Gg8"/>
+                <outlet property="textViewInput" destination="Czg-fS-aI1" id="F0N-ie-jxa"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="edk-v3-bra">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="265"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mpi-A0-QWI" userLabel="Line">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="0.5"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="qJq-wk-83O"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7J-SZ-Jvf">
+                    <rect key="frame" x="16" y="12.5" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="Aym-Dl-gfi"/>
+                        <constraint firstAttribute="width" constant="24" id="F1A-UM-fH6"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="IconFile">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapFile:" destination="-1" eventType="touchUpInside" id="Pao-3T-vfQ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJx-VL-c6e">
+                    <rect key="frame" x="60" y="12.5" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="48E-wS-wvF"/>
+                        <constraint firstAttribute="width" constant="24" id="Ihr-qe-NJ1"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="IconImage"/>
+                    <connections>
+                        <action selector="didTapImage:" destination="-1" eventType="touchUpInside" id="xJp-uO-RrT"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Czg-fS-aI1" customClass="AutoResizeTextView" customModule="COVAN" customModuleProvider="target">
+                    <rect key="frame" x="100" y="8" width="258" height="24"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="maxExpandLines">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="minHeight">
+                            <real key="value" value="22"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="maxWidth">
+                            <real key="value" value="219"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メッセージを入力" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KF-48-NFP" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                    <rect key="frame" x="100" y="14" width="139" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="blackHalfTransparent"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QDG-NW-AwW">
+                    <rect key="frame" x="374" y="12.5" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="NQ8-Mu-0zG"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="IconStamp">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapAction:" destination="-1" eventType="touchUpInside" id="emb-kF-ObO"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7D4-9L-YE3" userLabel="Line">
+                    <rect key="frame" x="0.0" y="45.5" width="414" height="0.5"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="vBJ-t3-OQF"/>
+                    </constraints>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zGR-pC-91K">
+                    <rect key="frame" x="0.0" y="46" width="414" height="219"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="219" id="FgI-Eg-sT8"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="2.5" id="OYq-za-qZP">
+                        <size key="itemSize" width="90" height="90"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="16" minY="16" maxX="16" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Qsq-Ne-Z99"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="9KF-48-NFP" firstAttribute="leading" secondItem="MJx-VL-c6e" secondAttribute="trailing" constant="16" id="3eU-6z-RP6"/>
+                <constraint firstItem="7D4-9L-YE3" firstAttribute="leading" secondItem="edk-v3-bra" secondAttribute="leading" id="9aG-v0-KpN"/>
+                <constraint firstItem="i7J-SZ-Jvf" firstAttribute="top" secondItem="Mpi-A0-QWI" secondAttribute="bottom" constant="12" id="FfC-0S-8UL"/>
+                <constraint firstItem="Mpi-A0-QWI" firstAttribute="top" secondItem="edk-v3-bra" secondAttribute="top" id="HYl-X3-OAo"/>
+                <constraint firstItem="9KF-48-NFP" firstAttribute="top" secondItem="edk-v3-bra" secondAttribute="top" constant="14" id="IvI-gA-Tf2"/>
+                <constraint firstItem="Czg-fS-aI1" firstAttribute="leading" secondItem="edk-v3-bra" secondAttribute="leading" constant="100" id="Ngb-uu-GXq"/>
+                <constraint firstAttribute="trailing" secondItem="QDG-NW-AwW" secondAttribute="trailing" constant="16" id="O71-q8-cNP"/>
+                <constraint firstAttribute="trailing" secondItem="Mpi-A0-QWI" secondAttribute="trailing" id="QY5-6d-OWs"/>
+                <constraint firstItem="QDG-NW-AwW" firstAttribute="top" secondItem="Mpi-A0-QWI" secondAttribute="bottom" constant="12" id="TOp-3v-dkZ"/>
+                <constraint firstItem="zGR-pC-91K" firstAttribute="top" secondItem="Czg-fS-aI1" secondAttribute="bottom" constant="14" id="Xbs-MM-43X"/>
+                <constraint firstItem="MJx-VL-c6e" firstAttribute="leading" secondItem="i7J-SZ-Jvf" secondAttribute="trailing" constant="20" id="Zkp-pP-ENm"/>
+                <constraint firstItem="i7J-SZ-Jvf" firstAttribute="leading" secondItem="edk-v3-bra" secondAttribute="leading" constant="16" id="aA3-Eg-Wgw"/>
+                <constraint firstItem="zGR-pC-91K" firstAttribute="top" secondItem="7D4-9L-YE3" secondAttribute="bottom" id="aCp-eR-oTu"/>
+                <constraint firstItem="MJx-VL-c6e" firstAttribute="top" secondItem="Mpi-A0-QWI" secondAttribute="bottom" constant="12" id="gcu-SV-EwV"/>
+                <constraint firstItem="zGR-pC-91K" firstAttribute="leading" secondItem="edk-v3-bra" secondAttribute="leading" id="hdy-44-Nx6"/>
+                <constraint firstItem="Czg-fS-aI1" firstAttribute="top" secondItem="edk-v3-bra" secondAttribute="top" constant="8" id="iuH-39-Pre"/>
+                <constraint firstAttribute="trailing" secondItem="zGR-pC-91K" secondAttribute="trailing" id="j5T-2x-tRk"/>
+                <constraint firstAttribute="trailing" secondItem="Czg-fS-aI1" secondAttribute="trailing" constant="56" id="mcC-wU-rLA"/>
+                <constraint firstItem="Mpi-A0-QWI" firstAttribute="leading" secondItem="edk-v3-bra" secondAttribute="leading" id="nan-Yg-gYb"/>
+                <constraint firstAttribute="trailing" secondItem="7D4-9L-YE3" secondAttribute="trailing" id="pc9-LQ-OiI"/>
+                <constraint firstAttribute="bottom" secondItem="zGR-pC-91K" secondAttribute="bottom" id="zCp-p6-UOC"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="140.57971014492756" y="153.01339285714286"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="IconFile" width="24" height="24"/>
+        <image name="IconImage" width="24" height="24"/>
+        <image name="IconStamp" width="24" height="24"/>
+    </resources>
+</document>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>700112813501-5fbh5mknvb2pnjnsh20vhqbvune72kjl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.700112813501-5fbh5mknvb2pnjnsh20vhqbvune72kjl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBPtZ8n_3N8PKAKpG7MUGfy2p54Qbuwiuw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>700112813501</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>jp.co.grabss.DriversCommunity</string>
+	<key>PROJECT_ID</key>
+	<string>drivers-community-dev</string>
+	<key>STORAGE_BUCKET</key>
+	<string>drivers-community-dev.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:700112813501:ios:babb5a5a5e0ac65c2ca6d4</string>
+	<key>DATABASE_URL</key>
+	<string>https://drivers-community-dev.firebaseio.com</string>
+</dict>
+</plist>

@@ -1,0 +1,27 @@
+//
+//  {{ prefix }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+
+// MARK: - {{ module_info.name }}Wireframe
+final class {{ module_info.name }}Wireframe: NSObject, {{ module_info.name }}WireframeInterface {
+
+    static func generateModule(_ payload: Any?) -> UIViewController {
+        let initialViewController = R.storyboard.{{ module_info.name }}ViewController.instantiateInitialViewController()!
+        let vc = initialViewController
+        let interactor = {{ module_info.name }}Interactor()
+        let presenter = {{ module_info.name }}Presenter()
+        presenter.viewInterface = vc
+        presenter.interactorInterface = interactor
+        presenter.wireframeInterface = {{ module_info.name }}Wireframe()
+        presenter.payload = payload
+        interactor.output = presenter
+        vc.presenterInterface = presenter
+        return initialViewController
+    }
+}

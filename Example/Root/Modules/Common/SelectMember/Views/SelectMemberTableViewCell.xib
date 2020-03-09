@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectMemberTableViewCell" rowHeight="70" id="Z6h-9f-Kns" customClass="SelectMemberTableViewCell" customModule="COVAN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z6h-9f-Kns" id="ByK-vN-crr">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YYf-RH-L2E">
+                        <rect key="frame" x="16" y="25" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Ocl-Jw-RNG"/>
+                            <constraint firstAttribute="width" constant="20" id="tYi-bU-8z0"/>
+                        </constraints>
+                        <state key="normal" image="IconCheckOff"/>
+                    </button>
+                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7x6-EK-gfk">
+                        <rect key="frame" x="48" y="15" width="40" height="40"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="I8X-qx-6GI"/>
+                            <constraint firstAttribute="height" constant="40" id="ZdN-Yo-geX"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="didTapMember:" destination="Z6h-9f-Kns" eventType="touchUpInside" id="wRr-5Y-sox"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日立 龍太" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1H-iG-Tjr" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="100" y="12" width="294" height="23.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="primary"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="ドライバーコミュニティ1部 運転員" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RQ-ZO-MKt" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="100" y="43.5" width="294" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="darkGray"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="elm-PY-6dd" userLabel="Divider">
+                        <rect key="frame" x="16" y="69.5" width="398" height="0.5"/>
+                        <color key="backgroundColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="Inp-Do-uvf"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="elm-PY-6dd" firstAttribute="leading" secondItem="ByK-vN-crr" secondAttribute="leading" constant="16" id="0VE-KT-XL8"/>
+                    <constraint firstItem="3RQ-ZO-MKt" firstAttribute="top" secondItem="b1H-iG-Tjr" secondAttribute="bottom" constant="8" id="0gK-8H-DNA"/>
+                    <constraint firstAttribute="bottom" secondItem="3RQ-ZO-MKt" secondAttribute="bottom" constant="12" id="CRc-ZM-mGH"/>
+                    <constraint firstItem="b1H-iG-Tjr" firstAttribute="leading" secondItem="7x6-EK-gfk" secondAttribute="trailing" constant="12" id="IgG-Kc-yQE"/>
+                    <constraint firstItem="YYf-RH-L2E" firstAttribute="centerY" secondItem="ByK-vN-crr" secondAttribute="centerY" id="Mx9-VN-O1c"/>
+                    <constraint firstItem="7x6-EK-gfk" firstAttribute="centerY" secondItem="ByK-vN-crr" secondAttribute="centerY" id="TKf-hi-GbB"/>
+                    <constraint firstAttribute="trailing" secondItem="3RQ-ZO-MKt" secondAttribute="trailing" constant="20" id="Xpt-eJ-71t"/>
+                    <constraint firstAttribute="bottom" secondItem="elm-PY-6dd" secondAttribute="bottom" id="grO-kx-1DW"/>
+                    <constraint firstItem="7x6-EK-gfk" firstAttribute="leading" secondItem="YYf-RH-L2E" secondAttribute="trailing" constant="12" id="id1-LY-AxV"/>
+                    <constraint firstAttribute="trailing" secondItem="elm-PY-6dd" secondAttribute="trailing" id="k60-2N-hVO"/>
+                    <constraint firstItem="YYf-RH-L2E" firstAttribute="leading" secondItem="ByK-vN-crr" secondAttribute="leading" constant="16" id="oW8-6O-vSE"/>
+                    <constraint firstItem="3RQ-ZO-MKt" firstAttribute="leading" secondItem="7x6-EK-gfk" secondAttribute="trailing" constant="12" id="pyE-Sp-Gee"/>
+                    <constraint firstAttribute="trailing" secondItem="b1H-iG-Tjr" secondAttribute="trailing" constant="20" id="zMQ-U7-oyd"/>
+                    <constraint firstItem="b1H-iG-Tjr" firstAttribute="top" secondItem="ByK-vN-crr" secondAttribute="top" constant="12" id="zsa-fK-3iy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="btnCheck" destination="YYf-RH-L2E" id="WNF-Gk-Bs6"/>
+                <outlet property="btnIcon" destination="7x6-EK-gfk" id="P6U-xH-0qq"/>
+                <outlet property="labelName" destination="b1H-iG-Tjr" id="RSy-PI-XnC"/>
+                <outlet property="labelTitle" destination="3RQ-ZO-MKt" id="neq-iS-KNL"/>
+            </connections>
+            <point key="canvasLocation" x="-65.217391304347828" y="-16.741071428571427"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="IconCheckOff" width="20" height="20"/>
+    </resources>
+</document>

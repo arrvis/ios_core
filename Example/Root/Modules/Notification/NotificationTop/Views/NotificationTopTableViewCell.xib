@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NotificationTopTableViewCell" id="ioQ-21-exq" customClass="NotificationTopTableViewCell" customModule="COVAN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ioQ-21-exq" id="Gcg-b5-amB">
+                <rect key="frame" x="0.0" y="0.0" width="383" height="94"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="749" text="yyyy-MM-dd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mN7-Ae-laN" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="16" y="12" width="78.5" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="darkGray"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="コメント数:133" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUM-UW-t50" customClass="CommentedCountLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="288" y="12" width="87" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="6VD-10-hc5"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="darkGray"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyr-IM-1zO" userLabel="Label " customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="16" y="19" width="301" height="32"/>
+                        <string key="text">Label
+aaaa
+bbbb
+cccc
+ddddd</string>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="black"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="必読" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVp-Dk-jRU" userLabel="Label " customClass="ReadStatusLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="325" y="28" width="50" height="14.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="58A-Hl-HvM"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="redRounded"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ds-5g-goi">
+                        <rect key="frame" x="16" y="57" width="24" height="24"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="Y9O-YZ-MfZ"/>
+                            <constraint firstAttribute="width" constant="24" id="wHE-6E-hrk"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="white"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="didTapIcon:" destination="ioQ-21-exq" eventType="touchUpInside" id="rxK-MI-kMw"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nmp-68-6Xd" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="48" y="61" width="193" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="darkGray"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="既読" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vks-VX-JKU" customClass="ReadStatusLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="315" y="60" width="60" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="8ie-B5-gIj"/>
+                            <constraint firstAttribute="height" constant="18" id="t1e-fI-JTy"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="redRounded"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="確認済" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G10-Rf-yBD" customClass="ApprovalStatusLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="249" y="60" width="60" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="CFl-uo-E1i"/>
+                            <constraint firstAttribute="height" constant="18" id="avN-Bh-Qlo"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="redRounded"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Vks-VX-JKU" firstAttribute="trailing" secondItem="Gcg-b5-amB" secondAttribute="trailingMargin" id="06q-IX-ee3"/>
+                    <constraint firstItem="ZVp-Dk-jRU" firstAttribute="leading" secondItem="oyr-IM-1zO" secondAttribute="trailing" constant="8" id="3po-EV-nxV"/>
+                    <constraint firstItem="Nmp-68-6Xd" firstAttribute="centerY" secondItem="1Ds-5g-goi" secondAttribute="centerY" id="86I-u4-LFo"/>
+                    <constraint firstItem="Vks-VX-JKU" firstAttribute="centerY" secondItem="G10-Rf-yBD" secondAttribute="centerY" id="CIP-No-2FO"/>
+                    <constraint firstItem="1Ds-5g-goi" firstAttribute="leading" secondItem="Gcg-b5-amB" secondAttribute="leading" constant="16" id="Dtj-ms-DaK"/>
+                    <constraint firstAttribute="trailing" secondItem="ZVp-Dk-jRU" secondAttribute="trailing" constant="8" id="JIz-6K-T7p"/>
+                    <constraint firstItem="oyr-IM-1zO" firstAttribute="top" secondItem="mN7-Ae-laN" secondAttribute="bottom" constant="7" id="KIX-9w-ee3"/>
+                    <constraint firstAttribute="trailing" secondItem="rUM-UW-t50" secondAttribute="trailing" constant="8" id="Ln1-7a-dkD"/>
+                    <constraint firstItem="G10-Rf-yBD" firstAttribute="leading" secondItem="Nmp-68-6Xd" secondAttribute="trailing" constant="8" id="Olc-bj-1j2"/>
+                    <constraint firstItem="oyr-IM-1zO" firstAttribute="leading" secondItem="Gcg-b5-amB" secondAttribute="leading" constant="16" id="Y9S-YR-CbX"/>
+                    <constraint firstItem="ZVp-Dk-jRU" firstAttribute="centerY" secondItem="oyr-IM-1zO" secondAttribute="centerY" id="YJK-VB-puQ"/>
+                    <constraint firstItem="1Ds-5g-goi" firstAttribute="top" secondItem="oyr-IM-1zO" secondAttribute="bottom" constant="6" id="bAS-eI-7Ra"/>
+                    <constraint firstItem="Nmp-68-6Xd" firstAttribute="top" secondItem="oyr-IM-1zO" secondAttribute="bottom" constant="10" id="gpz-cR-9Zj"/>
+                    <constraint firstAttribute="bottom" secondItem="1Ds-5g-goi" secondAttribute="bottom" constant="13" id="iUO-fd-5zo"/>
+                    <constraint firstItem="Nmp-68-6Xd" firstAttribute="leading" secondItem="1Ds-5g-goi" secondAttribute="trailing" constant="8" id="ikn-ZS-2Aq"/>
+                    <constraint firstItem="mN7-Ae-laN" firstAttribute="leading" secondItem="Gcg-b5-amB" secondAttribute="leading" constant="16" id="k5A-er-lN4"/>
+                    <constraint firstItem="mN7-Ae-laN" firstAttribute="top" secondItem="Gcg-b5-amB" secondAttribute="top" constant="12" id="oIa-Mp-xl3"/>
+                    <constraint firstItem="Vks-VX-JKU" firstAttribute="leading" secondItem="G10-Rf-yBD" secondAttribute="trailing" constant="6" id="pU2-1T-ipi"/>
+                    <constraint firstItem="rUM-UW-t50" firstAttribute="top" secondItem="Gcg-b5-amB" secondAttribute="top" constant="12" id="vU9-mM-s1j"/>
+                    <constraint firstAttribute="bottom" secondItem="Vks-VX-JKU" secondAttribute="bottom" constant="16" id="zaw-1s-VGq"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="btnIcon" destination="1Ds-5g-goi" id="ZML-QY-jHk"/>
+                <outlet property="labelApprovalStatus" destination="G10-Rf-yBD" id="6MX-JU-iTV"/>
+                <outlet property="labelCommentedCount" destination="rUM-UW-t50" id="xgf-HQ-S9q"/>
+                <outlet property="labelName" destination="Nmp-68-6Xd" id="ZV7-FO-sO7"/>
+                <outlet property="labelReadStatus" destination="Vks-VX-JKU" id="0CU-50-1MF"/>
+                <outlet property="labelRequiredRead" destination="ZVp-Dk-jRU" id="ZUA-qV-cJ3"/>
+                <outlet property="labelTime" destination="mN7-Ae-laN" id="zOe-Fq-PA5"/>
+                <outlet property="labelTitle" destination="oyr-IM-1zO" id="NvO-02-3Os"/>
+            </connections>
+            <point key="canvasLocation" x="-197.10144927536234" y="87.723214285714278"/>
+        </tableViewCell>
+    </objects>
+</document>

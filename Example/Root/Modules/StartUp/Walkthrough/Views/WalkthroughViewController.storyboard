@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vCV-pE-kQJ">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--アプリの使い方-->
+        <scene sceneID="9kx-Y6-89Z">
+            <objects>
+                <viewController id="ab2-EX-tH2" customClass="WalkthroughViewController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yMH-WK-99E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アプリの使い方" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6MK-Q8-m00" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                <rect key="frame" x="127" y="20" width="121.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="moveBlue"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iuJ-Ia-sJQ" userLabel="Line">
+                                <rect key="frame" x="16" y="52.5" width="343" height="2"/>
+                                <color key="backgroundColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="nbc-G1-I1e"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jrk-G1-dCm">
+                                <rect key="frame" x="0.0" y="62.5" width="375" height="482.5"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3s4-Ce-hZT">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="482.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="iKq-5k-Sas">
+                                                <rect key="frame" x="0.0" y="0.0" width="1125" height="482.5"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BXq-kd-wJg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="482.5"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Walkthrough1" translatesAutoresizingMaskIntoConstraints="NO" id="rjC-qC-QJS">
+                                                                <rect key="frame" x="37.5" y="16" width="300" height="300"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFc-QH-KBS" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                                <rect key="frame" x="55" y="332" width="265" height="48"/>
+                                                                <string key="text">COVAN（コバン）は
+バンテックの業務連絡アプリ</string>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="primary"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="会社からのお知らせが届きます" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EK4-Qt-2ZD" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                                <rect key="frame" x="73.5" y="396" width="228.5" height="19.5"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="blackMoreTransparent"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="EK4-Qt-2ZD" firstAttribute="centerX" secondItem="BXq-kd-wJg" secondAttribute="centerX" id="2M3-d4-ttP"/>
+                                                            <constraint firstItem="iFc-QH-KBS" firstAttribute="top" secondItem="rjC-qC-QJS" secondAttribute="bottom" constant="16" id="6aB-fz-stZ"/>
+                                                            <constraint firstItem="iFc-QH-KBS" firstAttribute="centerX" secondItem="BXq-kd-wJg" secondAttribute="centerX" id="HMW-gV-QUV"/>
+                                                            <constraint firstItem="rjC-qC-QJS" firstAttribute="centerX" secondItem="BXq-kd-wJg" secondAttribute="centerX" id="HcI-CQ-6Jy"/>
+                                                            <constraint firstItem="EK4-Qt-2ZD" firstAttribute="top" secondItem="iFc-QH-KBS" secondAttribute="bottom" constant="16" id="RrS-KQ-1aE"/>
+                                                            <constraint firstItem="rjC-qC-QJS" firstAttribute="top" secondItem="BXq-kd-wJg" secondAttribute="top" constant="16" id="hub-sG-Ghj"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKF-iE-aTf">
+                                                        <rect key="frame" x="375" y="0.0" width="375" height="482.5"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Walkthrough2" translatesAutoresizingMaskIntoConstraints="NO" id="kkp-UH-QVg">
+                                                                <rect key="frame" x="37.5" y="16" width="300" height="300"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxB-ln-NYi" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                                <rect key="frame" x="96" y="332" width="183.5" height="48"/>
+                                                                <string key="text">簡単に仲間と
+連絡を取り合える！</string>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="primary"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrM-ll-hIW" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                                <rect key="frame" x="65" y="396" width="245" height="38.5"/>
+                                                                <string key="text">グループで会話をしたり
+スタンプで気持ちを伝えられます</string>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="blackMoreTransparent"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="QrM-ll-hIW" firstAttribute="top" secondItem="ZxB-ln-NYi" secondAttribute="bottom" constant="16" id="BWy-PY-U2e"/>
+                                                            <constraint firstItem="kkp-UH-QVg" firstAttribute="centerX" secondItem="gKF-iE-aTf" secondAttribute="centerX" id="KUB-5L-hSF"/>
+                                                            <constraint firstItem="ZxB-ln-NYi" firstAttribute="centerX" secondItem="gKF-iE-aTf" secondAttribute="centerX" id="XPa-Ep-Klk"/>
+                                                            <constraint firstItem="kkp-UH-QVg" firstAttribute="top" secondItem="gKF-iE-aTf" secondAttribute="top" constant="16" id="chX-MW-uYh"/>
+                                                            <constraint firstItem="ZxB-ln-NYi" firstAttribute="top" secondItem="kkp-UH-QVg" secondAttribute="bottom" constant="16" id="dRU-ha-aQ1"/>
+                                                            <constraint firstItem="QrM-ll-hIW" firstAttribute="centerX" secondItem="gKF-iE-aTf" secondAttribute="centerX" id="hPX-Xq-JLU"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STL-Vv-goF">
+                                                        <rect key="frame" x="750" y="0.0" width="375" height="482.5"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Walkthrough3" translatesAutoresizingMaskIntoConstraints="NO" id="3bo-uq-vkQ">
+                                                                <rect key="frame" x="37.5" y="16" width="300" height="300"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qm9-nD-PLG" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                                <rect key="frame" x="85.5" y="332" width="204" height="48"/>
+                                                                <string key="text">感謝の気持ちを
+コインで贈り合おう！</string>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="primary"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SiM-sX-F8x" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                                <rect key="frame" x="89.5" y="396" width="196" height="38.5"/>
+                                                                <string key="text">仲間からもらったコインは
+商品と交換できます</string>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="blackMoreTransparent"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="3bo-uq-vkQ" firstAttribute="top" secondItem="STL-Vv-goF" secondAttribute="top" constant="16" id="URL-2X-Ikv"/>
+                                                            <constraint firstItem="qm9-nD-PLG" firstAttribute="top" secondItem="3bo-uq-vkQ" secondAttribute="bottom" constant="16" id="ZDT-SV-J9w"/>
+                                                            <constraint firstItem="SiM-sX-F8x" firstAttribute="top" secondItem="qm9-nD-PLG" secondAttribute="bottom" constant="16" id="gjc-FG-bA9"/>
+                                                            <constraint firstItem="SiM-sX-F8x" firstAttribute="centerX" secondItem="STL-Vv-goF" secondAttribute="centerX" id="jAS-hm-bSF"/>
+                                                            <constraint firstItem="qm9-nD-PLG" firstAttribute="centerX" secondItem="STL-Vv-goF" secondAttribute="centerX" id="ki9-b1-Tl6"/>
+                                                            <constraint firstItem="3bo-uq-vkQ" firstAttribute="centerX" secondItem="STL-Vv-goF" secondAttribute="centerX" id="wJc-xJ-aLs"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="iKq-5k-Sas" firstAttribute="top" secondItem="3s4-Ce-hZT" secondAttribute="top" id="ASr-iw-4tu"/>
+                                            <constraint firstAttribute="bottom" secondItem="iKq-5k-Sas" secondAttribute="bottom" id="KKZ-Hi-loF"/>
+                                            <constraint firstItem="iKq-5k-Sas" firstAttribute="leading" secondItem="3s4-Ce-hZT" secondAttribute="leading" id="Qbz-qN-4ZT"/>
+                                            <constraint firstAttribute="trailing" secondItem="iKq-5k-Sas" secondAttribute="trailing" id="xDr-dv-pTy"/>
+                                        </constraints>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="Amy-KH-ltG"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="Gh2-8o-Mxo"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="ab2-EX-tH2" id="Fv0-nj-MhJ"/>
+                                        </connections>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="BXq-kd-wJg" firstAttribute="width" secondItem="Jrk-G1-dCm" secondAttribute="width" id="5L5-Gm-7vE"/>
+                                    <constraint firstItem="3s4-Ce-hZT" firstAttribute="leading" secondItem="Jrk-G1-dCm" secondAttribute="leading" id="C7Z-nk-lGt"/>
+                                    <constraint firstItem="iKq-5k-Sas" firstAttribute="height" secondItem="Jrk-G1-dCm" secondAttribute="height" id="V2x-N8-gcQ"/>
+                                    <constraint firstItem="3s4-Ce-hZT" firstAttribute="top" secondItem="Jrk-G1-dCm" secondAttribute="top" id="XpQ-pF-UmS"/>
+                                    <constraint firstAttribute="bottom" secondItem="3s4-Ce-hZT" secondAttribute="bottom" id="YC1-aj-mnR"/>
+                                    <constraint firstAttribute="trailing" secondItem="3s4-Ce-hZT" secondAttribute="trailing" id="YiE-mw-lT5"/>
+                                    <constraint firstItem="STL-Vv-goF" firstAttribute="width" secondItem="Jrk-G1-dCm" secondAttribute="width" id="aXX-df-2ck"/>
+                                    <constraint firstItem="gKF-iE-aTf" firstAttribute="width" secondItem="Jrk-G1-dCm" secondAttribute="width" id="w1a-Er-4yQ"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRd-KB-BwO" customClass="AppButton" customModule="COVAN" customModuleProvider="target">
+                                <rect key="frame" x="16" y="553" width="343" height="52"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dRd-KB-BwO" secondAttribute="height" multiplier="343:52" id="0Vl-vb-02E"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="次へ"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="moveBlue"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapNext:" destination="ab2-EX-tH2" eventType="touchUpInside" id="Dsh-oz-57j"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Afr-hm-inM">
+                                <rect key="frame" x="164.5" y="625" width="46" height="10"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8E-f9-Kiy">
+                                        <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="GNt-4n-Dar"/>
+                                            <constraint firstAttribute="width" constant="10" id="qWT-hC-XfP"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ipk-on-Qga">
+                                        <rect key="frame" x="18" y="0.0" width="10" height="10"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="CI4-lp-nAa"/>
+                                            <constraint firstAttribute="width" constant="10" id="WDe-6A-NtN"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ed6-pB-JJv">
+                                        <rect key="frame" x="36" y="0.0" width="10" height="10"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="KN9-TZ-jFh"/>
+                                            <constraint firstAttribute="width" constant="10" id="apa-j0-aHP"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6MK-Q8-m00" firstAttribute="top" secondItem="miT-am-cok" secondAttribute="top" constant="20" id="1eN-4L-Fkf"/>
+                            <constraint firstItem="Jrk-G1-dCm" firstAttribute="trailing" secondItem="miT-am-cok" secondAttribute="trailing" id="5sz-CV-LFL"/>
+                            <constraint firstItem="Jrk-G1-dCm" firstAttribute="top" secondItem="iuJ-Ia-sJQ" secondAttribute="bottom" constant="8" id="6c1-JW-mnV"/>
+                            <constraint firstItem="iuJ-Ia-sJQ" firstAttribute="trailing" secondItem="yMH-WK-99E" secondAttribute="trailingMargin" id="7NC-wo-M6O"/>
+                            <constraint firstItem="iuJ-Ia-sJQ" firstAttribute="top" secondItem="6MK-Q8-m00" secondAttribute="bottom" constant="12" id="94a-Te-h0X"/>
+                            <constraint firstItem="Afr-hm-inM" firstAttribute="centerX" secondItem="yMH-WK-99E" secondAttribute="centerX" id="D83-aD-OV3"/>
+                            <constraint firstItem="iuJ-Ia-sJQ" firstAttribute="leading" secondItem="yMH-WK-99E" secondAttribute="leadingMargin" id="Sxg-Uc-TeS"/>
+                            <constraint firstItem="dRd-KB-BwO" firstAttribute="leading" secondItem="miT-am-cok" secondAttribute="leading" constant="16" id="e9Q-nz-ppV"/>
+                            <constraint firstItem="6MK-Q8-m00" firstAttribute="centerX" secondItem="yMH-WK-99E" secondAttribute="centerX" id="ehP-oK-jSC"/>
+                            <constraint firstItem="miT-am-cok" firstAttribute="bottom" secondItem="Afr-hm-inM" secondAttribute="bottom" constant="32" id="hMv-Ay-ZhJ"/>
+                            <constraint firstItem="dRd-KB-BwO" firstAttribute="top" secondItem="Jrk-G1-dCm" secondAttribute="bottom" constant="8" id="hzC-wN-LaQ"/>
+                            <constraint firstItem="Afr-hm-inM" firstAttribute="top" secondItem="dRd-KB-BwO" secondAttribute="bottom" constant="20" id="oW7-M0-XnW"/>
+                            <constraint firstItem="Jrk-G1-dCm" firstAttribute="leading" secondItem="miT-am-cok" secondAttribute="leading" id="q7s-Gc-d1A"/>
+                            <constraint firstItem="miT-am-cok" firstAttribute="trailing" secondItem="dRd-KB-BwO" secondAttribute="trailing" constant="16" id="uzv-Pb-JGb"/>
+                            <constraint firstItem="dRd-KB-BwO" firstAttribute="width" secondItem="dRd-KB-BwO" secondAttribute="height" multiplier="343:52" id="xmE-dE-ySe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="miT-am-cok"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="アプリの使い方" id="kWv-or-qHg"/>
+                    <connections>
+                        <outlet property="btnNext" destination="dRd-KB-BwO" id="MG4-hl-dkT"/>
+                        <outlet property="scrollView" destination="3s4-Ce-hZT" id="iQS-6n-8qh"/>
+                        <outlet property="stackViewPage" destination="Afr-hm-inM" id="hVA-u6-lVK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZ1-oP-p5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1132" y="142.57871064467767"/>
+        </scene>
+        <!--App Navigation Controller-->
+        <scene sceneID="xCB-bl-nvY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="vCV-pE-kQJ" customClass="AppNavigationController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4gx-d0-PZj">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ab2-EX-tH2" kind="relationship" relationship="rootViewController" id="KWt-dW-HHh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZtS-eP-6Jb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192.80000000000001" y="142.57871064467767"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Walkthrough1" width="300" height="300"/>
+        <image name="Walkthrough2" width="300" height="300"/>
+        <image name="Walkthrough3" width="300" height="300"/>
+    </resources>
+</document>

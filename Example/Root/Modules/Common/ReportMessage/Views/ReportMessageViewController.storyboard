@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Vq-9P-FhR">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Report Message View Controller-->
+        <scene sceneID="9kx-Y6-89Z">
+            <objects>
+                <viewController id="ab2-EX-tH2" customClass="ReportMessageViewController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yMH-WK-99E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8e0-h2-mqY">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <connections>
+                                    <segue destination="r3I-iq-0jH" kind="embed" id="DL3-hQ-Hw8"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8e0-h2-mqY" firstAttribute="top" secondItem="miT-am-cok" secondAttribute="top" id="H80-OK-foY"/>
+                            <constraint firstItem="8e0-h2-mqY" firstAttribute="trailing" secondItem="miT-am-cok" secondAttribute="trailing" id="YLc-7H-IYX"/>
+                            <constraint firstItem="8e0-h2-mqY" firstAttribute="bottom" secondItem="miT-am-cok" secondAttribute="bottom" id="mKT-S3-brT"/>
+                            <constraint firstItem="8e0-h2-mqY" firstAttribute="leading" secondItem="miT-am-cok" secondAttribute="leading" id="raa-vz-bDI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="miT-am-cok"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1dT-Lu-05b">
+                        <barButtonItem key="rightBarButtonItem" title="通報" id="Y5e-bY-C63"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="barButtonItemReport" destination="Y5e-bY-C63" id="ZOz-eG-PrV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZ1-oP-p5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1132" y="142.57871064467767"/>
+        </scene>
+        <!--Report Message Table View Controller-->
+        <scene sceneID="IIa-hK-eW3">
+            <objects>
+                <tableViewController id="r3I-iq-0jH" customClass="ReportMessageTableViewController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="0Vc-8j-4ax">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection headerTitle="通報内容" id="Tle-Ca-Ufi">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="127" id="ohf-ta-QVL">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="127"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ohf-ta-QVL" id="fqA-mC-BMS">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bSc-TF-iOV" customClass="ReportCommentTextView" customModule="COVAN" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通報内容を記載してください。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z21-ob-gOg" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="16" width="343" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="blackMoreTransparent"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Z21-ob-gOg" firstAttribute="leading" secondItem="fqA-mC-BMS" secondAttribute="leading" constant="16" id="1d1-eE-kKg"/>
+                                                <constraint firstAttribute="trailing" secondItem="bSc-TF-iOV" secondAttribute="trailing" id="5bO-ef-7Vv"/>
+                                                <constraint firstAttribute="bottom" secondItem="bSc-TF-iOV" secondAttribute="bottom" id="MLJ-uq-gBU"/>
+                                                <constraint firstAttribute="trailing" secondItem="Z21-ob-gOg" secondAttribute="trailing" constant="16" id="VY3-H2-OI1"/>
+                                                <constraint firstItem="bSc-TF-iOV" firstAttribute="leading" secondItem="fqA-mC-BMS" secondAttribute="leading" id="ft0-WL-95P"/>
+                                                <constraint firstItem="Z21-ob-gOg" firstAttribute="top" secondItem="fqA-mC-BMS" secondAttribute="top" constant="16" id="kpu-EU-Nn6"/>
+                                                <constraint firstItem="bSc-TF-iOV" firstAttribute="top" secondItem="fqA-mC-BMS" secondAttribute="top" id="vz9-hq-hJ0"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="r3I-iq-0jH" id="Lmy-ah-A2h"/>
+                            <outlet property="delegate" destination="r3I-iq-0jH" id="nNS-jm-zlx"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="labelPlaceHolder" destination="Z21-ob-gOg" id="SgW-Sj-7MT"/>
+                        <outlet property="textViewComment" destination="bSc-TF-iOV" id="wZE-tS-nF3"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="daQ-6g-WJR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1877.5999999999999" y="142.57871064467767"/>
+        </scene>
+        <!--App Navigation Controller-->
+        <scene sceneID="BKN-LY-3HJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Vq-9P-FhR" customClass="AppNavigationController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="b7o-Qr-k1k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ab2-EX-tH2" kind="relationship" relationship="rootViewController" id="McK-Md-3DK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bgG-yG-M2U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192.80000000000001" y="142.57871064467767"/>
+        </scene>
+    </scenes>
+</document>

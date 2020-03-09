@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemberCollectionViewCell" id="smR-T3-MnP" customClass="MemberCollectionViewCell" customModule="COVAN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="93" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="t6Z-h0-DWR">
+                <rect key="frame" x="0.0" y="0.0" width="93" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2h-Th-qJ6" customClass="AppButton" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="16" y="8" width="61" height="61"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="j2h-Th-qJ6" secondAttribute="height" multiplier="1:1" id="KUa-Zi-uXG"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="white"/>
+                        </userDefinedRuntimeAttributes>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3b-6x-663">
+                        <rect key="frame" x="65" y="8" width="20" height="22"/>
+                        <state key="normal" image="ButtonDelete"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAl-I3-puP" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="77" width="93" height="0.0"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="darkNavy"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="kAl-I3-puP" firstAttribute="leading" secondItem="t6Z-h0-DWR" secondAttribute="leading" id="3VC-V5-jG4"/>
+                    <constraint firstItem="j2h-Th-qJ6" firstAttribute="top" secondItem="t6Z-h0-DWR" secondAttribute="top" constant="8" id="7dE-pD-Z1X"/>
+                    <constraint firstItem="V3b-6x-663" firstAttribute="top" secondItem="t6Z-h0-DWR" secondAttribute="top" constant="8" id="ANX-I3-4De"/>
+                    <constraint firstAttribute="trailing" secondItem="V3b-6x-663" secondAttribute="trailing" constant="8" id="MyO-2a-SyV"/>
+                    <constraint firstAttribute="trailing" secondItem="kAl-I3-puP" secondAttribute="trailing" id="lYj-72-mcO"/>
+                    <constraint firstItem="j2h-Th-qJ6" firstAttribute="leading" secondItem="t6Z-h0-DWR" secondAttribute="leading" constant="16" id="n5R-Fa-4Vc"/>
+                    <constraint firstAttribute="trailing" secondItem="j2h-Th-qJ6" secondAttribute="trailing" constant="16" id="rLW-hT-wOD"/>
+                    <constraint firstItem="kAl-I3-puP" firstAttribute="top" secondItem="j2h-Th-qJ6" secondAttribute="bottom" constant="8" id="wGo-zj-UbH"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <connections>
+                <outlet property="btnDelete" destination="V3b-6x-663" id="B9s-Di-fzu"/>
+                <outlet property="btnIcon" destination="j2h-Th-qJ6" id="fbg-nd-1cB"/>
+                <outlet property="labelName" destination="kAl-I3-puP" id="Wiu-Be-aXC"/>
+            </connections>
+            <point key="canvasLocation" x="-177.536231884058" y="474.77678571428567"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ButtonDelete" width="20" height="20"/>
+    </resources>
+</document>

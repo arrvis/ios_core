@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Umh-wr-Xna">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notification Creation View Controller-->
+        <scene sceneID="9kx-Y6-89Z">
+            <objects>
+                <viewController id="ab2-EX-tH2" customClass="NotificationCreationViewController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yMH-WK-99E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtp-cY-sUn">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <connections>
+                                    <segue destination="GhC-bc-8QX" kind="embed" id="nzU-hq-23a"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92156862745098034" green="0.92549019607843142" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="rtp-cY-sUn" firstAttribute="trailing" secondItem="miT-am-cok" secondAttribute="trailing" id="MTI-MA-Zg2"/>
+                            <constraint firstItem="rtp-cY-sUn" firstAttribute="bottom" secondItem="miT-am-cok" secondAttribute="bottom" id="j0h-o9-j1M"/>
+                            <constraint firstItem="rtp-cY-sUn" firstAttribute="leading" secondItem="miT-am-cok" secondAttribute="leading" id="vat-Ap-mih"/>
+                            <constraint firstItem="rtp-cY-sUn" firstAttribute="top" secondItem="miT-am-cok" secondAttribute="top" id="zIU-DM-Chl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="miT-am-cok"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="iUd-Bt-DCR">
+                        <barButtonItem key="rightBarButtonItem" title="投稿" id="VTu-w1-8Bb"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZ1-oP-p5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1132" y="142.57871064467767"/>
+        </scene>
+        <!--Notification Creation Table View Controller-->
+        <scene sceneID="9y9-jp-Ar9">
+            <objects>
+                <tableViewController id="GhC-bc-8QX" customClass="NotificationCreationTableViewController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="QUu-Xb-wW1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.92156862745098034" green="0.92549019607843142" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection headerTitle="通知先グループ" id="JLB-ey-nIi">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="BYF-dk-xlm">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BYF-dk-xlm" id="2Fa-15-xjq">
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通知先グループ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmF-mK-SXw" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="12.5" width="114.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="black"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQf-LC-9BV" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                    <rect key="frame" x="138.5" y="22" width="201.5" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="blackMoreTransparent"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nQf-LC-9BV" firstAttribute="leading" secondItem="vmF-mK-SXw" secondAttribute="trailing" constant="8" id="22N-H5-wYt"/>
+                                                <constraint firstItem="vmF-mK-SXw" firstAttribute="leading" secondItem="2Fa-15-xjq" secondAttribute="leadingMargin" id="J34-B2-mMU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="nQf-LC-9BV" secondAttribute="trailing" id="VJj-TD-vIC"/>
+                                                <constraint firstItem="vmF-mK-SXw" firstAttribute="centerY" secondItem="2Fa-15-xjq" secondAttribute="centerY" id="g51-C0-jhi"/>
+                                                <constraint firstItem="nQf-LC-9BV" firstAttribute="centerY" secondItem="2Fa-15-xjq" secondAttribute="centerY" id="zVk-hj-h3k"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="お知らせ内容" id="xOP-Gm-aTF">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="ZAA-H9-kOX">
+                                        <rect key="frame" x="0.0" y="155.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZAA-H9-kOX" id="0vs-FW-9a5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="お知らせのタイトル（25文字以内）" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NmO-j1-Whf" customClass="AppTextField" customModule="COVAN" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="clear"/>
+                                                        <userDefinedRuntimeAttribute type="point" keyPath="padding">
+                                                            <point key="value" x="16" y="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="NmO-j1-Whf" secondAttribute="trailing" id="B5b-ra-8Yw"/>
+                                                <constraint firstItem="NmO-j1-Whf" firstAttribute="leading" secondItem="0vs-FW-9a5" secondAttribute="leading" id="gDa-Qv-LU3"/>
+                                                <constraint firstItem="NmO-j1-Whf" firstAttribute="top" secondItem="0vs-FW-9a5" secondAttribute="top" id="npC-bs-jOz"/>
+                                                <constraint firstAttribute="bottom" secondItem="NmO-j1-Whf" secondAttribute="bottom" id="qq1-u5-04w"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="128" id="UGm-fj-P0f">
+                                        <rect key="frame" x="0.0" y="199.5" width="375" height="128"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UGm-fj-P0f" id="MRr-2D-5MU">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4v9-kt-Ucr" customClass="AppTextView" customModule="COVAN" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jle-yo-3jl" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="10" width="277.5" height="38.5"/>
+                                                    <string key="text">お知らせの内容を記載してください。
+（500文字以内）</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="blackMoreTransparent"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Jle-yo-3jl" firstAttribute="leading" secondItem="MRr-2D-5MU" secondAttribute="leading" constant="16" id="0yo-i6-IUM"/>
+                                                <constraint firstItem="4v9-kt-Ucr" firstAttribute="leading" secondItem="MRr-2D-5MU" secondAttribute="leading" id="151-43-L44"/>
+                                                <constraint firstAttribute="bottom" secondItem="4v9-kt-Ucr" secondAttribute="bottom" id="2l4-De-EPN"/>
+                                                <constraint firstAttribute="trailing" secondItem="4v9-kt-Ucr" secondAttribute="trailing" id="Ytd-Ba-1My"/>
+                                                <constraint firstItem="Jle-yo-3jl" firstAttribute="top" secondItem="MRr-2D-5MU" secondAttribute="top" constant="10" id="cLU-l9-9UW"/>
+                                                <constraint firstItem="4v9-kt-Ucr" firstAttribute="top" secondItem="MRr-2D-5MU" secondAttribute="top" id="lWf-tH-dga"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="添付するデータ" id="Nxc-HJ-0Q0">
+                                <cells/>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="お知らせオプション" id="Sbf-F3-TZf">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="xiZ-aE-vG6">
+                                        <rect key="frame" x="0.0" y="439.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xiZ-aE-vG6" id="P1e-Dt-cF9">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ボタンを押してもらう" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdO-nL-A5c" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="12.5" width="163.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="black"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OfX-IU-JrR">
+                                                    <rect key="frame" x="306" y="6.5" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="HdO-nL-A5c" firstAttribute="centerY" secondItem="P1e-Dt-cF9" secondAttribute="centerY" id="2F6-0J-asz"/>
+                                                <constraint firstItem="HdO-nL-A5c" firstAttribute="leading" secondItem="P1e-Dt-cF9" secondAttribute="leadingMargin" id="EYv-cp-brG"/>
+                                                <constraint firstItem="OfX-IU-JrR" firstAttribute="centerY" secondItem="P1e-Dt-cF9" secondAttribute="centerY" id="kyB-9e-NOS"/>
+                                                <constraint firstAttribute="trailing" secondItem="OfX-IU-JrR" secondAttribute="trailing" constant="20" symbolic="YES" id="zEh-H9-c80"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="MOv-cF-k1p">
+                                        <rect key="frame" x="0.0" y="483.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MOv-cF-k1p" id="uBG-e0-HGK">
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="表示するボタン" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaJ-1w-gQq" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="12.5" width="114.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="black"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L51-WY-SkY" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                    <rect key="frame" x="340" y="22" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="blackMoreTransparent"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="SaJ-1w-gQq" firstAttribute="leading" secondItem="uBG-e0-HGK" secondAttribute="leadingMargin" id="8Vb-5l-TRp"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="L51-WY-SkY" secondAttribute="trailing" id="Thf-De-6JS"/>
+                                                <constraint firstItem="SaJ-1w-gQq" firstAttribute="centerY" secondItem="uBG-e0-HGK" secondAttribute="centerY" id="x9t-qx-lIo"/>
+                                                <constraint firstItem="L51-WY-SkY" firstAttribute="centerY" secondItem="uBG-e0-HGK" secondAttribute="centerY" id="zY1-1t-fnU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="FYd-2E-bxc">
+                                        <rect key="frame" x="0.0" y="527.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FYd-2E-bxc" id="TVc-lC-lCQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="承認期限" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZC-jh-PYe" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="12.5" width="65.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="black"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufG-Jd-ECI" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                    <rect key="frame" x="359" y="22" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="blackMoreTransparent"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ufG-Jd-ECI" firstAttribute="centerY" secondItem="TVc-lC-lCQ" secondAttribute="centerY" id="ITi-rJ-Q49"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ufG-Jd-ECI" secondAttribute="trailing" id="P9e-Az-rWL"/>
+                                                <constraint firstItem="GZC-jh-PYe" firstAttribute="centerY" secondItem="TVc-lC-lCQ" secondAttribute="centerY" id="QoX-oG-ZBE"/>
+                                                <constraint firstItem="GZC-jh-PYe" firstAttribute="leading" secondItem="TVc-lC-lCQ" secondAttribute="leadingMargin" id="Zhw-8G-uk9"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="3d7-TP-Spj">
+                                        <rect key="frame" x="0.0" y="571.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3d7-TP-Spj" id="5Kw-qf-krS">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="必読にする" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ei-M1-lSC" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="12.5" width="82" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="black"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="svI-gD-XNA">
+                                                    <rect key="frame" x="306" y="6.5" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="svI-gD-XNA" firstAttribute="centerY" secondItem="5Kw-qf-krS" secondAttribute="centerY" id="7o2-rr-MP7"/>
+                                                <constraint firstItem="7ei-M1-lSC" firstAttribute="centerY" secondItem="5Kw-qf-krS" secondAttribute="centerY" id="Bp7-HA-FVL"/>
+                                                <constraint firstAttribute="trailing" secondItem="svI-gD-XNA" secondAttribute="trailing" constant="20" symbolic="YES" id="vT8-Lf-UtY"/>
+                                                <constraint firstItem="7ei-M1-lSC" firstAttribute="leading" secondItem="5Kw-qf-krS" secondAttribute="leadingMargin" id="wHe-nK-GeR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="GhC-bc-8QX" id="UFz-su-Ygr"/>
+                            <outlet property="delegate" destination="GhC-bc-8QX" id="KsM-Se-Fyj"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="approvingDeadlineContentView" destination="TVc-lC-lCQ" id="OhZ-Gu-RLb"/>
+                        <outlet property="labelApprovalConfirmation" destination="L51-WY-SkY" id="V8p-Ig-qwb"/>
+                        <outlet property="labelApprovingDeadline" destination="ufG-Jd-ECI" id="hK7-50-03a"/>
+                        <outlet property="labelPlaceHolder" destination="Jle-yo-3jl" id="Rrk-kH-cYZ"/>
+                        <outlet property="labelSelectedGroups" destination="nQf-LC-9BV" id="Cvy-MR-vEA"/>
+                        <outlet property="switchRequiredApproval" destination="OfX-IU-JrR" id="O8K-su-rmr"/>
+                        <outlet property="switchRequiredRead" destination="svI-gD-XNA" id="U6i-pz-znf"/>
+                        <outlet property="textFieldTitle" destination="NmO-j1-Whf" id="j9S-Pk-kbM"/>
+                        <outlet property="textViewContent" destination="4v9-kt-Ucr" id="A2w-Og-CDD"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pjT-N3-KKy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1989.5999999999999" y="139.880059970015"/>
+        </scene>
+        <!--App Navigation Controller-->
+        <scene sceneID="vlK-vm-vcH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Umh-wr-Xna" customClass="AppNavigationController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tih-xK-AAH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ab2-EX-tH2" kind="relationship" relationship="rootViewController" id="Svm-ry-D1w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7aY-9x-j4y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192.80000000000001" y="142.57871064467767"/>
+        </scene>
+    </scenes>
+</document>

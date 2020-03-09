@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationDetailTableViewMessageCell" rowHeight="148" id="MRj-SC-Ead" customClass="NotificationDetailTableViewMessageCell" customModule="COVAN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="148"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MRj-SC-Ead" id="ARZ-fw-B90">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="148"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mgr-NU-3EP">
+                        <rect key="frame" x="16" y="16" width="44" height="44"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="8Db-gx-m6k"/>
+                            <constraint firstAttribute="width" constant="44" id="W34-S9-3d7"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="white"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="22"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="didTapIcon:" destination="MRj-SC-Ead" eventType="touchUpInside" id="gBd-6F-908"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZr-KM-5vC" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="72" y="8" width="203" height="18"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="primary"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtq-rE-QWI" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="283" y="10" width="31" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="blackHalfTransparent"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="OBu-oC-TxV">
+                        <rect key="frame" x="322" y="6" width="72" height="20"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMt-YO-H48" customClass="AppButton" customModule="COVAN" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="44" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="6po-5m-JUw"/>
+                                    <constraint firstAttribute="height" constant="20" id="V7h-0k-qZW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="👏 2"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="darkGray"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapClapCount:" destination="MRj-SC-Ead" eventType="touchUpInside" id="YT9-Zk-Q8y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSM-ao-a7p" customClass="AppButton" customModule="COVAN" customModuleProvider="target">
+                                <rect key="frame" x="48" y="0.0" width="24" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="efK-ZZ-M8k"/>
+                                    <constraint firstAttribute="width" constant="24" id="uiC-B8-jzX"/>
+                                </constraints>
+                                <state key="normal" image="IconPlus"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="darkGray"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapAddClap:" destination="MRj-SC-Ead" eventType="touchUpInside" id="qP2-lV-7fN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Qha-88-6ti">
+                        <rect key="frame" x="72" y="30" width="294" height="106"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xX-lO-M0D" customClass="LinkLabel" customModule="COVAN" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="294" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="darkGray"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SAe-nQ-o0q">
+                                <rect key="frame" x="0.0" y="34" width="294" height="72"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="aha-Kg-Gqn">
+                                        <rect key="frame" x="0.0" y="0.0" width="294" height="72"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="aha-Kg-Gqn" firstAttribute="trailing" secondItem="ZqP-Nr-ssH" secondAttribute="trailing" placeholder="YES" id="0ND-Ze-ZbZ"/>
+                                    <constraint firstItem="aha-Kg-Gqn" firstAttribute="bottom" secondItem="ZqP-Nr-ssH" secondAttribute="bottom" id="3cx-bc-2qu"/>
+                                    <constraint firstAttribute="trailing" secondItem="aha-Kg-Gqn" secondAttribute="trailing" id="877-NM-2fg"/>
+                                    <constraint firstItem="aha-Kg-Gqn" firstAttribute="leading" secondItem="ZqP-Nr-ssH" secondAttribute="leading" id="Dgz-2i-TLt"/>
+                                    <constraint firstAttribute="bottom" secondItem="aha-Kg-Gqn" secondAttribute="bottom" id="Dqz-lq-nrh"/>
+                                    <constraint firstItem="aha-Kg-Gqn" firstAttribute="top" secondItem="ZqP-Nr-ssH" secondAttribute="top" id="cHj-9h-3n0"/>
+                                    <constraint firstAttribute="height" constant="72" id="ngF-ZM-qBu"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="0ar-je-q5R"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="ZqP-Nr-ssH"/>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="2xX-lO-M0D" firstAttribute="leading" secondItem="Qha-88-6ti" secondAttribute="leading" id="39i-ef-WcW"/>
+                            <constraint firstAttribute="trailing" secondItem="2xX-lO-M0D" secondAttribute="trailing" id="UdS-sk-Tz3"/>
+                            <constraint firstAttribute="trailing" secondItem="SAe-nQ-o0q" secondAttribute="trailing" id="jGp-Qc-4T6"/>
+                            <constraint firstItem="SAe-nQ-o0q" firstAttribute="leading" secondItem="Qha-88-6ti" secondAttribute="leading" id="zau-Pd-Gcm"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Qha-88-6ti" firstAttribute="leading" secondItem="Mgr-NU-3EP" secondAttribute="trailing" constant="12" id="6Hl-Bo-K7h"/>
+                    <constraint firstItem="OBu-oC-TxV" firstAttribute="top" secondItem="ARZ-fw-B90" secondAttribute="top" constant="6" id="Ttl-Ds-Ruo"/>
+                    <constraint firstAttribute="trailing" secondItem="Qha-88-6ti" secondAttribute="trailing" constant="48" id="WgQ-U7-Zgm"/>
+                    <constraint firstItem="OBu-oC-TxV" firstAttribute="leading" secondItem="dtq-rE-QWI" secondAttribute="trailing" constant="8" id="bXy-aA-HzB"/>
+                    <constraint firstItem="RZr-KM-5vC" firstAttribute="leading" secondItem="Mgr-NU-3EP" secondAttribute="trailing" constant="12" id="fGZ-ti-SFY"/>
+                    <constraint firstItem="Mgr-NU-3EP" firstAttribute="leading" secondItem="ARZ-fw-B90" secondAttribute="leading" constant="16" id="gFb-F1-AEU"/>
+                    <constraint firstItem="Mgr-NU-3EP" firstAttribute="top" secondItem="ARZ-fw-B90" secondAttribute="top" constant="16" id="gq9-ca-XbV"/>
+                    <constraint firstItem="dtq-rE-QWI" firstAttribute="top" secondItem="ARZ-fw-B90" secondAttribute="top" constant="10" id="hG7-1Z-vW5"/>
+                    <constraint firstItem="dtq-rE-QWI" firstAttribute="leading" secondItem="RZr-KM-5vC" secondAttribute="trailing" constant="8" id="i5o-zR-IwT"/>
+                    <constraint firstItem="RZr-KM-5vC" firstAttribute="top" secondItem="ARZ-fw-B90" secondAttribute="top" constant="8" id="rhV-0I-k99"/>
+                    <constraint firstAttribute="trailing" secondItem="OBu-oC-TxV" secondAttribute="trailing" constant="20" symbolic="YES" id="v9n-aa-6Fq"/>
+                    <constraint firstAttribute="bottom" secondItem="Qha-88-6ti" secondAttribute="bottom" constant="12" id="wd5-FL-Er4"/>
+                    <constraint firstItem="Qha-88-6ti" firstAttribute="top" secondItem="RZr-KM-5vC" secondAttribute="bottom" constant="4" id="zzu-f6-zFd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="btnAddClap" destination="oSM-ao-a7p" id="BcN-FA-ujc"/>
+                <outlet property="btnClappCount" destination="SMt-YO-H48" id="vsb-2g-cKD"/>
+                <outlet property="btnIcon" destination="Mgr-NU-3EP" id="Rmy-o9-rJc"/>
+                <outlet property="heightOfAttachments" destination="ngF-ZM-qBu" id="V14-wP-eRA"/>
+                <outlet property="labelMessage" destination="2xX-lO-M0D" id="XUB-TH-0xT"/>
+                <outlet property="labelName" destination="RZr-KM-5vC" id="AaE-lD-BWH"/>
+                <outlet property="labelTime" destination="dtq-rE-QWI" id="moN-29-wRu"/>
+                <outlet property="scrollViewAttachments" destination="SAe-nQ-o0q" id="NF2-kn-weE"/>
+                <outlet property="stackViewAttachments" destination="aha-Kg-Gqn" id="jEA-nc-9Gy"/>
+                <outlet property="stackViewClappers" destination="OBu-oC-TxV" id="Ttg-th-EQq"/>
+            </connections>
+            <point key="canvasLocation" x="-413.04347826086962" y="222.99107142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="IconPlus" width="8" height="8"/>
+    </resources>
+</document>

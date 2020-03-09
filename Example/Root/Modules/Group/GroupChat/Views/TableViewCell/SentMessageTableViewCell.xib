@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SentMessageTableViewCell" id="Ijv-6b-jVu" customClass="SentMessageTableViewCell" customModule="COVAN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ijv-6b-jVu" id="WIa-C9-X9a">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKN-G6-MnR" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="77" y="30.5" width="28" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="darkGray"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="既読 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2z-43-Ih6" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="72" y="48" width="33" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="darkGray"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="今日はこれから成田に向かいますが、東関道はいつも通り空いてますか？" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fm-K9-FuZ" customClass="LinkLabel" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="113" y="6" width="285" height="56"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="sentMessage"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0BW-ty-9cX" customClass="AttachmentIconView" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="113" y="6" width="285" height="285"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="285" id="Hhm-Ul-qTg"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9HS-bM-mnP" customClass="AppButton" customModule="COVAN" customModuleProvider="target">
+                        <rect key="frame" x="346" y="50" width="44" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="c7O-c7-czI"/>
+                            <constraint firstAttribute="width" constant="44" id="cPz-O0-gXV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                        <state key="normal" title="👏 2"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="darkGray"/>
+                        </userDefinedRuntimeAttributes>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0BW-ty-9cX" firstAttribute="top" secondItem="WIa-C9-X9a" secondAttribute="top" constant="6" id="1tJ-XZ-uKg"/>
+                    <constraint firstItem="6fm-K9-FuZ" firstAttribute="leading" secondItem="WIa-C9-X9a" secondAttribute="leading" constant="113" id="4Nm-TJ-Ndq"/>
+                    <constraint firstAttribute="trailing" secondItem="6fm-K9-FuZ" secondAttribute="trailing" constant="16" id="7Of-Rx-AqT"/>
+                    <constraint firstItem="W2z-43-Ih6" firstAttribute="top" secondItem="bKN-G6-MnR" secondAttribute="bottom" constant="4" id="DZi-Ep-Kyy"/>
+                    <constraint firstAttribute="trailing" secondItem="6fm-K9-FuZ" secondAttribute="trailing" constant="16" id="HbY-1l-fJd"/>
+                    <constraint firstAttribute="trailing" secondItem="9HS-bM-mnP" secondAttribute="trailing" constant="24" id="HxS-gp-0vj"/>
+                    <constraint firstAttribute="bottom" secondItem="W2z-43-Ih6" secondAttribute="bottom" constant="14" id="Unz-1W-Huc"/>
+                    <constraint firstItem="0BW-ty-9cX" firstAttribute="leading" secondItem="bKN-G6-MnR" secondAttribute="trailing" constant="8" id="W7S-Pd-BLf"/>
+                    <constraint firstAttribute="trailing" secondItem="0BW-ty-9cX" secondAttribute="trailing" constant="16" id="gTq-ue-GbO"/>
+                    <constraint firstItem="0BW-ty-9cX" firstAttribute="leading" secondItem="W2z-43-Ih6" secondAttribute="trailing" constant="8" id="kut-e6-oMh"/>
+                    <constraint firstAttribute="bottom" secondItem="9HS-bM-mnP" secondAttribute="bottom" constant="6" id="l1l-Te-PIJ"/>
+                    <constraint firstAttribute="bottom" secondItem="0BW-ty-9cX" secondAttribute="bottom" constant="14" id="mtf-8r-Tiz"/>
+                    <constraint firstItem="6fm-K9-FuZ" firstAttribute="top" secondItem="WIa-C9-X9a" secondAttribute="top" constant="6" id="sfp-FB-Tat"/>
+                    <constraint firstItem="0BW-ty-9cX" firstAttribute="leading" secondItem="WIa-C9-X9a" secondAttribute="leading" constant="113" id="tdL-vN-XHs"/>
+                    <constraint firstAttribute="bottom" secondItem="6fm-K9-FuZ" secondAttribute="bottom" constant="14" id="y1X-cY-nwD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="attachmentIconView" destination="0BW-ty-9cX" id="esh-kY-BeV"/>
+                <outlet property="bottomOfBtnAttachment" destination="mtf-8r-Tiz" id="4tM-LW-PIh"/>
+                <outlet property="bottomOfLabelContent" destination="y1X-cY-nwD" id="1Hj-TA-7B3"/>
+                <outlet property="btnClappCount" destination="9HS-bM-mnP" id="l8n-F5-1Da"/>
+                <outlet property="heightOfAttachment" destination="Hhm-Ul-qTg" id="AEz-84-KLe"/>
+                <outlet property="labelContent" destination="6fm-K9-FuZ" id="gfC-0A-MYc"/>
+                <outlet property="labelReadersCount" destination="W2z-43-Ih6" id="sgF-1w-cMT"/>
+                <outlet property="labelTime" destination="bKN-G6-MnR" id="CPw-PL-XqD"/>
+                <outlet property="leadingOfAttachment" destination="tdL-vN-XHs" id="s6J-5Z-drp"/>
+                <outlet property="topOfBtnAttachment" destination="1tJ-XZ-uKg" id="5a2-h6-6Xq"/>
+                <outlet property="topOfLabelContent" destination="sfp-FB-Tat" id="rKA-jW-sAB"/>
+            </connections>
+            <point key="canvasLocation" x="154" y="-33"/>
+        </tableViewCell>
+    </objects>
+</document>

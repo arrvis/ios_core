@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ab2-EX-tH2">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Select Member View Controller-->
+        <scene sceneID="9kx-Y6-89Z">
+            <objects>
+                <viewController id="ab2-EX-tH2" customClass="SelectMemberViewController" customModule="COVAN" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yMH-WK-99E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bgp-Ea-Y4B">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tef-Xl-fs0" customClass="AppLabel" customModule="COVAN" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="-32" width="375" height="32"/>
+                                        <color key="backgroundColor" red="0.9137254901960784" green="0.97254901960784312" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="gY0-mP-4CO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceType" value="navy"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <searchBar contentMode="redraw" placeholder="検索" translatesAutoresizingMaskIntoConstraints="NO" id="hYX-5D-7Zy">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="P0s-2J-vzy"/>
+                                        </constraints>
+                                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="ab2-EX-tH2" id="ye5-NQ-ioF"/>
+                                        </connections>
+                                    </searchBar>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ips-gY-Nnc">
+                                        <rect key="frame" x="0.0" y="48" width="375" height="619"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="ab2-EX-tH2" id="gWY-EL-hih"/>
+                                            <outlet property="delegate" destination="ab2-EX-tH2" id="cRL-cX-vRg"/>
+                                        </connections>
+                                    </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRO-9r-G3R" userLabel="Spacer">
+                                        <rect key="frame" x="67.5" y="667" width="240" height="0.0"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" id="H8c-dR-YEw"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ips-gY-Nnc" firstAttribute="leading" secondItem="bgp-Ea-Y4B" secondAttribute="leading" id="4bG-I7-1Px"/>
+                                    <constraint firstItem="hYX-5D-7Zy" firstAttribute="leading" secondItem="bgp-Ea-Y4B" secondAttribute="leading" id="7Kd-rl-YoF"/>
+                                    <constraint firstItem="Tef-Xl-fs0" firstAttribute="leading" secondItem="bgp-Ea-Y4B" secondAttribute="leading" id="Jiy-vF-j9l"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tef-Xl-fs0" secondAttribute="trailing" id="UgH-Hf-1R5"/>
+                                    <constraint firstAttribute="trailing" secondItem="ips-gY-Nnc" secondAttribute="trailing" id="cwY-6L-knV"/>
+                                    <constraint firstAttribute="trailing" secondItem="hYX-5D-7Zy" secondAttribute="trailing" id="m77-HE-OsX"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bgp-Ea-Y4B" firstAttribute="leading" secondItem="miT-am-cok" secondAttribute="leading" id="5yg-Pp-mLd"/>
+                            <constraint firstItem="bgp-Ea-Y4B" firstAttribute="bottom" secondItem="miT-am-cok" secondAttribute="bottom" id="ToR-L2-u9w"/>
+                            <constraint firstItem="bgp-Ea-Y4B" firstAttribute="top" secondItem="miT-am-cok" secondAttribute="top" id="joh-iH-cIA"/>
+                            <constraint firstItem="bgp-Ea-Y4B" firstAttribute="trailing" secondItem="miT-am-cok" secondAttribute="trailing" id="xEd-rd-1rs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="miT-am-cok"/>
+                    </view>
+                    <connections>
+                        <outlet property="heightOfSpacer" destination="H8c-dR-YEw" id="z3f-xB-dr1"/>
+                        <outlet property="labelMinGroupMemberNumber" destination="Tef-Xl-fs0" id="TeG-fJ-goi"/>
+                        <outlet property="searchBar" destination="hYX-5D-7Zy" id="z0g-j3-tg4"/>
+                        <outlet property="tableView" destination="ips-gY-Nnc" id="RX6-nG-2Sj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZ1-oP-p5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192.80000000000001" y="142.57871064467767"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,41 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+swift_version = '5.1'
+
+target 'drivers-community' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for drivers-community
+  branch = 'develop'
+  git = 'git@github.com:arrvis/ios_core.git'
+  pod 'ArrvisCore/Navigate', :git => git, :branch => branch
+  pod 'ArrvisCore/BaseViewControllers', :git => git, :branch => branch
+  pod 'ArrvisCore/VIPER', :git => git, :branch => branch
+  pod 'ArrvisCore/Cocoa', :git => git, :branch => branch
+  pod 'ArrvisCore/HTTPRouter', :git => git, :branch => branch
+
+  pod 'R.swift'
+  pod 'XCGLogger', '~> 7.0.0'
+  pod 'AnyCodable-FlightSchool', '~> 0.2.3'
+
+  pod 'XLPagerTabStrip'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
+
+  pod "ActionCableClient", :git => 'git@github.com:TheMenu/Swift-ActionCableClient.git', :branch => 'master'
+
+  pod "RxGesture"
+  pod 'TTTAttributedLabel'
+
+  pod 'LifetimeTracker'
+end
+
+post_install do |pi|
+  pi.pods_project.targets.each do |t|
+    t.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+      config.build_settings['SWIFT_VERSION'] = "5.1"
+    end
+  end
+end

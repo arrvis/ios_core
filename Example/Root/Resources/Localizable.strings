@@ -1,0 +1,107 @@
+// General
+"Ok" = "OK";
+"Cancel" = "キャンセル";
+"Yes" = "はい";
+"No" = "いいえ";
+"Next" = "次へ";
+"SaveChanges" = "変更する";
+"Create" = "作成";
+"Add" = "追加";
+"Report" = "通報";
+"Delete" = "削除";
+"Edit" = "編集";
+"Copy" = "コピー";
+"Approved" = "確認済";
+"Unapproved" = "未確認";
+"AlreadyRead" = "既読";
+"Unread" = "未読";
+"Draft" = "下書き";
+"On" = "オン";
+"Off" = "オフ";
+
+// MediaPickerTypeSelectActionSheetInfoHandler
+"MediaPickerTypeSelectActionSheetInfoHandler.Title" = "";
+"MediaPickerTypeSelectActionSheetInfoHandler.Message" = "";
+"MediaPickerTypeSelectActionSheetInfoHandler.PhotoLibraryButtonTitle" = "ライブラリから選択";
+"MediaPickerTypeSelectActionSheetInfoHandler.CameraButtonTitle" = "写真を撮る";
+
+// CameraRollEventHandler
+"CameraRollEventHandler.OnFailAccessPhotoLibrary" = "設定でカメラロールへのアクセスを許可してください";
+"CameraRollEventHandler.OnFailAccessCamera" = "設定でカメラへのアクセスを許可してください";
+
+// Alert
+"Alert.Title.Error" = "エラー";
+"Alert.Title.Notice" = "お知らせ";
+"Alert.Message.ImageSaveCompleted" = "カメラロールに保存しました。";
+"Alert.Message.DoneCopy" = "コピーしました。";
+"Alert.Message.ConfirmLogout" = "本当にログアウトしますか？パスワードを忘れていた場合、再ログインできなくなります。";
+"Alert.Message.ConfirmLeaveGroup" = "本当にグループから退会しますか？";
+"Alert.Message.ConfirmApproval" = "承認しますか？";
+
+// RequestPermissions
+"RequestPermissions.Title.Notification" = "通知の送信";
+"RequestPermissions.Title.Location" = "位置情報の利用";
+
+// Walkthrough
+"Walkthrough.Start" = "始める";
+
+// Title
+"LatestNotifications" = "通知";
+"SelectMember" = "メンバーを選択";
+"SelectGroups" = "グループを選択";
+"CoinHistoryList.Received" = "もらった";
+"CoinHistoryList.Send" = "贈った";
+"CoinHistoryList.All" = "すべて";
+"CoinHistoryList.Department" = "所属グループ";
+"Home" = "ホーム";
+"EditComment" = "ひとことの編集";
+"ExchangeCoin" = "コインの交換";
+"Group" = "グループ";
+"GroupCreation" = "新しいグループ";
+"GroupEdit" = "グループの編集";
+"GroupMemberList" = "メンバーリスト";
+"ReportMessage" = "メッセージの通報";
+"Notification" = "お知らせ";
+"NotificationDetail" = "お知らせ詳細";
+"NotificationCreation" = "お知らせ投稿";
+"EditApprovalConfirmation" = "表示するボタンの編集";
+"Coin" = "コイン";
+"SendCoin" = "コインを贈る";
+"SelectCoin" = "コインを選択";
+"More" = "その他";
+"EditPassword" = "パスワード変更";
+
+// More
+"Logout" = "ログアウト";
+
+// Common
+"ShowAllTexts" = "全文を表示";
+"HideTexts" = "非表示";
+"ExpiredFile" = "期限切れ";
+
+// GroupTop
+"GroupTop.NewGroupMessageContent" = "グループが新しく作成されました。\n早速会話をスタートしましょう。";
+
+// Notification
+"AllGroups" = "全グループ";
+"Format.GroupCount" = "%@グループ";
+
+// SendCoin
+"SendCoin.SelectTo" = "贈る人を選択";
+
+// MemberSelect
+"Format.MemberSelect.MinGroupMember" = "グループの作成には最低%@人のメンバーが必要です";
+
+// Format
+"Format.RemainPoint" = "残り%@コイン";
+"Format.ClapCount" = "👏 %@";
+"Format.ReadersCount" = "既読 %@";
+"Format.AddedCoins" = "+%@コイン";
+"Format.MemberCount" = "メンバー %@名";
+"Format.CommentCount" = "コメント数:%@";
+
+// Date
+"DateFormat.FullDate" = "yyyy年MM月dd日 EEEEE曜日";
+"DateFormat.DateTime" = "yyyy年MM月dd日 HH:mm";
+"DateFormat.Time" = "HH:mm";
+"DateTimeFormat.ApprovingDeadlineAt" = "承認期限:yyyy年MM月dd日 HH:mm";
