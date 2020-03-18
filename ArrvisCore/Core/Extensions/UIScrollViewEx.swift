@@ -8,6 +8,31 @@
 
 extension UIScrollView {
 
+    /// Topにいるか
+    var isAtTop: Bool {
+        return contentOffset.y <= verticalOffsetForTop
+    }
+
+    /// Borromにいるか
+    var isAtBottom: Bool {
+        return contentOffset.y >= verticalOffsetForBottom
+    }
+
+    /// Topの垂直方向オフセット
+    var verticalOffsetForTop: CGFloat {
+        let topInset = contentInset.top
+        return -topInset
+    }
+
+    /// Bottomの垂直方向オフセット
+    var verticalOffsetForBottom: CGFloat {
+        let scrollViewHeight = bounds.height
+        let scrollContentSizeHeight = contentSize.height
+        let bottomInset = contentInset.bottom
+        let scrollViewBottomOffset = scrollContentSizeHeight + bottomInset - scrollViewHeight
+        return scrollViewBottomOffset
+    }
+
     /// 表示中のページ
     public var currentHorizontalPage: Int {
         return (Int)(contentOffset.x / bounds.width)
