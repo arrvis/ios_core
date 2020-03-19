@@ -130,6 +130,8 @@ extension Date {
         let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: calendarIdentifier)
         formatter.dateFormat = format
+        formatter.locale = NSLocale.system
+        formatter.timeZone = NSTimeZone.system
         return formatter.date(from: string)
     }
 
