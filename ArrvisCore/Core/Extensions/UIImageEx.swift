@@ -65,6 +65,21 @@ extension UIImage {
         }
     }
 
+    /// 長い方の辺の長さに合わせて aspect ratioを維持してリサイズ
+    ///
+    /// - Parameters:
+    ///   - maximumLength: リサイズ後の長い方の辺の長さ
+    /// - Returns: リサイズ後Image
+    public func resizeFill(maximumLength: CGFloat) -> UIImage {
+        if self.size.width < self.size.height {
+            let resizedWidth = self.size.width * maximumLength / self.size.height
+            return af_imageScaled(to: CGSize(width: resizedWidth, height: maximumLength))
+        } else {
+            let resizedHeight = self.size.height * maximumLength / self.size.width
+            return af_imageScaled(to: CGSize(width: maximumLength, height: resizedHeight))
+        }
+    }
+
     /// 丸める
     public func round() -> UIImage {
         return af_imageRoundedIntoCircle()
