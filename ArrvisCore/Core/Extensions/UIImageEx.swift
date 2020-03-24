@@ -55,7 +55,7 @@ extension UIImage {
     /// - Parameters:
     ///   - minimumLength: リサイズ後の短い方の辺の長さ
     /// - Returns: リサイズ後Image
-    public func resizeFit(minimumLength: CGFloat) -> UIImage {
+    public func resizeFill(minimumLength: CGFloat) -> UIImage {
         if self.size.width < self.size.height {
             let resizedHeight = self.size.height * minimumLength / self.size.width
             return af_imageScaled(to: CGSize(width: minimumLength, height: resizedHeight))
@@ -70,7 +70,7 @@ extension UIImage {
     /// - Parameters:
     ///   - maximumLength: リサイズ後の長い方の辺の長さ
     /// - Returns: リサイズ後Image
-    public func resizeFill(maximumLength: CGFloat) -> UIImage {
+    public func resizeFit(maximumLength: CGFloat) -> UIImage {
         if self.size.width < self.size.height {
             let resizedWidth = self.size.width * maximumLength / self.size.height
             return af_imageScaled(to: CGSize(width: resizedWidth, height: maximumLength))
