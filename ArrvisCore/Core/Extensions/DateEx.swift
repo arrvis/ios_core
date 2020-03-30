@@ -194,7 +194,10 @@ extension Date {
     /// - Parameter format: フォーマット
     /// - Parameter calendarIdntifier: カレンダーIdentifier
     /// - Returns: 文字列
-    public func toString(_ format: String, calendarIdentifier: Calendar.Identifier = .gregorian, locale: Locale = .current) -> String {
+    public func toString(
+        _ format: String,
+        calendarIdentifier: Calendar.Identifier = .gregorian,
+        locale: Locale = .current) -> String {
         let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: calendarIdentifier)
         formatter.dateFormat = format

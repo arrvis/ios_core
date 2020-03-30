@@ -36,18 +36,33 @@ extension UIImage {
     }
 
     /// サイズに合うようにScale
-    public func scaleTo(_ size: CGSize) -> UIImage {
-        return af_imageScaled(to: size)
+    public func scaleTo(_ size: CGSize, _ ignoreScreenScale: Bool = false) -> UIImage {
+        if ignoreScreenScale {
+            return fixOrientation().af_imageScaled(
+                to: CGSize(width: size.width / UIScreen.main.scale, height: size.width / UIScreen.main.scale)
+            )
+        }
+        return fixOrientation().af_imageScaled(to: size)
     }
 
     /// サイズに合うようにScale
-    public func scaleFillTo(_ size: CGSize) -> UIImage {
-        return af_imageAspectScaled(toFill: size)
+    public func scaleFillTo(_ size: CGSize, _ ignoreScreenScale: Bool = false) -> UIImage {
+        if ignoreScreenScale {
+            return fixOrientation().af_imageAspectScaled(
+                toFill: CGSize(width: size.width / UIScreen.main.scale, height: size.width / UIScreen.main.scale)
+            )
+        }
+        return fixOrientation().af_imageAspectScaled(toFill: size)
     }
 
     /// サイズに合うようにScale
-    public func scaleFitTo(_ size: CGSize) -> UIImage {
-        return af_imageAspectScaled(toFit: size)
+    public func scaleFitTo(_ size: CGSize, _ ignoreScreenScale: Bool = false) -> UIImage {
+        if ignoreScreenScale {
+            return fixOrientation().af_imageAspectScaled(
+                toFit: CGSize(width: size.width / UIScreen.main.scale, height: size.width / UIScreen.main.scale)
+            )
+        }
+        return fixOrientation().af_imageAspectScaled(toFit: size)
     }
 
     /// 短い方の辺の長さに合わせて aspect ratioを維持してリサイズ
@@ -55,14 +70,8 @@ extension UIImage {
     /// - Parameters:
     ///   - minimumLength: リサイズ後の短い方の辺の長さ
     /// - Returns: リサイズ後Image
-    public func resizeFill(minimumLength: CGFloat) -> UIImage {
-        if self.size.width < self.size.height {
-            let resizedHeight = self.size.height * minimumLength / self.size.width
-            return af_imageScaled(to: CGSize(width: minimumLength, height: resizedHeight))
-        } else {
-            let resizedWidth = self.size.width * minimumLength / self.size.height
-            return af_imageScaled(to: CGSize(width: resizedWidth, height: minimumLength))
-        }
+    public func resizeFill(minimumLength: CGFloat, _ ignoreScreenScale: Bool = false) -> UIImage {
+        return scaleFillTo(CGSize(width: minimumLength, height: minimumLength), ignoreScreenScale)
     }
 
     /// 長い方の辺の長さに合わせて aspect ratioを維持してリサイズ
@@ -70,14 +79,8 @@ extension UIImage {
     /// - Parameters:
     ///   - maximumLength: リサイズ後の長い方の辺の長さ
     /// - Returns: リサイズ後Image
-    public func resizeFit(maximumLength: CGFloat) -> UIImage {
-        if self.size.width < self.size.height {
-            let resizedWidth = self.size.width * maximumLength / self.size.height
-            return af_imageScaled(to: CGSize(width: resizedWidth, height: maximumLength))
-        } else {
-            let resizedHeight = self.size.height * maximumLength / self.size.width
-            return af_imageScaled(to: CGSize(width: maximumLength, height: resizedHeight))
-        }
+    public func resizeFit(maximumLength: CGFloat, _ ignoreScreenScale: Bool = true) -> UIImage {
+        return scaleFitTo(CGSize(width: maximumLength, height: maximumLength), ignoreScreenScale)
     }
 
     /// 丸める
@@ -91,7 +94,7 @@ extension UIImage {
     /// - Returns: 切り抜き後Image
     public func crop(rect: CGRect) -> UIImage? {
         var opaque = false
-        if let cgImage = cgImage {
+        if let cgImage = fixOrientation().cgImage {
             switch cgImage.alphaInfo {
             case .noneSkipLast, .noneSkipFirst:
                 opaque = true
