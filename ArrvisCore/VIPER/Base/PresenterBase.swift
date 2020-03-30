@@ -100,6 +100,10 @@ open class PresenterBase: NSObject, PresenterInterface {
 
     open func onImagePickCanceled() {}
 
+    open func onImageSelected() {}
+
+    open func onImageAdjustCompleted(_ image: UIImage, _ info: [UIImagePickerController.InfoKey: Any]) {}
+
     open func onImageSelected(_ image: UIImage, _ info: [UIImagePickerController.InfoKey: Any]) {}
 
     open func onMediaSelected(_ url: URL, _ info: [UIImagePickerController.InfoKey: Any]) {}
@@ -114,19 +118,24 @@ open class PresenterBase: NSObject, PresenterInterface {
     open func imagePickerController(
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        onImageSelected()
         picker.dismiss(animated: true) { [unowned self] in
             if let image = info[.originalImage] as? UIImage {
-                var imageOriginal = image
-                UIGraphicsBeginImageContextWithOptions(imageOriginal.size, false, 0.0)
-                imageOriginal.draw(in: CGRect(
-                    x: 0,
-                    y: 0,
-                    width: imageOriginal.size.width,
-                    height: imageOriginal.size.height)
-                )
-                imageOriginal = UIGraphicsGetImageFromCurrentImageContext()!
-                UIGraphicsEndImageContext()
-                self.onImageSelected(imageOriginal, info)
+                DispatchQueue.global().async { [unowned self] in
+                    var imageOriginal = image
+                    UIGraphicsBeginImageContextWithOptions(imageOriginal.size, false, 0.0)
+                    imageOriginal.draw(in: CGRect(
+                        x: 0,
+                        y: 0,
+                        width: imageOriginal.size.width,
+                        height: imageOriginal.size.height)
+                    )
+                    imageOriginal = UIGraphicsGetImageFromCurrentImageContext()!
+                    UIGraphicsEndImageContext()
+                    NSObject.runOnMainThread { [unowned self] in
+                        self.onImageAdjustCompleted(imageOriginal, info)
+                    }
+                }
             } else if let url = info[.mediaURL] as? URL {
                 self.onMediaSelected(url, info)
             } else {
