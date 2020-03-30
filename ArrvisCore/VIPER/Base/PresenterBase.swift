@@ -104,8 +104,6 @@ open class PresenterBase: NSObject, PresenterInterface {
 
     open func onImageAdjustCompleted(_ image: UIImage, _ info: [UIImagePickerController.InfoKey: Any]) {}
 
-    open func onImageSelected(_ image: UIImage, _ info: [UIImagePickerController.InfoKey: Any]) {}
-
     open func onMediaSelected(_ url: URL, _ info: [UIImagePickerController.InfoKey: Any]) {}
 
     open func onUnknownItemSelected(_ info: [UIImagePickerController.InfoKey: Any]) {}
