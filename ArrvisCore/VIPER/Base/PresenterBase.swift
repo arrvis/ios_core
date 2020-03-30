@@ -116,7 +116,17 @@ open class PresenterBase: NSObject, PresenterInterface {
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         picker.dismiss(animated: true) { [unowned self] in
             if let image = info[.originalImage] as? UIImage {
-                self.onImageSelected(image, info)
+                var imageOriginal = image
+                UIGraphicsBeginImageContextWithOptions(imageOriginal.size, false, 0.0)
+                imageOriginal.draw(in: CGRect(
+                    x: 0,
+                    y: 0,
+                    width: imageOriginal.size.width,
+                    height: imageOriginal.size.height)
+                )
+                imageOriginal = UIGraphicsGetImageFromCurrentImageContext()!
+                UIGraphicsEndImageContext()
+                self.onImageSelected(imageOriginal, info)
             } else if let url = info[.mediaURL] as? URL {
                 self.onMediaSelected(url, info)
             } else {
