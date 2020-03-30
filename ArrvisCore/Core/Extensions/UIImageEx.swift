@@ -81,8 +81,8 @@ extension UIImage {
             resizedHeight = minimumLength
         }
         return af_imageScaled(to: CGSize(
-            width: resizedWidth / (ignoreScreenScale ? 1 : UIScreen.main.scale),
-            height: resizedHeight / (ignoreScreenScale ? 1 : UIScreen.main.scale)
+            width: resizedWidth / (ignoreScreenScale ? UIScreen.main.scale : 1),
+            height: resizedHeight / (ignoreScreenScale ? UIScreen.main.scale : 1)
         ))
     }
 
@@ -102,8 +102,8 @@ extension UIImage {
             resizedHeight = self.size.height * maximumLength / self.size.width
         }
         return af_imageScaled(to: CGSize(
-            width: resizedWidth / (ignoreScreenScale ? 1 : UIScreen.main.scale),
-            height: resizedHeight / (ignoreScreenScale ? 1 : UIScreen.main.scale)
+            width: resizedWidth / (ignoreScreenScale ? UIScreen.main.scale : 1),
+            height: resizedHeight / (ignoreScreenScale ? UIScreen.main.scale : 1)
         ))
     }
 
