@@ -71,7 +71,19 @@ extension UIImage {
     ///   - minimumLength: リサイズ後の短い方の辺の長さ
     /// - Returns: リサイズ後Image
     public func resizeFill(minimumLength: CGFloat, _ ignoreScreenScale: Bool = false) -> UIImage {
-        return scaleFillTo(CGSize(width: minimumLength, height: minimumLength), ignoreScreenScale)
+        let resizedWidth: CGFloat
+        let resizedHeight: CGFloat
+        if self.size.width < self.size.height {
+            resizedWidth = minimumLength
+            resizedHeight = self.size.height * minimumLength / self.size.width
+        } else {
+            resizedWidth = self.size.width * minimumLength / self.size.height
+            resizedHeight = minimumLength
+        }
+        return af_imageScaled(to: CGSize(
+            width: resizedWidth / (ignoreScreenScale ? 1 : UIScreen.main.scale),
+            height: resizedHeight / (ignoreScreenScale ? 1 : UIScreen.main.scale)
+        ))
     }
 
     /// 長い方の辺の長さに合わせて aspect ratioを維持してリサイズ
@@ -80,7 +92,19 @@ extension UIImage {
     ///   - maximumLength: リサイズ後の長い方の辺の長さ
     /// - Returns: リサイズ後Image
     public func resizeFit(maximumLength: CGFloat, _ ignoreScreenScale: Bool = true) -> UIImage {
-        return scaleFitTo(CGSize(width: maximumLength, height: maximumLength), ignoreScreenScale)
+        let resizedWidth: CGFloat
+        let resizedHeight: CGFloat
+        if self.size.width < self.size.height {
+            resizedWidth = self.size.width * maximumLength / self.size.height
+            resizedHeight = maximumLength
+        } else {
+            resizedWidth = maximumLength
+            resizedHeight = self.size.height * maximumLength / self.size.width
+        }
+        return af_imageScaled(to: CGSize(
+            width: resizedWidth / (ignoreScreenScale ? 1 : UIScreen.main.scale),
+            height: resizedHeight / (ignoreScreenScale ? 1 : UIScreen.main.scale)
+        ))
     }
 
     /// 丸める
