@@ -47,6 +47,8 @@ open class BaseMPAViewController: BaseViewController {
     /// WebView
     public var webView: WKWebView?
 
+    private let userContentController = WKUserContentController()
+
     // MARK: - Initializer
 
     public required init?(coder aDecoder: NSCoder) {
@@ -54,6 +56,22 @@ open class BaseMPAViewController: BaseViewController {
         if let pageUrl = pageUrl {
             initWebView()
             webView!.load(URLRequest(url: pageUrl))
+        }
+    }
+
+    // MARK: - Life-Cycke
+
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        pageCallbacks.forEach { [unowned self] callBack in
+            self.userContentController.add(self, name: callBack.key)
+        }
+    }
+
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        pageCallbacks.forEach { [unowned self] callBack in
+            self.userContentController.removeScriptMessageHandler(forName: callBack.key)
         }
     }
 
@@ -83,10 +101,6 @@ extension BaseMPAViewController {
 
     /// WebView初期化
     public func initWebView() {
-        let userContentController = WKUserContentController()
-        pageCallbacks.forEach { callBack in
-            userContentController.add(self, name: callBack.key)
-        }
         let webViewConfiguration = WKWebViewConfiguration()
         webViewConfiguration.userContentController = userContentController
         webView = WKWebView(
