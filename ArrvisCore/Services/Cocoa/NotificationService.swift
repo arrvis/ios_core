@@ -71,6 +71,9 @@ extension NotificationService {
         return Observable.create { observer in
             requestAuthorization().subscribe(onNext: { granted in
                 if !granted {
+                    if let deviceToken = deviceToken {
+                        observer.onNext(deviceToken)
+                    }
                     observer.onCompleted()
                     return
                 }
