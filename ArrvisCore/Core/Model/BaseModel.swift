@@ -14,8 +14,9 @@ public protocol BaseModel: Codable {
 extension BaseModel {
 
     /// Objectから生成
-    public static func fromObject(_ object: Any,
-                                  options: JSONSerialization.WritingOptions = .prettyPrinted) -> ModelType {
+    public static func fromObject(
+        _ object: Any,
+        options: JSONSerialization.WritingOptions = .prettyPrinted) -> ModelType {
         return fromJson(try! JSONSerialization.data(withJSONObject: object, options: options))
     }
 
@@ -27,6 +28,11 @@ extension BaseModel {
     /// JSONデータから生成
     public static func fromJson(_ json: Data) -> ModelType {
         return try! JSONDecoder().decode(Self.self, from: json) as! Self.ModelType
+    }
+
+    /// JSON文字列からデコード可能かどうか
+    public static func canDecodeFromJson(_ json: String) -> Bool {
+        return canDecodeFromJson(json.data(using: .utf8)!)
     }
 
     /// JSONデータからデコード可能かどうか
