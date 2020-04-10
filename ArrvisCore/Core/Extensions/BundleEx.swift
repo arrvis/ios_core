@@ -17,4 +17,9 @@ extension Bundle {
     public var build: String {
         return object(forInfoDictionaryKey: "CFBundleVersion") as! String
     }
+
+    /// BundleDisplayName
+    public var bundleDisplayName: String {
+        return object(forInfoDictionaryKey: "CFBundleDisplayName") as! String
+    }
 }
