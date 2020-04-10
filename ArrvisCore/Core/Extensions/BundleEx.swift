@@ -20,6 +20,6 @@ extension Bundle {
 
     /// BundleDisplayName
     public var bundleDisplayName: String {
-        return object(forInfoDictionaryKey: "CFBundleDisplayName") as! String
+        return object(forInfoDictionaryKey: "CFBundleName") as! String
     }
 }
