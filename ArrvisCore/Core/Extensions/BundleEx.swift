@@ -18,8 +18,8 @@ extension Bundle {
         return object(forInfoDictionaryKey: "CFBundleVersion") as! String
     }
 
-    /// BundleDisplayName
-    public var bundleDisplayName: String {
+    /// BundleName
+    public var bundleName: String {
         return object(forInfoDictionaryKey: "CFBundleName") as! String
     }
 }
